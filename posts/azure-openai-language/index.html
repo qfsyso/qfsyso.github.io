@@ -1,0 +1,649 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Azure OpenAI Language | MLOG</title>
+<meta name=keywords content="OpenAI"><meta name=description content="使用 Azure AI 语言分析文本 每天，世界都会生成大量数据；大部分内容基于文本，其形式包括电子邮件、社交媒体文章、在线评论、业务文档等。 通过应用统计和语义模型的人工智能技术，可以创建从基于文本的数据中提取含义和见解的应用程序。
+Azure AI 语言为可轻松集成到你自己的应用程序代码中的常见文本分析技术提供 API。
+在本模块中，你将了解如何使用 Azure AI 语言执行以下操作：
+检测文本中的语言。 分析文本情绪。 提取关键短语、实体和链接实体。
+预配 Azure AI 语言资源 Azure AI 语言旨在帮助从文本中提取信息。 它提供可用于以下各项的功能：
+语言检测 - 确定编写文本所用的语言。
+关键短语提取 - 标识文本中指示要点的重要单词和短语。
+情绪分析 - 量化文本的正负面情绪程度。
+命名实体识别 - 检测对实体的引用，包括人员、位置、时间段、组织等。
+实体链接 - 通过提供指向维基百科文章的参考链接来标识特定实体。
+用于文本分析的 Azure 资源 若要使用 Azure AI 语言来分析文本，必须在 Azure 订阅中为其预配资源。
+在 Azure 订阅中预配适当的资源后，可以使用其终结点及其密钥之一从代码中调用 Azure AI 语言 API。 可以通过向 REST 接口提交 JSON 格式的请求，或者通过使用特定于编程语言的任何可用 SDK 来调用 Azure AI 语言 API。
+注意
+本模块的后续单元中的代码示例显示了与 REST 接口交换的 JSON 请求和响应。 使用 SDK 时，会通过用于封装相同数据值的适当对象和方法对 JSON 请求进行抽象。 在本模块后面的练习中，你将有机会亲自尝试使用适用于 C# 或 Python 的 SDK。"><meta name=author content="dwd"><link rel=canonical href=https://qfsyso.github.io/posts/azure-openai-language/><link crossorigin=anonymous href=/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF+13Dyqob6ASlTrTye8=" rel="preload stylesheet" as=style><link rel=icon href=https://qfsyso.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://qfsyso.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://qfsyso.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://qfsyso.github.io/apple-touch-icon.png><link rel=mask-icon href=https://qfsyso.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://qfsyso.github.io/posts/azure-openai-language/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://qfsyso.github.io/posts/azure-openai-language/"><meta property="og:site_name" content="MLOG"><meta property="og:title" content="Azure OpenAI Language"><meta property="og:description" content="使用 Azure AI 语言分析文本 每天，世界都会生成大量数据；大部分内容基于文本，其形式包括电子邮件、社交媒体文章、在线评论、业务文档等。 通过应用统计和语义模型的人工智能技术，可以创建从基于文本的数据中提取含义和见解的应用程序。
+Azure AI 语言为可轻松集成到你自己的应用程序代码中的常见文本分析技术提供 API。
+在本模块中，你将了解如何使用 Azure AI 语言执行以下操作：
+检测文本中的语言。 分析文本情绪。 提取关键短语、实体和链接实体。
+预配 Azure AI 语言资源 Azure AI 语言旨在帮助从文本中提取信息。 它提供可用于以下各项的功能：
+语言检测 - 确定编写文本所用的语言。
+关键短语提取 - 标识文本中指示要点的重要单词和短语。
+情绪分析 - 量化文本的正负面情绪程度。
+命名实体识别 - 检测对实体的引用，包括人员、位置、时间段、组织等。
+实体链接 - 通过提供指向维基百科文章的参考链接来标识特定实体。
+用于文本分析的 Azure 资源 若要使用 Azure AI 语言来分析文本，必须在 Azure 订阅中为其预配资源。
+在 Azure 订阅中预配适当的资源后，可以使用其终结点及其密钥之一从代码中调用 Azure AI 语言 API。 可以通过向 REST 接口提交 JSON 格式的请求，或者通过使用特定于编程语言的任何可用 SDK 来调用 Azure AI 语言 API。
+注意
+本模块的后续单元中的代码示例显示了与 REST 接口交换的 JSON 请求和响应。 使用 SDK 时，会通过用于封装相同数据值的适当对象和方法对 JSON 请求进行抽象。 在本模块后面的练习中，你将有机会亲自尝试使用适用于 C# 或 Python 的 SDK。"><meta property="og:locale" content="zh-CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-06-05T00:53:20+00:00"><meta property="article:modified_time" content="2024-06-05T00:53:20+00:00"><meta property="article:tag" content="OpenAI"><meta name=twitter:card content="summary"><meta name=twitter:title content="Azure OpenAI Language"><meta name=twitter:description content="使用 Azure AI 语言分析文本 每天，世界都会生成大量数据；大部分内容基于文本，其形式包括电子邮件、社交媒体文章、在线评论、业务文档等。 通过应用统计和语义模型的人工智能技术，可以创建从基于文本的数据中提取含义和见解的应用程序。
+Azure AI 语言为可轻松集成到你自己的应用程序代码中的常见文本分析技术提供 API。
+在本模块中，你将了解如何使用 Azure AI 语言执行以下操作：
+检测文本中的语言。 分析文本情绪。 提取关键短语、实体和链接实体。
+预配 Azure AI 语言资源 Azure AI 语言旨在帮助从文本中提取信息。 它提供可用于以下各项的功能：
+语言检测 - 确定编写文本所用的语言。
+关键短语提取 - 标识文本中指示要点的重要单词和短语。
+情绪分析 - 量化文本的正负面情绪程度。
+命名实体识别 - 检测对实体的引用，包括人员、位置、时间段、组织等。
+实体链接 - 通过提供指向维基百科文章的参考链接来标识特定实体。
+用于文本分析的 Azure 资源 若要使用 Azure AI 语言来分析文本，必须在 Azure 订阅中为其预配资源。
+在 Azure 订阅中预配适当的资源后，可以使用其终结点及其密钥之一从代码中调用 Azure AI 语言 API。 可以通过向 REST 接口提交 JSON 格式的请求，或者通过使用特定于编程语言的任何可用 SDK 来调用 Azure AI 语言 API。
+注意
+本模块的后续单元中的代码示例显示了与 REST 接口交换的 JSON 请求和响应。 使用 SDK 时，会通过用于封装相同数据值的适当对象和方法对 JSON 请求进行抽象。 在本模块后面的练习中，你将有机会亲自尝试使用适用于 C# 或 Python 的 SDK。"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://qfsyso.github.io/posts/"},{"@type":"ListItem","position":2,"name":"Azure OpenAI Language","item":"https://qfsyso.github.io/posts/azure-openai-language/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Azure OpenAI Language","name":"Azure OpenAI Language","description":"使用 Azure AI 语言分析文本 每天，世界都会生成大量数据；大部分内容基于文本，其形式包括电子邮件、社交媒体文章、在线评论、业务文档等。 通过应用统计和语义模型的人工智能技术，可以创建从基于文本的数据中提取含义和见解的应用程序。\nAzure AI 语言为可轻松集成到你自己的应用程序代码中的常见文本分析技术提供 API。\n在本模块中，你将了解如何使用 Azure AI 语言执行以下操作：\n检测文本中的语言。 分析文本情绪。 提取关键短语、实体和链接实体。\n预配 Azure AI 语言资源 Azure AI 语言旨在帮助从文本中提取信息。 它提供可用于以下各项的功能：\n语言检测 - 确定编写文本所用的语言。\n关键短语提取 - 标识文本中指示要点的重要单词和短语。\n情绪分析 - 量化文本的正负面情绪程度。\n命名实体识别 - 检测对实体的引用，包括人员、位置、时间段、组织等。\n实体链接 - 通过提供指向维基百科文章的参考链接来标识特定实体。\n用于文本分析的 Azure 资源 若要使用 Azure AI 语言来分析文本，必须在 Azure 订阅中为其预配资源。\n在 Azure 订阅中预配适当的资源后，可以使用其终结点及其密钥之一从代码中调用 Azure AI 语言 API。 可以通过向 REST 接口提交 JSON 格式的请求，或者通过使用特定于编程语言的任何可用 SDK 来调用 Azure AI 语言 API。\n注意\n本模块的后续单元中的代码示例显示了与 REST 接口交换的 JSON 请求和响应。 使用 SDK 时，会通过用于封装相同数据值的适当对象和方法对 JSON 请求进行抽象。 在本模块后面的练习中，你将有机会亲自尝试使用适用于 C# 或 Python 的 SDK。","keywords":["OpenAI"],"articleBody":"使用 Azure AI 语言分析文本 每天，世界都会生成大量数据；大部分内容基于文本，其形式包括电子邮件、社交媒体文章、在线评论、业务文档等。 通过应用统计和语义模型的人工智能技术，可以创建从基于文本的数据中提取含义和见解的应用程序。\nAzure AI 语言为可轻松集成到你自己的应用程序代码中的常见文本分析技术提供 API。\n在本模块中，你将了解如何使用 Azure AI 语言执行以下操作：\n检测文本中的语言。 分析文本情绪。 提取关键短语、实体和链接实体。\n预配 Azure AI 语言资源 Azure AI 语言旨在帮助从文本中提取信息。 它提供可用于以下各项的功能：\n语言检测 - 确定编写文本所用的语言。\n关键短语提取 - 标识文本中指示要点的重要单词和短语。\n情绪分析 - 量化文本的正负面情绪程度。\n命名实体识别 - 检测对实体的引用，包括人员、位置、时间段、组织等。\n实体链接 - 通过提供指向维基百科文章的参考链接来标识特定实体。\n用于文本分析的 Azure 资源 若要使用 Azure AI 语言来分析文本，必须在 Azure 订阅中为其预配资源。\n在 Azure 订阅中预配适当的资源后，可以使用其终结点及其密钥之一从代码中调用 Azure AI 语言 API。 可以通过向 REST 接口提交 JSON 格式的请求，或者通过使用特定于编程语言的任何可用 SDK 来调用 Azure AI 语言 API。\n注意\n本模块的后续单元中的代码示例显示了与 REST 接口交换的 JSON 请求和响应。 使用 SDK 时，会通过用于封装相同数据值的适当对象和方法对 JSON 请求进行抽象。 在本模块后面的练习中，你将有机会亲自尝试使用适用于 C# 或 Python 的 SDK。\n检测语言 Azure AI 语言检测 API 会评估文本输入，并为提交的每个文档返回带有一个指示分析强度的分数的语言标识符。\n此功能对于用于收集语言未知的任意文本的内容存储非常有用。 另一种方案可能涉及聊天机器人。 如果用户使用聊天机器人启动会话，则语言检测可用于确定用户使用的语言，这样你便可以使用适当的语言配置机器人响应。\n可以解析此分析的结果，确定输入文档中使用的语言。 响应还会返回一个分数，用于反映模型的置信度（介于 0 到 1 的值）。\n语言检测可应用于文档或单个短语。 请注意，文档大小必须小于 5,120 个字符。 大小限制针对每个文档，每个集合限制为 1,000 个项 (ID)。 此处显示了可以在请求正文中向服务提交的格式正确的 JSON 有效负载的示例，包括文档的集合，其中每个文档都包含唯一 ID 以及要分析的文本。 （可选）可以提供 countryHint 以提高预测性能。\n{ \"kind\": \"LanguageDetection\", \"parameters\": { \"modelVersion\": \"latest\" }, \"analysisInput\":{ \"documents\":[ { \"id\": \"1\", \"text\": \"Hello world\", \"countryHint\": \"US\" }, { \"id\": \"2\", \"text\": \"Bonjour tout le monde\" } ] } } 服务将返回一个 JSON 响应，其中包含请求正文中每个文档的结果，包括预测到的语言以及指示预测的置信度的值。 置信度是介于 0 和 1 的值，值越接近 1 则置信度越高。 下面是映射到上述请求 JSON 的标准 JSON 响应的示例。\n{ \"kind\": \"LanguageDetectionResults\", \"results\": { \"documents\": [ { \"detectedLanguage\": { \"confidenceScore\": 1, \"iso6391Name\": \"en\", \"name\": \"English\" }, \"id\": \"1\", \"warnings\": [] }, { \"detectedLanguage\": { \"confidenceScore\": 1, \"iso6391Name\": \"fr\", \"name\": \"French\" }, \"id\": \"2\", \"warnings\": [] } ], \"errors\": [], \"modelVersion\": \"2022-10-01\" } } 在我们的示例中，所有语言的置信度均为 1，这主要是因为文本相对简单，易于识别其语言。\n如果传入包含多语言内容的文档，该服务的行为会有所不同。 同一文档中的混合语言内容将返回内容中代表性最强但正评级较低的语言，这反映该评估的边界强度。 在以下示例中，输入中包含英语、西班牙语和法语。 分析器使用文本的统计分析来确定主要语言。\n{ \"documents\": [ { \"id\": \"1\", \"text\": \"Hello, I would like to take a class at your University. ¿Se ofrecen clases en español? Es mi primera lengua y más fácil para escribir. Que diriez-vous des cours en français?\" } ] } 下面的示例显示了此多语言示例的响应。\n{ \"documents\": [ { \"id\": \"1\", \"detectedLanguage\": { \"name\": \"Spanish\", \"iso6391Name\": \"es\", \"confidenceScore\": 0.9375 }, \"warnings\": [] } ], \"errors\": [], \"modelVersion\": \"2022-10-01\" } 最后要考虑的是语言内容多义性的情况。 如果提交了分析器无法分析的文本内容，则可能会发生这种情况，例如由于在将文本转换为字符串变量时出现字符编码问题。 这样一来，语言名称和 ISO 代码的响应将指示 (unknown)，分数值将返回为 0。 下面的示例显示响应的外观。\n{ \"documents\": [ { \"id\": \"1\", \"detectedLanguage\": { \"name\": \"(Unknown)\", \"iso6391Name\": \"(Unknown)\", \"confidenceScore\": 0.0 }, \"warnings\": [] } ], \"errors\": [], \"modelVersion\": \"2022-10-01\" } 提取关键短语 关键短语提取是这样一个过程，即评估一个或多个文档的文本，然后围绕文档上下文识别出要点。\n关键短语提取最适合大型文档（可分析的最大大小为 5,120 个字符）。\n与语言检测一样，使用 REST 接口可以提交一个或多个文档进行分析。\n{ \"kind\": \"KeyPhraseExtraction\", \"parameters\": { \"modelVersion\": \"latest\" }, \"analysisInput\":{ \"documents\":[ { \"id\": \"1\", \"language\": \"en\", \"text\": \"You must be the change you wish to see in the world.\" }, { \"id\": \"2\", \"language\": \"en\", \"text\": \"The journey of a thousand miles begins with a single step.\" } ] } } 响应包含在每个文档中检测到的关键短语的列表：\n{ \"kind\": \"KeyPhraseExtractionResults\", \"results\": { \"documents\": [ { \"id\": \"1\", \"keyPhrases\": [ \"change\", \"world\" ], \"warnings\": [] }, { \"id\": \"2\", \"keyPhrases\": [ \"miles\", \"single step\", \"journey\" ], \"warnings\": [] } ], \"errors\": [], \"modelVersion\": \"2021-06-01\" } } 分析情绪 情绪分析用于评估文本文档的正负面情绪程度，这在各种工作负载中非常有用，例如：\n通过基于评论量化情绪来评估电影、书籍或产品。 确定客户服务对通过电子邮件或社交媒体消息传送收到的函件的响应的优先级。 使用 Azure AI 语言评估情绪时，响应包括向服务提交的每个文档的总体文档情绪和单个句子情绪。\n例如，可以提交单个文档进行情绪分析，如下所示：\n{ \"kind\": \"SentimentAnalysis\", \"parameters\": { \"modelVersion\": \"latest\" }, \"analysisInput\": { \"documents\": [ { \"id\": \"1\", \"language\": \"en\", \"text\": \"Good morning!\" } ] } } 来自服务的响应可能如下所示：\n{ \"kind\": \"SentimentAnalysisResults\", \"results\": { \"documents\": [ { \"id\": \"1\", \"sentiment\": \"positive\", \"confidenceScores\": { \"positive\": 0.89, \"neutral\": 0.1, \"negative\": 0.01 }, \"sentences\": [ { \"sentiment\": \"positive\", \"confidenceScores\": { \"positive\": 0.89, \"neutral\": 0.1, \"negative\": 0.01 }, \"offset\": 0, \"length\": 13, \"text\": \"Good morning!\" } ], \"warnings\": [] } ], \"errors\": [], \"modelVersion\": \"2022-11-01\" } } 句子情绪基于 0 到 1 之间的正面、负面和中性分类值的置信度分数。\n总体文档情绪基于句子：\n如果所有句子都为中性，则总体情绪为中性。 如果句子分类仅包括正面和中性，则总体情绪为正面。 如果句子分类仅包括负面和中性，则总体情绪为负面。 如果句子分类包括正面和负面，则总体情绪是混合的。 提取实体 命名实体识别标识文本中提及的实体。 实体按类别和子类别分组，例如：\n人员 位置 DateTime 组织 地址 电子邮件 URL 实体识别的输入类似于其他语言 Azure AI 语言 API 函数的输入：\n{ \"kind\": \"EntityRecognition\", \"parameters\": { \"modelVersion\": \"latest\" }, \"analysisInput\": { \"documents\": [ { \"id\": \"1\", \"language\": \"en\", \"text\": \"Joe went to London on Saturday\" } ] } } 响应包括在每个文档中找到的分类实体的列表：\n{ \"kind\": \"EntityRecognitionResults\", \"results\": { \"documents\":[ { \"entities\":[ { \"text\":\"Joe\", \"category\":\"Person\", \"offset\":0, \"length\":3, \"confidenceScore\":0.62 }, { \"text\":\"London\", \"category\":\"Location\", \"subcategory\":\"GPE\", \"offset\":12, \"length\":6, \"confidenceScore\":0.88 }, { \"text\":\"Saturday\", \"category\":\"DateTime\", \"subcategory\":\"Date\", \"offset\":22, \"length\":8, \"confidenceScore\":0.8 } ], \"id\":\"1\", \"warnings\":[] } ], \"errors\":[], \"modelVersion\":\"2021-01-15\" } } 若要了解有关实体的详细信息，请参阅生成对话语言理解模型模块。\n提取链接的实体 在某些情况下，相同的名称可能适用于多个实体。 例如，“Venus”一词的实例是指行星还是神话中的女神？\n实体链接可用于通过引用知识库中的文章来区分同名的实体。 维基百科为文本分析服务提供了知识库。 根据文本中的实体上下文确定特定文章链接。\n例如，“I saw Venus shining in the sky”与链接 https://en.wikipedia.org/wiki/Venus 相关联，而“Venus, the goddess of beauty”与 https://en.wikipedia.org/wiki/Venus_(mythology) 相关联。\n与所有 Azure AI 语言服务函数一样，你可以提交一个或多个文档进行分析：\n{ \"kind\": \"EntityLinking\", \"parameters\": { \"modelVersion\": \"latest\" }, \"analysisInput\": { \"documents\": [ { \"id\": \"1\", \"language\": \"en\", \"text\": \"I saw Venus shining in the sky\" } ] } } 响应包括文本中标识的实体以及指向相关文章的链接：\n{ \"kind\": \"EntityLinkingResults\", \"results\": { \"documents\": [ { \"id\": \"1\", \"entities\": [ { \"bingId\": \"89253af3-5b63-e620-9227-f839138139f6\", \"name\": \"Venus\", \"matches\": [ { \"text\": \"Venus\", \"offset\": 6, \"length\": 5, \"confidenceScore\": 0.01 } ], \"language\": \"en\", \"id\": \"Venus\", \"url\": \"https://en.wikipedia.org/wiki/Venus\", \"dataSource\": \"Wikipedia\" } ], \"warnings\": [] } ], \"errors\": [], \"modelVersion\": \"2021-06-01\" } } 情绪分析有助于确定文本是负面的还是正面的 链接的实体可用于区分同名的常见实体\n使用 Azure AI 语言创建问题解答解决方案 智能”应用程序的常见模式是使用户能够使用自然语言提问并收到相应的答案。 实际上，此类解决方案将对话智能引入传统的常见问题解答 (FAQ) 发布。 本模块介绍如何使用 Azure AI 语言创建可支持应用程序或机器人的问答对知识库。\n了解问题解答及其与语言理解的比较。 创建、测试、发布和使用知识库。 实现多回合对话和主动学习。 创建使用自然语言进行交互的问题解答机器人。\n了解问题解答 已完成\n借助包括问题解答功能的 Azure AI 语言，可以定义可使用自然语言输入查询的问答对知识库。 知识库可以发布到 REST 终结点，并供客户端应用程序（通常是机器人）使用。\n可以从现有源创建知识库，其中包括：\n包含常见问题解答 (FAQ) 文档的网站。 包含结构化文本的文件，如手册或用户指南。 内置的闲聊问题和用于封装常见对话交流的答案对。 注意\nAzure AI 语言的问题解答功能是 QnA 服务的较新版本，该服务仍作为独立的服务存在。 若要了解如何将 QnA Maker 知识库迁移到 Azure AI 语言，请参阅迁移指南。\n比较问题解答和 Azure AI 语言理解 已完成\n问题解答知识库是语言模型的一种形式，它会提出有关何时使用问题解答的问题，以及何时使用 Azure AI 语言的对话语言理解功能。\n这两项功能的相似之处在于，它们都允许定义可以使用自然语言表达式查询的语言模型。 但是，它们旨在解决的用例存在一些差异，如下表所示：\n| | 问答 | 语言理解 | | +++ | +++ | +++ | | 使用模式 | 用户提交问题，需要答案 | 用户提交言语，需要适当的响应或操作 | | 查询处理 | 服务使用自然语言理解将问题与知识库中的答案进行匹配 | 服务使用自然语言理解来解释言语、将其与意向匹配，以及识别实体 | | 响应 | 响应是已知问题的静态答案 | 响应指示最有可能的意向和引用实体 | | 客户端逻辑 | 客户端应用程序通常向用户提供答案 | 客户端应用程序负责根据检测到的意向执行适当的操作 |\n实际上，这两个服务是互补的。 可以构建综合的自然语言解决方案，将语言理解模型与问题解答知识库结合起来。\n创建知识库 若要创建问题解答解决方案，可以使用 REST API 或 SDK 编写用于定义、训练和发布知识库的代码。 不过，更常见的是使用 Language Studio Web 界面来定义和管理知识库。\n若要创建知识库，请执行以下步骤：\n登录到 Azure 门户。\n使用门户顶部的搜索字段搜索“Azure AI 服务”。\n选择“语言服务”资源下的“创建”。\n在 Azure 订阅中创建资源：\n启用问题解答功能。 创建或选择“Azure AI 搜索”资源来托管知识库索引。 在 Language Studio 中，选择“Azure AI 语言”资源并创建“自定义问题解答”项目。\n添加一个或多个数据源以填充知识库：\n包含 FAQ 的 Web 页面的 URL。 包含可以从中派生出问题和解答的结构化文本的文件。 预定义的闲聊数据集，其中包括指定样式的常见对话问题和响应。 在门户中编辑问答对。\n实现多回合对话 已完成\n尽管通常可以创建由单个问答对组成的有效知识库，但有时可能需要在提供明确答案之前询问后续问题，以便从用户那里获取更多信息。 这种交互称为多回合对话。\n根据现有网页或文档的结构从现有网页或文档中导入问答时，可以启用多回合响应，或者可以为现有问答对显式定义跟进提示和响应。\n例如，假设旅行预订知识库的初始问题是“如何取消预订？”。 预订可能指酒店或航班，因此需要跟进提示来阐明此详细信息。 答案可能包含“取消策略取决于预订类型”之类的文本，并包含跟进提示，以及有关取消航班和取消酒店的答案链接。\n定义多回合对话的跟进提示时，可以链接到知识库中的现有答案，或专门为跟进定义新答案。 还可以限制链接答案，以便它仅显示在由原始问题发起的多回合对话的上下文中。\n测试并发布知识库 ​ ​ 定义知识库后，可以训练其自然语言模型并测试该模型，然后发布，以便在应用程序或机器人中使用。 ​\n测试知识库 ​ 你可以在语言工作室中，通过提交问题并查看返回的答案来交互测试知识库。 可以检查结果以查看其置信度分数以及其他可能的答案。 ​ ​\n部署知识库 ​ 如果对知识库的性能满意，可以将其部署到 REST 终结点，客户端应用程序可以使用该函数来提交问题和接收答案。 可以直接从 Language Studio 部署它。 ​\n使用知识库 若要使用已发布的知识库，可以使用 REST 接口。\n函数的最小请求正文包含一个问题，如下所示：\n{ \"question\": \"What do I need to do to cancel a reservation?\", \"top\": 2, \"scoreThreshold\": 20, \"strictFilters\": [ { \"name\": \"category\", \"value\": \"api\" } ] } | properties | 说明 | | +++ | +++ | | 问题 | 要发送到知识库的问题。 | | top | 要返回的最大答案数。 | | scoreThreshold | 返回的答案的分数阈值。 | | strictFilters | 限制为仅包含指定元数据的答案。 |\n响应包括知识库中最接近的问题匹配，以及关联的答案、置信度分数和有关问答对的其他元数据：\n{ \"answers\": [ { \"score\": 27.74823341616769, \"id\": 20, \"answer\": \"Call us on 555 123 4567 to cancel a reservation.\", \"questions\": [ \"How can I cancel a reservation?\" ], \"metadata\": [ { \"name\": \"category\", \"value\": \"api\" } ] } ] } 提高问题解答性能 创建和测试知识库后，可以通过“主动学习”和定义“同义词”来改善其性能。\n使用主动学习 主动学习可帮助你进行持续改进，以便随着时间的推移更好地正确回答用户问题。 人们经常会问一些措辞不同但最终含义相同的问题。 在此类情况下，主动学习会有所帮助，因为它可以让你考虑每个问答对的备选问题。 默认情况下，主动学习处于启用状态。\n若要使用主动学习，可以执行以下操作：\n创建问答对 在 Language Studio 中为项目创建问题和答案对。 还可以导入包含要批量上传的问答对的文件。\n审阅建议 然后，主动学习开始为问答对中的每个问题提供备选问题。 可从“查看建议”窗格访问此内容：\n查看，然后通过选择备选短语旁边的复选标记或删除符号来接受或拒绝针对每个问题建议的这些备选短语。 可以使用顶部的“接受所有建议”或“拒绝所有建议”选项批量接受或拒绝建议。\n在“编辑知识库”窗格中为对选择“添加备选问题”时，还可以手动添加备选问题：\n定义同义词 当用户提交的问题可能包含多个不同的字词来表示相同内容时，同义词很有用。 例如，一家旅游代理商的客户可能会提到“预留”或“预订”。 通过将这些关键词定义为同义词，无论个人客户使用哪一术语，问题解答服务都可以找到相应的答案。\n若要定义同义词，请使用 REST API 按以下 JSON 格式提交同义词：\n{ \"synonyms\": [ { \"alterations\": [ \"reservation\", \"booking\" ] } ] } 可以从现有文档或网页创建知识库。 若要向问题添加多回合上下文，请定义跟进提示。 你可以为已发布的知识库创建机器人，并配置电子邮件通信通道。\n生成对话语言理解模型 介绍 自然语言处理 (NLP) 是一个常见的 AI 问题，即软件必须能够以人类用户书写或说话所用的自然语言形式处理文本或语音。 在更广泛的 NLP 领域中，自然语言理解 (NLU) 处理从自然语言确定语义含义的问题，通常使用训练的语言模型来确定。\n自然语言理解解决方案的常见设计模式如下所示：\n在此设计模式中：\n应用接受来自用户的自然语言输入。 语言模型用于确定语义含义（用户的意向）。 应用执行相应操作。 Azure AI 语言使开发人员能够基于可使用数量相对较少的示例训练的语言模型来生成应用，从而识别用户的预期含义。\n本模块介绍如何相关服务来创建使用 Azure AI 语言的自然语言理解应用。\n完成此模块后，你将能够：\n预配 Azure AI 语言资源。 定义意向、实体和语句。 使用模式区分相似的言语。 使用预生成的实体组件。 训练、测试、发布和查看模型。 了解 Azure AI 语言服务的预生成功能 Azure AI 语言服务提供各种功能来理解人类语言。 可以使用每项特征更好地与用户通信，更好地了解传入通信，或者使用多项特征以便更深入地了解用户所表达内容、意向和询问内容。\nAzure AI 语言服务功能分为两类：预配置的功能和习得的功能。 学习到的特征需要生成和训练一个模型来正确预测适当的标签，本模块即将推出的单元将对此进行介绍。\n本单元会介绍 Azure AI 语言服务的大部分功能，但请参考 Azure AI 语言服务文档获取完整列表，其中包括快速入门和所有可用内容的完整说明。\n在应用中使用这些特征需要将查询发送到相应的终结点。 用于查询特定特征的终结点各不相同，但所有这些终结点都带有在 Azure 帐户中创建的 Azure AI 语言资源前缀，无论是生成 REST 请求，还是使用 SDK 定义客户端。 可以在下一个单元中找到每个示例。\n预配置的功能 Azure AI 语言服务提供的部分功能不需要任何模型标记和训练。 创建资源后，可以发送数据并在应用中使用返回的结果。\n以下功能都是预配置的。\n汇总 摘要可用于文档和对话，可将文本汇总到关键句中，系统通过对关键句进行预测来概括输入的含义。\n命名实体识别 命名实体识别可以提取和标识实体（如人员、地点或公司），使应用能够识别不同类型的实体，从而改进自然语言响应。 例如能从“The waterfront pier is my favorite Seattle attraction”中识别出“Seattle”，并将其分类为地点。\n个人身份信息 (PII) 检测 使用 PII 检测，可以识别、分类和编辑可能被视为敏感信息的信息，例如电子邮件地址、家庭地址、IP 地址、姓名和受保护的运行状况信息。 例如，如果查询中包含文本“email@contoso.com”，则可以识别和修改整个电子邮件地址。\n关键短语提取 关键短语提取是可快速从提供的文本中提取主要概念的功能。 例如，该服务能从“Text Analytics is one of the features in Azure AI Services.”中识别出“Azure AI Services”和“Text Analytics”。\n情绪分析 情绪分析标识字符串或文档是正面还是负面的。 例如该服务能从“Great hotel. Close to plenty of food and attractions we could walk to”中识别出正面的结果，且具有相对较高的置信度分数。\n语言检测 语言检测采用一个或多个文档，并识别每个文档的语言。 例如该服务能从其中一份“Bonjour”文档识别出法语的结果。\n学习的功能 学习的功能要求你标记数据、训练和部署模型，使其可在应用程序中使用。 这些功能允许自定义预测或提取的信息。\n注意\n数据质量极大地影响模型的准确性。 请留意使用的数据、数据的标记情况以及训练数据的多样化程度。 有关详细信息，请参阅有关标记数据的建议，其中包括针对标记数据的宝贵指南。 另请参阅评估指标，可帮助你了解模型需要改进的地方。\n对话语言理解 (CLU) CLU 是 Azure AI 语言提供的核心自定义功能之一。 CLU 可帮助用户生成自定义自然语言理解模型来预测整体意向，并从传入言语中提取重要信息。 CLU 要求用户标记数据，以让其学习如何准确预测意向和实体。\n本模块中的练习将生成 CLU 模型并在应用中使用它。\n自定义命名实体识别 自定义实体识别采用自定义标记数据，并从非结构化文本中提取指定的实体。 例如，如果有需要从中提取当事人的各种合同文档，可以通过训练模型让模型知道如何进行预测。\n自定义文本分类 使用自定义文本分类，用户可以将文本或文档分类为自定义组。 例如，可以训练模型来查看新闻文章，并确定这些信息的所述类别，例如“新闻”或“娱乐”。\n问答 问题解答是一项在大多数情况下会预配的功能，可解答作为输入提供的问题。 回答这些问题的数据来自常见问题解答或手册等文档。\n例如，假设你想要在公司网站上创建虚拟聊天助手来回答常见问题。 可以使用公司常见问题解答作为输入文档来创建问题和答案对。 部署后，聊天助手可以将输入问题传递给服务，并以结果形式获取解答。\n若要查看功能的完整列表以及使用方法，请参阅 Azure AI 语言文档。\n了解用于生成对话语言理解模型的资源 9 分钟 若要使用语言理解服务开发 NLP 解决方案，需要在 Azure 中创建语言资源。 该资源将用于创作模型和处理来自客户端应用程序的预测请求。\n提示\n本模块的实验室介绍如何构建用于对话语言理解的模型。 有关自定义文本分类和自定义命名实体识别的更多重点模块，请参阅开发自然语言解决方案学习路径中的自定义解决方案模块。\n构建你的模型 对于需要模型进行预测的功能，需要先生成、训练并部署模型，才能将其用于预测。 通过生成和训练让 Azure AI 语言服务学习要查找的内容。\n首先，需要在 Azure 门户中创建 Azure AI 语言资源。 然后：\n搜索 Azure AI 服务。 查找并选择“语言服务”。 选择“语言服务”下的“创建”。 填写必要的详细信息，选择在地理位置上最靠近的区域（以获得最佳性能），并为其提供唯一的名称。 创建该资源后，需要密钥和终结点。 可以在资源概述页的“密钥和终结点”下的左侧找到该信息。\n使用语言工作室 若要更直观地生成、训练和部署模型，可以使用 Language Studio 来实现上述每个步骤。 在主页上，可以选择创建对话语言理解项目。 创建项目后，请完成与上述内容相同的过程来生成、训练和部署模型。\n本模块中的实验室将逐步讲解如何使用 Language Studio 生成模型。 若要了解详细信息，请参阅 Language Studio 快速入门\n使用 REST API 生成模型的一种方法是通过 REST API 生成。 该模式是创建项目、导入数据、训练、部署，然后使用模型。\n这些任务以异步方式完成；需要向每个步骤的相应 URI 提交请求，然后发送另一个请求以获取该作业的状态。\n例如，如果要为对话语言理解项目部署模型，则需要提交部署作业，然后检查部署作业状态。\n身份验证 对于对 Azure AI 语言资源的每个调用，可以通过提供以下标头对请求进行身份验证。\n| 密钥 | 值 | | +++ | +++ | | Ocp-Apim-Subscription-Key | 资源密钥 |\n请求部署 将 POST 请求提交到以下终结点。\n{ENDPOINT}/language/authoring/analyze-conversations/projects/{PROJECT-NAME}/deployments/{DEPLOYMENT-NAME}?api-version={API-VERSION} | 占位符 | 值 | 示例 | | +++ | +++ | +++ | | {ENDPOINT} | Azure AI 语言资源的终结点 | https://.cognitiveservices.azure.com | | {PROJECT-NAME} | 项目名称。 此值区分大小写 | myProject | | {DEPLOYMENT-NAME} | 部署名称。 此值区分大小写 | staging | | {API-VERSION} | 要调用的 API 版本 | 2022-05-01 |\n请在请求中包括以下 body。\n{ \"trainedModelLabel\": \"{MODEL-NAME}\", } | 占位符 | 值 | | +++ | +++ | | {MODEL-NAME} | 将要分配给部署的模型名称。 此值区分大小写。 |\n若成功提交请求，将收到 202 响应，并带有响应标头 operation-location。 此标头将具有一个 URL，用于请求状态，格式如下所示：\n{ENDPOINT}/language/authoring/analyze-conversations/projects/{PROJECT-NAME}/deployments/{DEPLOYMENT-NAME}/jobs/{JOB-ID}?api-version={API-VERSION} 获取部署状态 将 GET 请求提交到上述响应标头中的 URL。 这些值已根据初始部署请求填写。\n{ENDPOINT}/language/authoring/analyze-conversations/projects/{PROJECT-NAME}/deployments/{DEPLOYMENT-NAME}/jobs/{JOB-ID}?api-version={API-VERSION} | 占位符 | 值 | | +++ | +++ | | {ENDPOINT} | 用于对 API 请求进行身份验证的终结点 | | {PROJECT-NAME} | 项目名称（值区分大小写） | | {DEPLOYMENT-NAME} | 部署名称（值区分大小写） | | {JOB-ID} | 用于查找模型训练状态的 ID，可在上文部署请求中详述的标头值中找到 | | {API-VERSION} | 要调用的 API 版本 |\n响应正文将提供部署状态详细信息。 当部署完成时，status 字段的值会为“已成功”。\n{ \"jobId\":\"{JOB-ID}\", \"createdDateTime\":\"String\", \"lastUpdatedDateTime\":\"String\", \"expirationDateTime\":\"String\", \"status\":\"running\" } 若要查看示例请求的每个步骤的完整演练，请参阅对话理解快速入门。\n查询你的模型 若要查询模型以进行预测，可以使用 C# 或 Python 中的 SDK，也可以使用 REST AP。\n使用 SDK 进行查询 若要使用 SDK 查询你的模型，你首先需要创建客户端。 具有客户端后，即可使用它来调用相应的终结点。\nvar languageClient = new TextAnalyticsClient(endpoint, credentials); var response = languageClient.ExtractKeyPhrases(document); language_client = TextAnalyticsClient( endpoint=endpoint, credential=credentials) response = language_client.extract_key_phrases(documents = documents)[0] 其他语言功能（例如对话语言理解）要求以不同的方式构建和发送请求。\nvar data = new { analysisInput = new { conversationItem = new { text = userText, id = \"1\", participantId = \"1\", } }, parameters = new { projectName, deploymentName, // Use Utf16CodeUnit for strings in .NET. stringIndexType = \"Utf16CodeUnit\", }, kind = \"Conversation\", }; Response response = await client.AnalyzeConversationAsync(RequestContent.Create(data)); result = client.analyze_conversation( task={ \"kind\": \"Conversation\", \"analysisInput\": { \"conversationItem\": { \"participantId\": \"1\", \"id\": \"1\", \"modality\": \"text\", \"language\": \"en\", \"text\": query }, \"isLoggingEnabled\": False }, \"parameters\": { \"projectName\": cls_project, \"deploymentName\": deployment_slot, \"verbose\": True } } ) 使用 REST API 进行查询 若要使用 REST 查询你的模型，请使用指定的相应正文创建对相应 URL 的 POST 请求。 对于内置功能（如语言检测或情绪分析），你将查询 analyze-text 终结点。\n提示\n请记住，每个请求都需要使用 Ocp-Apim-Subscription-Key 标头中的 Azure AI 语言资源密钥进行身份验证\n{ENDPOINT}/language/:analyze-text?api-version={API-VERSION} | 占位符 | 值 | | +++ | +++ | | {ENDPOINT} | 用于对 API 请求进行身份验证的终结点 | | {API-VERSION} | 要调用的 API 版本 |\n在该请求的正文中，必须指定 kind 参数，该参数告知服务你所请求的语言理解类型。\n例如，如果想要检测语言，则 JSON 正文将如下所示。\n{ \"kind\": \"LanguageDetection\", \"parameters\": { \"modelVersion\": \"latest\" }, \"analysisInput\":{ \"documents\":[ { \"id\":\"1\", \"text\": \"This is a document written in English.\" } ] } } 其他语言功能（例如对话语言理解）要求将请求路由到其他终结点。 例如，对话语言理解请求将被发送到以下位置。\n{ENDPOINT}/language/:analyze-conversations?api-version={API-VERSION} | 占位符 | 值 | | +++ | +++ | | {ENDPOINT} | 用于对 API 请求进行身份验证的终结点 | | {API-VERSION} | 要调用的 API 版本 |\n该请求将包含类似于以下内容的 JSON 正文。\n{ \"kind\": \"Conversation\", \"analysisInput\": { \"conversationItem\": { \"id\": \"1\", \"participantId\": \"1\", \"text\": \"Sample text\" } }, \"parameters\": { \"projectName\": \"{PROJECT-NAME}\", \"deploymentName\": \"{DEPLOYMENT-NAME}\", \"stringIndexType\": \"TextElement_V8\" } } | 占位符 | 值 | | +++ | +++ | | {PROJECT-NAME} | 生成模型的项目的名称 | | {DEPLOYMENT-NAME} | 部署的名称 |\n示例响应 来自 SDK 的查询响应将出现在返回的对象中，具体取决于功能（例如在 response.key_phrases 或 response.Value 中）。 REST API 将返回类似于以下内容的 JSON。\n{ \"kind\": \"KeyPhraseExtractionResults\", \"results\": { \"documents\": [{ \"id\": \"1\", \"keyPhrases\": [\"modern medical office\", \"Dr. Smith\", \"great staff\"], \"warnings\": [] }], \"errors\": [], \"modelVersion\": \"{VERSION}\" } } 对于对话语言理解等其他模型，对查询的示例响应将类似于以下内容。\n{ \"kind\": \"ConversationResult\", \"result\": { \"query\": \"String\", \"prediction\": { \"topIntent\": \"intent1\", \"projectKind\": \"Conversation\", \"intents\": [ { \"category\": \"intent1\", \"confidenceScore\": 1 }, { \"category\": \"intent2\", \"confidenceScore\": 0 } ], \"entities\": [ { \"category\": \"entity1\", \"text\": \"text\", \"offset\": 7, \"length\": 4, \"confidenceScore\": 1 } ] } } } Python 和 C# 的 SDK 返回与 REST 响应非常相似的 JSON。\n有关功能的完整文档（包括示例和操作指南），请参阅 Azure AI 语言文档的文档页。\n定义意向、言语和实体 语句是用户在与使用语言模型的应用程序进行交互时可能输入的短语。 意向表示用户想执行的任务或操作，或更简单地表示言语的含义。 通过定义意向并将其与一个或多个言语关联来创建模型。\n例如，考虑下面包含意向和关联言语的列表：\nGetTime： “What time is it?” “What is the time?” “Tell me the time” GetWeather： “What is the weather forecast?” “Do I need an umbrella?” “Will it snow?” TurnOnDevice “Turn the light on.” “Switch on the light.” “Turn on the fan” 无： “Hello” “Goodbye” 在你的模型中，你必须定义你希望模型能够理解的意向，因此请花一些时间思考模型必须支持的领域，以及用户可能请求的操作或信息类型。 除了你定义的意向之外，每个模型还包括“无”意向，应使用该意向来显式标识用户可能提交的言语，但不需要为其执行特定操作（例如，“hello”之类的对话问候语）或超出此模型的域范围。\n确定模型必须支持的目标后，务必要为每个意向捕获各种不同的示例言语。 收集你认为用户将输入的言语；包括含义相同，但用不同方式构造而成的言语。 请牢记这些准则：\n捕获多个不同的示例或同一事物的不同说法 采用不同的言语长度：短、中、长 使言语中的名词或主体位于不同位置。 将其放在开头、末尾或中间 在不同的言语中使用正确的和不正确的语法来提供良好的训练数据示例 标记数据的精度、一致性和完整性是确定模型性能的关键因素。 精确标记：始终将每个实体标记为正确的类型。 仅包含要提取的内容，避免标签中出现不必要的数据。 一致标记：同一实体在所有语句中都应具有相同的标记。 完全标记：标记所有语句中实体的所有实例。 实体用于向意向添加特定上下文。 例如，可以定义可应用于多个设备的 TurnOnDevice 意向，并使用实体定义不同的设备。\n请考虑以下言语、意向和实体：\n| 话语 | 意向 | 实体 | | +++ | +++ | +++ | | What is the time? | GetTime | | | What time is it in London? | GetTime | Location (London) | | What’s the weather forecast for Paris? | GetWeather | Location (Paris) | | Will I need an umbrella tonight? | GetWeather | Time (tonight) | | What’s the forecast for Seattle tomorrow? | GetWeather | Location (Seattle), Time (tomorrow) | | Turn the light on. | TurnOnDevice | Device (light) | | Switch on the fan. | TurnOnDevice | Device (fan) |\n可以将实体拆分为几个不同的组件类型：\n学习实体是最灵活的实体类型，应在大多数情况下使用。 使用合适的名称定义学习组件，然后在训练言语中将单词或短语与该实体关联。 训练模型时，将了解如何将言语中的相应元素与实体匹配。 当需要具有一组特定可能值（例如，一周中的几天）的实体时，列表实体非常有用。 可以在列表实体定义中包括同义词，以便可以定义包括“Sunday”、“Monday”、“Tuesday”等值的 DayOfWeek 实体；每个都有同义词，例如“Sun”、“Mon”、“Tue”等。 预生成的实体对于数字、日期/时间和名称等常见类型非常有用。 例如，添加预生成组件时，会自动检测“6”等值或“Microsoft”等组织。 有关受支持的预生成实体的列表，请参阅本文。 使用模式区分相似的言语 在某些情况下，模型可能包含多个意向，这些意向的言语可能相似。 可以使用语句模式来区分意向，同时最大限度地减少示例言语的数量。\n例如，考虑以下言语：\n“Turn on the kitchen light” “Is the kitchen light on?” “Turn off the kitchen light” 这些言语在语法上相似，但在单词或标点符号方面只有一些差异。 但是，它们表示三个不同的意向（分别为 TurnOnDevice、GetDeviceStatus 和 TurnOffDevice）。 此外，意向可应用于各种实体值。 除了“厨房灯”之外，意向还适用于“客厅灯”、“电视”或可能需要模型来提供支持的任何其他设备。\n若要正确训练模型，请提供一些指定不同格式言语的意向示例。\nTurnOnDevice： “Turn on the {DeviceName}” “在 {DeviceName} 上切换” “Turn the {DeviceName} on” GetDeviceStatus： “Is the {DeviceName} on[?]” TurnOffDevice： “Turn the {DeviceName} off” “Switch off the {DeviceName}” “Turn off the {DeviceName}” 在使用每种不同类型的言语来训练模型时，Azure AI 语言服务可以学习如何根据格式和标点正确地对意图进行分类。\n使用预生成的实体组件 可以通过定义所需的所有意向和语句来创建自己的语言模型，但通常可以使用预生成组件来检测常见实体，例如数字、电子邮件、URL 或选择。\n有关 Azure AI 语言服务可以检测的预生成实体的完整列表，请参阅受支持的预生成实体组件列表。\n使用预生成组件，可以让 Azure AI 语言服务自动检测指定类型的实体，且不必使用该实体的示例来训练模型。\n若要添加预生成组件，可以在项目中创建实体，然后选择该实体的“添加新预生成”以检测某些实体。\n每个实体最多可以包含 5 个预生成组件。 使用预生成模型元素可以显著减少开发对话语言理解解决方案所需的时间。\n训练、测试、发布和查看对话语言理解模型 创建模型是一个迭代过程，包括以下活动：\n训练模型以从示例言语中学习意向和实体。 以交互式方式或使用带有已知标签的测试数据集测试模型 将经过训练的模型部署到公共终结点以供客户端应用使用 查看预测并迭代访问语句以训练模型 通过遵循此迭代方法，你可以根据用户输入随着时间的推移而改进语言模型，从而帮助开发反映用户使用自然语言指示其意向的方式的解决方案。\n言语是指示特定意向的示例短语。 城市是应该应用意向（预订航班）的实体。 当语言模型需要检测公共实体时，请使用预生成组件让 Azure AI 语言服务自动检测实体。\n使用 Azure AI 翻译服务翻译文本 世界上有许多常用语言，在不同语言的发言人之间交换信息的功能通常是全球解决方案的关键要求。\nAzure AI 翻译提供了一个 API，用于在支持的 90 种语言之间翻译文本。\n完成此模块后，你将能够：\n预配 Azure AI 翻译资源 了解语言检测、翻译和音译 指定翻译选项 定义并运行自定义翻译\n预配 Azure AI 翻译资源 ​ Azure AI 翻译提供了多语言文本翻译 API，可用于： ​\n语言检测。 一对多翻译。 脚本音译（将本机脚本中的文本转换为替代脚本）。 ​ ​ 适用于 Azure AI 翻译的 Azure 资源 ​ 若要使用 Azure AI 翻译服务，必须在 Azure 订阅中为其预配资源。 可以预配单服务 Azure AI 翻译资源，也可以在多服务 Azure AI 服务资源中使用文本分析 API。 ​ 在 Azure 订阅中预配适当的资源后，可以使用部署资源的位置及其订阅密钥之一从代码中调用 Azure AI 翻译 API。 可以通过向 REST 接口提交 JSON 格式的请求，或者通过使用特定于编程语言的任何可用 SDK 来调用 API。 ​ 注意 ​ 本模块的后续单元中的代码示例显示了与 REST 接口交换的 JSON 请求和响应。 使用 SDK 时，会通过用于封装相同数据值的适当对象和方法对 JSON 请求进行抽象。 在本模块后面的练习中，你将有机会亲自尝试使用适用于 C# 或 Python 的 SDK。 ​\n了解语言检测、翻译和音译 让我们来探索 Azure AI 翻译的功能。 这些功能包括：\n语言检测 可使用 REST API 的 Detect 函数来检测编写文本所用的语言。\n例如，可使用 curl 将以下文本提交到 https://api.cognitive.microsofttranslator.com/detect?api-version=3.0 终结点。\n下面是要翻译的文本：\n{ 'Text' : 'こんにちは' } 下面是使用 curl 对终结点的调用，目的是检测文本的语言：\ncurl -X POST \"https://api.cognitive.microsofttranslator.com/detect?api-version=3.0\" -H \"Ocp-Apim-Subscription-Region: \" -H \"Ocp-Apim-Subscription-Key: \" -H \"Content-Type: application/json\" -d \"[{ 'Text' : 'こんにちは' }] 对此请求的响如下所示，表示文本使用日语编写：\n[ { \"language\": \"ja\", \"score\": 1.0, \"isTranslationSupported\": true, \"isTransliterationSupported\": true } ] 翻译 若要将文本从一种语言翻译为另一种语言，请使用 Translate 函数；指定一个 from 参数来指示源语言，并指定一个或多个 to 参数，以指定文本翻译的目标语言。\n例如，你可以提交之前用于检测语言的相同 JSON，从而指定 ja（日语）的 from 参数以及值为 En（英语）和 fr（法语）的两个 to 参数。 为此，需要调用：\ncurl -X POST \"https://api.cognitive.microsofttranslator.com/translate?api-version=3.0\u0026from=ja\u0026to=fr\u0026to=en\" -H \"Ocp-Apim-Subscription-Key: \" -H \"Ocp-Apim-Subscription-Region: \" -H \"Content-Type: application/json; charset=UTF-8\" -d \"[{ 'Text' : 'こんにちは' }]\" 这将生成以下结果：\n[ {\"translations\": [ {\"text\": \"Hello\", \"to\": \"en\"}, {\"text\": \"Bonjour\", \"to\": \"fr\"} ] } ] 音译 日语文本是使用平假名脚本编写的，因此，你可能想要将其翻译为不同的脚本，而不是将其翻译为不同的语言，例如，使用拉丁脚本（如英语语言文本所使用）呈现文本。\n为实现此目的，我们可以使用 Jpan 的 fromScript 参数和 Latn 的 toScript 参数将日语文本提交到 Transliterate 函数：\ncurl -X POST \"https://api.cognitive.microsofttranslator.com/transliterate?api-version=3.0\u0026fromScript=Jpan\u0026toScript=Latn\" -H \"Ocp-Apim-Subscription-Key: \" -H \"Ocp-Apim-Subscription-Region: \" -H \"Content-Type: application/json\" -d \"[{ 'Text' : 'こんにちは' }]\" 响应会提供以下结果：\n[ { \"script\": \"Latn\", \"text\": \"Kon'nichiwa\" } ] 指定翻译选项 API 的 Translate 函数支持多个影响输出的参数。\n单词对齐方式 在书面英语（使用拉丁脚本）中，空格用于分隔单词。 但是，在某些其他语言（更具体地说，脚本）中，并非总是如此。\n例如，将“Smart Services”从 en（英语）翻译为 zh（简体中文）会生成结果“智能服务”，并且很难理解源文本中的字符与翻译中的相应字符之间的关系。 若要解决此问题，可以在调用中指定值为 true 的 includeAlignment 参数来生成以下结果：\n[ { \"translations\":[ { \"text\":\"智能服务\", \"to\":\"zh-Hans\", \"alignment\":{ \"proj\":\"0:4-0:1 6:13-2:3\" } } ] } ] 这些结果告诉我们，源中的字符 0 到 4 对应于翻译中的字符 0 到 1，而源中的字符 6 到 13 对应于翻译中的字符 2 到 3。\n句子长度 有时，知道翻译长度可能会很有用，例如，确定如何在用户界面中以最佳方式显示它。 可以通过将 includeSentenceLength 参数设置为 true 来获取此信息。\n例如，在将英语 (en) 文本“Hello world”翻译成法语 (fr) 时指定此参数将产生以下结果：\n[ { \"translations\":[ { \"text\":\"Salut tout le monde\", \"to\":\"fr\", \"sentLen\":{\"srcSentLen\":[12],\"transSentLen\":[20]} } ] } ] 猥亵语言过滤 有时，文本包含猥亵语言，你可能希望在翻译中完全掩盖或省略它。 可以通过指定 profanityAction 参数来处理猥亵语言，该参数可以具有以下值之一：\nNoAction：猥亵语言与文本的其余部分一起翻译。 Deleted：翻译中省略了猥亵语言。 Marked：使用 profanityMarker 参数（如果提供）中所指示的方法来指示猥亵语言。 此参数的默认值为“Asterisk”，这会将猥亵语言中的字符替换为“*”。 作为替代方法，你可以将“标记”的值指定为 profanityMarker，这会将猥亵语言括在 XML 标记中。 例如，使用 Marked 的 profanityAction 和 Asterisk 的 profanityMarker 将英语 (en) 文本“JSON is ▇▇▇▇ great!”（其中，被挡住的单词是猥亵语言）翻译为德语 (de) 会产生以下结果：\n[ { \"translations\":[ { \"text\":\"JSON ist *** erstaunlich.\", \"to\":\"de\" } ] } ] 定义自定义翻译 Azure AI 翻译使用的默认翻译模型对于常规内容的翻译较有效，但你可能需要为使用专业术语词汇的企业或行业开发翻译解决方案，这就需要用到自定义翻译。\n若要解决此问题，可以创建用于映射自己的源和目标术语集进行翻译的自定义模型。 若要创建自定义模型，请使用自定义翻译工具门户来执行以下操作：\n创建工作区并链接到 Azure AI 翻译资源。 创建项目。 上传训练数据文件和训练模型。 测试模型和发布模型。 对 API 进行翻译调用。 将为自定义模型分配唯一的类别 ID（屏幕截图中突出显示），可以使用 category 参数在对 Azure AI 翻译资源的翻译调用中指定该 ID，从而使用自定义模型（而不是默认模型）执行翻译。\n如何调用 API 若要启动翻译，请将 POST 请求发送到以下请求 URL：\nhttps://api.cognitive.microsofttranslator.com/translate?api-version=3.0 请求需要包含几个参数：\napi-version：所需的 API 版本。 to：要翻译到的目标语言。 例如： 法语为 to=fr。 category：类别 ID。 请求还需要包含多个必需的标头：\nOcp-Apim-Subscription-Key。 客户端密钥的标头。 例如：Ocp-Apim-Subscription-Key=。 Content-Type。 有效负载的内容类型。 要求的格式：Content-Type: application/json; charset=UTF-8。 请求正文应包含一个数组，该数组包含一个 JSON 对象，该对象具有用于指定要翻译的文本的 Text 属性：\n[ {\"Text\":\"Where can I find my employee details?\"} ] 有多种不同方式可用于将请求发送到 API，包括使用 C#、Python 和 curl。 例如，若要进行快速调用，可以使用 curl 发送 POST 请求：\ncurl -X POST \"https://api.cognitive.microsofttranslator.com/translate?api-version=3.0\u0026from=en\u0026to=nl\u0026category=\" -H \"Ocp-Apim-Subscription-Key: ","wordCount":"2512","inLanguage":"en","datePublished":"2024-06-05T00:53:20Z","dateModified":"2024-06-05T00:53:20Z","author":{"@type":"Person","name":"dwd"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://qfsyso.github.io/posts/azure-openai-language/"},"publisher":{"@type":"Organization","name":"MLOG","logo":{"@type":"ImageObject","url":"https://qfsyso.github.io/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://qfsyso.github.io/ accesskey=h title="MLOG (Alt + H)">MLOG</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://qfsyso.github.io/posts/ title=Archive><span>Archive</span></a></li><li><a href=https://qfsyso.github.io/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://qfsyso.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">Azure OpenAI Language</h1><div class=post-meta><span title='2024-06-05 00:53:20 +0000 UTC'>June 5, 2024</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;dwd</div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e4%bd%bf%e7%94%a8-azure-ai-%e8%af%ad%e8%a8%80%e5%88%86%e6%9e%90%e6%96%87%e6%9c%ac aria-label="使用 Azure AI 语言分析文本">使用 Azure AI 语言分析文本</a><ul><li><a href=#%e9%a2%84%e9%85%8d-azure-ai-%e8%af%ad%e8%a8%80%e8%b5%84%e6%ba%90 aria-label="预配 Azure AI 语言资源">预配 Azure AI 语言资源</a></li><li><a href=#%e7%94%a8%e4%ba%8e%e6%96%87%e6%9c%ac%e5%88%86%e6%9e%90%e7%9a%84-azure-%e8%b5%84%e6%ba%90 aria-label="用于文本分析的 Azure 资源">用于文本分析的 Azure 资源</a></li><li><a href=#%e6%a3%80%e6%b5%8b%e8%af%ad%e8%a8%80 aria-label=检测语言>检测语言</a></li><li><a href=#%e6%8f%90%e5%8f%96%e5%85%b3%e9%94%ae%e7%9f%ad%e8%af%ad aria-label=提取关键短语>提取关键短语</a></li><li><a href=#%e5%88%86%e6%9e%90%e6%83%85%e7%bb%aa aria-label=分析情绪>分析情绪</a></li><li><a href=#%e6%8f%90%e5%8f%96%e5%ae%9e%e4%bd%93 aria-label=提取实体>提取实体</a></li><li><a href=#%e6%8f%90%e5%8f%96%e9%93%be%e6%8e%a5%e7%9a%84%e5%ae%9e%e4%bd%93 aria-label=提取链接的实体>提取链接的实体</a></li></ul></li><li><a href=#%e4%bd%bf%e7%94%a8-azure-ai-%e8%af%ad%e8%a8%80%e5%88%9b%e5%bb%ba%e9%97%ae%e9%a2%98%e8%a7%a3%e7%ad%94%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88 aria-label="使用 Azure AI 语言创建问题解答解决方案">使用 Azure AI 语言创建问题解答解决方案</a><ul><li><a href=#%e4%ba%86%e8%a7%a3%e9%97%ae%e9%a2%98%e8%a7%a3%e7%ad%94 aria-label=了解问题解答>了解问题解答</a></li><li><a href=#%e6%af%94%e8%be%83%e9%97%ae%e9%a2%98%e8%a7%a3%e7%ad%94%e5%92%8c-azure-ai-%e8%af%ad%e8%a8%80%e7%90%86%e8%a7%a3 aria-label="比较问题解答和 Azure AI 语言理解">比较问题解答和 Azure AI 语言理解</a></li><li><a href=#%e5%88%9b%e5%bb%ba%e7%9f%a5%e8%af%86%e5%ba%93 aria-label=创建知识库>创建知识库</a></li><li><a href=#%e5%ae%9e%e7%8e%b0%e5%a4%9a%e5%9b%9e%e5%90%88%e5%af%b9%e8%af%9d aria-label=实现多回合对话>实现多回合对话</a></li><li><a href=#%e6%b5%8b%e8%af%95%e5%b9%b6%e5%8f%91%e5%b8%83%e7%9f%a5%e8%af%86%e5%ba%93 aria-label=测试并发布知识库>测试并发布知识库</a></li><li><a href=#%e6%b5%8b%e8%af%95%e7%9f%a5%e8%af%86%e5%ba%93 aria-label=测试知识库>测试知识库</a></li><li><a href=#%e9%83%a8%e7%bd%b2%e7%9f%a5%e8%af%86%e5%ba%93 aria-label=部署知识库>部署知识库</a></li><li><a href=#%e4%bd%bf%e7%94%a8%e7%9f%a5%e8%af%86%e5%ba%93 aria-label=使用知识库>使用知识库</a></li><li><a href=#%e6%8f%90%e9%ab%98%e9%97%ae%e9%a2%98%e8%a7%a3%e7%ad%94%e6%80%a7%e8%83%bd aria-label=提高问题解答性能>提高问题解答性能</a></li><li><a href=#%e4%bd%bf%e7%94%a8%e4%b8%bb%e5%8a%a8%e5%ad%a6%e4%b9%a0 aria-label=使用主动学习>使用主动学习</a><ul><li><a href=#%e5%88%9b%e5%bb%ba%e9%97%ae%e7%ad%94%e5%af%b9 aria-label=创建问答对>创建问答对</a></li><li><a href=#%e5%ae%a1%e9%98%85%e5%bb%ba%e8%ae%ae aria-label=审阅建议>审阅建议</a></li></ul></li><li><a href=#%e5%ae%9a%e4%b9%89%e5%90%8c%e4%b9%89%e8%af%8d aria-label=定义同义词>定义同义词</a></li></ul></li><li><a href=#%e7%94%9f%e6%88%90%e5%af%b9%e8%af%9d%e8%af%ad%e8%a8%80%e7%90%86%e8%a7%a3%e6%a8%a1%e5%9e%8b aria-label=生成对话语言理解模型>生成对话语言理解模型</a><ul><li><a href=#%e4%bb%8b%e7%bb%8d aria-label=介绍>介绍</a></li><li><a href=#%e4%ba%86%e8%a7%a3-azure-ai-%e8%af%ad%e8%a8%80%e6%9c%8d%e5%8a%a1%e7%9a%84%e9%a2%84%e7%94%9f%e6%88%90%e5%8a%9f%e8%83%bd aria-label="了解 Azure AI 语言服务的预生成功能">了解 Azure AI 语言服务的预生成功能</a></li><li><a href=#%e9%a2%84%e9%85%8d%e7%bd%ae%e7%9a%84%e5%8a%9f%e8%83%bd aria-label=预配置的功能>预配置的功能</a><ul><li><a href=#%e6%b1%87%e6%80%bb aria-label=汇总>汇总</a></li><li><a href=#%e5%91%bd%e5%90%8d%e5%ae%9e%e4%bd%93%e8%af%86%e5%88%ab aria-label=命名实体识别>命名实体识别</a></li><li><a href=#%e4%b8%aa%e4%ba%ba%e8%ba%ab%e4%bb%bd%e4%bf%a1%e6%81%af-pii-%e6%a3%80%e6%b5%8b aria-label="个人身份信息 (PII) 检测">个人身份信息 (PII) 检测</a></li><li><a href=#%e5%85%b3%e9%94%ae%e7%9f%ad%e8%af%ad%e6%8f%90%e5%8f%96 aria-label=关键短语提取>关键短语提取</a></li><li><a href=#%e6%83%85%e7%bb%aa%e5%88%86%e6%9e%90 aria-label=情绪分析>情绪分析</a></li><li><a href=#%e8%af%ad%e8%a8%80%e6%a3%80%e6%b5%8b aria-label=语言检测>语言检测</a></li></ul></li><li><a href=#%e5%ad%a6%e4%b9%a0%e7%9a%84%e5%8a%9f%e8%83%bd aria-label=学习的功能>学习的功能</a><ul><li><a href=#%e5%af%b9%e8%af%9d%e8%af%ad%e8%a8%80%e7%90%86%e8%a7%a3-clu aria-label="对话语言理解 (CLU)">对话语言理解 (CLU)</a></li><li><a href=#%e8%87%aa%e5%ae%9a%e4%b9%89%e5%91%bd%e5%90%8d%e5%ae%9e%e4%bd%93%e8%af%86%e5%88%ab aria-label=自定义命名实体识别>自定义命名实体识别</a></li><li><a href=#%e8%87%aa%e5%ae%9a%e4%b9%89%e6%96%87%e6%9c%ac%e5%88%86%e7%b1%bb aria-label=自定义文本分类>自定义文本分类</a></li><li><a href=#%e9%97%ae%e7%ad%94 aria-label=问答>问答</a></li></ul></li><li><a href=#%e4%ba%86%e8%a7%a3%e7%94%a8%e4%ba%8e%e7%94%9f%e6%88%90%e5%af%b9%e8%af%9d%e8%af%ad%e8%a8%80%e7%90%86%e8%a7%a3%e6%a8%a1%e5%9e%8b%e7%9a%84%e8%b5%84%e6%ba%90 aria-label=了解用于生成对话语言理解模型的资源>了解用于生成对话语言理解模型的资源</a></li><li><a href=#%e6%9e%84%e5%bb%ba%e4%bd%a0%e7%9a%84%e6%a8%a1%e5%9e%8b aria-label=构建你的模型>构建你的模型</a><ul><li><a href=#%e4%bd%bf%e7%94%a8%e8%af%ad%e8%a8%80%e5%b7%a5%e4%bd%9c%e5%ae%a4 aria-label=使用语言工作室>使用语言工作室</a></li><li><a href=#%e4%bd%bf%e7%94%a8-rest-api aria-label="使用 REST API">使用 REST API</a><ul><li><a href=#%e8%ba%ab%e4%bb%bd%e9%aa%8c%e8%af%81 aria-label=身份验证>身份验证</a></li><li><a href=#%e8%af%b7%e6%b1%82%e9%83%a8%e7%bd%b2 aria-label=请求部署>请求部署</a></li><li><a href=#%e8%8e%b7%e5%8f%96%e9%83%a8%e7%bd%b2%e7%8a%b6%e6%80%81 aria-label=获取部署状态>获取部署状态</a></li></ul></li></ul></li><li><a href=#%e6%9f%a5%e8%af%a2%e4%bd%a0%e7%9a%84%e6%a8%a1%e5%9e%8b aria-label=查询你的模型>查询你的模型</a><ul><li><a href=#%e4%bd%bf%e7%94%a8-sdk-%e8%bf%9b%e8%a1%8c%e6%9f%a5%e8%af%a2 aria-label="使用 SDK 进行查询">使用 SDK 进行查询</a></li><li><a href=#%e4%bd%bf%e7%94%a8-rest-api-%e8%bf%9b%e8%a1%8c%e6%9f%a5%e8%af%a2 aria-label="使用 REST API 进行查询">使用 REST API 进行查询</a></li><li><a href=#%e7%a4%ba%e4%be%8b%e5%93%8d%e5%ba%94 aria-label=示例响应>示例响应</a></li></ul></li><li><a href=#%e5%ae%9a%e4%b9%89%e6%84%8f%e5%90%91%e8%a8%80%e8%af%ad%e5%92%8c%e5%ae%9e%e4%bd%93 aria-label=定义意向、言语和实体>定义意向、言语和实体</a></li><li><a href=#%e4%bd%bf%e7%94%a8%e6%a8%a1%e5%bc%8f%e5%8c%ba%e5%88%86%e7%9b%b8%e4%bc%bc%e7%9a%84%e8%a8%80%e8%af%ad aria-label=使用模式区分相似的言语>使用模式区分相似的言语</a></li><li><a href=#%e4%bd%bf%e7%94%a8%e9%a2%84%e7%94%9f%e6%88%90%e7%9a%84%e5%ae%9e%e4%bd%93%e7%bb%84%e4%bb%b6 aria-label=使用预生成的实体组件>使用预生成的实体组件</a></li><li><a href=#%e8%ae%ad%e7%bb%83%e6%b5%8b%e8%af%95%e5%8f%91%e5%b8%83%e5%92%8c%e6%9f%a5%e7%9c%8b%e5%af%b9%e8%af%9d%e8%af%ad%e8%a8%80%e7%90%86%e8%a7%a3%e6%a8%a1%e5%9e%8b aria-label=训练、测试、发布和查看对话语言理解模型>训练、测试、发布和查看对话语言理解模型</a></li></ul></li><li><a href=#%e4%bd%bf%e7%94%a8-azure-ai-%e7%bf%bb%e8%af%91%e6%9c%8d%e5%8a%a1%e7%bf%bb%e8%af%91%e6%96%87%e6%9c%ac aria-label="使用 Azure AI 翻译服务翻译文本">使用 Azure AI 翻译服务翻译文本</a><ul><li><a href=#%e9%a2%84%e9%85%8d-azure-ai-%e7%bf%bb%e8%af%91%e8%b5%84%e6%ba%90 aria-label="预配 Azure AI 翻译资源">预配 Azure AI 翻译资源</a></li><li><a href=#%e9%80%82%e7%94%a8%e4%ba%8e-azure-ai-%e7%bf%bb%e8%af%91%e7%9a%84-azure-%e8%b5%84%e6%ba%90 aria-label="适用于 Azure AI 翻译的 Azure 资源">适用于 Azure AI 翻译的 Azure 资源</a></li><li><a href=#%e4%ba%86%e8%a7%a3%e8%af%ad%e8%a8%80%e6%a3%80%e6%b5%8b%e7%bf%bb%e8%af%91%e5%92%8c%e9%9f%b3%e8%af%91 aria-label=了解语言检测、翻译和音译>了解语言检测、翻译和音译</a></li><li><a href=#%e8%af%ad%e8%a8%80%e6%a3%80%e6%b5%8b-1 aria-label=语言检测>语言检测</a></li><li><a href=#%e7%bf%bb%e8%af%91 aria-label=翻译>翻译</a></li><li><a href=#%e9%9f%b3%e8%af%91 aria-label=音译>音译</a></li><li><a href=#%e6%8c%87%e5%ae%9a%e7%bf%bb%e8%af%91%e9%80%89%e9%a1%b9 aria-label=指定翻译选项>指定翻译选项</a></li><li><a href=#%e5%8d%95%e8%af%8d%e5%af%b9%e9%bd%90%e6%96%b9%e5%bc%8f aria-label=单词对齐方式>单词对齐方式</a></li><li><a href=#%e5%8f%a5%e5%ad%90%e9%95%bf%e5%ba%a6 aria-label=句子长度>句子长度</a></li><li><a href=#%e7%8c%a5%e4%ba%b5%e8%af%ad%e8%a8%80%e8%bf%87%e6%bb%a4 aria-label=猥亵语言过滤>猥亵语言过滤</a></li><li><a href=#%e5%ae%9a%e4%b9%89%e8%87%aa%e5%ae%9a%e4%b9%89%e7%bf%bb%e8%af%91 aria-label=定义自定义翻译>定义自定义翻译</a></li><li><a href=#%e5%a6%82%e4%bd%95%e8%b0%83%e7%94%a8-api aria-label="如何调用 API">如何调用 API</a><ul><li><a href=#%e8%bf%94%e5%9b%9e%e7%9a%84%e5%93%8d%e5%ba%94 aria-label=返回的响应>返回的响应</a></li></ul></li></ul></li></ul></div></details></div><div class=post-content><h1 id=使用-azure-ai-语言分析文本>使用 Azure AI 语言分析文本<a hidden class=anchor aria-hidden=true href=#使用-azure-ai-语言分析文本>#</a></h1><p>每天，世界都会生成大量数据；大部分内容基于文本，其形式包括电子邮件、社交媒体文章、在线评论、业务文档等。 通过应用统计和语义模型的人工智能技术，可以创建从基于文本的数据中提取含义和见解的应用程序。</p><p>Azure AI 语言为可轻松集成到你自己的应用程序代码中的常见文本分析技术提供 API。</p><p>在本模块中，你将了解如何使用 Azure AI 语言执行以下操作：</p><p>检测文本中的语言。
+分析文本情绪。
+提取关键短语、实体和链接实体。</p><h2 id=预配-azure-ai-语言资源>预配 Azure AI 语言资源<a hidden class=anchor aria-hidden=true href=#预配-azure-ai-语言资源>#</a></h2><p>Azure AI 语言旨在帮助从文本中提取信息。 它提供可用于以下各项的功能：</p><ul><li><p>语言检测 - 确定编写文本所用的语言。</p></li><li><p>关键短语提取 - 标识文本中指示要点的重要单词和短语。</p></li><li><p>情绪分析 - 量化文本的正负面情绪程度。</p></li><li><p>命名实体识别 - 检测对实体的引用，包括人员、位置、时间段、组织等。</p></li><li><p>实体链接 - 通过提供指向维基百科文章的参考链接来标识特定实体。</p><p><img alt="Diagram showing an Azure AI Language resource performing language detection, key phrase extraction, sentiment analysis, named entity recognition, and entity linking." loading=lazy src=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/analyze-text-ai-language/media/text-analytics-resource.png></p></li></ul><h2 id=用于文本分析的-azure-资源>用于文本分析的 Azure 资源<a hidden class=anchor aria-hidden=true href=#用于文本分析的-azure-资源>#</a></h2><p>若要使用 Azure AI 语言来分析文本，必须在 Azure 订阅中为其预配资源。</p><p>在 Azure 订阅中预配适当的资源后，可以使用其终结点及其密钥之一从代码中调用 Azure AI 语言 API。 可以通过向 REST 接口提交 JSON 格式的请求，或者通过使用特定于编程语言的任何可用 SDK 来调用 Azure AI 语言 API。</p><p>注意</p><p>本模块的后续单元中的代码示例显示了与 REST 接口交换的 JSON 请求和响应。 使用 SDK 时，会通过用于封装相同数据值的适当对象和方法对 JSON 请求进行抽象。 在本模块后面的练习中，你将有机会亲自尝试使用适用于 C# 或 Python 的 SDK。</p><h2 id=检测语言>检测语言<a hidden class=anchor aria-hidden=true href=#检测语言>#</a></h2><p>Azure AI 语言检测 API 会评估文本输入，并为提交的每个文档返回带有一个指示分析强度的分数的语言标识符。</p><p>此功能对于用于收集语言未知的任意文本的内容存储非常有用。 另一种方案可能涉及聊天机器人。 如果用户使用聊天机器人启动会话，则语言检测可用于确定用户使用的语言，这样你便可以使用适当的语言配置机器人响应。</p><p>可以解析此分析的结果，确定输入文档中使用的语言。 响应还会返回一个分数，用于反映模型的置信度（介于 0 到 1 的值）。</p><p>语言检测可应用于文档或单个短语。 请注意，文档大小必须小于 5,120 个字符。 大小限制针对每个文档，每个集合限制为 1,000 个项 (ID)。 此处显示了可以在请求正文中向服务提交的格式正确的 JSON 有效负载的示例，包括文档的集合，其中每个文档都包含唯一 ID 以及要分析的文本。 （可选）可以提供 countryHint 以提高预测性能。</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+    &#34;kind&#34;: &#34;LanguageDetection&#34;,
+    &#34;parameters&#34;: {
+        &#34;modelVersion&#34;: &#34;latest&#34;
+    },
+    &#34;analysisInput&#34;:{
+        &#34;documents&#34;:[
+              {
+                &#34;id&#34;: &#34;1&#34;,
+                &#34;text&#34;: &#34;Hello world&#34;,
+                &#34;countryHint&#34;: &#34;US&#34;
+              },
+              {
+                &#34;id&#34;: &#34;2&#34;,
+                &#34;text&#34;: &#34;Bonjour tout le monde&#34;
+              }
+        ]
+    }
+}
+</code></pre><p>服务将返回一个 JSON 响应，其中包含请求正文中每个文档的结果，包括预测到的语言以及指示预测的置信度的值。 置信度是介于 0 和 1 的值，值越接近 1 则置信度越高。 下面是映射到上述请求 JSON 的标准 JSON 响应的示例。</p><pre tabindex=0><code class=language-auto data-lang=auto>{   &#34;kind&#34;: &#34;LanguageDetectionResults&#34;,
+    &#34;results&#34;: {
+        &#34;documents&#34;: [
+          {
+            &#34;detectedLanguage&#34;: {
+              &#34;confidenceScore&#34;: 1,
+              &#34;iso6391Name&#34;: &#34;en&#34;,
+              &#34;name&#34;: &#34;English&#34;
+            },
+            &#34;id&#34;: &#34;1&#34;,
+            &#34;warnings&#34;: []
+          },
+          {
+            &#34;detectedLanguage&#34;: {
+              &#34;confidenceScore&#34;: 1,
+              &#34;iso6391Name&#34;: &#34;fr&#34;,
+              &#34;name&#34;: &#34;French&#34;
+            },
+            &#34;id&#34;: &#34;2&#34;,
+            &#34;warnings&#34;: []
+          }
+        ],
+        &#34;errors&#34;: [],
+        &#34;modelVersion&#34;: &#34;2022-10-01&#34;
+    }
+}
+</code></pre><p>在我们的示例中，所有语言的置信度均为 1，这主要是因为文本相对简单，易于识别其语言。</p><p>如果传入包含多语言内容的文档，该服务的行为会有所不同。 同一文档中的混合语言内容将返回内容中代表性最强但正评级较低的语言，这反映该评估的边界强度。 在以下示例中，输入中包含英语、西班牙语和法语。 分析器使用文本的统计分析来确定主要语言。</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+  &#34;documents&#34;: [
+    {
+      &#34;id&#34;: &#34;1&#34;,
+      &#34;text&#34;: &#34;Hello, I would like to take a class at your University. ¿Se ofrecen clases en español? Es mi primera lengua y más fácil para escribir. Que diriez-vous des cours en français?&#34;
+    }
+  ]
+}
+</code></pre><p>下面的示例显示了此多语言示例的响应。</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+    &#34;documents&#34;: [
+        {
+            &#34;id&#34;: &#34;1&#34;,
+            &#34;detectedLanguage&#34;: {
+                &#34;name&#34;: &#34;Spanish&#34;,
+                &#34;iso6391Name&#34;: &#34;es&#34;,
+                &#34;confidenceScore&#34;: 0.9375
+            },
+            &#34;warnings&#34;: []
+        }
+    ],
+    &#34;errors&#34;: [],
+    &#34;modelVersion&#34;: &#34;2022-10-01&#34;
+}
+</code></pre><p>最后要考虑的是语言内容多义性的情况。 如果提交了分析器无法分析的文本内容，则可能会发生这种情况，例如由于在将文本转换为字符串变量时出现字符编码问题。 这样一来，语言名称和 ISO 代码的响应将指示 (unknown)，分数值将返回为 <code>0</code>。 下面的示例显示响应的外观。</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+    &#34;documents&#34;: [
+        {
+            &#34;id&#34;: &#34;1&#34;,
+            &#34;detectedLanguage&#34;: {
+                &#34;name&#34;: &#34;(Unknown)&#34;,
+                &#34;iso6391Name&#34;: &#34;(Unknown)&#34;,
+                &#34;confidenceScore&#34;: 0.0
+            },
+            &#34;warnings&#34;: []
+        }
+    ],
+    &#34;errors&#34;: [],
+    &#34;modelVersion&#34;: &#34;2022-10-01&#34;
+}
+</code></pre><h2 id=提取关键短语>提取关键短语<a hidden class=anchor aria-hidden=true href=#提取关键短语>#</a></h2><p>关键短语提取是这样一个过程，即评估一个或多个文档的文本，然后围绕文档上下文识别出要点。</p><p>关键短语提取最适合大型文档（可分析的最大大小为 5,120 个字符）。</p><p>与语言检测一样，使用 REST 接口可以提交一个或多个文档进行分析。</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+    &#34;kind&#34;: &#34;KeyPhraseExtraction&#34;,
+    &#34;parameters&#34;: {
+        &#34;modelVersion&#34;: &#34;latest&#34;
+    },
+    &#34;analysisInput&#34;:{
+        &#34;documents&#34;:[
+            {
+              &#34;id&#34;: &#34;1&#34;,
+              &#34;language&#34;: &#34;en&#34;,
+              &#34;text&#34;: &#34;You must be the change you wish 
+                       to see in the world.&#34;
+            },
+            {
+              &#34;id&#34;: &#34;2&#34;,
+              &#34;language&#34;: &#34;en&#34;,
+              &#34;text&#34;: &#34;The journey of a thousand miles 
+                       begins with a single step.&#34;
+            }
+        ]
+    }
+}
+</code></pre><p>响应包含在每个文档中检测到的关键短语的列表：</p><pre tabindex=0><code class=language-auto data-lang=auto>
+{
+    &#34;kind&#34;: &#34;KeyPhraseExtractionResults&#34;,
+    &#34;results&#34;: {
+    &#34;documents&#34;: [   
+        {
+         &#34;id&#34;: &#34;1&#34;,
+         &#34;keyPhrases&#34;: [
+           &#34;change&#34;,
+           &#34;world&#34;
+         ],
+         &#34;warnings&#34;: []
+       },
+       {
+         &#34;id&#34;: &#34;2&#34;,
+         &#34;keyPhrases&#34;: [
+           &#34;miles&#34;,
+           &#34;single step&#34;,
+           &#34;journey&#34;
+         ],
+         &#34;warnings&#34;: []
+       }
+],
+    &#34;errors&#34;: [],
+    &#34;modelVersion&#34;: &#34;2021-06-01&#34;
+    }
+}
+</code></pre><h2 id=分析情绪>分析情绪<a hidden class=anchor aria-hidden=true href=#分析情绪>#</a></h2><p>情绪分析用于评估文本文档的正负面情绪程度，这在各种工作负载中非常有用，例如：</p><ul><li>通过基于评论量化情绪来评估电影、书籍或产品。</li><li>确定客户服务对通过电子邮件或社交媒体消息传送收到的函件的响应的优先级。</li></ul><p>使用 Azure AI 语言评估情绪时，响应包括向服务提交的每个文档的总体文档情绪和单个句子情绪。</p><p>例如，可以提交单个文档进行情绪分析，如下所示：</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+  &#34;kind&#34;: &#34;SentimentAnalysis&#34;,
+  &#34;parameters&#34;: {
+    &#34;modelVersion&#34;: &#34;latest&#34;
+  },
+  &#34;analysisInput&#34;: {
+    &#34;documents&#34;: [
+      {
+        &#34;id&#34;: &#34;1&#34;,
+        &#34;language&#34;: &#34;en&#34;,
+        &#34;text&#34;: &#34;Good morning!&#34;
+      }
+    ]
+  }
+}
+</code></pre><p>来自服务的响应可能如下所示：</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+  &#34;kind&#34;: &#34;SentimentAnalysisResults&#34;,
+  &#34;results&#34;: {
+    &#34;documents&#34;: [
+      {
+        &#34;id&#34;: &#34;1&#34;,
+        &#34;sentiment&#34;: &#34;positive&#34;,
+        &#34;confidenceScores&#34;: {
+          &#34;positive&#34;: 0.89,
+          &#34;neutral&#34;: 0.1,
+          &#34;negative&#34;: 0.01
+        },
+        &#34;sentences&#34;: [
+          {
+            &#34;sentiment&#34;: &#34;positive&#34;,
+            &#34;confidenceScores&#34;: {
+              &#34;positive&#34;: 0.89,
+              &#34;neutral&#34;: 0.1,
+              &#34;negative&#34;: 0.01
+            },
+            &#34;offset&#34;: 0,
+            &#34;length&#34;: 13,
+            &#34;text&#34;: &#34;Good morning!&#34;
+          }
+        ],
+        &#34;warnings&#34;: []
+      }
+    ],
+    &#34;errors&#34;: [],
+    &#34;modelVersion&#34;: &#34;2022-11-01&#34;
+  }
+}
+</code></pre><p>句子情绪基于 0 到 1 之间的正面、负面和中性分类值的置信度分数。</p><p>总体文档情绪基于句子：</p><ul><li>如果所有句子都为中性，则总体情绪为中性。</li><li>如果句子分类仅包括正面和中性，则总体情绪为正面。</li><li>如果句子分类仅包括负面和中性，则总体情绪为负面。</li><li>如果句子分类包括正面和负面，则总体情绪是混合的。</li></ul><h2 id=提取实体>提取实体<a hidden class=anchor aria-hidden=true href=#提取实体>#</a></h2><p>命名实体识别标识文本中提及的实体。 实体按类别和子类别分组，例如：</p><ul><li>人员</li><li>位置</li><li>DateTime</li><li>组织</li><li>地址</li><li>电子邮件</li><li>URL</li></ul><p>实体识别的输入类似于其他语言 Azure AI 语言 API 函数的输入：</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+  &#34;kind&#34;: &#34;EntityRecognition&#34;,
+  &#34;parameters&#34;: {
+    &#34;modelVersion&#34;: &#34;latest&#34;
+  },
+  &#34;analysisInput&#34;: {
+    &#34;documents&#34;: [
+      {
+        &#34;id&#34;: &#34;1&#34;,
+        &#34;language&#34;: &#34;en&#34;,
+        &#34;text&#34;: &#34;Joe went to London on Saturday&#34;
+      }
+    ]
+  }
+}
+</code></pre><p>响应包括在每个文档中找到的分类实体的列表：</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+    &#34;kind&#34;: &#34;EntityRecognitionResults&#34;,
+     &#34;results&#34;: {
+          &#34;documents&#34;:[
+              {
+                  &#34;entities&#34;:[
+                  {
+                    &#34;text&#34;:&#34;Joe&#34;,
+                    &#34;category&#34;:&#34;Person&#34;,
+                    &#34;offset&#34;:0,
+                    &#34;length&#34;:3,
+                    &#34;confidenceScore&#34;:0.62
+                  },
+                  {
+                    &#34;text&#34;:&#34;London&#34;,
+                    &#34;category&#34;:&#34;Location&#34;,
+                    &#34;subcategory&#34;:&#34;GPE&#34;,
+                    &#34;offset&#34;:12,
+                    &#34;length&#34;:6,
+                    &#34;confidenceScore&#34;:0.88
+                  },
+                  {
+                    &#34;text&#34;:&#34;Saturday&#34;,
+                    &#34;category&#34;:&#34;DateTime&#34;,
+                    &#34;subcategory&#34;:&#34;Date&#34;,
+                    &#34;offset&#34;:22,
+                    &#34;length&#34;:8,
+                    &#34;confidenceScore&#34;:0.8
+                  }
+                ],
+                &#34;id&#34;:&#34;1&#34;,
+                &#34;warnings&#34;:[]
+              }
+          ],
+          &#34;errors&#34;:[],
+          &#34;modelVersion&#34;:&#34;2021-01-15&#34;
+    }
+}
+</code></pre><p>若要了解有关实体的详细信息，请参阅<a href=https://learn.microsoft.com/zh-cn/training/modules/build-language-understanding-model/>生成对话语言理解模型</a>模块。</p><h2 id=提取链接的实体>提取链接的实体<a hidden class=anchor aria-hidden=true href=#提取链接的实体>#</a></h2><p>在某些情况下，相同的名称可能适用于多个实体。 例如，“Venus”一词的实例是指行星还是神话中的女神？</p><p>实体链接可用于通过引用知识库中的文章来区分同名的实体。 维基百科为文本分析服务提供了知识库。 根据文本中的实体上下文确定特定文章链接。</p><p>例如，“I saw Venus shining in the sky”与链接 <a href=https://en.wikipedia.org/wiki/Venus>https://en.wikipedia.org/wiki/Venus</a> 相关联，而“Venus, the goddess of beauty”与 <a href=https://en.wikipedia.org/wiki/Venus_(mythology)>https://en.wikipedia.org/wiki/Venus_(mythology)</a> 相关联。</p><p>与所有 Azure AI 语言服务函数一样，你可以提交一个或多个文档进行分析：</p><pre tabindex=0><code class=language-auto data-lang=auto>
+{
+  &#34;kind&#34;: &#34;EntityLinking&#34;,
+  &#34;parameters&#34;: {
+    &#34;modelVersion&#34;: &#34;latest&#34;
+  },
+  &#34;analysisInput&#34;: {
+    &#34;documents&#34;: [
+      {
+        &#34;id&#34;: &#34;1&#34;,
+        &#34;language&#34;: &#34;en&#34;,
+        &#34;text&#34;: &#34;I saw Venus shining in the sky&#34;
+      }
+    ]
+  }
+}
+</code></pre><p>响应包括文本中标识的实体以及指向相关文章的链接：</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+  &#34;kind&#34;: &#34;EntityLinkingResults&#34;,
+  &#34;results&#34;: {
+    &#34;documents&#34;: [
+      {
+        &#34;id&#34;: &#34;1&#34;,
+        &#34;entities&#34;: [
+          {
+            &#34;bingId&#34;: &#34;89253af3-5b63-e620-9227-f839138139f6&#34;,
+            &#34;name&#34;: &#34;Venus&#34;,
+            &#34;matches&#34;: [
+              {
+                &#34;text&#34;: &#34;Venus&#34;,
+                &#34;offset&#34;: 6,
+                &#34;length&#34;: 5,
+                &#34;confidenceScore&#34;: 0.01
+              }
+            ],
+            &#34;language&#34;: &#34;en&#34;,
+            &#34;id&#34;: &#34;Venus&#34;,
+            &#34;url&#34;: &#34;https://en.wikipedia.org/wiki/Venus&#34;,
+            &#34;dataSource&#34;: &#34;Wikipedia&#34;
+          }
+        ],
+        &#34;warnings&#34;: []
+      }
+    ],
+    &#34;errors&#34;: [],
+    &#34;modelVersion&#34;: &#34;2021-06-01&#34;
+  }
+}
+</code></pre><p>情绪分析有助于确定文本是负面的还是正面的
+链接的实体可用于区分同名的常见实体</p><h1 id=使用-azure-ai-语言创建问题解答解决方案>使用 Azure AI 语言创建问题解答解决方案<a hidden class=anchor aria-hidden=true href=#使用-azure-ai-语言创建问题解答解决方案>#</a></h1><p>智能”应用程序的常见模式是使用户能够使用自然语言提问并收到相应的答案。 实际上，此类解决方案将对话智能引入传统的常见问题解答 (FAQ) 发布。 本模块介绍如何使用 Azure AI 语言创建可支持应用程序或机器人的问答对知识库。</p><p>了解问题解答及其与语言理解的比较。
+创建、测试、发布和使用知识库。
+实现多回合对话和主动学习。
+创建使用自然语言进行交互的问题解答机器人。</p><h2 id=了解问题解答>了解问题解答<a hidden class=anchor aria-hidden=true href=#了解问题解答>#</a></h2><p>已完成</p><p>借助包括<em>问题解答</em>功能的 <strong>Azure AI 语言</strong>，可以定义可使用自然语言输入查询的问答对<em>知识库</em>。 知识库可以发布到 REST 终结点，并供客户端应用程序（通常是机器人）使用。</p><p><img alt="A diagram showing how a conversational app uses a knowledge base of questions and answers." loading=lazy src=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/create-question-answer-solution-ai-language/media/diagram.png></p><p>可以从现有源创建知识库，其中包括：</p><ul><li>包含常见问题解答 (FAQ) 文档的网站。</li><li>包含结构化文本的文件，如手册或用户指南。</li><li>内置的闲聊问题和用于封装常见对话交流的答案对。</li></ul><p>注意</p><p>Azure AI 语言的问题解答功能是 <strong>QnA 服务</strong>的较新版本，该服务仍作为独立的服务存在。 若要了解如何将 QnA Maker 知识库迁移到 Azure AI 语言，请参阅<a href=https://learn.microsoft.com/zh-cn/azure/ai-services/language-service/question-answering/how-to/migrate-qnamaker>迁移指南</a>。</p><h2 id=比较问题解答和-azure-ai-语言理解>比较问题解答和 Azure AI 语言理解<a hidden class=anchor aria-hidden=true href=#比较问题解答和-azure-ai-语言理解>#</a></h2><p>已完成</p><p>问题解答知识库是语言模型的一种形式，它会提出有关何时使用问题解答的问题，以及何时使用 Azure AI 语言的<em>对话语言理解</em>功能。</p><p>这两项功能的相似之处在于，它们都允许定义可以使用自然语言表达式查询的语言模型。 但是，它们旨在解决的用例存在一些差异，如下表所示：</p><p>| | 问答 | 语言理解 |
+| +++ | +++ | +++ |
+| <strong>使用模式</strong> | 用户提交问题，需要答案 | 用户提交言语，需要适当的响应或操作 |
+| <strong>查询处理</strong> | 服务使用自然语言理解将问题与知识库中的答案进行匹配 | 服务使用自然语言理解来解释言语、将其与意向匹配，以及识别实体 |
+| <strong>响应</strong> | 响应是已知问题的静态答案 | 响应指示最有可能的意向和引用实体 |
+| <strong>客户端逻辑</strong> | 客户端应用程序通常向用户提供答案 | 客户端应用程序负责根据检测到的意向执行适当的操作 |</p><p>实际上，这两个服务是互补的。 可以构建综合的自然语言解决方案，将语言理解模型与问题解答知识库结合起来。</p><h2 id=创建知识库>创建知识库<a hidden class=anchor aria-hidden=true href=#创建知识库>#</a></h2><p>若要创建问题解答解决方案，可以使用 REST API 或 SDK 编写用于定义、训练和发布知识库的代码。 不过，更常见的是使用 <a href=https://language.azure.com/>Language Studio</a> Web 界面来定义和管理知识库。</p><p>若要创建知识库，请执行以下步骤：</p><ol><li><p>登录到 Azure 门户。</p></li><li><p>使用门户顶部的搜索字段搜索“Azure AI 服务”。</p></li><li><p>选择“语言服务”资源下的“创建”。</p></li><li><p>在 Azure 订阅中创建资源：</p><ul><li>启用问题解答功能。</li><li>创建或选择“Azure AI 搜索”资源来托管知识库索引。</li></ul></li><li><p>在 Language Studio 中，选择“Azure AI 语言”资源并创建“自定义问题解答”项目。</p></li><li><p>添加一个或多个数据源以填充知识库：</p><ul><li>包含 FAQ 的 Web 页面的 URL。</li><li>包含可以从中派生出问题和解答的结构化文本的文件。</li><li>预定义的闲聊数据集，其中包括指定样式的常见对话问题和响应。</li></ul></li><li><p>在门户中编辑问答对。</p></li></ol><h2 id=实现多回合对话>实现多回合对话<a hidden class=anchor aria-hidden=true href=#实现多回合对话>#</a></h2><p>已完成</p><p>尽管通常可以创建由单个问答对组成的有效知识库，但有时可能需要在提供明确答案之前询问后续问题，以便从用户那里获取更多信息。 这种交互称为多回合对话。</p><p><img alt="A diagram showing a multi-turn conversation." loading=lazy src=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/create-question-answer-solution-ai-language/media/multi-turn-conversation.png></p><p>根据现有网页或文档的结构从现有网页或文档中导入问答时，可以启用多回合响应，或者可以为现有问答对显式定义跟进提示和响应。</p><p>例如，假设旅行预订知识库的初始问题是“如何取消预订？”。 预订可能指酒店或航班，因此需要跟进提示来阐明此详细信息。 答案可能包含“取消策略取决于预订类型”之类的文本，并包含跟进提示，以及有关取消航班和取消酒店的答案链接。</p><p>定义多回合对话的跟进提示时，可以链接到知识库中的现有答案，或专门为跟进定义新答案。 还可以限制链接答案，以便它仅显示在由原始问题发起的多回合对话的上下文中。</p><h2 id=测试并发布知识库>测试并发布知识库<a hidden class=anchor aria-hidden=true href=#测试并发布知识库>#</a></h2><p>​
+​
+定义知识库后，可以训练其自然语言模型并测试该模型，然后发布，以便在应用程序或机器人中使用。
+​</p><h2 id=测试知识库>测试知识库<a hidden class=anchor aria-hidden=true href=#测试知识库>#</a></h2><p>​
+你可以在语言工作室中，通过提交问题并查看返回的答案来交互测试知识库。 可以检查结果以查看其置信度分数以及其他可能的答案。
+​
+<a href=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/create-question-answer-solution-ai-language/media/test-new.png#lightbox><img alt="Screenshot of the test pane of the custom question answering project in the Language studio." loading=lazy src=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/create-question-answer-solution-ai-language/media/test-new-small.png></a>
+​</p><h2 id=部署知识库>部署知识库<a hidden class=anchor aria-hidden=true href=#部署知识库>#</a></h2><p>​
+如果对知识库的性能满意，可以将其部署到 REST 终结点，客户端应用程序可以使用该函数来提交问题和接收答案。 可以直接从 Language Studio 部署它。
+​</p><h2 id=使用知识库>使用知识库<a hidden class=anchor aria-hidden=true href=#使用知识库>#</a></h2><p>若要使用已发布的知识库，可以使用 REST 接口。</p><p>函数的最小请求正文包含一个问题，如下所示：</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+  &#34;question&#34;: &#34;What do I need to do to cancel a reservation?&#34;,
+  &#34;top&#34;: 2,
+  &#34;scoreThreshold&#34;: 20,
+  &#34;strictFilters&#34;: [
+    {
+      &#34;name&#34;: &#34;category&#34;,
+      &#34;value&#34;: &#34;api&#34;
+    }
+  ]
+}
+</code></pre><p>| properties | 说明 |
+| +++ | +++ |
+| 问题 | 要发送到知识库的问题。 |
+| top | 要返回的最大答案数。 |
+| scoreThreshold | 返回的答案的分数阈值。 |
+| strictFilters | 限制为仅包含指定元数据的答案。 |</p><p>响应包括知识库中最接近的问题匹配，以及关联的答案、置信度分数和有关问答对的其他元数据：</p><pre tabindex=0><code class=language-auto data-lang=auto>
+{
+  &#34;answers&#34;: [
+    {
+      &#34;score&#34;: 27.74823341616769,
+      &#34;id&#34;: 20,
+      &#34;answer&#34;: &#34;Call us on 555 123 4567 to cancel a reservation.&#34;,
+      &#34;questions&#34;: [
+        &#34;How can I cancel a reservation?&#34;
+      ],
+      &#34;metadata&#34;: [
+        {
+          &#34;name&#34;: &#34;category&#34;,
+          &#34;value&#34;: &#34;api&#34;
+        }
+      ]
+    }
+  ]
+}
+</code></pre><h2 id=提高问题解答性能>提高问题解答性能<a hidden class=anchor aria-hidden=true href=#提高问题解答性能>#</a></h2><p>创建和测试知识库后，可以通过“主动学习”和定义“同义词”来改善其性能。</p><h2 id=使用主动学习>使用主动学习<a hidden class=anchor aria-hidden=true href=#使用主动学习>#</a></h2><p>主动学习可帮助你进行持续改进，以便随着时间的推移更好地正确回答用户问题。 人们经常会问一些措辞不同但最终含义相同的问题。 在此类情况下，主动学习会有所帮助，因为它可以让你考虑每个问答对的备选问题。 默认情况下，主动学习处于启用状态。</p><p>若要使用主动学习，可以执行以下操作：</p><h3 id=创建问答对>创建问答对<a hidden class=anchor aria-hidden=true href=#创建问答对>#</a></h3><p>在 Language Studio 中为项目创建问题和答案对。 还可以导入包含要批量上传的问答对的文件。</p><p><a href=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/create-question-answer-solution-ai-language/media/import-file.png#lightbox><img alt="A screenshot showing how to import a file with question and answer pairs." loading=lazy src=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/create-question-answer-solution-ai-language/media/import-file-small.png></a></p><h3 id=审阅建议>审阅建议<a hidden class=anchor aria-hidden=true href=#审阅建议>#</a></h3><p>然后，主动学习开始为问答对中的每个问题提供备选问题。 可从“查看建议”窗格访问此内容：</p><p><a href=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/create-question-answer-solution-ai-language/media/review-suggestions.png#lightbox><img alt="A screenshot of the Review suggestions pane." loading=lazy src=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/create-question-answer-solution-ai-language/media/review-suggestions-small.png></a></p><p>查看，然后通过选择备选短语旁边的复选标记或删除符号来接受或拒绝针对每个问题建议的这些备选短语。 可以使用顶部的“<strong>接受所有建议</strong>”或“<strong>拒绝所有建议</strong>”选项批量接受或拒绝建议。</p><p>在“编辑知识库”窗格中为对选择“<strong>添加备选问题</strong>”时，还可以手动添加备选问题：</p><p><a href=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/create-question-answer-solution-ai-language/media/add-alternate-questions-manual.png#lightbox><img alt="A screenshot showing the Add alternate question option on the Edit knowledge base pane." loading=lazy src=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/create-question-answer-solution-ai-language/media/add-alternate-questions-manual-small.png></a></p><h2 id=定义同义词>定义同义词<a hidden class=anchor aria-hidden=true href=#定义同义词>#</a></h2><p>当用户提交的问题可能包含多个不同的字词来表示相同内容时，同义词很有用。 例如，一家旅游代理商的客户可能会提到“预留”或“预订”。 通过将这些关键词定义为同义词，无论个人客户使用哪一术语，问题解答服务都可以找到相应的答案。</p><p>若要定义同义词，请使用 REST API 按以下 JSON 格式提交同义词：</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+    &#34;synonyms&#34;: [
+        {
+            &#34;alterations&#34;: [
+                &#34;reservation&#34;,
+                &#34;booking&#34;
+                ]
+        }
+    ]
+}
+</code></pre><p>可以从现有文档或网页创建知识库。
+若要向问题添加多回合上下文，请定义跟进提示。
+你可以为已发布的知识库创建机器人，并配置电子邮件通信通道。</p><h1 id=生成对话语言理解模型>生成对话语言理解模型<a hidden class=anchor aria-hidden=true href=#生成对话语言理解模型>#</a></h1><h2 id=介绍>介绍<a hidden class=anchor aria-hidden=true href=#介绍>#</a></h2><p>自然语言处理 (NLP) 是一个常见的 AI 问题，即软件必须能够以人类用户书写或说话所用的自然语言形式处理文本或语音。 在更广泛的 NLP 领域中，自然语言理解 (NLU) 处理从自然语言确定语义含义的问题，通常使用训练的语言模型来确定。</p><p>自然语言理解解决方案的常见设计模式如下所示：</p><p><img alt="Diagram showing an app accepts natural language input, and uses a model to determine semantic meaning before taking the appropriate action." loading=lazy src=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/build-language-understanding-model/media/language-understanding-app.png></p><p>在此设计模式中：</p><ol><li>应用接受来自用户的自然语言输入。</li><li>语言模型用于确定语义含义（用户的意向）。</li><li>应用执行相应操作。</li></ol><p>Azure AI 语言使开发人员能够基于可使用数量相对较少的示例训练的语言模型来生成应用，从而识别用户的预期含义。</p><p>本模块介绍如何相关服务来创建使用 Azure AI 语言的自然语言理解应用。</p><p>完成此模块后，你将能够：</p><ul><li>预配 Azure AI 语言资源。</li><li>定义意向、实体和语句。</li><li>使用模式区分相似的言语。</li><li>使用预生成的实体组件。</li><li>训练、测试、发布和查看模型。</li></ul><h2 id=了解-azure-ai-语言服务的预生成功能>了解 Azure AI 语言服务的预生成功能<a hidden class=anchor aria-hidden=true href=#了解-azure-ai-语言服务的预生成功能>#</a></h2><p>Azure AI 语言服务提供各种功能来理解人类语言。 可以使用每项特征更好地与用户通信，更好地了解传入通信，或者使用多项特征以便更深入地了解用户所表达内容、意向和询问内容。</p><p>Azure AI 语言服务功能分为两类：预配置的功能和习得的功能。 学习到的特征需要生成和训练一个模型来正确预测适当的标签，本模块即将推出的单元将对此进行介绍。</p><p>本单元会介绍 Azure AI 语言服务的大部分功能，但请参考 <a href="https://learn.microsoft.com/zh-cn/azure/cognitive-services/language-service/overview?azure-portal=true">Azure AI 语言服务文档</a>获取完整列表，其中包括快速入门和所有可用内容的完整说明。</p><p>在应用中使用这些特征需要将查询发送到相应的终结点。 用于查询特定特征的终结点各不相同，但所有这些终结点都带有在 Azure 帐户中创建的 Azure AI 语言资源前缀，无论是生成 REST 请求，还是使用 SDK 定义客户端。 可以在下一个单元中找到每个示例。</p><h2 id=预配置的功能>预配置的功能<a hidden class=anchor aria-hidden=true href=#预配置的功能>#</a></h2><p>Azure AI 语言服务提供的部分功能不需要任何模型标记和训练。 创建资源后，可以发送数据并在应用中使用返回的结果。</p><p>以下功能都是预配置的。</p><h3 id=汇总>汇总<a hidden class=anchor aria-hidden=true href=#汇总>#</a></h3><p>摘要可用于文档和对话，可将文本汇总到关键句中，系统通过对关键句进行预测来概括输入的含义。</p><h3 id=命名实体识别>命名实体识别<a hidden class=anchor aria-hidden=true href=#命名实体识别>#</a></h3><p>命名实体识别可以提取和标识实体（如人员、地点或公司），使应用能够识别不同类型的实体，从而改进自然语言响应。 例如能从“The waterfront pier is my favorite Seattle attraction”中识别出“Seattle”，并将其分类为地点。</p><h3 id=个人身份信息-pii-检测>个人身份信息 (PII) 检测<a hidden class=anchor aria-hidden=true href=#个人身份信息-pii-检测>#</a></h3><p>使用 PII 检测，可以识别、分类和编辑可能被视为敏感信息的信息，例如电子邮件地址、家庭地址、IP 地址、姓名和受保护的运行状况信息。 例如，如果查询中包含文本“email@contoso.com”，则可以识别和修改整个电子邮件地址。</p><h3 id=关键短语提取>关键短语提取<a hidden class=anchor aria-hidden=true href=#关键短语提取>#</a></h3><p>关键短语提取是可快速从提供的文本中提取主要概念的功能。 例如，该服务能从“Text Analytics is one of the features in Azure AI Services.”中识别出“<em>Azure AI Services</em>”和“<em>Text Analytics</em>”。</p><h3 id=情绪分析>情绪分析<a hidden class=anchor aria-hidden=true href=#情绪分析>#</a></h3><p>情绪分析标识字符串或文档是正面还是负面的。 例如该服务能从“Great hotel. Close to plenty of food and attractions we could walk to”中识别出正面的结果，且具有相对较高的置信度分数。</p><h3 id=语言检测>语言检测<a hidden class=anchor aria-hidden=true href=#语言检测>#</a></h3><p>语言检测采用一个或多个文档，并识别每个文档的语言。 例如该服务能从其中一份“Bonjour”文档识别出法语的结果。</p><h2 id=学习的功能>学习的功能<a hidden class=anchor aria-hidden=true href=#学习的功能>#</a></h2><p>学习的功能要求你标记数据、训练和部署模型，使其可在应用程序中使用。 这些功能允许自定义预测或提取的信息。</p><p>注意</p><p>数据质量极大地影响模型的准确性。 请留意使用的数据、数据的标记情况以及训练数据的多样化程度。 有关详细信息，请参阅<a href=https://learn.microsoft.com/zh-cn/azure/ai-services/language-service/conversational-language-understanding/how-to/tag-utterances>有关标记数据的建议</a>，其中包括针对标记数据的宝贵指南。 另请参阅<a href=https://learn.microsoft.com/zh-cn/azure/ai-services/language-service/custom-text-classification/concepts/evaluation-metrics>评估指标</a>，可帮助你了解模型需要改进的地方。</p><h3 id=对话语言理解-clu>对话语言理解 (CLU)<a hidden class=anchor aria-hidden=true href=#对话语言理解-clu>#</a></h3><p>CLU 是 Azure AI 语言提供的核心自定义功能之一。 CLU 可帮助用户生成自定义自然语言理解模型来预测整体意向，并从传入言语中提取重要信息。 CLU 要求用户标记数据，以让其学习如何准确预测意向和实体。</p><p>本模块中的练习将生成 CLU 模型并在应用中使用它。</p><h3 id=自定义命名实体识别>自定义命名实体识别<a hidden class=anchor aria-hidden=true href=#自定义命名实体识别>#</a></h3><p>自定义实体识别采用自定义标记数据，并从非结构化文本中提取指定的实体。 例如，如果有需要从中提取当事人的各种合同文档，可以通过训练模型让模型知道如何进行预测。</p><h3 id=自定义文本分类>自定义文本分类<a hidden class=anchor aria-hidden=true href=#自定义文本分类>#</a></h3><p>使用自定义文本分类，用户可以将文本或文档分类为自定义组。 例如，可以训练模型来查看新闻文章，并确定这些信息的所述类别，例如“新闻”或“娱乐”。</p><h3 id=问答>问答<a hidden class=anchor aria-hidden=true href=#问答>#</a></h3><p>问题解答是一项在大多数情况下会预配的功能，可解答作为输入提供的问题。 回答这些问题的数据来自常见问题解答或手册等文档。</p><p>例如，假设你想要在公司网站上创建虚拟聊天助手来回答常见问题。 可以使用公司常见问题解答作为输入文档来创建问题和答案对。 部署后，聊天助手可以将输入问题传递给服务，并以结果形式获取解答。</p><p>若要查看功能的完整列表以及使用方法，请参阅 Azure AI 语言<a href="https://learn.microsoft.com/zh-cn/azure/ai-services/language-service/overview?azure-portal=true">文档</a>。</p><h2 id=了解用于生成对话语言理解模型的资源>了解用于生成对话语言理解模型的资源<a hidden class=anchor aria-hidden=true href=#了解用于生成对话语言理解模型的资源>#</a></h2><ul><li>9 分钟</li></ul><p>若要使用语言理解服务开发 NLP 解决方案，需要在 Azure 中创建语言资源。 该资源将用于创作模型和处理来自客户端应用程序的预测请求。</p><p>提示</p><p>本模块的实验室介绍如何构建用于对话语言理解的模型。 有关自定义文本分类和自定义命名实体识别的更多重点模块，请参阅<a href="https://learn.microsoft.com/zh-cn/training/paths/develop-language-solutions-azure-ai?azure-portal=true">开发自然语言解决方案</a>学习路径中的自定义解决方案模块。</p><h2 id=构建你的模型>构建你的模型<a hidden class=anchor aria-hidden=true href=#构建你的模型>#</a></h2><p>对于需要模型进行预测的功能，需要先生成、训练并部署模型，才能将其用于预测。 通过生成和训练让 Azure AI 语言服务学习要查找的内容。</p><p>首先，需要在 <a href="https://portal.azure.com/?azure-portal=true">Azure 门户</a>中创建 Azure AI 语言资源。 然后：</p><ol><li>搜索 <strong>Azure AI 服务</strong>。</li><li>查找并选择“<strong>语言服务</strong>”。</li><li>选择“<strong>语言服务</strong>”下的“<strong>创建</strong>”。</li><li>填写必要的详细信息，选择在地理位置上最靠近的区域（以获得最佳性能），并为其提供唯一的名称。</li></ol><p>创建该资源后，需要密钥和终结点。 可以在资源概述页的“密钥和终结点”下的左侧找到该信息。</p><h3 id=使用语言工作室>使用语言工作室<a hidden class=anchor aria-hidden=true href=#使用语言工作室>#</a></h3><p>若要更直观地生成、训练和部署模型，可以使用 <a href=https://aka.ms/languageStudio>Language Studio</a> 来实现上述每个步骤。 在主页上，可以选择创建<strong>对话语言理解</strong>项目。 创建项目后，请完成与上述内容相同的过程来生成、训练和部署模型。</p><p><a href=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/build-language-understanding-model/media/language-studio-conversational.png#lightbox><img alt="Screenshot of the Language Studio home page." loading=lazy src=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/build-language-understanding-model/media/language-studio-conversational-small.png></a></p><p>本模块中的实验室将逐步讲解如何使用 Language Studio 生成模型。 若要了解详细信息，请参阅 <a href="https://learn.microsoft.com/zh-cn/azure/ai-services/language-service/language-studio?azure-portal=true">Language Studio 快速入门</a></p><h3 id=使用-rest-api>使用 REST API<a hidden class=anchor aria-hidden=true href=#使用-rest-api>#</a></h3><p>生成模型的一种方法是通过 REST API 生成。 该模式是创建项目、导入数据、训练、部署，然后使用模型。</p><p>这些任务以异步方式完成；需要向每个步骤的相应 URI 提交请求，然后发送另一个请求以获取该作业的状态。</p><p>例如，如果要为对话语言理解项目部署模型，则需要提交部署作业，然后检查部署作业状态。</p><h4 id=身份验证>身份验证<a hidden class=anchor aria-hidden=true href=#身份验证>#</a></h4><p>对于对 Azure AI 语言资源的每个调用，可以通过提供以下标头对请求进行身份验证。</p><p>| 密钥 | 值 |
+| +++ | +++ |
+| <code>Ocp-Apim-Subscription-Key</code> | 资源密钥 |</p><h4 id=请求部署>请求部署<a hidden class=anchor aria-hidden=true href=#请求部署>#</a></h4><p>将 POST 请求提交到以下终结点。</p><pre tabindex=0><code class=language-auto data-lang=auto>{ENDPOINT}/language/authoring/analyze-conversations/projects/{PROJECT-NAME}/deployments/{DEPLOYMENT-NAME}?api-version={API-VERSION}
+</code></pre><p>| 占位符 | 值 | 示例 |
+| +++ | +++ | +++ |
+| <code>{ENDPOINT}</code> | Azure AI 语言资源的终结点 | <code>https://&lt;your-subdomain>.cognitiveservices.azure.com</code> |
+| <code>{PROJECT-NAME}</code> | 项目名称。 此值区分大小写 | <code>myProject</code> |
+| <code>{DEPLOYMENT-NAME}</code> | 部署名称。 此值区分大小写 | <code>staging</code> |
+| <code>{API-VERSION}</code> | 要调用的 API 版本 | <code>2022-05-01</code> |</p><p>请在请求中包括以下 <code>body</code>。</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+  &#34;trainedModelLabel&#34;: &#34;{MODEL-NAME}&#34;,
+}
+</code></pre><p>| 占位符 | 值 |
+| +++ | +++ |
+| <code>{MODEL-NAME}</code> | 将要分配给部署的模型名称。 此值区分大小写。 |</p><p>若成功提交请求，将收到 <code>202</code> 响应，并带有响应标头 <code>operation-location</code>。 此标头将具有一个 URL，用于请求状态，格式如下所示：</p><pre tabindex=0><code class=language-auto data-lang=auto>{ENDPOINT}/language/authoring/analyze-conversations/projects/{PROJECT-NAME}/deployments/{DEPLOYMENT-NAME}/jobs/{JOB-ID}?api-version={API-VERSION}
+</code></pre><h4 id=获取部署状态>获取部署状态<a hidden class=anchor aria-hidden=true href=#获取部署状态>#</a></h4><p>将 GET 请求提交到上述响应标头中的 URL。 这些值已根据初始部署请求填写。</p><pre tabindex=0><code class=language-auto data-lang=auto>{ENDPOINT}/language/authoring/analyze-conversations/projects/{PROJECT-NAME}/deployments/{DEPLOYMENT-NAME}/jobs/{JOB-ID}?api-version={API-VERSION}
+</code></pre><p>| 占位符 | 值 |
+| +++ | +++ |
+| <code>{ENDPOINT}</code> | 用于对 API 请求进行身份验证的终结点 |
+| <code>{PROJECT-NAME}</code> | 项目名称（值区分大小写） |
+| <code>{DEPLOYMENT-NAME}</code> | 部署名称（值区分大小写） |
+| <code>{JOB-ID}</code> | 用于查找模型训练状态的 ID，可在上文部署请求中详述的标头值中找到 |
+| <code>{API-VERSION}</code> | 要调用的 API 版本 |</p><p>响应正文将提供部署状态详细信息。 当部署完成时，<code>status</code> 字段的值会为“已成功”。</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+    &#34;jobId&#34;:&#34;{JOB-ID}&#34;,
+    &#34;createdDateTime&#34;:&#34;String&#34;,
+    &#34;lastUpdatedDateTime&#34;:&#34;String&#34;,
+    &#34;expirationDateTime&#34;:&#34;String&#34;,
+    &#34;status&#34;:&#34;running&#34;
+}
+</code></pre><p>若要查看示例请求的每个步骤的完整演练，请参阅<a href="https://learn.microsoft.com/zh-cn/azure/ai-services/language-service/conversational-language-understanding/quickstart?pivots=rest-api&amp;azure-portal=true#create-a-clu-project">对话理解快速入门</a>。</p><h2 id=查询你的模型>查询你的模型<a hidden class=anchor aria-hidden=true href=#查询你的模型>#</a></h2><p>若要查询模型以进行预测，可以使用 C# 或 Python 中的 SDK，也可以使用 REST AP。</p><h3 id=使用-sdk-进行查询>使用 SDK 进行查询<a hidden class=anchor aria-hidden=true href=#使用-sdk-进行查询>#</a></h3><p>若要使用 SDK 查询你的模型，你首先需要创建客户端。 具有客户端后，即可使用它来调用相应的终结点。</p><pre tabindex=0><code class=language-auto data-lang=auto>var languageClient = new TextAnalyticsClient(endpoint, credentials);
+var response = languageClient.ExtractKeyPhrases(document);
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>language_client <span style=color:#f92672>=</span> TextAnalyticsClient(
+</span></span><span style=display:flex><span>            endpoint<span style=color:#f92672>=</span>endpoint, 
+</span></span><span style=display:flex><span>            credential<span style=color:#f92672>=</span>credentials)
+</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> language_client<span style=color:#f92672>.</span>extract_key_phrases(documents <span style=color:#f92672>=</span> documents)[<span style=color:#ae81ff>0</span>]
+</span></span></code></pre></div><p>其他语言功能（例如对话语言理解）要求以不同的方式构建和发送请求。</p><pre tabindex=0><code class=language-auto data-lang=auto>var data = new
+{
+    analysisInput = new
+    {
+        conversationItem = new
+        {
+            text = userText,
+            id = &#34;1&#34;,
+            participantId = &#34;1&#34;,
+        }
+    },
+    parameters = new
+    {
+        projectName,
+        deploymentName,
+        // Use Utf16CodeUnit for strings in .NET.
+        stringIndexType = &#34;Utf16CodeUnit&#34;,
+    },
+    kind = &#34;Conversation&#34;,
+};
+Response response = await client.AnalyzeConversationAsync(RequestContent.Create(data));
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>result <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>analyze_conversation(
+</span></span><span style=display:flex><span>    task<span style=color:#f92672>=</span>{
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;kind&#34;</span>: <span style=color:#e6db74>&#34;Conversation&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;analysisInput&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;conversationItem&#34;</span>: {
+</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;participantId&#34;</span>: <span style=color:#e6db74>&#34;1&#34;</span>,
+</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;1&#34;</span>,
+</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;modality&#34;</span>: <span style=color:#e6db74>&#34;text&#34;</span>,
+</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;language&#34;</span>: <span style=color:#e6db74>&#34;en&#34;</span>,
+</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;text&#34;</span>: query
+</span></span><span style=display:flex><span>            },
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;isLoggingEnabled&#34;</span>: <span style=color:#66d9ef>False</span>
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;parameters&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;projectName&#34;</span>: cls_project,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;deploymentName&#34;</span>: deployment_slot,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;verbose&#34;</span>: <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><h3 id=使用-rest-api-进行查询>使用 REST API 进行查询<a hidden class=anchor aria-hidden=true href=#使用-rest-api-进行查询>#</a></h3><p>若要使用 REST 查询你的模型，请使用指定的相应正文创建对相应 URL 的 POST 请求。 对于内置功能（如语言检测或情绪分析），你将查询 <code>analyze-text</code> 终结点。</p><p>提示</p><p>请记住，每个请求都需要使用 <code>Ocp-Apim-Subscription-Key</code> 标头中的 Azure AI 语言资源密钥进行身份验证</p><pre tabindex=0><code class=language-auto data-lang=auto>{ENDPOINT}/language/:analyze-text?api-version={API-VERSION}
+</code></pre><p>| 占位符 | 值 |
+| +++ | +++ |
+| <code>{ENDPOINT}</code> | 用于对 API 请求进行身份验证的终结点 |
+| <code>{API-VERSION}</code> | 要调用的 API 版本 |</p><p>在该请求的正文中，必须指定 <code>kind</code> 参数，该参数告知服务你所请求的语言理解类型。</p><p>例如，如果想要检测语言，则 JSON 正文将如下所示。</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+    &#34;kind&#34;: &#34;LanguageDetection&#34;,
+    &#34;parameters&#34;: {
+        &#34;modelVersion&#34;: &#34;latest&#34;
+    },
+    &#34;analysisInput&#34;:{
+        &#34;documents&#34;:[
+            {
+                &#34;id&#34;:&#34;1&#34;,
+                &#34;text&#34;: &#34;This is a document written in English.&#34;
+            }
+        ]
+    }
+}
+</code></pre><p>其他语言功能（例如对话语言理解）要求将请求路由到其他终结点。 例如，对话语言理解请求将被发送到以下位置。</p><pre tabindex=0><code class=language-auto data-lang=auto>{ENDPOINT}/language/:analyze-conversations?api-version={API-VERSION}
+</code></pre><p>| 占位符 | 值 |
+| +++ | +++ |
+| <code>{ENDPOINT}</code> | 用于对 API 请求进行身份验证的终结点 |
+| <code>{API-VERSION}</code> | 要调用的 API 版本 |</p><p>该请求将包含类似于以下内容的 JSON 正文。</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+  &#34;kind&#34;: &#34;Conversation&#34;,
+  &#34;analysisInput&#34;: {
+    &#34;conversationItem&#34;: {
+      &#34;id&#34;: &#34;1&#34;,
+      &#34;participantId&#34;: &#34;1&#34;,
+      &#34;text&#34;: &#34;Sample text&#34;
+    }
+  },
+  &#34;parameters&#34;: {
+    &#34;projectName&#34;: &#34;{PROJECT-NAME}&#34;,
+    &#34;deploymentName&#34;: &#34;{DEPLOYMENT-NAME}&#34;,
+    &#34;stringIndexType&#34;: &#34;TextElement_V8&#34;
+  }
+}
+</code></pre><p>| 占位符 | 值 |
+| +++ | +++ |
+| <code>{PROJECT-NAME}</code> | 生成模型的项目的名称 |
+| <code>{DEPLOYMENT-NAME}</code> | 部署的名称 |</p><h3 id=示例响应>示例响应<a hidden class=anchor aria-hidden=true href=#示例响应>#</a></h3><p>来自 SDK 的查询响应将出现在返回的对象中，具体取决于功能（例如在 <code>response.key_phrases</code> 或 <code>response.Value</code> 中）。 REST API 将返回类似于以下内容的 JSON。</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+    &#34;kind&#34;: &#34;KeyPhraseExtractionResults&#34;,
+    &#34;results&#34;: {
+        &#34;documents&#34;: [{
+            &#34;id&#34;: &#34;1&#34;,
+            &#34;keyPhrases&#34;: [&#34;modern medical office&#34;, &#34;Dr. Smith&#34;, &#34;great staff&#34;],
+            &#34;warnings&#34;: []
+        }],
+        &#34;errors&#34;: [],
+        &#34;modelVersion&#34;: &#34;{VERSION}&#34;
+    }
+}
+</code></pre><p>对于对话语言理解等其他模型，对查询的示例响应将类似于以下内容。</p><pre tabindex=0><code class=language-auto data-lang=auto>{
+  &#34;kind&#34;: &#34;ConversationResult&#34;,
+  &#34;result&#34;: {
+    &#34;query&#34;: &#34;String&#34;,
+    &#34;prediction&#34;: {
+      &#34;topIntent&#34;: &#34;intent1&#34;,
+      &#34;projectKind&#34;: &#34;Conversation&#34;,
+      &#34;intents&#34;: [
+        {
+          &#34;category&#34;: &#34;intent1&#34;,
+          &#34;confidenceScore&#34;: 1
+        },
+        {
+          &#34;category&#34;: &#34;intent2&#34;,
+          &#34;confidenceScore&#34;: 0
+        }
+      ],
+      &#34;entities&#34;: [
+        {
+          &#34;category&#34;: &#34;entity1&#34;,
+          &#34;text&#34;: &#34;text&#34;,
+          &#34;offset&#34;: 7,
+          &#34;length&#34;: 4,
+          &#34;confidenceScore&#34;: 1
+        }
+      ]
+    }
+  }
+}
+</code></pre><p>Python 和 C# 的 SDK 返回与 REST 响应非常相似的 JSON。</p><p>有关功能的完整文档（包括示例和操作指南），请参阅 <a href="https://learn.microsoft.com/zh-cn/azure/ai-services/language-service/?azure-portal=true">Azure AI 语言文档</a>的文档页。</p><h2 id=定义意向言语和实体>定义意向、言语和实体<a hidden class=anchor aria-hidden=true href=#定义意向言语和实体>#</a></h2><p>语句是用户在与使用语言模型的应用程序进行交互时可能输入的短语。 意向表示用户想执行的任务或操作，或更简单地表示言语的含义。 通过定义意向并将其与一个或多个言语关联来创建模型。</p><p>例如，考虑下面包含意向和关联言语的列表：</p><ul><li>GetTime：<ul><li>“What time is it?”</li><li>“What is the time?”</li><li>“Tell me the time”</li></ul></li><li>GetWeather：<ul><li>“What is the weather forecast?”</li><li>“Do I need an umbrella?”</li><li>“Will it snow?”</li></ul></li><li>TurnOnDevice<ul><li>“Turn the light on.”</li><li>“Switch on the light.”</li><li>“Turn on the fan”</li></ul></li><li><strong>无</strong>：<ul><li>&ldquo;Hello&rdquo;</li><li>“Goodbye”</li></ul></li></ul><p>在你的模型中，你必须定义你希望模型能够理解的意向，因此请花一些时间思考模型必须支持的领域，以及用户可能请求的操作或信息类型。 除了你定义的意向之外，每个模型还包括“无”意向，应使用该意向来显式标识用户可能提交的言语，但不需要为其执行特定操作（例如，“hello”之类的对话问候语）或超出此模型的域范围。</p><p>确定模型必须支持的目标后，务必要为每个意向捕获各种不同的示例言语。 收集你认为用户将输入的言语；包括含义相同，但用不同方式构造而成的言语。 请牢记这些准则：</p><ul><li>捕获多个不同的示例或同一事物的不同说法</li><li>采用不同的言语长度：短、中、长</li><li>使言语中的名词或主体位于不同位置。 将其放在开头、末尾或中间</li><li>在不同的言语中使用正确的和不正确的语法来提供良好的训练数据示例</li><li>标记数据的精度、一致性和完整性是确定模型性能的关键因素。<ul><li><strong>精确标记</strong>：始终将每个实体标记为正确的类型。 仅包含要提取的内容，避免标签中出现不必要的数据。</li><li><strong>一致标记</strong>：同一实体在所有语句中都应具有相同的标记。</li><li><strong>完全标记</strong>：标记所有语句中实体的所有实例。</li></ul></li></ul><p>实体用于向意向添加特定上下文。 例如，可以定义可应用于多个设备的 TurnOnDevice 意向，并使用实体定义不同的设备。</p><p>请考虑以下言语、意向和实体：</p><p>| 话语 | 意向 | 实体 |
+| +++ | +++ | +++ |
+| What is the time? | GetTime | |
+| What time is it in London? | GetTime | Location (London) |
+| What&rsquo;s the weather forecast for Paris? | GetWeather | Location (Paris) |
+| Will I need an umbrella tonight? | GetWeather | Time (tonight) |
+| What&rsquo;s the forecast for Seattle tomorrow? | GetWeather | Location (Seattle), Time (tomorrow) |
+| Turn the light on. | TurnOnDevice | Device (light) |
+| Switch on the fan. | TurnOnDevice | Device (fan) |</p><p>可以将实体拆分为几个不同的组件类型：</p><ul><li>学习实体是最灵活的实体类型，应在大多数情况下使用。 使用合适的名称定义学习组件，然后在训练言语中将单词或短语与该实体关联。 训练模型时，将了解如何将言语中的相应元素与实体匹配。</li><li>当需要具有一组特定可能值（例如，一周中的几天）的实体时，列表实体非常有用。 可以在列表实体定义中包括同义词，以便可以定义包括“Sunday”、“Monday”、“Tuesday”等值的 DayOfWeek 实体；每个都有同义词，例如“Sun”、“Mon”、“Tue”等。</li><li>预生成的实体对于数字、日期/时间和名称等常见类型非常有用。 例如，添加预生成组件时，会自动检测“6”等值或“Microsoft”等组织。 有关<a href="https://learn.microsoft.com/zh-cn/azure/ai-services/language-service/conversational-language-understanding/prebuilt-component-reference?azure-portal=true">受支持的预生成实体</a>的列表，请参阅本文。</li></ul><h2 id=使用模式区分相似的言语>使用模式区分相似的言语<a hidden class=anchor aria-hidden=true href=#使用模式区分相似的言语>#</a></h2><p>在某些情况下，模型可能包含多个意向，这些意向的言语可能相似。 可以使用语句模式来区分意向，同时最大限度地减少示例言语的数量。</p><p>例如，考虑以下言语：</p><ul><li>“Turn on the kitchen light”</li><li>“Is the kitchen light on?”</li><li>“Turn off the kitchen light”</li></ul><p>这些言语在语法上相似，但在单词或标点符号方面只有一些差异。 但是，它们表示三个不同的意向（分别为 TurnOnDevice、GetDeviceStatus 和 TurnOffDevice）。 此外，意向可应用于各种实体值。 除了“厨房灯”之外，意向还适用于“客厅灯”、“电视”或可能需要模型来提供支持的任何其他设备。</p><p>若要正确训练模型，请提供一些指定不同格式言语的意向示例。</p><ul><li>TurnOnDevice：<ul><li>“Turn on the {DeviceName}”</li><li>“在 {DeviceName} 上切换”</li><li>“Turn the {DeviceName} on”</li></ul></li><li>GetDeviceStatus：<ul><li>“Is the {DeviceName} on[?]”</li></ul></li><li>TurnOffDevice：<ul><li>“Turn the {DeviceName} off”</li><li>“Switch off the {DeviceName}”</li><li>“Turn off the {DeviceName}”</li></ul></li></ul><p>在使用每种不同类型的言语来训练模型时，Azure AI 语言服务可以学习如何根据格式和标点正确地对意图进行分类。</p><h2 id=使用预生成的实体组件>使用预生成的实体组件<a hidden class=anchor aria-hidden=true href=#使用预生成的实体组件>#</a></h2><p>可以通过定义所需的所有意向和语句来创建自己的语言模型，但通常可以使用预生成组件来检测常见实体，例如数字、电子邮件、URL 或选择。</p><p>有关 Azure AI 语言服务可以检测的预生成实体的完整列表，请参阅<a href="https://learn.microsoft.com/zh-cn/azure/ai-services/language-service/conversational-language-understanding/prebuilt-component-reference?azure-portal=true">受支持的预生成实体组件</a>列表。</p><p>使用预生成组件，可以让 Azure AI 语言服务自动检测指定类型的实体，且不必使用该实体的示例来训练模型。</p><p>若要添加预生成组件，可以在项目中创建实体，然后选择该实体的“添加新预生成”以检测某些实体。</p><p><a href=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/build-language-understanding-model/media/add-prebuilt-entity.png#lightbox><img alt="Screenshot of adding a prebuilt entity component." loading=lazy src=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/build-language-understanding-model/media/add-prebuilt-entity-small.png></a></p><p>每个实体最多可以包含 5 个预生成组件。 使用预生成模型元素可以显著减少开发对话语言理解解决方案所需的时间。</p><h2 id=训练测试发布和查看对话语言理解模型>训练、测试、发布和查看对话语言理解模型<a hidden class=anchor aria-hidden=true href=#训练测试发布和查看对话语言理解模型>#</a></h2><p>创建模型是一个迭代过程，包括以下活动：</p><p><img alt="Diagram that shows the train, test, publish, review cycle." loading=lazy src=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/build-language-understanding-model/media/train-test-publish-review.png></p><ol><li>训练模型以从示例言语中学习意向和实体。</li><li>以交互式方式或使用带有已知标签的测试数据集测试模型</li><li>将经过训练的模型部署到公共终结点以供客户端应用使用</li><li>查看预测并迭代访问语句以训练模型</li></ol><p>通过遵循此迭代方法，你可以根据用户输入随着时间的推移而改进语言模型，从而帮助开发反映用户使用自然语言指示其意向的方式的解决方案。</p><p>言语是指示特定意向的示例短语。
+城市是应该应用意向（预订航班）的实体。
+当语言模型需要检测公共实体时，请使用预生成组件让 Azure AI 语言服务自动检测实体。</p><h1 id=使用-azure-ai-翻译服务翻译文本>使用 Azure AI 翻译服务翻译文本<a hidden class=anchor aria-hidden=true href=#使用-azure-ai-翻译服务翻译文本>#</a></h1><p>世界上有许多常用语言，在不同语言的发言人之间交换信息的功能通常是全球解决方案的关键要求。</p><p>Azure AI 翻译提供了一个 API，用于在支持的 90 种语言之间翻译文本。</p><p>完成此模块后，你将能够：</p><p>预配 Azure AI 翻译资源
+了解语言检测、翻译和音译
+指定翻译选项
+定义并运行自定义翻译</p><h2 id=预配-azure-ai-翻译资源>预配 Azure AI 翻译资源<a hidden class=anchor aria-hidden=true href=#预配-azure-ai-翻译资源>#</a></h2><p>​
+Azure AI 翻译提供了多语言文本翻译 API，可用于：
+​</p><ul><li>语言检测。</li><li>一对多翻译。</li><li>脚本音译（将本机脚本中的文本转换为替代脚本）。
+​
+<img alt="Diagram showing an Azure AI Translator resource performing language detection, one-to-many translation and transliteration." loading=lazy src=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/translate-text-with-translator-service/media/translator-resource.png>
+​</li></ul><h2 id=适用于-azure-ai-翻译的-azure-资源>适用于 Azure AI 翻译的 Azure 资源<a hidden class=anchor aria-hidden=true href=#适用于-azure-ai-翻译的-azure-资源>#</a></h2><p>​
+若要使用 Azure AI 翻译服务，必须在 Azure 订阅中为其预配资源。 可以预配单服务 Azure AI 翻译资源，也可以在多服务 Azure AI 服务资源中使用文本分析 API。
+​
+在 Azure 订阅中预配适当的资源后，可以使用部署资源的位置及其订阅密钥之一从代码中调用 Azure AI 翻译 API。 可以通过向 REST 接口提交 JSON 格式的请求，或者通过使用特定于编程语言的任何可用 SDK 来调用 API。
+​
+注意
+​
+本模块的后续单元中的代码示例显示了与 REST 接口交换的 JSON 请求和响应。 使用 SDK 时，会通过用于封装相同数据值的适当对象和方法对 JSON 请求进行抽象。 在本模块后面的练习中，你将有机会亲自尝试使用适用于 C# 或 Python 的 SDK。
+​</p><h2 id=了解语言检测翻译和音译>了解语言检测、翻译和音译<a hidden class=anchor aria-hidden=true href=#了解语言检测翻译和音译>#</a></h2><p>让我们来探索 Azure AI 翻译的功能。 这些功能包括：</p><h2 id=语言检测-1>语言检测<a hidden class=anchor aria-hidden=true href=#语言检测-1>#</a></h2><p>可使用 REST API 的 Detect 函数来检测编写文本所用的语言。</p><p>例如，可使用 curl 将以下文本提交到 <code>https://api.cognitive.microsofttranslator.com/detect?api-version=3.0</code> 终结点。</p><p>下面是要翻译的文本：</p><pre tabindex=0><code class=language-auto data-lang=auto>{ &#39;Text&#39; : &#39;こんにちは&#39; }
+</code></pre><p>下面是使用 curl 对终结点的调用，目的是检测文本的语言：</p><pre tabindex=0><code class=language-auto data-lang=auto>curl -X POST &#34;https://api.cognitive.microsofttranslator.com/detect?api-version=3.0&#34; -H &#34;Ocp-Apim-Subscription-Region: &lt;your-service-region&gt;&#34; -H &#34;Ocp-Apim-Subscription-Key: &lt;your-key&gt;&#34; -H &#34;Content-Type: application/json&#34; -d &#34;[{ &#39;Text&#39; : &#39;こんにちは&#39; }]
+</code></pre><p>对此请求的响如下所示，表示文本使用日语编写：</p><pre tabindex=0><code class=language-auto data-lang=auto>[
+  {
+    &#34;language&#34;: &#34;ja&#34;,
+    &#34;score&#34;: 1.0,
+    &#34;isTranslationSupported&#34;: true,
+    &#34;isTransliterationSupported&#34;: true
+    
+    
+   }
+]
+</code></pre><h2 id=翻译>翻译<a hidden class=anchor aria-hidden=true href=#翻译>#</a></h2><p>若要将文本从一种语言翻译为另一种语言，请使用 Translate 函数；指定一个 from 参数来指示源语言，并指定一个或多个 to 参数，以指定文本翻译的目标语言。</p><p>例如，你可以提交之前用于检测语言的相同 JSON，从而指定 ja（日语）的 from 参数以及值为 En（英语）和 fr（法语）的两个 to 参数。 为此，需要调用：</p><pre tabindex=0><code class=language-auto data-lang=auto>curl -X POST &#34;https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&amp;from=ja&amp;to=fr&amp;to=en&#34; -H &#34;Ocp-Apim-Subscription-Key: &lt;your-key&gt;&#34; -H &#34;Ocp-Apim-Subscription-Region: &lt;your-service-region&gt;&#34; -H &#34;Content-Type: application/json; charset=UTF-8&#34; -d &#34;[{ &#39;Text&#39; : &#39;こんにちは&#39; }]&#34;
+</code></pre><p>这将生成以下结果：</p><pre tabindex=0><code class=language-auto data-lang=auto>[
+  {&#34;translations&#34;: 
+    [
+      {&#34;text&#34;: &#34;Hello&#34;, &#34;to&#34;: &#34;en&#34;},   
+      {&#34;text&#34;: &#34;Bonjour&#34;, &#34;to&#34;: &#34;fr&#34;}
+    ]
+  }
+]
+</code></pre><h2 id=音译>音译<a hidden class=anchor aria-hidden=true href=#音译>#</a></h2><p>日语文本是使用平假名脚本编写的，因此，你可能想要将其翻译为不同的脚本，而不是将其翻译为不同的语言，例如，使用拉丁脚本（如英语语言文本所使用）呈现文本。</p><p>为实现此目的，我们可以使用 Jpan 的 fromScript 参数和 Latn 的 toScript 参数将日语文本提交到 Transliterate 函数：</p><pre tabindex=0><code class=language-auto data-lang=auto>curl -X POST &#34;https://api.cognitive.microsofttranslator.com/transliterate?api-version=3.0&amp;fromScript=Jpan&amp;toScript=Latn&#34; -H &#34;Ocp-Apim-Subscription-Key: &lt;your-key&gt;&#34; -H &#34;Ocp-Apim-Subscription-Region: &lt;your-service-region&gt;&#34; -H &#34;Content-Type: application/json&#34; -d &#34;[{ &#39;Text&#39; : &#39;こんにちは&#39; }]&#34;
+</code></pre><p>响应会提供以下结果：</p><pre tabindex=0><code class=language-auto data-lang=auto>[
+    {
+        &#34;script&#34;: &#34;Latn&#34;,
+        &#34;text&#34;: &#34;Kon&#39;nichiwa&#34;
+    }
+]
+</code></pre><h2 id=指定翻译选项>指定翻译选项<a hidden class=anchor aria-hidden=true href=#指定翻译选项>#</a></h2><p>API 的 Translate 函数支持多个影响输出的参数。</p><h2 id=单词对齐方式>单词对齐方式<a hidden class=anchor aria-hidden=true href=#单词对齐方式>#</a></h2><p>在书面英语（使用拉丁脚本）中，空格用于分隔单词。 但是，在某些其他语言（更具体地说，脚本）中，并非总是如此。</p><p>例如，将“Smart Services”从 en（英语）翻译为 zh（简体中文）会生成结果“智能服务”，并且很难理解源文本中的字符与翻译中的相应字符之间的关系。 若要解决此问题，可以在调用中指定值为 true 的 includeAlignment 参数来生成以下结果：</p><pre tabindex=0><code class=language-auto data-lang=auto>[
+   {
+      &#34;translations&#34;:[
+         {
+            &#34;text&#34;:&#34;智能服务&#34;,
+            &#34;to&#34;:&#34;zh-Hans&#34;,
+            &#34;alignment&#34;:{
+               &#34;proj&#34;:&#34;0:4-0:1 6:13-2:3&#34;
+            }
+         }
+      ]
+   }
+]
+</code></pre><p>这些结果告诉我们，源中的字符 0 到 4 对应于翻译中的字符 0 到 1，而源中的字符 6 到 13 对应于翻译中的字符 2 到 3。</p><h2 id=句子长度>句子长度<a hidden class=anchor aria-hidden=true href=#句子长度>#</a></h2><p>有时，知道翻译长度可能会很有用，例如，确定如何在用户界面中以最佳方式显示它。 可以通过将 includeSentenceLength 参数设置为 true 来获取此信息。</p><p>例如，在将英语 (en) 文本“Hello world”翻译成法语 (fr) 时指定此参数将产生以下结果：</p><pre tabindex=0><code class=language-auto data-lang=auto>[
+   {
+      &#34;translations&#34;:[
+         {
+            &#34;text&#34;:&#34;Salut tout le monde&#34;,
+            &#34;to&#34;:&#34;fr&#34;,
+            &#34;sentLen&#34;:{&#34;srcSentLen&#34;:[12],&#34;transSentLen&#34;:[20]}
+         }
+      ]
+   }
+]
+</code></pre><h2 id=猥亵语言过滤>猥亵语言过滤<a hidden class=anchor aria-hidden=true href=#猥亵语言过滤>#</a></h2><p>有时，文本包含猥亵语言，你可能希望在翻译中完全掩盖或省略它。 可以通过指定 profanityAction 参数来处理猥亵语言，该参数可以具有以下值之一：</p><ul><li>NoAction：猥亵语言与文本的其余部分一起翻译。</li><li>Deleted：翻译中省略了猥亵语言。</li><li>Marked：使用 profanityMarker 参数（如果提供）中所指示的方法来指示猥亵语言。 此参数的默认值为“Asterisk”，这会将猥亵语言中的字符替换为“*”。 作为替代方法，你可以将“标记”的值指定为 profanityMarker，这会将猥亵语言括在 XML 标记中。</li></ul><p>例如，使用 Marked 的 profanityAction 和 Asterisk 的 profanityMarker 将英语 (en) 文本“JSON is ▇▇▇▇ great!”（其中，被挡住的单词是猥亵语言）翻译为德语 (de) 会产生以下结果：</p><pre tabindex=0><code class=language-auto data-lang=auto>[
+   {
+      &#34;translations&#34;:[
+         {
+            &#34;text&#34;:&#34;JSON ist *** erstaunlich.&#34;,
+            &#34;to&#34;:&#34;de&#34;
+         }
+      ]
+   }
+]
+</code></pre><h2 id=定义自定义翻译>定义自定义翻译<a hidden class=anchor aria-hidden=true href=#定义自定义翻译>#</a></h2><p>Azure AI 翻译使用的默认翻译模型对于常规内容的翻译较有效，但你可能需要为使用专业术语词汇的企业或行业开发翻译解决方案，这就需要用到自定义翻译。</p><p>若要解决此问题，可以创建用于映射自己的源和目标术语集进行翻译的自定义模型。 若要创建自定义模型，请使用自定义翻译工具门户来执行以下操作：</p><ol><li><a href=https://learn.microsoft.com/zh-cn/azure/ai-services/translator/custom-translator/quickstart>创建工作区</a>并链接到 Azure AI 翻译资源。</li><li><a href=https://learn.microsoft.com/zh-cn/azure/ai-services/translator/custom-translator/quickstart>创建项目</a>。</li><li><a href=https://learn.microsoft.com/zh-cn/azure/ai-services/translator/custom-translator/quickstart>上传训练数据文件</a>和<a href=https://learn.microsoft.com/zh-cn/azure/ai-services/translator/custom-translator/quickstart>训练模型</a>。</li><li><a href=https://learn.microsoft.com/zh-cn/azure/ai-services/translator/custom-translator/quickstart>测试模型</a>和<a href=https://learn.microsoft.com/zh-cn/azure/ai-services/translator/custom-translator/quickstart>发布模型</a>。</li><li>对 API 进行翻译调用。</li></ol><p><a href=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/translate-text-with-translator-service/media/custom-translator-new.png#lightbox><img alt="Screenshot showing the Custom Translator portal." loading=lazy src=https://learn.microsoft.com/zh-cn/training/wwl-data-ai/translate-text-with-translator-service/media/custom-translator-new-small.png></a></p><p>将为自定义模型分配唯一的类别 ID（屏幕截图中突出显示），可以使用 category 参数在对 Azure AI 翻译资源的翻译调用中指定该 ID，从而使用自定义模型（而不是默认模型）执行翻译。</p><h2 id=如何调用-api>如何调用 API<a hidden class=anchor aria-hidden=true href=#如何调用-api>#</a></h2><p>若要启动翻译，请将 POST 请求发送到以下请求 URL：</p><pre tabindex=0><code class=language-auto data-lang=auto>https://api.cognitive.microsofttranslator.com/translate?api-version=3.0
+</code></pre><p>请求需要包含几个参数：</p><ul><li><code>api-version</code>：所需的 API 版本。</li><li><code>to</code>：要翻译到的目标语言。 例如： 法语为 <code>to=fr</code>。</li><li><code>category</code>：<strong>类别 ID</strong>。</li></ul><p>请求还需要包含多个必需的标头：</p><ul><li><code>Ocp-Apim-Subscription-Key</code>。 客户端密钥的标头。 例如：<code>Ocp-Apim-Subscription-Key=&lt;your-client-key></code>。</li><li><code>Content-Type</code>。 有效负载的内容类型。 要求的格式：<code>Content-Type: application/json; charset=UTF-8</code>。</li></ul><p>请求正文应包含一个数组，该数组包含一个 JSON 对象，该对象具有用于指定要翻译的文本的 <code>Text</code> 属性：</p><pre tabindex=0><code class=language-auto data-lang=auto>[
+    {&#34;Text&#34;:&#34;Where can I find my employee details?&#34;}
+]
+</code></pre><p>有多种不同方式可用于将请求发送到 API，包括使用 C#、Python 和 curl。 例如，若要进行快速调用，可以使用 curl 发送 POST 请求：</p><pre tabindex=0><code class=language-auto data-lang=auto>curl -X POST &#34;https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&amp;from=en&amp;to=nl&amp;category=&lt;category-id&gt;&#34; -H &#34;Ocp-Apim-Subscription-Key: &lt;your-key&#34; -H &#34;Content-Type: application/json; charset=UTF-8&#34; -d &#34;[{&#39;Text&#39;:&#39;Where can I find my employee details?&#39;}]&#34;
+</code></pre><p>上述请求执行了一个将句子从英语翻译为荷兰语的调用。</p><h3 id=返回的响应>返回的响应<a hidden class=anchor aria-hidden=true href=#返回的响应>#</a></h3><p>如果请求成功，响应返回响应代码 <code>200</code>。 还会返回包含已翻译文本的响应正文，如下所示：</p><pre tabindex=0><code class=language-auto data-lang=auto>[
+    {
+        &#34;translations&#34;:[
+            {&#34;text&#34;:&#34;Waar vind ik mijn personeelsgegevens?&#34;,&#34;to&#34;:&#34;nl&#34;}
+        ]
+    }
+]
+</code></pre><p>如果请求不成功，会根据错误类型返回不同的状态代码，例如 <code>400</code>（缺少或无效的查询参数）。 有关代码及其说明的完整列表，请参阅<a href="https://learn.microsoft.com/zh-cn/azure/ai-services/translator/reference/v3-0-translate?tabs=curl">响应状态代码</a>。</p><p><a href=https://learn.microsoft.com/en-us/credentials/applied-skills/build-natural-language-solution-azure-ai/#applied-skill-take-the-assessment>https://learn.microsoft.com/en-us/credentials/applied-skills/build-natural-language-solution-azure-ai/#applied-skill-take-the-assessment</a></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://qfsyso.github.io/tags/openai/>OpenAI</a></li></ul><nav class=paginav><a class=prev href=https://qfsyso.github.io/posts/azure-ai-develop-generative-ai-solutions/><span class=title>« Prev</span><br><span>Azure AI Develop Generative AI solutions</span>
+</a><a class=next href=https://qfsyso.github.io/posts/azure-openai-natural-language/><span class=title>Next »</span><br><span>Azure OpenAI Natural Language</span></a></nav><ul class=share-buttons><li><a target=_blank rel="noopener noreferrer" aria-label="share Azure OpenAI Language on x" href="https://x.com/intent/tweet/?text=Azure%20OpenAI%20Language&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2fazure-openai-language%2f&amp;hashtags=OpenAI"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Azure OpenAI Language on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2fazure-openai-language%2f&amp;title=Azure%20OpenAI%20Language&amp;summary=Azure%20OpenAI%20Language&amp;source=https%3a%2f%2fqfsyso.github.io%2fposts%2fazure-openai-language%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Azure OpenAI Language on reddit" href="https://reddit.com/submit?url=https%3a%2f%2fqfsyso.github.io%2fposts%2fazure-openai-language%2f&title=Azure%20OpenAI%20Language"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Azure OpenAI Language on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fqfsyso.github.io%2fposts%2fazure-openai-language%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Azure OpenAI Language on whatsapp" href="https://api.whatsapp.com/send?text=Azure%20OpenAI%20Language%20-%20https%3a%2f%2fqfsyso.github.io%2fposts%2fazure-openai-language%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Azure OpenAI Language on telegram" href="https://telegram.me/share/url?text=Azure%20OpenAI%20Language&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2fazure-openai-language%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentcolor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Azure OpenAI Language on ycombinator" href="https://news.ycombinator.com/submitlink?t=Azure%20OpenAI%20Language&u=https%3a%2f%2fqfsyso.github.io%2fposts%2fazure-openai-language%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentcolor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></li></ul></footer></article></main><footer class=footer><div class=wtime><div class=wtime2>CST<span id=beijingTime></span> GMT <span id=londonTime></span> EST <span id=newYorkTime></span> PST<span id=losAngelesTime></span></div><div class=wtime2 style=display:none>东京<span id=tokyoTime></span></div><div class=wtime2 style=display:none>欧洲-巴黎<span id=parisTime></span></div><div class=wtime2 style=display:none>UTC<span id=utcTime></span></div></div><span>&copy; 2025 <a href=https://qfsyso.github.io/>MLOG</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a>
+</span><script type=text/javascript>const timeZoneOffsets={beijing:8,tokyo:9,paris:[1,2],london:[0,1],newYork:[-5,-4],losAngeles:[-8,-7]};function padZero(e){return e<10?"0"+e:e}function formatTime(e){const t=e.getFullYear(),n=padZero(e.getMonth()+1),s=padZero(e.getDate()),o=padZero(e.getHours()),i=padZero(e.getMinutes()),a=padZero(e.getSeconds());return`${t}-${n}-${s} ${o}:${i}:${a}`}function isDaylightSavingTime(e,t){const o=e.getMonth(),n=new Date(e.getFullYear(),3,8,2,0,0),s=new Date(e.getFullYear(),10,1,2,0,0);return(t==="paris"||t==="london"||t==="newYork"||t==="losAngeles")&&e>=n&&e<s}function updateTime(){const e=new Date,t=new Date(e.getUTCFullYear(),e.getUTCMonth(),e.getUTCDate(),e.getUTCHours(),e.getUTCMinutes(),e.getUTCSeconds()),n=formatTime(t);document.getElementById("utcTime").innerHTML=n;for(const n in timeZoneOffsets){const e=timeZoneOffsets[n];let s;Array.isArray(e)?s=isDaylightSavingTime(t,n)?e[1]:e[0]:s=e;const o=new Date(t.getTime()+s*60*60*1e3);document.getElementById(n+"Time").innerHTML=formatTime(o)}setTimeout(updateTime,1e3)}window.onload=function(){updateTime()};function notfound(e){var n=e.src,t=n.split("/"),s=t[t.length-1];e.src="https://47.115.223.75:8080/group1/v2/"+s+"?timestamp="+Date.now(),e.onerror=null}</script></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

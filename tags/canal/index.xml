@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Canal on MLOG</title><link>https://qfsyso.github.io/tags/canal/</link><description>Recent content in Canal on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Sun, 17 Nov 2024 23:28:55 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/canal/index.xml" rel="self" type="application/rss+xml"/><item><title>canal mysql auto bak</title><link>https://qfsyso.github.io/posts/canal-mysql-auto-bak/</link><pubDate>Sun, 17 Nov 2024 23:28:55 +0000</pubDate><guid>https://qfsyso.github.io/posts/canal-mysql-auto-bak/</guid><description>Canal 是阿里巴巴开源的一个数据库binlog解析工具，它能够捕获并解析MySQL等数据库的增量数据变化（即binlog），然后将这些变化的数据以消息的形式发送给其他系统或服务，如Elasticsearch、HBase、Redis等。这样做的好处是可以实现数据的实时同步，保证不同存储系统之间的数据一致性。
+Canal的设计理念主要是基于数据库的增量订阅与消费模式，它通过模拟MySQL的slave来实现对MySQL主库binlog的监听，当主库有数据更新时，Canal能及时捕捉到这些变化，并将变化的数据按照一定的格式输出，供下游系统消费使用。
+使用Canal的主要优势包括： 实时性 Canal通过模仿MySQL的slave节点行为，向MySQL master节点发送dump协议请求，以获取binlog日志8。这种方法使得Canal能够以较低的延迟捕获到数据库的变化，从而实现实时的数据同步。对于需要保持数据最新性的应用场景，如搜索引擎的索引更新或缓存系统的数据刷新，这一特性尤为重要。
+解耦 Canal作为一个独立的服务，充当了数据库和数据消费者之间的中介角色。它不仅减少了直接连接数据库带来的性能压力，还避免了因数据库结构或数据模型变更导致的下游系统适配问题。这种解耦机制增强了系统的灵活性和可维护性，使得各个组件可以独立发展而不相互干扰18。
+灵活性 Canal支持多种数据输出格式，包括但不限于JSON、XML等，这使得它可以很容易地与其他数据处理工具和服务集成。此外，Canal还提供了对Kafka、RocketMQ等消息队列的支持，这意味着数据不仅可以被同步到不同的存储系统，还可以被发送到消息队列中，供更多的应用和服务消费14。
+除了上述提到的优点外，Canal还具备以下特点：
+**高性能：**经过优化的Canal能够在高并发环境下保持稳定的性能表现，适合大规模数据同步场景。 **低延迟：**通过高效的日志解析和数据传输机制，Canal能够确保数据从源头到目的地的传输延迟尽可能低。 **高可用性：**Canal支持集群部署，结合Zookeeper等协调服务，可以实现故障自动切换，保证服务的连续性和稳定性21。 **安全性：**Canal可以通过配置SSL/TLS加密通信，保护数据在传输过程中的安全18。
+应用场景 Canal的应用场景非常广泛，包括但不限于：
+**数据同步：**将MySQL数据库的数据同步到Elasticsearch、Redis等其他存储系统，用于构建搜索引擎、缓存层等18。 **数据备份：**定期或实时备份MySQL数据库的数据，用于灾难恢复或数据归档18。 **数据集成：**在微服务架构中，使用Canal将多个数据库中的数据进行集成，提供统一的数据视图18。 **数据监控：**通过监听数据库的变化，及时发现异常操作或潜在的安全风险18。 Canal是一个功能强大、灵活多变的数据同步工具，它在保证数据实时性和一致性的基础上，提供了丰富的特性和广泛的应用场景，是现代数据驱动应用的理想选择。
+Canal环境准备 设置MySQL远程访问
+grant all privileges on *.* to &amp;#39;root&amp;#39;@&amp;#39;%&amp;#39; identified by &amp;#39;123456&amp;#39;; flush privileges; MySQL配置
+Canal的原理基于MySQL binlog技术，所以，要想使用Canal就要开启MySQL的binlog写入功能，建议配置binlog的模式为row。
+可以在MySQL命令行输入如下命令来查看binlog的模式。
+SHOW VARIABLES LIKE &amp;#39;binlog_format&amp;#39;; 如果MySQL中默认的binlog格式为STATEMENT，需要将STATEMENT修改为ROW。修改/etc/my.cnf文件。
+/etc/my.cnf 在[mysqld]下面新增如下三项配置。
+log-bin=mysql-bin #开启MySQL二进制日志 binlog_format=ROW #将二进制日志的格式设置为ROW server_id=1 #server_id需要唯一，不能与Canal的slaveId重复 修改完my.cnf文件后，需要重启MySQL服务。
+service mysqld restart 再次查看binlog模式。
+SHOW VARIABLES LIKE &amp;#39;binlog_format&amp;#39;; MySQL创建用户授权
+Canal的原理是模式自己为MySQL Slave，所以一定要设置MySQL Slave的相关权限。这里，需要创建一个主从同步的账户，并且赋予这个账户相关的权限。
+CREATE USER canal@&amp;#39;localhost&amp;#39; IDENTIFIED BY &amp;#39;canal&amp;#39;; GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.</description></item></channel></rss>

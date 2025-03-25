@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Timestamp on MLOG</title><link>https://qfsyso.github.io/tags/timestamp/</link><description>Recent content in Timestamp on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Sun, 04 Aug 2024 12:16:25 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/timestamp/index.xml" rel="self" type="application/rss+xml"/><item><title>Axios Cors &amp;&amp; Timestamp</title><link>https://qfsyso.github.io/posts/axios-cors-timestamp/</link><pubDate>Sun, 04 Aug 2024 12:16:25 +0000</pubDate><guid>https://qfsyso.github.io/posts/axios-cors-timestamp/</guid><description>具体步骤 安装 Axios: 使用 Axios 进行 HTTP 请求。
+封装 Axios: 将 Axios 封装成一个模块以便在项目中复用。
+解决跨域问题: 在 vite.config.ts 文件中配置代理以解决跨域问题。
+调用 API: 在 Vue 组件中使用封装的 Axios 进行数据请求和显示。
+安装 Axios 首先，确保你已经安装了 Axios：
+bash Copy Code npm install axios
+封装 Axios 创建一个 http 文件夹并在其中创建一个 request.ts 文件：
+src/http/request.ts:
+import axios from &amp;#39;axios&amp;#39;; const service = axios.create({ baseURL: &amp;#39;http://localhost:16552/api/zblack&amp;#39;, // 根据你的后端API地址调整 timeout: 5000, // 请求超时时间 }); // 请求拦截器 service.interceptors.request.use( config =&amp;gt; { return config; }, error =&amp;gt; { console.</description></item></channel></rss>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>DES on MLOG</title><link>https://qfsyso.github.io/tags/des/</link><description>Recent content in DES on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Wed, 15 May 2024 15:01:42 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/des/index.xml" rel="self" type="application/rss+xml"/><item><title>.NET AES DES</title><link>https://qfsyso.github.io/posts/.net-aes-des/</link><pubDate>Wed, 15 May 2024 15:01:42 +0000</pubDate><guid>https://qfsyso.github.io/posts/.net-aes-des/</guid><description>.NET AES DES 对称加密
+ASE 加密解密 加密方法 (Encrypt):
+创建一个 Aes 实例。 设置密钥 (Key) 和初始化向量 (IV)。 使用 CreateEncryptor 创建加密器。 通过 CryptoStream 和 StreamWriter 将明文写入内存流，然后转换为 Base64 字符串。
+解密方法 (Decrypt):
+同样创建一个 Aes 实例。 设置相同的密钥和初始化向量。 使用 CreateDecryptor 创建解密器。 通过 CryptoStream 和 StreamReader 从内存流读取密文并解密为明文。
+注意事项 密钥长度：AES 支持 128, 192, 和 256 位密钥。本例使用 256 位（32 字节）。 初始化向量 (IV)：应确保加密和解密时使用相同的 IV。本例中使用了全零的 IV，在实际应用中建议使用随机 IV，并将其与密文一起存储。
+using System; using System.IO; using System.Security.Cryptography; using System.Text; class SymmetricEncryption { // 加密方法 public static string Encrypt(string plainText, string key) { using (Aes aesAlg = Aes.</description></item></channel></rss>

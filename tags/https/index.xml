@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Https on MLOG</title><link>https://qfsyso.github.io/tags/https/</link><description>Recent content in Https on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Thu, 13 Feb 2025 01:09:12 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/https/index.xml" rel="self" type="application/rss+xml"/><item><title>free https ssl</title><link>https://qfsyso.github.io/posts/free-https-ssl/</link><pubDate>Thu, 13 Feb 2025 01:09:12 +0000</pubDate><guid>https://qfsyso.github.io/posts/free-https-ssl/</guid><description>申请证书 （1）申请证书之前，需要准备好用于绑定证书的域名（假如您的域名是：abc.dm.com）。这个域名必须能够正常访问，也就是说通过浏览器可以正常访问：http://abc.dm.com 。
+（2）打开网站： 来此加密 - Let&amp;rsquo;s Encrypt 在线免费申请SSL证书 https://letsencrypt.osfipin.com/
+（3）点“立即开始”，注册用户。（如果已注册用户，直接点“登录”）
+（4）登录之后，选择“申请证书”，之后照着申请证书的指引，一步步完成证书的申请。一般来说，直接按照默认的选项申请就行。
+（5）提交申请成功之后，还要进行一次手工验证。验证方式建议选择DNS验证。如下图所示：
+（6）在您的域名管理网站，根据系统提示的DNS验证资料，添加一条TXT域名解析记录，完成之后，点击验证。等待验证通过之后证书就申请到手啦。
+OR HTTPS验证
+刷新 下载证书
+修改nginx配置 server { listen 80; # listen [::]:80; server_name test1.xx.xyz; root /var/www/html; index index.html; location / { root html; index index.html index.htm; } } server { listen 443 ssl; server_name test1.xx.xyz; ssl_stapling on; ssl_stapling_verify on; ssl_certificate /var/www/cert/fullchain.crt; ssl_certificate_key /var/www/cert/private.pem; location / { root /var/www/html; index index.html index.htm; } } sudo systemctl restart nginx 访问https 如果正确访问则部署成功</description></item></channel></rss>

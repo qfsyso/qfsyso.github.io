@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Posts | MLOG</title>
+<meta name="keywords" content="">
+<meta name="description" content="Posts - MLOG">
+<meta name="author" content="dwd">
+<link rel="canonical" href="http://localhost:1313/posts/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.6da9a63d25a9608bca2f7f907a030e887a7dd3c3f3918e4cc113129361414bda.css" integrity="sha256-bammPSWpYIvKL3&#43;QegMOiHp908PzkY5MwRMSk2FBS9o=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/posts/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="MLOG (Alt + H)">MLOG</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Archive">
+                    <span class="active">Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Posts
+  </h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Socket to WebSocket
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>前言 针对IOS App Proxy Server无法直连WebSocket，建立 Socket中转端。
+​
+WebSocket 端：
+WebSocket 端用于实现实时通信功能。
+WebSocket 端通过 WebSocket 协议与中转端通信，中转端可以通过 WebSocket 或其他传输协议与 WebSocket 端建立连接，收发消息。
+定义 SendMessageToChatRoomIP 和 JoinChatRoom，用于处理来自客户端的消息和连接事件。
+中转端 C1 （Socket Server）：
+中转端 C1 是一个独立的应用程序，用于连接WebSocket端，建立Socket服务。
+中转端 C1 的主要功能是接收来自客户端 C2 的消息，并将其转发给 WebSocket 端，或者接收来自 WebSocket 端的消息，并转发给客户端 C2。
+客户端 C2 x N ：
+客户端 C2 ，主要与中转端连接 发送数据，接收数据。
+在客户端 C2 中，连接到中转端 C1、发送消息给中转端 C1、接收来自中转端 C1 的消息。
+调用关系为：
+客户端 C2 通过与中转端 C1 的通信，向 WebSocket 端发送消息或接收来自 WebSocket 端的消息。
+中转端 C1 接收来自客户端 C2 的消息，并将其转发给 WebSocket 端，或者接收来自 WebSocket 端的消息，并转发给客户端 C2。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-20 12:56:50 +0000 UTC'>April 20, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Socket to WebSocket" href="http://localhost:1313/posts/socket-to-websocket/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET JWT 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>前言
+JWT (JSON Web Token) 是一种安全传输信息的开放标准，由Header、Payload和Signature三部分组成。它主要用于身份验证、信息交换和授权。JWT可验证用户身份，确保访问权限，实现单点登录，并在客户端和服务器之间安全地交换信息。因其简单、安全和便捷，JWT在现代Web应用中广泛使用。
+用JWT有多个原因：
+无状态的身份验证：JWT允许服务器无需保存用户的会话信息，因为所有必要的信息都存储在令牌本身中。这降低了服务器的存储需求，并提高了系统的可扩展性。
+跨域身份验证：由于JWT是自我包含的，并且可以被轻松传递，因此它非常适合跨域身份验证。用户可以在一个服务上验证身份，然后使用相同的令牌访问另一个服务，从而实现单点登录（SSO）。
+安全性：JWT可以通过使用强大的加密算法（如HS256, RS256等）进行签名，以确保其完整性和真实性。服务器可以使用公钥验证令牌的签名，从而确保它没有被篡改，并且确实是由受信任的颁发者签发的。
+减少数据库查询：由于用户的身份信息都存储在JWT中，服务器无需每次都去数据库中查询用户的身份信息，从而减少了数据库的压力和查询时间。
+可定制性：JWT的Payload部分可以包含自定义的信息，如用户角色、权限等，这使得JWT非常灵活，并可以根据具体需求进行定制。
+易于分发和共享：JWT可以轻松地通过网络传输，并且可以在多个服务和客户端之间共享，这使得它在微服务架构和分布式系统中非常有用。
+标准化和互操作性：JWT是一个开放标准（RFC 7519），这意味着不同的系统和语言都可以使用相同的方式生成和验证JWT，从而提高了系统的互操作性。
+环境 Win10 VS2022 .NET8
+✨ 建立项目jwttest 1.创建TestJwtController ​
+2.下载JWT ​
+3.建实体类 /// &lt;summary&gt; /// 用户信息类 /// &lt;/summary&gt; public class LoginRs { /// &lt;summary&gt; /// 用户ID /// &lt;/summary&gt; public string UserId { get; set; } /// &lt;summary&gt; /// 用户密码 /// &lt;/summary&gt; public string PasswordMD5 { get; set; } } /// &lt;summary&gt; /// 用户登录信息类 /// &lt;/summary&gt; public class LoginInfo { /// &lt;summary&gt; /// 用户信息 /// &lt;/summary&gt; public string UserId { get; set; } /// &lt;summary&gt; /// 检验时间 /// &lt;/summary&gt; public DateTime Expires { get; set; } } /// &lt;summary&gt; /// rsmodel /// &lt;/summary&gt; public class RsModel { /// &lt;summary&gt; /// 是否成功 /// &lt;/summary&gt; public bool isOk { get; set; } /// &lt;summary&gt; /// 返回值 /// &lt;/summary&gt; public int code { get; set; } /// &lt;summary&gt; /// 返回消息 /// &lt;/summary&gt; public string msg { get; set; } /// &lt;summary&gt; /// 返回数据 /// &lt;/summary&gt; public object rsData { get; set; } } 4.添加post login // POST api/&lt;ValuesController&gt; [HttpPost] public string Login([FromBody] LoginRs loginRequest) { if (loginRequest == null) return JsonConvert.SerializeObject(new RsModel() { code = 0, isOk = false, msg = &#34;登录信息为空！&#34; }); #region 判断userid pwd if (loginRequest.UserId != &#34;admin&#34; || loginRequest.PasswordMD5 != &#34;admin&#34;) { return JsonConvert.SerializeObject(new RsModel() { code = 0, isOk = false, msg = &#34;用户名和密码不正确！&#34; }); } #endregion LoginInfo Info = new LoginInfo() { UserId = loginRequest.UserId, Expires = DateTime.Now.AddDays(1) }; const string secretKey = &#34;myseckey&#34;;//口令加密秘钥 byte[] key = Encoding.UTF8.GetBytes(secretKey); IJwtAlgorithm algorithm = new HMACSHA256Algorithm();//加密方式 IJsonSerializer serializer = new JsonNetSerializer();//序列化Json IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();//base64加解密 IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);//JWT编码 var token = encoder.Encode(Info, key);//生成令牌 return JsonConvert.SerializeObject(new RsModel() { code = 1, isOk = true, rsData = token, msg = &#34;登录成功！&#34; }); } ​
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-19 01:26:35 +0000 UTC'>April 19, 2024</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET JWT " href="http://localhost:1313/posts/.net-jwt/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET spider
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>前言 爬虫可以用于外汇，期货，基金，货币，比分，电商，文章等信息的采集。通过数据分析，竞品分析，为商业决策提供数据支持。
+​ 金价暴涨，抓取下今日的金价。
+💡使用HttpClient爬取数据 try { // 创建HttpClient实例 using (var httpClient = new HttpClient()) { //模拟User-Agent httpClient.DefaultRequestHeaders.Add(&#34;User-Agent&#34;, GetUserAgent()); // 发送GET请求并获取响应 xxx.com是某网站的页面~（保护） var response = await httpClient.GetAsync(&#34;https://xxx.com&#34;); response.EnsureSuccessStatusCode(); var htmlContent = await response.Content.ReadAsStringAsync(); } } catch (HttpRequestException ex) { // 处理请求异常 ViewBag.Error = &#34;Failed to retrieve price data: &#34; &#43; ex.Message; } 🚀模拟User-Agent // 生成随机 User-Agent private string GetUserAgent() { string[] userAgents = new string[] { &#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36&#34;, &#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.190 Safari/537.36&#34;, // }; Random random = new Random(); int index = random.Next(userAgents.Length); return userAgents[index]; } 🤵使用HTML解析库 （HtmlAgilityPack）提取价格
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-18 12:59:30 +0000 UTC'>April 18, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET spider" href="http://localhost:1313/posts/.net-spider/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Vue study
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>前言 Vue.js，这个轻量级且灵活的JavaScript框架，就像一位魔术师，用它的魔法棒将数据和视图巧妙地连接在一起。当数据发生变化时，Vue.js就像变魔术一样，让视图自动更新，为开发者带来了极大的便利。
+Vue.js的诞生，源于一位名叫尤雨溪的开发者对前端开发的热爱与追求。在Google工作期间，他受到了Angular的启发，决定开发一款更加轻量、灵活的框架。于是，Vue.js应运而生，它的名字来源于“View”的缩写，寓意着它专注于视图层的开发。Vue.js不断地完善和发展。它引入了响应式数据绑定、组件化开发等核心概念，让前端开发变得更加高效和可维护。
+👋 Vue环境搭建 首先，搭一个打代码的环境
+1.安装node.js 在使用VS Code之前，需要安装Vue的开发环境。
+安装Vue的最简单方法是使用npm包管理器，先安装Node.js和npm。
+node官网 =&gt; https://nodejs.org/en/download
+2.配置环境变量 在nodejs安装目录下新建node_cache（nodejs缓存）、node_global（全局包存放）两个文件夹，如下图所示。
+​​
+打开cmd命令提示符，配置文件路径如下：
+​​
+配置环境变量
+​​
+系统属性-&gt;高级-&gt;环境变量-&gt;新增环境变量： ​​
+系统变量 ​​
+​​
+3.VSCode配置 Visual Studio Code
+以管理员身份运行VSCode
+VSCode安装插件ESLint
+安装js打包工具
+npm install -g webpack ​​
+​​
+4.安装Vue CLI npm install -g vue-cli (vue-cli npm install @vue/cli -g --unsafe-perm) 5.在VS Code中打开Vue项目 5.1. 在VS Code中，File &gt; Open Folder… 选择“文件”&gt; “打开文件夹”。 ​​
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-17 08:59:30 +0000 UTC'>April 17, 2024</span>&nbsp;·&nbsp;10 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Vue study" href="http://localhost:1313/posts/vue-study/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET i18n 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>环境 WIN10 VS2022 .NET8
+👋创建项目 ​
+👀创建Resources Controllers HomeController.en.resx
+​ HomeController.fr.resx
+​ HomeController.zh.resx
+​
+🌱Program.cs添加国际化支持 // 添加国际化支持 builder.Services.AddLocalization(options =&gt; { options.ResourcesPath = &#34;Resources&#34;; }); var app = builder.Build(); // 多语言 var supportedCultures = new List&lt;CultureInfo&gt; { new CultureInfo(&#34;en&#34;), new CultureInfo(&#34;zh&#34;), new CultureInfo(&#34;fr&#34;), }; app.UseRequestLocalization(new RequestLocalizationOptions { DefaultRequestCulture = new RequestCulture(&#34;zh&#34;), SupportedCultures = supportedCultures, SupportedUICultures = supportedCultures }); ⚡注入localizer private readonly IStringLocalizer&lt;HomeController&gt; localizer; public HomeController(ILogger&lt;HomeController&gt; logger, IStringLocalizer&lt;HomeController&gt; localizer) { _logger = logger; this.localizer = localizer; } ``` # 📫编写调用方法 [HttpGet] public ActionResult&lt;string&gt; Get() { string rsstr= localizer.GetString(&#34;String1&#34;).Value;//?ui-culture=zh return rsstr; } 默认是中文 ?ui-culture=en 则取对应HomeController.en.resx 里面的String1 ​&lt;img onerror=&#34;notfound(this);&#34; src=&#34;https://cdn.jsdelivr.net/gh/qfsysw/resources/v2/2024041306.jpg&#34;&gt; ​&lt;img onerror=&#34;notfound(this);&#34; src=&#34;https://cdn.jsdelivr.net/gh/qfsysw/resources/v2/2024041307.jpg&#34;&gt; 🐟 </p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-16 01:29:17 +0000 UTC'>April 16, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET i18n " href="http://localhost:1313/posts/.net-i18n/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">MySQL Incorrect string value 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>MySQL存储IOS传过来emoji错误处理 Incorrect string value: ‘‘ for column ‘xxx‘ at row MySQL Incorrect string value: ‘\xF0\x9F\x8D\xBA‘ for column ‘xxx‘ at row
+​
+调用接口提示
+Incorrect string value: ‘\xF0\x9F\x8D\xBA’ for column ‘xxx’ at row
+😵‍💫
+需要把mysql字段排序规则
+utf8mb4_0900_ai_ci
+改成
+utf8mb4_unicode_ci
+​
+💤SQL调整 ALTER TABLE MUser CHANGE Signature Signature VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL;
+设置该列的字符集为utf8mb4。utf8mb4是MySQL中的一个字符集，它可以存储四字节的UTF-8字符，因此可以支持更多的Unicode字符，如某些表情符号。 设置该列的校对规则为utf8mb4_unicode_ci。校对规则决定了字符如何比较和排序。utf8mb4_unicode_ci是一个不区分大小写的校对规则，它基于Unicode标准。 ALTER DATABASE IDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-13 09:27:51 +0000 UTC'>April 13, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to MySQL Incorrect string value " href="http://localhost:1313/posts/mysql-incorrect-string-value/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Debian Docker Redis
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Debian安装docker
+1.使用官方脚本自动安装docker 安装命令如下：
+curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh 如果安装提示
+-bash sudo command not found
+则需要
+#update sudo apt-get update sudo apt-get install sudo 再执行安装脚本1
+安装成功后可以输入 docker命令查看docker版本
+#version docker --version 能查到表明安装成功
+2.pull redis #pull redis docker pull redis:latest pull redis镜像 3.创建reids容器 docker run -itd --name redis-test -p 6379:6379 redis 4.测试redis docker exec -it redis-test /bin/bash redis-cli set test 1 get test set test 1 提示ok
+get test 一些命令
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-12 09:27:49 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Debian Docker Redis" href="http://localhost:1313/posts/debian-docker-redis/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/posts/page/20/">
+      «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/posts/page/22/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+
+    <div class="wtime">
+        <div class="wtime2">CST<span id="beijingTime"></span> GMT <span id="londonTime"></span> EST <span id="newYorkTime"></span>  PST<span id="losAngelesTime"></span></div>
+        <div class="wtime2" style="display: none;"> 东京<span id="tokyoTime"></span></div>
+        <div class="wtime2" style="display: none;">欧洲-巴黎<span id="parisTime"></span></div>
+
+        <div  class="wtime2" style="display: none;">UTC<span id="utcTime"></span></div>
+    </div>
+        <span>&copy; 2025 <a href="http://localhost:1313/">MLOG</a></span> · 
+
+
+    <span>
+ 
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+
+
+
+<script type="text/javascript">
+
+    
+    const timeZoneOffsets = {
+            'beijing': 8,  
+            'tokyo': 9,  
+            'paris': [1, 2],  
+            'london': [0, 1],  
+            'newYork': [-5, -4],  
+            'losAngeles': [-8, -7]  
+        };
+
+        function padZero(num) {
+            return num < 10? '0' + num : num;
+        }
+
+        function formatTime(date) {
+            const year = date.getFullYear();
+            const month = padZero(date.getMonth() + 1);
+            const day = padZero(date.getDate());
+            const hours = padZero(date.getHours());
+            const minutes = padZero(date.getMinutes());
+            const seconds = padZero(date.getSeconds());
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        }
+
+        function isDaylightSavingTime(date, zone) {
+            const month = date.getMonth();
+            const dstStart = new Date(date.getFullYear(), 3, 8, 2, 0, 0);  
+            const dstEnd = new Date(date.getFullYear(), 10, 1, 2, 0, 0);  
+            if (zone === 'paris' || zone === 'london' || zone === 'newYork' || zone === 'losAngeles') {
+                return date >= dstStart && date < dstEnd;
+            }
+            return false;
+        }
+
+        function updateTime() {
+            const now = new Date();
+            const utcDate = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(),
+                now.getUTCMinutes(), now.getUTCSeconds());
+            const utcTime = formatTime(utcDate);
+            document.getElementById('utcTime').innerHTML = utcTime;
+
+            for (const zone in timeZoneOffsets) {
+                const offsets = timeZoneOffsets[zone];
+                let offset;
+                if (Array.isArray(offsets)) {
+                    offset = isDaylightSavingTime(utcDate, zone)? offsets[1] : offsets[0];
+                } else {
+                    offset = offsets;
+                }
+                const zoneDate = new Date(utcDate.getTime() + offset * 60 * 60 * 1000);
+                document.getElementById(zone + 'Time').innerHTML = formatTime(zoneDate);
+            }
+
+            setTimeout(updateTime, 1000);
+        }
+
+        window.onload = function () {
+            updateTime();
+        };
+    function notfound(imgElement) {  
+            var src = imgElement.src;  
+            var parts = src.split('/'); 
+            var filename = parts[parts.length - 1]; 
+            
+      
+            imgElement.src = "https://47.115.223.75:8080/group1/v2/" + filename+"?timestamp=" + Date.now();
+    
+            imgElement.onerror = null; 
+        }  
+
+    </script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

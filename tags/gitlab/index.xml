@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Gitlab on MLOG</title><link>https://qfsyso.github.io/tags/gitlab/</link><description>Recent content in Gitlab on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Tue, 15 Oct 2024 23:57:02 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/gitlab/index.xml" rel="self" type="application/rss+xml"/><item><title>debian docker gitlab gitea</title><link>https://qfsyso.github.io/posts/debian-docker-gitlab-gitea/</link><pubDate>Tue, 15 Oct 2024 23:57:02 +0000</pubDate><guid>https://qfsyso.github.io/posts/debian-docker-gitlab-gitea/</guid><description>使用docker部署私有化代码管理~
+docker curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh 国内docker 更新系统包索引
+sudo apt update 安装一些必要的包，以便于后续添加 apt 仓库：
+sudo apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common 添加阿里云密钥 添加 GPG 密钥是为了确保软件包的安全性和完整性，避免安装过程中的潜在问题。建议尽量执行这一步，以确保安装过程顺利进行。
+curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/debian/gpg | sudo apt-key add - 设置阿里云docker仓库
+sudo add-apt-repository &amp;#34;deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/debian $(lsb_release -cs) stable&amp;#34; 再次更新下系统包的索引
+sudo apt update 安装docker
+sudo apt install -y docker-ce 启动并设置docker的开机自启动
+sudo systemctl start docker sudo systemctl enable docker 查看下docker是否安装成功
+sudo docker version 最后配置docker的镜像加速推荐阿里云的网址 https://cr.</description></item></channel></rss>

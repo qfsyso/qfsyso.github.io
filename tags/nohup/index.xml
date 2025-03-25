@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Nohup on MLOG</title><link>https://qfsyso.github.io/tags/nohup/</link><description>Recent content in Nohup on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Mon, 05 Aug 2024 01:44:01 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/nohup/index.xml" rel="self" type="application/rss+xml"/><item><title> Go Background</title><link>https://qfsyso.github.io/posts/go-background/</link><pubDate>Mon, 05 Aug 2024 01:44:01 +0000</pubDate><guid>https://qfsyso.github.io/posts/go-background/</guid><description>debian go程序 后台运行 要在Debian系统上将Go程序设置为后台运行，使用nohup命令和&amp;amp;符号。
+编译Go程序，生成可执行文件。
+go build -o myapp main.go 使用nohup将程序放到后台运行，并将输出重定向到nohup.out文件。
+nohup ./myapp &amp;amp; 如果您想要程序在系统启动时自动运行，可以创建一个systemd服务文件。
+创建一个名为myapp.service的文件：
+sudo nano /etc/systemd/system/myapp.service 在编辑器中添加以下内容：
+[Unit] Description=My Go Application After=network.target [Service] Type=simple ExecStart=/path/to/your/myapp Restart=on-failure RestartSec=5 [Install] WantedBy=multi-user.target 保存并退出编辑器。
+启用并启动服务：
+sudo systemctl enable myapp.service sudo systemctl start myapp.service Go程序就会在Debian系统上作为服务后台运行。
+c# run~ sudo nohup dotnet run /root/socketa/TcpSk &amp;gt; output20240805.log 2&amp;gt;&amp;amp;1 &amp;amp; sudo nohup dotnet run /root/netser/xx &amp;gt; output1.log 2&amp;gt;&amp;amp;1 &amp;amp; ps -ef | grep nohup kill</description></item></channel></rss>

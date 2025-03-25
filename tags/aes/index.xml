@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>AES on MLOG</title><link>https://qfsyso.github.io/tags/aes/</link><description>Recent content in AES on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Mon, 17 Mar 2025 22:09:13 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/aes/index.xml" rel="self" type="application/rss+xml"/><item><title>AES Obfuscation</title><link>https://qfsyso.github.io/posts/aes-obfuscation/</link><pubDate>Mon, 17 Mar 2025 22:09:13 +0000</pubDate><guid>https://qfsyso.github.io/posts/aes-obfuscation/</guid><description>AES 加密混淆算法说明 (服务器端解密指南)
+1. 数据结构 加密后数据格式 (Base64编码): [头部信息][混淆数据]
+头部信息 (7字节):
+本地密钥版本 (2字节, 大端序) 服务器密钥版本 (2字节, 大端序) 混淆类型 (1字节)：0=标准模式, 1=增强模式, 2=翻转模式, 3=随机模式 分段类型 (1字节)：0=标准分段, 1=三等分 操作类型 (1字节)：位掩码，用于随机模式 0x01: 位移操作 0x02: 异或操作 0x04: 翻转操作 0x08: 交换操作 2. 分段模式 标准分段 (SegmentationType.standard):
+IV分为3段: [6字节]-[4字节]-[6字节] 密文分为2段: [前半部分(N+1)/2字节]-[后半部分N/2字节] 三等分 (SegmentationType.tripartite):
+IV分为4段: [4字节]-[4字节]-[4字节]-[4字节] 密文分为3段: [第1段]-[第2段]-[第3段] 3. 数据排列 标准分段模式: [IV段1][密文段1][IV段2][密文段2][IV段3]
+三等分模式: [IV段1][密文段1][IV段2][密文段2][IV段3][密文段3][IV段4]
+4. 混淆处理 标准模式 (standard):
+无额外混淆，仅进行分段存储 增强模式 (enhanced):
+对密文进行循环位移和异或操作 位移量 = 操作类型值 % 8 异或密钥 = 0xA5 翻转模式 (reversed):</description></item><item><title>node ase encrypt</title><link>https://qfsyso.github.io/posts/node-ase-encrypt/</link><pubDate>Sat, 21 Sep 2024 01:25:07 +0000</pubDate><guid>https://qfsyso.github.io/posts/node-ase-encrypt/</guid><description>// 加密方法 public static string Encrypt(string plainText, string key) { using (Aes aesAlg = Aes.Create()) { aesAlg.Key = Encoding.UTF8.GetBytes(key); aesAlg.IV = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6];// new byte[16]; // 初始化向量 (IV) 可以设为全零，也可以使用随机值 ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV); using (MemoryStream msEncrypt = new MemoryStream()) { using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write)) using (StreamWriter swEncrypt = new StreamWriter(csEncrypt)) { swEncrypt.</description></item><item><title>.NET AES DES</title><link>https://qfsyso.github.io/posts/.net-aes-des/</link><pubDate>Wed, 15 May 2024 15:01:42 +0000</pubDate><guid>https://qfsyso.github.io/posts/.net-aes-des/</guid><description>.NET AES DES 对称加密
+ASE 加密解密 加密方法 (Encrypt):
+创建一个 Aes 实例。 设置密钥 (Key) 和初始化向量 (IV)。 使用 CreateEncryptor 创建加密器。 通过 CryptoStream 和 StreamWriter 将明文写入内存流，然后转换为 Base64 字符串。
+解密方法 (Decrypt):
+同样创建一个 Aes 实例。 设置相同的密钥和初始化向量。 使用 CreateDecryptor 创建解密器。 通过 CryptoStream 和 StreamReader 从内存流读取密文并解密为明文。
+注意事项 密钥长度：AES 支持 128, 192, 和 256 位密钥。本例使用 256 位（32 字节）。 初始化向量 (IV)：应确保加密和解密时使用相同的 IV。本例中使用了全零的 IV，在实际应用中建议使用随机 IV，并将其与密文一起存储。
+using System; using System.IO; using System.Security.Cryptography; using System.Text; class SymmetricEncryption { // 加密方法 public static string Encrypt(string plainText, string key) { using (Aes aesAlg = Aes.</description></item></channel></rss>

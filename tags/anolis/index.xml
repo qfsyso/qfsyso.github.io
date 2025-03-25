@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Anolis on MLOG</title><link>https://qfsyso.github.io/tags/anolis/</link><description>Recent content in Anolis on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Sun, 25 Aug 2024 10:03:23 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/anolis/index.xml" rel="self" type="application/rss+xml"/><item><title>Anolis8.4 .NET</title><link>https://qfsyso.github.io/posts/anolis8.4-.net/</link><pubDate>Sun, 25 Aug 2024 10:03:23 +0000</pubDate><guid>https://qfsyso.github.io/posts/anolis8.4-.net/</guid><description>Anolis8.4 包管理器为 yum。
+打开终端或命令提示符窗口，并切换到 root 用户。
+添加 Microsoft 包源。
+wget https://packages.microsoft.com/config/centos/8/packages-microsoft-prod.repo -O /etc/yum.repos.d/packages-microsoft-prod.repo 安装.NET 8 SDK。
+sudo yum install dotnet-sdk-8.0 运行时
+sudo yum install dotnet-runtime-8.0 安装完成后，可以通过以下命令验证.NET 8 是否已成功安装。
+dotnet --version test
+dotnet new console -o HelloWorld cd HelloWorld dotnet run</description></item></channel></rss>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Code on MLOG</title><link>https://qfsyso.github.io/tags/code/</link><description>Recent content in Code on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Thu, 03 Aug 2023 02:12:50 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/code/index.xml" rel="self" type="application/rss+xml"/><item><title>some code</title><link>https://qfsyso.github.io/posts/some-code/</link><pubDate>Thu, 03 Aug 2023 02:12:50 +0000</pubDate><guid>https://qfsyso.github.io/posts/some-code/</guid><description>other skills server test curl https://raw.githubusercontent.com/zhanghanyun/backtrace/main/install.sh -sSf | sh 要判断是不是套了cf 要判断是不是套了cf，可以在网址后面加/cdn-cgi/trace 有页面就是套了cf 上面也会显示你访问用的ip https://chat.openai.com/cdn-cgi/trace
+css img居中 img标签在HTML页面中居中显示，可以采用以下几种方法：
+‌一、水平居中‌ ‌使用text-align属性‌：
+给img的父元素设置text-align: center;，这样img标签就会继承这个属性，实现水平居中的效果‌12。 ‌使用margin属性‌：
+给img标签设置margin-left: auto;和margin-right: auto;，并添加display: block;，这样img标签就会自动计算左右两边的空间，使得它在水平方向上居中‌12。 ‌使用flex布局‌：
+给img的父元素设置display: flex;和justify-content: center;，这样img标签就会在父元素的水平方向上居中‌12。
+‌二、垂直居中‌ ‌使用flex布局‌：
+给包裹img的父元素设置display: flex;和align-items: center;，即可实现垂直居中‌45。 ‌使用display: table;‌：
+给父元素设置display: table;，给子元素（即包裹img的容器）设置display: table-cell;和vertical-align: middle;，即可实现垂直居中‌4。 ‌使用绝对定位‌：
+通过绝对定位的方式，结合top、left、transform等属性，也可以实现img的垂直居中，但这种方法需要更精细的布局控制‌4。 根据实际需求，可以选择适合的方法来实现img标签的居中显示。
+c# csharp swagger hide 使用 [ApiExplorerSettings] 特性 在接口方法上添加 [ApiExplorerSettings(IgnoreApi = true)] 特性，这会让 Swagger 忽略该接口，但接口仍然可以被正常访问。
+[HttpGet(&amp;ldquo;hidden&amp;rdquo;)] 则完全去掉
+c# email regex 正则校验 string pattern = @&amp;#34;^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$&amp;#34;; Regex regex = new Regex(pattern); if (!</description></item></channel></rss>

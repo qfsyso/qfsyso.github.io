@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>VM on MLOG</title><link>https://qfsyso.github.io/tags/vm/</link><description>Recent content in VM on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Thu, 26 Dec 2024 01:01:25 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/vm/index.xml" rel="self" type="application/rss+xml"/><item><title>vmware install win11</title><link>https://qfsyso.github.io/posts/vmware-install-win11/</link><pubDate>Thu, 26 Dec 2024 01:01:25 +0000</pubDate><guid>https://qfsyso.github.io/posts/vmware-install-win11/</guid><description>VMware安装win11 新建虚拟机 稍后安装系统
+右键 电源 进入固件 出现 无法连接虚拟设备 sata0：1，因为主机上没用相应设备 设备-启动时连接 取消打钩
+右键 可移动设备 - U盘连接
+进入PE 打开DG 右键转为GUID 保存更改
+顶部空闲右键 创建ESP分区 空间建立新分区 系统分区 D Save ESP右键 指定新的驱动器-盘符 F
+建立分区 保存格式化
+一键装机 !注意目标分区D/引导分区F
+安装完重启后
+右键 可移动设备 - U盘断开 引导安装
+END</description></item><item><title> VM Linux win</title><link>https://qfsyso.github.io/posts/vm-linux-win/</link><pubDate>Mon, 24 Jun 2024 23:38:07 +0000</pubDate><guid>https://qfsyso.github.io/posts/vm-linux-win/</guid><description>debian12.5.0服务器安装 参考https://blog.csdn.net/Go_ahead_forever/article/details/132679793
+相关命令问题 新用户使用sudo报错 xx is not the sudoers file. 原因：book用户没有sudo的权限 解决：https://blog.csdn.net/weixin_37787043/article/details/123045557
+更新 清华-镜像源 (会快一些)： 参考文档： https://blog.csdn.net/sinat_15028281/article/details/135638596
+su root cp etc/apt/sources.list etc/apt/sources.list.backup // 备份 vi etc/apt/sources.list // 修改镜像源 将etc/apt/sources.list文件内的内容清空，写入以下内容：
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware deb https://security.</description></item></channel></rss>

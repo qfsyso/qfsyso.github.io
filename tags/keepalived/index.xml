@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Keepalived on MLOG</title><link>https://qfsyso.github.io/tags/keepalived/</link><description>Recent content in Keepalived on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Thu, 21 Nov 2024 23:37:23 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/keepalived/index.xml" rel="self" type="application/rss+xml"/><item><title> nginx keepalived</title><link>https://qfsyso.github.io/posts/nginx-keepalived/</link><pubDate>Thu, 21 Nov 2024 23:37:23 +0000</pubDate><guid>https://qfsyso.github.io/posts/nginx-keepalived/</guid><description>Keepalived 是一种用于实现高可用性的工具，它通过VRRP（虚拟路由冗余协议）来管理虚拟IP地址，从而确保在主服务器故障时，备用服务器能够接管服务。
+环境准备 假设有两台Debian服务器：
+Server 1 (Master): IP地址 192.168.1.100 Server 2 (Backup): IP地址 192.168.1.101 虚拟IP地址: 192.168.1.102
+步骤一：安装Nginx 在两台服务器上安装Nginx。
+Server 1 (Master)
+sudo apt update sudo apt install nginx Server 2 (Backup)
+sudo apt update sudo apt install nginx 步骤二：安装Keepalived 在两台服务器上安装Keepalived。
+Server 1 (Master)
+sudo apt install keepalived Server 2 (Backup) ```Bash sudo apt install keepalived 步骤三：配置Keepalived 编辑Keepalived的配置文件 /etc/keepalived/keepalived.conf。
+Server 1 (Master)
+sudo nano /etc/keepalived/keepalived.conf 添加以下配置：
+vrrp_instance VI_1 { state MASTER interface eth0 virtual_router_id 51 priority 100 advert_int 1 authentication { auth_type PASS auth_pass 1111 } virtual_ipaddress { 192.</description></item></channel></rss>

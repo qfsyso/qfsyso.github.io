@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Posts | MLOG</title>
+<meta name="keywords" content="">
+<meta name="description" content="Posts - MLOG">
+<meta name="author" content="dwd">
+<link rel="canonical" href="http://localhost:1313/posts/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.6da9a63d25a9608bca2f7f907a030e887a7dd3c3f3918e4cc113129361414bda.css" integrity="sha256-bammPSWpYIvKL3&#43;QegMOiHp908PzkY5MwRMSk2FBS9o=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/posts/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="MLOG (Alt + H)">MLOG</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Archive">
+                    <span class="active">Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Posts
+  </h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET SignalR Redis 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>环境 Win10 VS2022 .NET8 Docker Redis
+前言
+什么是 SignalR？ ASP.NET Core SignalR 是一个开放源代码库，可用于简化向应用添加实时 Web 功能。 实时 Web 功能使服务器端代码能够将内容推送到客户端。
+适合 SignalR 的候选项：
+需要从服务器进行高频率更新的应用。 （游戏、社交网络、投票、拍卖、地图和 GPS 应用） 仪表板和监视应用。 （公司仪表板、即时销售更新或出行警报） 协作应用。 （包括白板应用和团队会议软件） 需要通知的应用。（ 社交网络、电子邮件、聊天、游戏等） SignalR 提供用于创建服务器到客户端的远程过程调用 (RPC) API。 RPC 从服务器端 .NET Core 代码调用客户端上的函数。支持JavaScript ，.NET ，JAVA，Swift （官方没有明确支持，这是第三方库）其中每个平台都有各自的客户端 SDK。 因此，RPC 调用所调用的编程语言有所不同。
+ASP.NET Core SignalR 的一些功能：
+自动处理连接管理。 同时向所有连接的客户端发送消息。 例如聊天室。 向特定客户端或客户端组发送消息。 对其进行缩放，以处理不断增加的流量。 SignalR 中心协议 1.👋nuget引入SignalR ​​ ​
+2.👀创建SignalR Hub
+using Microsoft.AspNetCore.SignalR; using System.Threading.Tasks; namespace WebSignalR { public class ChatHub : Hub { public async Task SendMessage(string user, string message) { await Clients.All.SendAsync(&#34;ReceiveMessage&#34;, user, message); } } } 3.🌱 Program.cs添加SignalR服务 (Startup.cs)
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-12 07:44:04 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET SignalR Redis " href="http://localhost:1313/posts/.net-signalr-redis/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET Swagger 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>开发环境 Win10 VS2022 .NET8.0
+1.从NuGet添加Swagger ​
+在解决方案资源管理器中右键单击项目&gt;管理 NuGet 包 将包源设置为“nuget.org” 确保启用“包括预发行”选项 在搜索框中输入“Swashbuckle.AspNetCore” 从“浏览”选项卡中选择最新的“Swashbuckle.AspNetCore”包，然后单击“安装”
+2.将 Swagger 生成器添加到以下位置的服务集合中Program.cs： builder.Services.AddControllers(); builder.Services.AddEndpointsApiExplorer(); builder.Services.AddSwaggerGen(); ​
+启用中间件 生成
+app.UseSwagger(); app.UseSwaggerUI(); app.UseSwaggerUI(options =&gt; { options.SwaggerEndpoint(&#34;/swagger/v1/swagger.json&#34;, &#34;v1&#34;); options.RoutePrefix = string.Empty; }); ​
+3.添加API控制器 创建api
+// GET api/&lt;myapi&gt;/5 /// &lt;summary&gt; /// getid /// &lt;/summary&gt; /// &lt;param name=&#34;id&#34;&gt;id参数&lt;/param&gt; /// &lt;returns&gt;valuestr&lt;/returns&gt; [HttpGet(&#34;{id}&#34;)] public string Get(int id) { return &#34;value&#34; &#43; id; } // POST api/&lt;myapi&gt; [HttpPost] public string Post([FromBody] string value) { //post逻辑代码 return &#34;myPost&#34;; } // PUT api/&lt;myapi&gt;/5 [HttpPut(&#34;{id}&#34;)] public string Put(int id, [FromBody] string value) { //put逻辑代码 return &#34;myPut&#34;; } // DELETE api/&lt;myapi&gt;/5 [HttpDelete(&#34;{id}&#34;)] public string Delete(int id) { //delete逻辑代码 return &#34;myDelete&#34;; } ​
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-11 23:27:19 +0000 UTC'>April 11, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET Swagger " href="http://localhost:1313/posts/.net-swagger/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Docker MySQL 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>1.下载docker desktop https://www.docker.com/products/docker-desktop/
+创建容器 docker run 创建并启动mysql容器
+–name 容器名字
+-d 后台运行容器
+-p 映射端口
+-e 参数
+截至目前最新的mysql是mysql8.0.36 那就整这个试下。
+docker run -d --name mysql-container -e TZ=UTC -p 30306:3306 -e MYSQL_ROOT_PASSWORD=你的密码 mysql:8.0.36-debian ​
+等待一会，看到mysql已经pull下来。
+回到docker看到容器已经创建。
+​
+​
+可以输入docker images查看
+​
+3.创建mysql数据库管理软件容器
+docker run --name myadmin -d --link mysql-container:db -p 8880:80 phpmyadmin/phpmyadmin ​
+回到docker查看下容器是否创建成功。 ​
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-11 08:35:22 +0000 UTC'>April 11, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Docker MySQL " href="http://localhost:1313/posts/docker-mysql/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Hello World Hexo
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick Start Create a new post npm install hexo-cli -g hexo init blog cd blog npm install hexo server $ hexo new &#34;My New Post&#34; More info: Writing
+Run server $ hexo server More info: Server
+Generate static files $ hexo generate More info: Generating
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-03-20 22:16:01 +0000 UTC'>March 20, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Hello World Hexo" href="http://localhost:1313/posts/hello-world-hexo/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">some code
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>other skills server test curl https://raw.githubusercontent.com/zhanghanyun/backtrace/main/install.sh -sSf | sh 要判断是不是套了cf 要判断是不是套了cf，可以在网址后面加/cdn-cgi/trace 有页面就是套了cf 上面也会显示你访问用的ip https://chat.openai.com/cdn-cgi/trace
+css img居中 img标签在HTML页面中居中显示，可以采用以下几种方法：
+‌一、水平居中‌ ‌使用text-align属性‌：
+给img的父元素设置text-align: center;，这样img标签就会继承这个属性，实现水平居中的效果‌12。 ‌使用margin属性‌：
+给img标签设置margin-left: auto;和margin-right: auto;，并添加display: block;，这样img标签就会自动计算左右两边的空间，使得它在水平方向上居中‌12。 ‌使用flex布局‌：
+给img的父元素设置display: flex;和justify-content: center;，这样img标签就会在父元素的水平方向上居中‌12。
+‌二、垂直居中‌ ‌使用flex布局‌：
+给包裹img的父元素设置display: flex;和align-items: center;，即可实现垂直居中‌45。 ‌使用display: table;‌：
+给父元素设置display: table;，给子元素（即包裹img的容器）设置display: table-cell;和vertical-align: middle;，即可实现垂直居中‌4。 ‌使用绝对定位‌：
+通过绝对定位的方式，结合top、left、transform等属性，也可以实现img的垂直居中，但这种方法需要更精细的布局控制‌4。 根据实际需求，可以选择适合的方法来实现img标签的居中显示。
+c# csharp swagger hide 使用 [ApiExplorerSettings] 特性 在接口方法上添加 [ApiExplorerSettings(IgnoreApi = true)] 特性，这会让 Swagger 忽略该接口，但接口仍然可以被正常访问。
+[HttpGet(“hidden”)] 则完全去掉
+c# email regex 正则校验 string pattern = @&#34;^[a-zA-Z0-9_.&#43;-]&#43;@[a-zA-Z0-9-]&#43;\.[a-zA-Z0-9-.]&#43;$&#34;; Regex regex = new Regex(pattern); if (!regex.IsMatch(email)) { trsm.msg = localizer.GetString(&#34;UStatus2&#34;).Value;//s2 jsrs = JsonConvert.SerializeObject(trsm); return jsrs; } js js world time &lt;!DOCTYPE html&gt; &lt;html lang=&#34;en&#34;&gt; &lt;head&gt; &lt;meta charset=&#34;UTF-8&#34;&gt; &lt;title&gt;Time Zones Display&lt;/title&gt; &lt;style&gt; body { font-family: Arial, sans-serif; } div { margin-bottom: 10px; } &lt;/style&gt; &lt;/head&gt; &lt;body&gt; &lt;div&gt;北京时间: &lt;span id=&#34;beijingTime&#34;&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;东京时间: &lt;span id=&#34;tokyoTime&#34;&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;欧洲-巴黎时间: &lt;span id=&#34;parisTime&#34;&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;英国-伦敦时间: &lt;span id=&#34;londonTime&#34;&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;美东-纽约时间: &lt;span id=&#34;newYorkTime&#34;&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;美西-洛杉矶时间: &lt;span id=&#34;losAngelesTime&#34;&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;UTC时间: &lt;span id=&#34;utcTime&#34;&gt;&lt;/span&gt;&lt;/div&gt; &lt;script&gt; // 定义各个时区相对UTC的偏移量（单位：小时），考虑夏令时情况设置不同偏移量范围 const timeZoneOffsets = { &#39;beijing&#39;: 8, // 北京不实行夏令时，固定偏移8小时 &#39;tokyo&#39;: 9, // 东京不实行夏令时，固定偏移9小时 &#39;paris&#39;: [1, 2], // 巴黎实行夏令时，冬令时偏移1小时，夏令时偏移2小时（示例简化处理，实际更复杂） &#39;london&#39;: [0, 1], // 伦敦实行夏令时，冬令时偏移0小时，夏令时偏移1小时 &#39;newYork&#39;: [-5, -4], // 纽约实行夏令时，冬令时偏移-5小时，夏令时偏移-4小时 &#39;losAngeles&#39;: [-8, -7] // 洛杉矶实行夏令时，冬令时偏移-8小时，夏令时偏移-7小时 }; function padZero(num) { return num &lt; 10? &#39;0&#39; &#43; num : num; } function formatTime(date) { const year = date.getFullYear(); const month = padZero(date.getMonth() &#43; 1); const day = padZero(date.getDate()); const hours = padZero(date.getHours()); const minutes = padZero(date.getMinutes()); const seconds = padZero(date.getSeconds()); return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`; } function isDaylightSavingTime(date, zone) { const month = date.getMonth(); const dstStart = new Date(date.getFullYear(), 3, 8, 2, 0, 0); // 假设每年4月8日凌晨2点开始夏令时（简化示例，实际不同地区规则差异大） const dstEnd = new Date(date.getFullYear(), 10, 1, 2, 0, 0); // 假设每年10月1日凌晨2点结束夏令时 if (zone === &#39;paris&#39; || zone === &#39;london&#39; || zone === &#39;newYork&#39; || zone === &#39;losAngeles&#39;) { return date &gt;= dstStart &amp;&amp; date &lt; dstEnd; } return false; } function updateTime() { const now = new Date(); const utcDate = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds()); const utcTime = formatTime(utcDate); document.getElementById(&#39;utcTime&#39;).innerHTML = utcTime; for (const zone in timeZoneOffsets) { const offsets = timeZoneOffsets[zone]; let offset; if (Array.isArray(offsets)) { offset = isDaylightSavingTime(utcDate, zone)? offsets[1] : offsets[0]; } else { offset = offsets; } const zoneDate = new Date(utcDate.getTime() &#43; offset * 60 * 60 * 1000); document.getElementById(zone &#43; &#39;Time&#39;).innerHTML = formatTime(zoneDate); } setTimeout(updateTime, 1000); } window.onload = function () { updateTime(); }; &lt;/script&gt; &lt;/body&gt; &lt;/html&gt; .net iis err CS0016 error CS0016: 未能写入输出文件“c:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\6b681329\aee16571\App_global.asax.zxufqisi.dll”–“拒绝访问。 ” 解决办法
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2023-08-03 02:12:50 +0000 UTC'>August 3, 2023</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to some code" href="http://localhost:1313/posts/some-code/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">100件小事
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> </p>
+  </div>
+  <footer class="entry-footer"><span title='2023-02-20 10:27:36 +0000 UTC'>February 20, 2023</span>&nbsp;·&nbsp;0 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to 100件小事" href="http://localhost:1313/posts/100%E4%BB%B6%E5%B0%8F%E4%BA%8B/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/posts/page/21/">
+      «&nbsp;Prev&nbsp;
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+
+    <div class="wtime">
+        <div class="wtime2">CST<span id="beijingTime"></span> GMT <span id="londonTime"></span> EST <span id="newYorkTime"></span>  PST<span id="losAngelesTime"></span></div>
+        <div class="wtime2" style="display: none;"> 东京<span id="tokyoTime"></span></div>
+        <div class="wtime2" style="display: none;">欧洲-巴黎<span id="parisTime"></span></div>
+
+        <div  class="wtime2" style="display: none;">UTC<span id="utcTime"></span></div>
+    </div>
+        <span>&copy; 2025 <a href="http://localhost:1313/">MLOG</a></span> · 
+
+
+    <span>
+ 
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+
+
+
+<script type="text/javascript">
+
+    
+    const timeZoneOffsets = {
+            'beijing': 8,  
+            'tokyo': 9,  
+            'paris': [1, 2],  
+            'london': [0, 1],  
+            'newYork': [-5, -4],  
+            'losAngeles': [-8, -7]  
+        };
+
+        function padZero(num) {
+            return num < 10? '0' + num : num;
+        }
+
+        function formatTime(date) {
+            const year = date.getFullYear();
+            const month = padZero(date.getMonth() + 1);
+            const day = padZero(date.getDate());
+            const hours = padZero(date.getHours());
+            const minutes = padZero(date.getMinutes());
+            const seconds = padZero(date.getSeconds());
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        }
+
+        function isDaylightSavingTime(date, zone) {
+            const month = date.getMonth();
+            const dstStart = new Date(date.getFullYear(), 3, 8, 2, 0, 0);  
+            const dstEnd = new Date(date.getFullYear(), 10, 1, 2, 0, 0);  
+            if (zone === 'paris' || zone === 'london' || zone === 'newYork' || zone === 'losAngeles') {
+                return date >= dstStart && date < dstEnd;
+            }
+            return false;
+        }
+
+        function updateTime() {
+            const now = new Date();
+            const utcDate = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(),
+                now.getUTCMinutes(), now.getUTCSeconds());
+            const utcTime = formatTime(utcDate);
+            document.getElementById('utcTime').innerHTML = utcTime;
+
+            for (const zone in timeZoneOffsets) {
+                const offsets = timeZoneOffsets[zone];
+                let offset;
+                if (Array.isArray(offsets)) {
+                    offset = isDaylightSavingTime(utcDate, zone)? offsets[1] : offsets[0];
+                } else {
+                    offset = offsets;
+                }
+                const zoneDate = new Date(utcDate.getTime() + offset * 60 * 60 * 1000);
+                document.getElementById(zone + 'Time').innerHTML = formatTime(zoneDate);
+            }
+
+            setTimeout(updateTime, 1000);
+        }
+
+        window.onload = function () {
+            updateTime();
+        };
+    function notfound(imgElement) {  
+            var src = imgElement.src;  
+            var parts = src.split('/'); 
+            var filename = parts[parts.length - 1]; 
+            
+      
+            imgElement.src = "https://47.115.223.75:8080/group1/v2/" + filename+"?timestamp=" + Date.now();
+    
+            imgElement.onerror = null; 
+        }  
+
+    </script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

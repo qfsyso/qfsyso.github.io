@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Git on MLOG</title><link>https://qfsyso.github.io/tags/git/</link><description>Recent content in Git on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Sun, 18 Aug 2024 11:59:27 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>git 443 couldt connect</title><link>https://qfsyso.github.io/posts/git-443-couldt-connect/</link><pubDate>Sun, 18 Aug 2024 11:59:27 +0000</pubDate><guid>https://qfsyso.github.io/posts/git-443-couldt-connect/</guid><description>Git Err
+unable to access ‘https://github.com/…’: Failed to connect to github.com port 443 after 21096 ms: Couldn’t connect to server
+err
+OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443
+重置git代理 检查是否开了网络代理，如果有先关闭 在命令行输入如下命令
+git config --global --unset http.proxy git config --global --unset https.proxy 找到本机代理端口号
+git config --global http.proxy http://127.0.0.1:端口号 git config --global https.proxy http://127.0.0.1:端口号 git config &amp;ndash;global http.sslVerify false
+网络与internet -&amp;gt; 代理
+手动设置代理 IP 端口 10809
+git HTTP代理设置 要设置Git的HTTP代理，需要在终端中运行以下命令：
+git config &amp;ndash;global http.</description></item></channel></rss>

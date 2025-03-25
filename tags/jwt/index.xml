@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>JWT on MLOG</title><link>https://qfsyso.github.io/tags/jwt/</link><description>Recent content in JWT on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Tue, 03 Dec 2024 01:20:03 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/jwt/index.xml" rel="self" type="application/rss+xml"/><item><title>jwt redis</title><link>https://qfsyso.github.io/posts/jwt-redis/</link><pubDate>Tue, 03 Dec 2024 01:20:03 +0000</pubDate><guid>https://qfsyso.github.io/posts/jwt-redis/</guid><description>Redis JWT 在 .NET 中使用 Redis 来存储 JWT（JSON Web Token）可以通过多种方式实现， 例如在用户登录时将生成的 JWT 存储在 Redis 中以便于后续验证和管理。
+实现步骤
+引入依赖 确保你的项目引入了以下必要的 NuGet 包：
+Microsoft.AspNetCore.Authentication.JwtBearer：用于 JWT 身份验证。 StackExchange.Redis：用于与 Redis 通信。
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer dotnet add package StackExchange.Redis 配置 Redis 客户端 设置 Redis 的连接和操作。
+生成 JWT 根据用户信息生成 JWT 并将其存储到 Redis。
+验证 JWT 在验证阶段从 Redis 检查 token 是否有效。
+实现 Token 的失效机制 利用 Redis 的 TTL（过期时间）特性来管理 token 的生命周期。
+代码实现 1. 配置 Redis 客户端 在 Program.cs 或 Startup.</description></item><item><title>.NET JWT</title><link>https://qfsyso.github.io/posts/.net-jwt/</link><pubDate>Fri, 19 Apr 2024 01:26:35 +0000</pubDate><guid>https://qfsyso.github.io/posts/.net-jwt/</guid><description>前言
+JWT (JSON Web Token) 是一种安全传输信息的开放标准，由Header、Payload和Signature三部分组成。它主要用于身份验证、信息交换和授权。JWT可验证用户身份，确保访问权限，实现单点登录，并在客户端和服务器之间安全地交换信息。因其简单、安全和便捷，JWT在现代Web应用中广泛使用。
+用JWT有多个原因：
+无状态的身份验证：JWT允许服务器无需保存用户的会话信息，因为所有必要的信息都存储在令牌本身中。这降低了服务器的存储需求，并提高了系统的可扩展性。
+跨域身份验证：由于JWT是自我包含的，并且可以被轻松传递，因此它非常适合跨域身份验证。用户可以在一个服务上验证身份，然后使用相同的令牌访问另一个服务，从而实现单点登录（SSO）。
+安全性：JWT可以通过使用强大的加密算法（如HS256, RS256等）进行签名，以确保其完整性和真实性。服务器可以使用公钥验证令牌的签名，从而确保它没有被篡改，并且确实是由受信任的颁发者签发的。
+减少数据库查询：由于用户的身份信息都存储在JWT中，服务器无需每次都去数据库中查询用户的身份信息，从而减少了数据库的压力和查询时间。
+可定制性：JWT的Payload部分可以包含自定义的信息，如用户角色、权限等，这使得JWT非常灵活，并可以根据具体需求进行定制。
+易于分发和共享：JWT可以轻松地通过网络传输，并且可以在多个服务和客户端之间共享，这使得它在微服务架构和分布式系统中非常有用。
+标准化和互操作性：JWT是一个开放标准（RFC 7519），这意味着不同的系统和语言都可以使用相同的方式生成和验证JWT，从而提高了系统的互操作性。
+环境 Win10 VS2022 .NET8
+✨ 建立项目jwttest 1.创建TestJwtController ​
+2.下载JWT ​
+3.建实体类 /// &amp;lt;summary&amp;gt; /// 用户信息类 /// &amp;lt;/summary&amp;gt; public class LoginRs { /// &amp;lt;summary&amp;gt; /// 用户ID /// &amp;lt;/summary&amp;gt; public string UserId { get; set; } /// &amp;lt;summary&amp;gt; /// 用户密码 /// &amp;lt;/summary&amp;gt; public string PasswordMD5 { get; set; } } /// &amp;lt;summary&amp;gt; /// 用户登录信息类 /// &amp;lt;/summary&amp;gt; public class LoginInfo { /// &amp;lt;summary&amp;gt; /// 用户信息 /// &amp;lt;/summary&amp;gt; public string UserId { get; set; } /// &amp;lt;summary&amp;gt; /// 检验时间 /// &amp;lt;/summary&amp;gt; public DateTime Expires { get; set; } } /// &amp;lt;summary&amp;gt; /// rsmodel /// &amp;lt;/summary&amp;gt; public class RsModel { /// &amp;lt;summary&amp;gt; /// 是否成功 /// &amp;lt;/summary&amp;gt; public bool isOk { get; set; } /// &amp;lt;summary&amp;gt; /// 返回值 /// &amp;lt;/summary&amp;gt; public int code { get; set; } /// &amp;lt;summary&amp;gt; /// 返回消息 /// &amp;lt;/summary&amp;gt; public string msg { get; set; } /// &amp;lt;summary&amp;gt; /// 返回数据 /// &amp;lt;/summary&amp;gt; public object rsData { get; set; } } 4.</description></item></channel></rss>

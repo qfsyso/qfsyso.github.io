@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Koa on MLOG</title><link>https://qfsyso.github.io/tags/koa/</link><description>Recent content in Koa on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Mon, 19 Aug 2024 23:57:00 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/koa/index.xml" rel="self" type="application/rss+xml"/><item><title>node koa</title><link>https://qfsyso.github.io/posts/node-koa/</link><pubDate>Mon, 19 Aug 2024 23:57:00 +0000</pubDate><guid>https://qfsyso.github.io/posts/node-koa/</guid><description>koa Koa 是一个由 Express 原班人马打造的新的 Web 框架，旨在提供更小、更富表现力、更健壮的服务器处理逻辑。它使用 ES6 的新特性，如 Promises 和 generators，来简化异步流程控制。以下是一些关于 Koa 的关键点：
+特点 轻量级：Koa 的核心代码非常精简，没有捆绑很多中间件，这使得它的启动速度快、体积小。
+简洁的中间件系统：Koa 使用基于 Promise 的中间件模型，这个模型允许你通过 async/await 来编写异步代码，并且可以方便地在中间件之间共享逻辑。
+强大的上下文对象 (Context)：每个请求都有一个 context 对象，它包含了 request 和 response 的所有信息，简化了处理 HTTP 消息的流程。
+**错误处理：**Koa 通过统一的错误处理机制来简化错误处理过程，你可以在任何地方抛出错误，并在应用的顶层捕获它们。
+**内置支持 async/await：**由于 Koa 基于 ES6 的新特性，所有的处理函数默认都是异步的，你可以使用 async/await 来编写更简洁和直观的代码。
+nvm install 7 npm i koa node my-koa-app.js const Koa = require(&amp;#39;koa&amp;#39;); const app = new Koa(); // logger app.use(async (ctx, next) =&amp;gt; { await next(); // 调用下一个中间件 const rt = ctx.</description></item></channel></rss>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>TEST on MLOG</title><link>https://qfsyso.github.io/tags/test/</link><description>Recent content in TEST on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Fri, 26 Jul 2024 23:37:05 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/test/index.xml" rel="self" type="application/rss+xml"/><item><title>.NET MSTest Xunit</title><link>https://qfsyso.github.io/posts/.net-mstest-xunit/</link><pubDate>Fri, 26 Jul 2024 23:37:05 +0000</pubDate><guid>https://qfsyso.github.io/posts/.net-mstest-xunit/</guid><description>node api 下面是一个使用 Node.js 和 Express.js 编写的简单 RESTful API 示例。
+1. 初始化项目 首先，创建一个新的项目目录并进入该目录：
+mkdir myapi cd myapi 然后初始化一个新的 Node.js 项目：
+npm init -y 2. 安装依赖 安装 Express.js 作为我们的 Web 框架：
+npm install express 3. 创建主文件 在项目根目录下创建一个名为 index.js 的文件：
+touch index.js 4. 编写 RESTful API 代码 在 index.js 中编写以下代码：
+const express = require(&amp;#39;express&amp;#39;); const app = express(); const port = 3000; app.use(express.json()); let items = [ { id: 1, name: &amp;#39;Item 1&amp;#39; }, { id: 2, name: &amp;#39;Item 2&amp;#39; }, { id: 3, name: &amp;#39;Item 3&amp;#39; } ]; // 获取所有项目 app.</description></item></channel></rss>

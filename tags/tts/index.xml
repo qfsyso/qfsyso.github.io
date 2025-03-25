@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>TTS on MLOG</title><link>https://qfsyso.github.io/tags/tts/</link><description>Recent content in TTS on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Sun, 16 Mar 2025 21:53:40 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/tts/index.xml" rel="self" type="application/rss+xml"/><item><title>AI TTS pyVideoTrans</title><link>https://qfsyso.github.io/posts/ai-tts-pyvideotrans/</link><pubDate>Sun, 16 Mar 2025 21:53:40 +0000</pubDate><guid>https://qfsyso.github.io/posts/ai-tts-pyvideotrans/</guid><description>pyVideoTrans开源视频翻译 Translate the video from one language to another and add dubbing. 将视频从一种语言翻译为另一种语言，同时支持语音识别转录、语音合成、字幕翻译。
+百度网盘下载地址: https://pan.baidu.com/s/1AFcVVL9n5TfpgiQPfOMPiw?pwd=817i GitHub地址: https://github.com/jianchang512/pyvideotrans/releases/download/v3.64/win-PatchUpdate-3.65.7z
+1.选择需要转译的视频 2.选择翻译渠道 选择免费的翻译渠道即可
+也可以选择部署好的模型 如 ：本地qwen:7b模型 或 ds
+3.选择配音渠道 如 印度语短视频转译 则选择印度语
+这里选择 Elevenlabs.io的API 选择后要在顶部菜单输入API的key
+TTS设置 -&amp;gt; ElevenLabs.io 输入 key 注册有送免费的额度 https://elevenlabs.io/ 年付便宜2两个月
+选择音色，可以试听 选择嵌入字幕 软字幕（双语） 保留背景音
+4.选择 语音识别 语音识别模型 从 tiny 到 base -&amp;gt;small -&amp;gt; medium -&amp;gt; large-v3 模型，识别效果越来越好，但模型体积越来越大，识别速度越来越慢，需要更多CPU/内存/GPU资源。默认使用tiny模型，如果想要更好的效果，请使用更大模型 .en 后缀模型和 distil 开头的模型只用于识别英文发音视频
+根据需要选择
+5.点击 开始 处理视频 6.调整 音色 根据原视频男女声调整音色 ，男声选择男的音色 音色</description></item></channel></rss>

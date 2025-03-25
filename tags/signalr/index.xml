@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>SignalR on MLOG</title><link>https://qfsyso.github.io/tags/signalr/</link><description>Recent content in SignalR on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Fri, 12 Apr 2024 07:44:04 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/signalr/index.xml" rel="self" type="application/rss+xml"/><item><title>.NET SignalR Redis</title><link>https://qfsyso.github.io/posts/.net-signalr-redis/</link><pubDate>Fri, 12 Apr 2024 07:44:04 +0000</pubDate><guid>https://qfsyso.github.io/posts/.net-signalr-redis/</guid><description>环境 Win10 VS2022 .NET8 Docker Redis
+前言
+什么是 SignalR？ ASP.NET Core SignalR 是一个开放源代码库，可用于简化向应用添加实时 Web 功能。 实时 Web 功能使服务器端代码能够将内容推送到客户端。
+适合 SignalR 的候选项：
+需要从服务器进行高频率更新的应用。 （游戏、社交网络、投票、拍卖、地图和 GPS 应用） 仪表板和监视应用。 （公司仪表板、即时销售更新或出行警报） 协作应用。 （包括白板应用和团队会议软件） 需要通知的应用。（ 社交网络、电子邮件、聊天、游戏等） SignalR 提供用于创建服务器到客户端的远程过程调用 (RPC) API。 RPC 从服务器端 .NET Core 代码调用客户端上的函数。支持JavaScript ，.NET ，JAVA，Swift （官方没有明确支持，这是第三方库）其中每个平台都有各自的客户端 SDK。 因此，RPC 调用所调用的编程语言有所不同。
+ASP.NET Core SignalR 的一些功能：
+自动处理连接管理。 同时向所有连接的客户端发送消息。 例如聊天室。 向特定客户端或客户端组发送消息。 对其进行缩放，以处理不断增加的流量。 SignalR 中心协议 1.👋nuget引入SignalR ​​ ​
+2.👀创建SignalR Hub
+using Microsoft.AspNetCore.SignalR; using System.Threading.Tasks; namespace WebSignalR { public class ChatHub : Hub { public async Task SendMessage(string user, string message) { await Clients.</description></item></channel></rss>

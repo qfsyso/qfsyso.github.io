@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>WIN on MLOG</title><link>https://qfsyso.github.io/tags/win/</link><description>Recent content in WIN on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Thu, 26 Dec 2024 01:01:25 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/win/index.xml" rel="self" type="application/rss+xml"/><item><title>vmware install win11</title><link>https://qfsyso.github.io/posts/vmware-install-win11/</link><pubDate>Thu, 26 Dec 2024 01:01:25 +0000</pubDate><guid>https://qfsyso.github.io/posts/vmware-install-win11/</guid><description>VMware安装win11 新建虚拟机 稍后安装系统
+右键 电源 进入固件 出现 无法连接虚拟设备 sata0：1，因为主机上没用相应设备 设备-启动时连接 取消打钩
+右键 可移动设备 - U盘连接
+进入PE 打开DG 右键转为GUID 保存更改
+顶部空闲右键 创建ESP分区 空间建立新分区 系统分区 D Save ESP右键 指定新的驱动器-盘符 F
+建立分区 保存格式化
+一键装机 !注意目标分区D/引导分区F
+安装完重启后
+右键 可移动设备 - U盘断开 引导安装
+END</description></item></channel></rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Avalonia on MLOG</title><link>https://qfsyso.github.io/tags/avalonia/</link><description>Recent content in Avalonia on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Sat, 27 Apr 2024 00:07:15 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/avalonia/index.xml" rel="self" type="application/rss+xml"/><item><title>.NET Avalonia Linux</title><link>https://qfsyso.github.io/posts/.net-avalonia-linux/</link><pubDate>Sat, 27 Apr 2024 00:07:15 +0000</pubDate><guid>https://qfsyso.github.io/posts/.net-avalonia-linux/</guid><description>环境WIN10 VS2022 debian
+👻前言 Avalonia 是一个用于创建跨平台用户界面 (UI) 的开源框架。它是一个基于 .NET 平台的框架，允许开发者使用 XAML 和 C#（F#）来构建跨平台的应用程序。Avalonia 的目标是提供与 Windows Presentation Foundation (WPF) 类似的开发体验，但能够在 Windows、macOS 和 Linux 等多个平台上运行。
+使用 Avalonia，开发者可以创建各种类型的应用程序，包括桌面应用、移动应用和嵌入式应用。一些可以通过 Avalonia 实现的功能和应用包括：
+桌面应用程序：如办公软件、IDE、游戏客户端等。
+移动应用程序：通过 Avalonia 可以构建支持多个平台的移动应用，如 Windows、macOS 和 Linux 上的移动应用。
+跨平台工具：Avalonia 可以用于构建跨平台的开发工具、实用工具等。
+游戏开发：Avalonia 也可以用于构建游戏的用户界面，适合基于 .NET 平台的游戏开发。
+Avalonia 提供了一个强大的工具集，使开发者能够创建具有各种功能和样式的跨平台应用程序。
+💻安装Avalonia 选择管理拓展，点击下载，安装
+​
+​
+📦创建项目 ​
+​
+​
+编码&amp;hellip;
+📚在win下运行 ​
+查看linux内核
+uname -a
+​
+🔑打包发布 复制到linux
+授予权限
+📻在linux下运行 迁移Socket发布到linux ​
+​
+实现win linux web 基于socket实时聊天</description></item></channel></rss>

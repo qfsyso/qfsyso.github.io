@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Helloworld on MLOG</title><link>https://qfsyso.github.io/tags/helloworld/</link><description>Recent content in Helloworld on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Mon, 20 May 2024 00:07:45 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/helloworld/index.xml" rel="self" type="application/rss+xml"/><item><title>Typescript study</title><link>https://qfsyso.github.io/posts/typescript-study/</link><pubDate>Mon, 20 May 2024 00:07:45 +0000</pubDate><guid>https://qfsyso.github.io/posts/typescript-study/</guid><description>typescript ≈ javascript plus
+🔗setup npm install typescript -g tsc -version npm install ts-node -g 🖌️hello world let str = &amp;#34;hi&amp;#34; console.log(str); ts-node t.ts 🖋️datatype let a1 :string =&amp;#39;abc&amp;#39; let a2:number = 2 let a3 :boolean =true let nu:null =null let un:undefined = undefined let a4:string|null = null let a5:1|2|3 = 2 any let a:any a= 1 a=&amp;#34;1&amp;#34; a=true strong type
+let a:string = &amp;#34;123&amp;#34; a=1 Err
+let a:unknown a= 1 a=&amp;#34;1&amp;#34; a=true let b :String if(typeof a ==&amp;#34;string&amp;#34;) { b=a } enum 枚举 enum Color { RED,BLUE,BLACK} let color = Color.</description></item><item><title>Nodejs base</title><link>https://qfsyso.github.io/posts/nodejs-base/</link><pubDate>Fri, 17 May 2024 19:00:03 +0000</pubDate><guid>https://qfsyso.github.io/posts/nodejs-base/</guid><description>简单的说 Node.js 就是运行在服务端的 JavaScript。
+Node.js 是一个基于 Chrome JavaScript 运行时建立的一个平台。
+Node.js 是一个事件驱动 I/O 服务端 JavaScript 环境，基于 Google 的 V8 引擎，V8 引擎执行 Javascript 的速度非常快，性能非常好。
+🛠Node.js安装 Node.js安装在上一篇文章Debian Node.js HEXO 有讲到
+截至目前最新的版本是20.12.2
+#查看版本 node -v v20.12.2
+win下可以在官网下载安装 https://nodejs.org/en/download
+debian nodejs node 14版本
+$ apt-get update $ curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash - #如果提示sudo 命令没有找到，一定要下载，执行apt-get install sudo -y 即可，然后再执行上述命令
+$ apt-get install nodejs -y $ node --version //验证 当然如果需要安装node20版本，只需将上述命令替换为：
+$ curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 💬helloworld hi.</description></item></channel></rss>

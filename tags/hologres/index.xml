@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Hologres on MLOG</title><link>https://qfsyso.github.io/tags/hologres/</link><description>Recent content in Hologres on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Thu, 15 Aug 2024 22:49:43 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/hologres/index.xml" rel="self" type="application/rss+xml"/><item><title>Hologres DataWorks</title><link>https://qfsyso.github.io/posts/hologres-dataworks/</link><pubDate>Thu, 15 Aug 2024 22:49:43 +0000</pubDate><guid>https://qfsyso.github.io/posts/hologres-dataworks/</guid><description>实时数仓Hologres Hologres是阿里云自研一站式实时数仓，统一数据平台架构，支持海量结构化/半结构化数据的实时写入、实时更新、实时加工、实时分析，支持标准SQL（兼容PostgreSQL协议），无缝对接主流BI工具，支持OLAP查询、即席分析、在线服务、向量计算多个场景，分析性能打破TPC-H世界记录，与MaxCompute、Flink、DataWorks深度融合，提供离在线一体化全栈数仓解决方案。
+大数据开发治理平台DataWorks DataWorks基于阿里云ODPS/EMR/CDP等大数据引擎，为数据仓库/数据湖/湖仓一体等解决方案提供统一的全链路大数据开发治理平台。作为阿里巴巴数据中台的建设者，DataWorks从2009年起不断沉淀阿里巴巴大数据建设方法论，同时与数万名政务/金融/零售/互联网/能源/制造等客户携手，助力产业数字化升级。
+DataV数据可视化 数据可视化DataV是阿里云数据可视化应用搭建平台，旨让更多的人看到数据可视化的魅力，帮助非专业的工程师通过图形化的界面轻松搭建专业水准的可视化应用，满足您会议展览、业务监控、风险预警、地理信息分析等多种业务的展示需求。
+Hologres 64core VS ClickHouse 64core 在单表测试的13个查询中，11个查询Hologres比Clickhouse更快。 Clickhouse总耗时是Hologres的1.35倍。
+高性能实时写入与更新 通过Hologres Fixed Plan能力，实现高性能的实时写入与更新
+Hologres Binlog:全链路的实时开发体验，简化数仓分层 通过Hologres Binl0g，结合Flink，可以实现全链路的实时开发体验，达到像Kafka、datahub同等的消息队列能力，简化数仓分层体验，增加数据复用能力。
+Runtime Filter:自动优化大小表Join效率 计算组(warehouse)实例:资源隔离、弹性、自动切流
+Serverless Computing:提供大作业隔离与弹性处理 通过共享Serverless资源执行DML任务，保证大任务隔高与高可用，降低成本并提升性能。 同时支持设置单条SOL使用 Serverless的资源上限，支持设置使用Serverless资源的SOL优先级
+案例 小红书 ClickHouse Only 7天 乐元素:替换Hive+Presto构建高性能游戏运营分析平白 流量分析 开箱可用 性能比手写sql快10倍 节约成本 https://www.aliyun.com/activity/bigdata/hologres_cases
+电商漏斗模型分析 漏斗模型有助于企业识别在客户购买过程中的各个环节，通过优化漏斗的各个阶段来增加转化率，提升销售业绩。本案例将分析电商场景的漏斗模型、计算各环节的转化率。
+智慧城市人口财产主题分析 采集各个领域的数据进行整合和分析，使得城市管理更高效、服务更贴心。本案例以城市人口财产主题分析为背景，为您介绍DataWorks在智慧城市项目中的应用。
+视频个性化推荐(协同过滤) 协同过滤算法是一种用于个性化推荐的技术，它可以基于用户间的行为相似性或物品间的相似性为用户推荐物品。本案例将为您介绍在DataWorks中如何使用阿里云PAI的协同过滤算法实现视频的个性化推荐。
+实操 mysql -&amp;gt; hologres 创建专有网络VPC和交换机 192.168.0.0/16。 开通DataWorks 创建公网NAT
+创建Hologres表 登录Hologres控制台。 新建库，新建表
+-- 新建schema用于创建内表并导入数据 CREATE SCHEMA IF NOT EXISTS hologres_dataset_github_event; DROP TABLE IF EXISTS hologres_dataset_github_event.hologres_github_event; BEGIN; CREATE TABLE hologres_dataset_github_event.</description></item></channel></rss>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Reids on MLOG</title><link>https://qfsyso.github.io/tags/reids/</link><description>Recent content in Reids on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Fri, 12 Apr 2024 09:27:49 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/reids/index.xml" rel="self" type="application/rss+xml"/><item><title>Debian Docker Redis</title><link>https://qfsyso.github.io/posts/debian-docker-redis/</link><pubDate>Fri, 12 Apr 2024 09:27:49 +0000</pubDate><guid>https://qfsyso.github.io/posts/debian-docker-redis/</guid><description>Debian安装docker
+1.使用官方脚本自动安装docker 安装命令如下：
+curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh 如果安装提示
+-bash sudo command not found
+则需要
+#update sudo apt-get update sudo apt-get install sudo 再执行安装脚本1
+安装成功后可以输入 docker命令查看docker版本
+#version docker --version 能查到表明安装成功
+2.pull redis #pull redis docker pull redis:latest pull redis镜像 3.创建reids容器 docker run -itd --name redis-test -p 6379:6379 redis 4.测试redis docker exec -it redis-test /bin/bash redis-cli set test 1 get test set test 1 提示ok
+get test 一些命令</description></item></channel></rss>

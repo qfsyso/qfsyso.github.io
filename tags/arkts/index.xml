@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>ArkTS on MLOG</title><link>https://qfsyso.github.io/tags/arkts/</link><description>Recent content in ArkTS on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Thu, 23 May 2024 21:49:44 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/arkts/index.xml" rel="self" type="application/rss+xml"/><item><title>HarmonyOS Interface Router ArkTS ArkUI</title><link>https://qfsyso.github.io/posts/harmonyos-interface-router-arkts-arkui/</link><pubDate>Thu, 23 May 2024 21:49:44 +0000</pubDate><guid>https://qfsyso.github.io/posts/harmonyos-interface-router-arkts-arkui/</guid><description>🎬️create @Component export default struct TitleBar { build(){ Row(){ Text(&amp;#39;transition&amp;#39;) .fontSize(&amp;#39;30fp&amp;#39;) .fontColor(Color.White) } .width(&amp;#39;100%&amp;#39;) .height(&amp;#39;8%&amp;#39;) .backgroundColor(&amp;#39;#4169E1&amp;#39;) .padding({left:10}) } } 🎞️interface export interface IList{ title:string; url :string; } @State listData:IList[]=[ // @State listData:Array&amp;lt;IList&amp;gt;=[ { title:&amp;#39;in&amp;#39;, url:&amp;#39;pages/home1&amp;#39; }, { title:&amp;#39;scale&amp;#39;, url:&amp;#39;pages/home2&amp;#39; }, { title:&amp;#39;small&amp;#39;, url:&amp;#39;pages/home3&amp;#39; }, { title:&amp;#39;in&amp;#39;, url:&amp;#39;&amp;#39; } ] 💡foreach ForEach(this.listData,( item: IList,index?:number)=&amp;gt;{ //listitem Button({type:ButtonType.Capsule}){ Text(item.title) .fontSize(&amp;#39;35fp&amp;#39;) .fontColor(Color.White) } //... }) 🔦router import router from &amp;#39;@ohos.router&amp;#39; 📼mainpage &amp;#34;pages/home1&amp;#34; 📹️onclick .onClick(()=&amp;gt;{ //router router.</description></item><item><title>HarmonyOS Study ArkTS</title><link>https://qfsyso.github.io/posts/harmonyos-study-arkts/</link><pubDate>Sun, 21 Apr 2024 13:00:43 +0000</pubDate><guid>https://qfsyso.github.io/posts/harmonyos-study-arkts/</guid><description>💡 环境搭建 HarmonyOS开发环境搭建
+DevEco Studio安装 https://developer.huawei.com/consumer/cn/deveco-studio/
+​
+🚀安装nodejs ​
+🤵安装ohpm ​
+🍔安装SDK ​
+​
+💥Emulator安装 ​
+Q:The graphic card OpenGL version is too old for Previewer to work..
+解决方法分两步：
+1、下载enGL库：https://github.com/pal1000/mesa-dist-win/releases/download/23.1.1/mesa3d-23.1.1-release-msvc.7z
+2、解压下载的zip文件,双击执行systemwidedeploy.cmd文件，然后按任意键，出现一个菜单，选择1，然后开始安装OpenGL驱动，出现complete 后关闭终端，重新运行程序即可生效。
+🌶️新建ArkTs项目 ​
+​
+​
+entry：HarmonyOS工程模块，编译构建生成一个HAP包。
+src &amp;gt; main &amp;gt; ets：用于存放ets源码。 src &amp;gt; main &amp;gt; ets &amp;gt; MainAbility：应用/服务的入口。 src &amp;gt; main &amp;gt; ets &amp;gt; MainAbility &amp;gt; pages：MainAbility包含的页面。 src &amp;gt; main &amp;gt; ets &amp;gt; MainAbility &amp;gt; pages &amp;gt; index.ets：pages列表中的第一个页面，即应用的首页入口。 src &amp;gt; main &amp;gt; ets &amp;gt; MainAbility &amp;gt; app.</description></item></channel></rss>

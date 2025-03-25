@@ -1,0 +1,1243 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AES Obfuscation | MLOG</title>
+<meta name=keywords content="AES"><meta name=description content="AES 加密混淆算法说明 (服务器端解密指南)
+1. 数据结构 加密后数据格式 (Base64编码): [头部信息][混淆数据]
+头部信息 (7字节):
+本地密钥版本 (2字节, 大端序) 服务器密钥版本 (2字节, 大端序) 混淆类型 (1字节)：0=标准模式, 1=增强模式, 2=翻转模式, 3=随机模式 分段类型 (1字节)：0=标准分段, 1=三等分 操作类型 (1字节)：位掩码，用于随机模式 0x01: 位移操作 0x02: 异或操作 0x04: 翻转操作 0x08: 交换操作 2. 分段模式 标准分段 (SegmentationType.standard):
+IV分为3段: [6字节]-[4字节]-[6字节] 密文分为2段: [前半部分(N+1)/2字节]-[后半部分N/2字节] 三等分 (SegmentationType.tripartite):
+IV分为4段: [4字节]-[4字节]-[4字节]-[4字节] 密文分为3段: [第1段]-[第2段]-[第3段] 3. 数据排列 标准分段模式: [IV段1][密文段1][IV段2][密文段2][IV段3]
+三等分模式: [IV段1][密文段1][IV段2][密文段2][IV段3][密文段3][IV段4]
+4. 混淆处理 标准模式 (standard):
+无额外混淆，仅进行分段存储 增强模式 (enhanced):
+对密文进行循环位移和异或操作 位移量 = 操作类型值 % 8 异或密钥 = 0xA5 翻转模式 (reversed):"><meta name=author content="dwd"><link rel=canonical href=https://qfsyso.github.io/posts/aes-obfuscation/><link crossorigin=anonymous href=/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF+13Dyqob6ASlTrTye8=" rel="preload stylesheet" as=style><link rel=icon href=https://qfsyso.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://qfsyso.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://qfsyso.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://qfsyso.github.io/apple-touch-icon.png><link rel=mask-icon href=https://qfsyso.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://qfsyso.github.io/posts/aes-obfuscation/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://qfsyso.github.io/posts/aes-obfuscation/"><meta property="og:site_name" content="MLOG"><meta property="og:title" content="AES Obfuscation"><meta property="og:description" content="AES 加密混淆算法说明 (服务器端解密指南)
+1. 数据结构 加密后数据格式 (Base64编码): [头部信息][混淆数据]
+头部信息 (7字节):
+本地密钥版本 (2字节, 大端序) 服务器密钥版本 (2字节, 大端序) 混淆类型 (1字节)：0=标准模式, 1=增强模式, 2=翻转模式, 3=随机模式 分段类型 (1字节)：0=标准分段, 1=三等分 操作类型 (1字节)：位掩码，用于随机模式 0x01: 位移操作 0x02: 异或操作 0x04: 翻转操作 0x08: 交换操作 2. 分段模式 标准分段 (SegmentationType.standard):
+IV分为3段: [6字节]-[4字节]-[6字节] 密文分为2段: [前半部分(N+1)/2字节]-[后半部分N/2字节] 三等分 (SegmentationType.tripartite):
+IV分为4段: [4字节]-[4字节]-[4字节]-[4字节] 密文分为3段: [第1段]-[第2段]-[第3段] 3. 数据排列 标准分段模式: [IV段1][密文段1][IV段2][密文段2][IV段3]
+三等分模式: [IV段1][密文段1][IV段2][密文段2][IV段3][密文段3][IV段4]
+4. 混淆处理 标准模式 (standard):
+无额外混淆，仅进行分段存储 增强模式 (enhanced):
+对密文进行循环位移和异或操作 位移量 = 操作类型值 % 8 异或密钥 = 0xA5 翻转模式 (reversed):"><meta property="og:locale" content="zh-CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-03-17T22:09:13+00:00"><meta property="article:modified_time" content="2025-03-17T22:09:13+00:00"><meta property="article:tag" content="AES"><meta name=twitter:card content="summary"><meta name=twitter:title content="AES Obfuscation"><meta name=twitter:description content="AES 加密混淆算法说明 (服务器端解密指南)
+1. 数据结构 加密后数据格式 (Base64编码): [头部信息][混淆数据]
+头部信息 (7字节):
+本地密钥版本 (2字节, 大端序) 服务器密钥版本 (2字节, 大端序) 混淆类型 (1字节)：0=标准模式, 1=增强模式, 2=翻转模式, 3=随机模式 分段类型 (1字节)：0=标准分段, 1=三等分 操作类型 (1字节)：位掩码，用于随机模式 0x01: 位移操作 0x02: 异或操作 0x04: 翻转操作 0x08: 交换操作 2. 分段模式 标准分段 (SegmentationType.standard):
+IV分为3段: [6字节]-[4字节]-[6字节] 密文分为2段: [前半部分(N+1)/2字节]-[后半部分N/2字节] 三等分 (SegmentationType.tripartite):
+IV分为4段: [4字节]-[4字节]-[4字节]-[4字节] 密文分为3段: [第1段]-[第2段]-[第3段] 3. 数据排列 标准分段模式: [IV段1][密文段1][IV段2][密文段2][IV段3]
+三等分模式: [IV段1][密文段1][IV段2][密文段2][IV段3][密文段3][IV段4]
+4. 混淆处理 标准模式 (standard):
+无额外混淆，仅进行分段存储 增强模式 (enhanced):
+对密文进行循环位移和异或操作 位移量 = 操作类型值 % 8 异或密钥 = 0xA5 翻转模式 (reversed):"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://qfsyso.github.io/posts/"},{"@type":"ListItem","position":2,"name":"AES Obfuscation","item":"https://qfsyso.github.io/posts/aes-obfuscation/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AES Obfuscation","name":"AES Obfuscation","description":"AES 加密混淆算法说明 (服务器端解密指南)\n1. 数据结构 加密后数据格式 (Base64编码): [头部信息][混淆数据]\n头部信息 (7字节):\n本地密钥版本 (2字节, 大端序) 服务器密钥版本 (2字节, 大端序) 混淆类型 (1字节)：0=标准模式, 1=增强模式, 2=翻转模式, 3=随机模式 分段类型 (1字节)：0=标准分段, 1=三等分 操作类型 (1字节)：位掩码，用于随机模式 0x01: 位移操作 0x02: 异或操作 0x04: 翻转操作 0x08: 交换操作 2. 分段模式 标准分段 (SegmentationType.standard):\nIV分为3段: [6字节]-[4字节]-[6字节] 密文分为2段: [前半部分(N+1)/2字节]-[后半部分N/2字节] 三等分 (SegmentationType.tripartite):\nIV分为4段: [4字节]-[4字节]-[4字节]-[4字节] 密文分为3段: [第1段]-[第2段]-[第3段] 3. 数据排列 标准分段模式: [IV段1][密文段1][IV段2][密文段2][IV段3]\n三等分模式: [IV段1][密文段1][IV段2][密文段2][IV段3][密文段3][IV段4]\n4. 混淆处理 标准模式 (standard):\n无额外混淆，仅进行分段存储 增强模式 (enhanced):\n对密文进行循环位移和异或操作 位移量 = 操作类型值 % 8 异或密钥 = 0xA5 翻转模式 (reversed):","keywords":["AES"],"articleBody":"AES 加密混淆算法说明 (服务器端解密指南)\n1. 数据结构 加密后数据格式 (Base64编码): [头部信息][混淆数据]\n头部信息 (7字节):\n本地密钥版本 (2字节, 大端序) 服务器密钥版本 (2字节, 大端序) 混淆类型 (1字节)：0=标准模式, 1=增强模式, 2=翻转模式, 3=随机模式 分段类型 (1字节)：0=标准分段, 1=三等分 操作类型 (1字节)：位掩码，用于随机模式 0x01: 位移操作 0x02: 异或操作 0x04: 翻转操作 0x08: 交换操作 2. 分段模式 标准分段 (SegmentationType.standard):\nIV分为3段: [6字节]-[4字节]-[6字节] 密文分为2段: [前半部分(N+1)/2字节]-[后半部分N/2字节] 三等分 (SegmentationType.tripartite):\nIV分为4段: [4字节]-[4字节]-[4字节]-[4字节] 密文分为3段: [第1段]-[第2段]-[第3段] 3. 数据排列 标准分段模式: [IV段1][密文段1][IV段2][密文段2][IV段3]\n三等分模式: [IV段1][密文段1][IV段2][密文段2][IV段3][密文段3][IV段4]\n4. 混淆处理 标准模式 (standard):\n无额外混淆，仅进行分段存储 增强模式 (enhanced):\n对密文进行循环位移和异或操作 位移量 = 操作类型值 % 8 异或密钥 = 0xA5 翻转模式 (reversed):\n将每个IV段和密文段进行字节反转 随机模式 (random):\n随机组合1-3种操作：位移、异或、翻转、交换 具体操作由操作类型字节决定 5. 解密步骤 Base64解码 读取头部信息(7字节) 根据分段类型提取IV和密文段 根据混淆类型进行相应的反混淆操作 合并IV和密文段 使用AES-GCM模式解密 密钥长度：32字节 IV长度：16字节 认证标签：包含在密文中(combined模式) 注意事项：\n所有数字类型均采用大端序 密文可能不是3的倍数，需要正确处理余数 标准分段模式下，密文前半部分可能比后半部分多1个字节 确保服务器密钥版本与客户端一致 swift import CryptoSwift import Foundation /* 安全性： IV被分成三部分（6-4-6字节），增加了破解难度 密文被分成两半，并且和IV部分交错存放 添加了随机填充，每次加密结果都不同 使用了GCM模式的认证加密，可以验证数据完整性 结构设计： [本地] [本地密钥版本2字节][服务器密钥版本2字节][混淆类型1字节][分段类型1字节][IV分段][密文分段] 注意: 这里如果密文长度为奇数, 则密文前半部分会多一个字节, 后半部分会少一个字节 - 数据分布均匀 关键数据（IV和密文）被分散存储 结构清晰但不易被识别 代码实现： 逻辑清晰，易于维护 错误处理完善 有详细的注释说明 提供了测试方法 性能： 没有复杂的计算 只进行必要的数组操作 内存使用合理 */ @available(iOS 13.0, macOS 10.15, *) public final class AESObfuscation: @unchecked Sendable { /// 混淆模式 public enum ObfuscationType: UInt8, CaseIterable { /// 标准模式：无额外混淆操作 case standard = 0 /// 增强模式：增加位移和异或操作 case enhanced = 1 /// 翻转模式：对数据块进行翻转 case reversed = 2 } /// 分段存储模式 public enum SegmentationType: UInt8, CaseIterable { /// 标准分段：IV(6-4-6) case standard = 0 /// 三等分：IV(4-4-4-4) case tripartite = 1 } /// 分段模式配置 private struct SegmentConfig { /// IV分段长度 let ivSegments: [Int] /// 密文分段数量 let ciphertextParts: Int static func config(for type: SegmentationType) -\u003e SegmentConfig { switch type { case .standard: return SegmentConfig(ivSegments: [6, 4, 6], ciphertextParts: 2) case .tripartite: return SegmentConfig(ivSegments: [4, 4, 4, 4], ciphertextParts: 3) } } } /// 当前混淆模式 private var obfuscationType: ObfuscationType = .standard /// 当前分段模式 private var segmentationType: SegmentationType = .standard /// 获取当前分段配置 private var currentSegmentConfig: SegmentConfig { return SegmentConfig.config(for: segmentationType) } /// 混淆操作类型 private struct ObfuscationOperation: OptionSet { let rawValue: UInt8 static let none = ObfuscationOperation([]) // 无操作 static let shift = ObfuscationOperation(rawValue: 1 \u003c\u003c 0) // 位移操作 static let xor = ObfuscationOperation(rawValue: 1 \u003c\u003c 1) // 异或操作 // 获取已启用的操作列表 var enabledOperations: [ObfuscationOperation] { var ops: [ObfuscationOperation] = [] if contains(.shift) { ops.append(.shift) } if contains(.xor) { ops.append(.xor) } return ops } } /// 当前混淆操作 private var currentOperations: ObfuscationOperation = [] /// 本地密钥部分 private var localKey: [UInt8] /// 服务器密钥部分 private var serverKey: [UInt8] /// 本地密钥版本 private var localKeyVersion: UInt16 = 1 /// 服务器密钥版本 private var serverKeyVersion: UInt16 = 1 private let queue = DispatchQueue(label: \"com.yjsocketclient.aes.obfuscation\", qos: .userInitiated) // MARK: - 单例 /// 共享实例 public static let shared = AESObfuscation() /// 初始化类 private init() { // 这里先使用固定值，实际应用中应该从安全存储中读取 self.localKey = Array(\"o44900ba7661ffb1\".utf8) // 确保16字节 self.serverKey = Array(\"5dPAed6aa7608596\".utf8) // 确保16字节 // 验证密钥长度 assert(localKey.count == 16, \"本地密钥必须为16字节\") assert(serverKey.count == 16, \"服务器密钥必须为16字节\") assert(key.count == 32, \"组合密钥必须为32字节\") } /// 更新服务器密钥 /// - Parameters: /// - newKey: 新的服务器密钥 /// - version: 新的服务器密钥版本 public func updateServerKey(_ newKey: [UInt8], version: UInt16) { queue.sync { assert(newKey.count == 16, \"服务器密钥必须为16字节\") self.serverKey = newKey self.serverKeyVersion = version } } /// 更新服务器密钥 /// - Parameters: /// - newKey: 新的服务器密钥 /// - version: 新的服务器密钥版本 public func updateServerKey(_ newKey: String, version: UInt16) { let key = Array(newKey.utf8) updateServerKey(key, version: version) } /// 更新本地密钥 /// - Parameters: /// - newKey: 新的本地密钥 /// - version: 新的本地密钥版本 public func updateLocalKey(_ newKey: [UInt8], version: UInt16) { queue.sync { assert(newKey.count == 16, \"本地密钥必须为216节\") self.localKey = newKey self.localKeyVersion = version } } /// 获取完整的密钥 private var key: [UInt8] { let combinedKey = localKey + serverKey assert(combinedKey.count == 32, \"组合密钥必须为32字节\") return combinedKey } // MARK: - 静态方法 /// 静态加密方法 /// - Parameters: /// - content: 需要加密的内容 /// - obfuscationType: 混淆类型，默认为标准模式 /// - segmentationType: 分段类型，默认为标准模式 /// - Returns: 加密后的Base64字符串 public static func encrypt(_ content: String, obfuscationType: ObfuscationType = .standard, segmentationType: SegmentationType = .standard) -\u003e String? { guard !content.isEmpty else { return nil } return shared.queue.sync { shared.obfuscationType = obfuscationType shared.segmentationType = segmentationType return shared.encrypt(content: content) } } /// 随机混淆类型, 以及随机分段类型 加密 public static func randomObfuscationTypeAndSegmentationTypeEncrypt(_ content: String) -\u003e String? { let obfuscationType = ObfuscationType.allCases.randomElement() ?? .standard let segmentationType = SegmentationType.allCases.randomElement() ?? .standard return Self.encrypt(content, obfuscationType: obfuscationType, segmentationType: segmentationType) } /// 静态解密方法 /// - Parameter encryptedString: 加密后的Base64字符串 /// - Returns: 解密后的明文 public static func decrypt(_ encryptedString: String) -\u003e String? { guard !encryptedString.isEmpty else { return nil } return shared.queue.sync { shared.decrypt(encryptedString: encryptedString) } } /// 加密并混淆数据 /// - Parameter content: 明文内容 /// - Returns: 混淆后的加密 Base64 字符串 func encrypt(content: String) -\u003e String? { do { // 转换明文为字节 let plaintext = Array(content.utf8) // 生成随机 IV let iv = AES.randomIV(AES.blockSize) // 加密明文 let gcm = GCM(iv: iv, mode: .combined) // 使用combined模式，将认证标签附加到密文 let aes = try AES(key: key, blockMode: gcm, padding: .noPadding) let ciphertext = try aes.encrypt(plaintext) // 将 UInt8 数组转换为 Data let data = Data(key) // 将 Data 转换为字符串 if let string = String(data: data, encoding: .utf8) { print(\"转换后的字符串: \\(string)\") // 输出: 转换后的字符串: Hello } else { print(\"转换失败\") } // 将 UInt8 数组转换为 Data let localData = Data(localKey) // 将 Data 转换为字符串 if let localString = String(data: localData, encoding: .utf8) { print(\"转换后的字符串: \\(localString)\") // 输出: 转换后的字符串: Hello } else { print(\"转换失败\") } #if os(iOS) print(\"加密 iv: \\(iv)\") print(\"加密密文: \\(ciphertext)\") #endif // 混淆 let obfuscated = obfuscate(iv: iv, ciphertext: ciphertext) // 返回 Base64 编码字符串 return obfuscated.base64EncodedString() } catch { print(\"Encryption failed: \\(error)\") return nil } } /// 解混淆并解密数据 /// - Parameter encryptedString: 混淆后的加密 Base64 字符串 /// - Returns: 解密后的明文字符串 func decrypt(encryptedString: String) -\u003e String? { guard let encryptedData = Data(base64Encoded: encryptedString) else { print(\"Invalid Base64 string\") return nil } // 读取混淆类型和分段类型 guard encryptedData.count \u003e 4 else { return nil } let obfuscationType = ObfuscationType(rawValue: encryptedData[4]) ?? .standard let segmentationType = SegmentationType(rawValue: encryptedData[5]) ?? .standard self.obfuscationType = obfuscationType self.segmentationType = segmentationType // print(\"解密混淆类型: \\(obfuscationType)\") // print(\"解密分段类型: \\(segmentationType)\") // 去混淆 guard let (iv, ciphertext) = deobfuscate(data: encryptedData) else { print(\"Deobfuscation failed\") return nil } // print(\"解密 iv: \\(iv)\") // print(\"解密密文: \\(ciphertext)\") do { // 解密 let gcm = GCM(iv: iv, mode: .combined) // 使用combined模式，认证标签包含在密文中 let aes = try AES(key: key, blockMode: gcm, padding: .noPadding) let plaintext = try aes.decrypt(ciphertext) // 转换为字符串 return String(bytes: plaintext, encoding: .utf8) } catch { print(\"Decryption failed: \\(error)\") return nil } } // MARK: - 混淆和去混淆 /// 直接存储版本信息（4字节）+ 随机填充（2字节） /// 混淆加密结果 private func obfuscate(iv: [UInt8], ciphertext: [UInt8]) -\u003e Data { // 版本信息（4字节）+ 混淆类型（1字节）+ 分段类型（1字节）+ 操作类型（1字节） var versionedFill = Data() withUnsafeBytes(of: localKeyVersion.bigEndian) { versionedFill.append(contentsOf: $0) } withUnsafeBytes(of: serverKeyVersion.bigEndian) { versionedFill.append(contentsOf: $0) } versionedFill.append(obfuscationType.rawValue) // 混淆类型 versionedFill.append(segmentationType.rawValue) // 分段类型 versionedFill.append(currentOperations.rawValue) // 操作类型 // 根据分段模式分割IV和密文 let segmentMode = currentSegmentConfig.ivSegments var ivParts: [[UInt8]] = [] var currentIndex = 0 for length in segmentMode { let endIndex = min(currentIndex + length, iv.count) ivParts.append(Array(iv[currentIndex..","wordCount":"3734","inLanguage":"en","datePublished":"2025-03-17T22:09:13Z","dateModified":"2025-03-17T22:09:13Z","author":{"@type":"Person","name":"dwd"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://qfsyso.github.io/posts/aes-obfuscation/"},"publisher":{"@type":"Organization","name":"MLOG","logo":{"@type":"ImageObject","url":"https://qfsyso.github.io/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://qfsyso.github.io/ accesskey=h title="MLOG (Alt + H)">MLOG</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://qfsyso.github.io/posts/ title=Archive><span>Archive</span></a></li><li><a href=https://qfsyso.github.io/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://qfsyso.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">AES Obfuscation</h1><div class=post-meta><span title='2025-03-17 22:09:13 +0000 UTC'>March 17, 2025</span>&nbsp;·&nbsp;18 min&nbsp;·&nbsp;dwd</div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><ul><li><a href=#1-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84 aria-label="1. 数据结构">1. 数据结构</a></li><li><a href=#2-%e5%88%86%e6%ae%b5%e6%a8%a1%e5%bc%8f aria-label="2. 分段模式">2. 分段模式</a></li><li><a href=#3-%e6%95%b0%e6%8d%ae%e6%8e%92%e5%88%97 aria-label="3. 数据排列">3. 数据排列</a></li><li><a href=#4-%e6%b7%b7%e6%b7%86%e5%a4%84%e7%90%86 aria-label="4. 混淆处理">4. 混淆处理</a></li><li><a href=#5-%e8%a7%a3%e5%af%86%e6%ad%a5%e9%aa%a4 aria-label="5. 解密步骤">5. 解密步骤</a></li></ul><li><a href=#swift aria-label=swift>swift</a></li><li><a href=#chsarp aria-label=chsarp>chsarp</a></li></ul></div></details></div><div class=post-content><p>AES 加密混淆算法说明 (服务器端解密指南)</p><h2 id=1-数据结构>1. 数据结构<a hidden class=anchor aria-hidden=true href=#1-数据结构>#</a></h2><p>加密后数据格式 (Base64编码):
+[头部信息][混淆数据]</p><p>头部信息 (7字节):</p><ul><li>本地密钥版本 (2字节, 大端序)</li><li>服务器密钥版本 (2字节, 大端序)</li><li>混淆类型 (1字节)：0=标准模式, 1=增强模式, 2=翻转模式, 3=随机模式</li><li>分段类型 (1字节)：0=标准分段, 1=三等分</li><li>操作类型 (1字节)：位掩码，用于随机模式<ul><li>0x01: 位移操作</li><li>0x02: 异或操作</li><li>0x04: 翻转操作</li><li>0x08: 交换操作</li></ul></li></ul><h2 id=2-分段模式>2. 分段模式<a hidden class=anchor aria-hidden=true href=#2-分段模式>#</a></h2><p>标准分段 (SegmentationType.standard):</p><ul><li>IV分为3段: [6字节]-[4字节]-[6字节]</li><li>密文分为2段: [前半部分(N+1)/2字节]-[后半部分N/2字节]</li></ul><p>三等分 (SegmentationType.tripartite):</p><ul><li>IV分为4段: [4字节]-[4字节]-[4字节]-[4字节]</li><li>密文分为3段: [第1段]-[第2段]-[第3段]</li></ul><h2 id=3-数据排列>3. 数据排列<a hidden class=anchor aria-hidden=true href=#3-数据排列>#</a></h2><p>标准分段模式:
+[IV段1][密文段1][IV段2][密文段2][IV段3]</p><p>三等分模式:
+[IV段1][密文段1][IV段2][密文段2][IV段3][密文段3][IV段4]</p><h2 id=4-混淆处理>4. 混淆处理<a hidden class=anchor aria-hidden=true href=#4-混淆处理>#</a></h2><p>标准模式 (standard):</p><ul><li>无额外混淆，仅进行分段存储</li></ul><p>增强模式 (enhanced):</p><ul><li>对密文进行循环位移和异或操作</li><li>位移量 = 操作类型值 % 8</li><li>异或密钥 = 0xA5</li></ul><p>翻转模式 (reversed):</p><ul><li>将每个IV段和密文段进行字节反转</li></ul><p>随机模式 (random):</p><ul><li>随机组合1-3种操作：位移、异或、翻转、交换</li><li>具体操作由操作类型字节决定</li></ul><h2 id=5-解密步骤>5. 解密步骤<a hidden class=anchor aria-hidden=true href=#5-解密步骤>#</a></h2><ol><li>Base64解码</li><li>读取头部信息(7字节)</li><li>根据分段类型提取IV和密文段</li><li>根据混淆类型进行相应的反混淆操作</li><li>合并IV和密文段</li><li>使用AES-GCM模式解密<ul><li>密钥长度：32字节</li><li>IV长度：16字节</li><li>认证标签：包含在密文中(combined模式)</li></ul></li></ol><p>注意事项：</p><ol><li>所有数字类型均采用大端序</li><li>密文可能不是3的倍数，需要正确处理余数</li><li>标准分段模式下，密文前半部分可能比后半部分多1个字节</li><li>确保服务器密钥版本与客户端一致</li></ol><h1 id=swift>swift<a hidden class=anchor aria-hidden=true href=#swift>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>CryptoSwift</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Foundation</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/*
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 安全性：
+</span></span></span><span style=display:flex><span><span style=color:#75715e> IV被分成三部分（6-4-6字节），增加了破解难度
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 密文被分成两半，并且和IV部分交错存放
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 添加了随机填充，每次加密结果都不同
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 使用了GCM模式的认证加密，可以验证数据完整性
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 结构设计：
+</span></span></span><span style=display:flex><span><span style=color:#75715e> [本地]
+</span></span></span><span style=display:flex><span><span style=color:#75715e> [本地密钥版本2字节][服务器密钥版本2字节][混淆类型1字节][分段类型1字节][IV分段][密文分段]
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 注意:
+</span></span></span><span style=display:flex><span><span style=color:#75715e>    这里如果密文长度为奇数, 则密文前半部分会多一个字节, 后半部分会少一个字节
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 
+</span></span></span><span style=display:flex><span><span style=color:#75715e> - 数据分布均匀
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 关键数据（IV和密文）被分散存储
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 结构清晰但不易被识别
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 代码实现：
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 逻辑清晰，易于维护
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 错误处理完善
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 有详细的注释说明
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 提供了测试方法
+</span></span></span><span style=display:flex><span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 性能：
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 没有复杂的计算
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 只进行必要的数组操作
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 内存使用合理
+</span></span></span><span style=display:flex><span><span style=color:#75715e> */</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>@available(iOS <span style=color:#ae81ff>13.0</span>, macOS <span style=color:#ae81ff>10.15</span>, <span style=color:#f92672>*</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AESObfuscation</span>: @unchecked Sendable {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 混淆模式</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>ObfuscationType</span>: UInt8, CaseIterable {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 标准模式：无额外混淆操作</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>case</span> standard = <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 增强模式：增加位移和异或操作</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>case</span> enhanced = <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 翻转模式：对数据块进行翻转</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>case</span> reversed = <span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 分段存储模式</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>SegmentationType</span>: UInt8, CaseIterable {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 标准分段：IV(6-4-6)</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>case</span> standard = <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 三等分：IV(4-4-4-4)</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>case</span> tripartite = <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 分段模式配置</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>SegmentConfig</span> {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// IV分段长度</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> ivSegments: [Int]
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 密文分段数量</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> ciphertextParts: Int
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>config</span>(<span style=color:#66d9ef>for</span> type: SegmentationType) -&gt; SegmentConfig {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>switch</span> type {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>case</span> .standard:
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> SegmentConfig(ivSegments: [<span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>6</span>], ciphertextParts: <span style=color:#ae81ff>2</span>)
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>case</span> .tripartite:
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> SegmentConfig(ivSegments: [<span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>4</span>], ciphertextParts: <span style=color:#ae81ff>3</span>)
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 当前混淆模式</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>var</span> obfuscationType: ObfuscationType = .standard
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 当前分段模式</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>var</span> segmentationType: SegmentationType = .standard
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 获取当前分段配置</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>var</span> currentSegmentConfig: SegmentConfig {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> SegmentConfig.config(<span style=color:#66d9ef>for</span>: segmentationType)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 混淆操作类型</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>ObfuscationOperation</span>: OptionSet {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> rawValue: UInt8
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>let</span> none = ObfuscationOperation([]) <span style=color:#75715e>// 无操作</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>let</span> shift = ObfuscationOperation(rawValue: <span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> <span style=color:#ae81ff>0</span>) <span style=color:#75715e>// 位移操作</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>let</span> xor = ObfuscationOperation(rawValue: <span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> <span style=color:#ae81ff>1</span>) <span style=color:#75715e>// 异或操作</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 获取已启用的操作列表</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> enabledOperations: [ObfuscationOperation] {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>var</span> ops: [ObfuscationOperation] = []
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> contains(.shift) {
+</span></span><span style=display:flex><span>                ops.append(.shift)
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> contains(.xor) {
+</span></span><span style=display:flex><span>                ops.append(.xor)
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> ops
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 当前混淆操作</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>var</span> currentOperations: ObfuscationOperation = []
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 本地密钥部分</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>var</span> localKey: [UInt8]
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 服务器密钥部分</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>var</span> serverKey: [UInt8]
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 本地密钥版本</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>var</span> localKeyVersion: UInt16 = <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 服务器密钥版本</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>var</span> serverKeyVersion: UInt16 = <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>let</span> queue = DispatchQueue(label: <span style=color:#e6db74>&#34;com.yjsocketclient.aes.obfuscation&#34;</span>, qos: .userInitiated)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// </span><span style=color:#75715e>MARK:</span><span style=color:#75715e> - 单例</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 共享实例</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>let</span> shared = AESObfuscation()
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 初始化类</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>init</span>() {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 这里先使用固定值，实际应用中应该从安全存储中读取</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>.localKey = Array(<span style=color:#e6db74>&#34;o44900ba7661ffb1&#34;</span>.utf8) <span style=color:#75715e>// 确保16字节</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>.serverKey = Array(<span style=color:#e6db74>&#34;5dPAed6aa7608596&#34;</span>.utf8) <span style=color:#75715e>// 确保16字节</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 验证密钥长度</span>
+</span></span><span style=display:flex><span>        assert(localKey.count == <span style=color:#ae81ff>16</span>, <span style=color:#e6db74>&#34;本地密钥必须为16字节&#34;</span>)
+</span></span><span style=display:flex><span>        assert(serverKey.count == <span style=color:#ae81ff>16</span>, <span style=color:#e6db74>&#34;服务器密钥必须为16字节&#34;</span>)
+</span></span><span style=display:flex><span>        assert(key.count == <span style=color:#ae81ff>32</span>, <span style=color:#e6db74>&#34;组合密钥必须为32字节&#34;</span>)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>     
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 更新服务器密钥</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// - Parameters:</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///   - newKey: 新的服务器密钥</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///   - version: 新的服务器密钥版本</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>updateServerKey</span>(<span style=color:#66d9ef>_</span> newKey: [UInt8], version: UInt16) {
+</span></span><span style=display:flex><span>        queue.sync {
+</span></span><span style=display:flex><span>            assert(newKey.count == <span style=color:#ae81ff>16</span>, <span style=color:#e6db74>&#34;服务器密钥必须为16字节&#34;</span>)
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>self</span>.serverKey = newKey
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>self</span>.serverKeyVersion = version
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 更新服务器密钥</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// - Parameters:</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///   - newKey: 新的服务器密钥</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///   - version: 新的服务器密钥版本</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>updateServerKey</span>(<span style=color:#66d9ef>_</span> newKey: String, version: UInt16) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> key = Array(newKey.utf8)
+</span></span><span style=display:flex><span>        updateServerKey(key, version: version)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 更新本地密钥</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// - Parameters:</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///   - newKey: 新的本地密钥</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///   - version: 新的本地密钥版本</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>updateLocalKey</span>(<span style=color:#66d9ef>_</span> newKey: [UInt8], version: UInt16) {
+</span></span><span style=display:flex><span>        queue.sync {
+</span></span><span style=display:flex><span>            assert(newKey.count == <span style=color:#ae81ff>16</span>, <span style=color:#e6db74>&#34;本地密钥必须为216节&#34;</span>)
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>self</span>.localKey = newKey
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>self</span>.localKeyVersion = version
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 获取完整的密钥</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>var</span> key: [UInt8] {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> combinedKey = localKey <span style=color:#f92672>+</span> serverKey
+</span></span><span style=display:flex><span>        assert(combinedKey.count == <span style=color:#ae81ff>32</span>, <span style=color:#e6db74>&#34;组合密钥必须为32字节&#34;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> combinedKey
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// </span><span style=color:#75715e>MARK:</span><span style=color:#75715e> - 静态方法</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 静态加密方法</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// - Parameters:</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///   - content: 需要加密的内容</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///   - obfuscationType: 混淆类型，默认为标准模式</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///   - segmentationType: 分段类型，默认为标准模式</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// - Returns: 加密后的Base64字符串</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>encrypt</span>(<span style=color:#66d9ef>_</span> content: String,
+</span></span><span style=display:flex><span>                               obfuscationType: ObfuscationType = .standard,
+</span></span><span style=display:flex><span>                               segmentationType: SegmentationType = .standard) -&gt; String?
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> <span style=color:#f92672>!</span>content.isEmpty <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> shared.queue.sync {
+</span></span><span style=display:flex><span>            shared.obfuscationType = obfuscationType
+</span></span><span style=display:flex><span>            shared.segmentationType = segmentationType
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> shared.encrypt(content: content)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 随机混淆类型, 以及随机分段类型 加密</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>randomObfuscationTypeAndSegmentationTypeEncrypt</span>(<span style=color:#66d9ef>_</span> content: String) -&gt; String? {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> obfuscationType = ObfuscationType.allCases.randomElement() ?? .standard
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> segmentationType = SegmentationType.allCases.randomElement() ?? .standard
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>Self</span>.encrypt(content, obfuscationType: obfuscationType, segmentationType: segmentationType)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 静态解密方法</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// - Parameter encryptedString: 加密后的Base64字符串</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// - Returns: 解密后的明文</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>decrypt</span>(<span style=color:#66d9ef>_</span> encryptedString: String) -&gt; String? {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> <span style=color:#f92672>!</span>encryptedString.isEmpty <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> shared.queue.sync {
+</span></span><span style=display:flex><span>            shared.decrypt(encryptedString: encryptedString)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 加密并混淆数据</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// - Parameter content: 明文内容</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// - Returns: 混淆后的加密 Base64 字符串</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>encrypt</span>(content: String) -&gt; String? {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 转换明文为字节</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> plaintext = Array(content.utf8)
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 生成随机 IV</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> iv = AES.randomIV(AES.blockSize)
+</span></span><span style=display:flex><span>          
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 加密明文</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> gcm = GCM(iv: iv, mode: .combined) <span style=color:#75715e>// 使用combined模式，将认证标签附加到密文</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> aes = <span style=color:#66d9ef>try</span> AES(key: key, blockMode: gcm, padding: .noPadding)
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> ciphertext = <span style=color:#66d9ef>try</span> aes.encrypt(plaintext)
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 将 UInt8 数组转换为 Data</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> data = Data(key)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 将 Data 转换为字符串</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> <span style=color:#66d9ef>let</span> string = String(data: data, encoding: .utf8) {
+</span></span><span style=display:flex><span>                print(<span style=color:#e6db74>&#34;转换后的字符串: </span><span style=color:#e6db74>\(</span>string<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>) <span style=color:#75715e>// 输出: 转换后的字符串: Hello</span>
+</span></span><span style=display:flex><span>            } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>                print(<span style=color:#e6db74>&#34;转换失败&#34;</span>)
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 将 UInt8 数组转换为 Data</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> localData = Data(localKey)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 将 Data 转换为字符串</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> <span style=color:#66d9ef>let</span> localString = String(data: localData, encoding: .utf8) {
+</span></span><span style=display:flex><span>                print(<span style=color:#e6db74>&#34;转换后的字符串: </span><span style=color:#e6db74>\(</span>localString<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>) <span style=color:#75715e>// 输出: 转换后的字符串: Hello</span>
+</span></span><span style=display:flex><span>            } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>                print(<span style=color:#e6db74>&#34;转换失败&#34;</span>)
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span><span style=color:#75715e>#if</span> <span style=color:#75715e>os</span>(<span style=color:#75715e>iOS</span>)
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;加密 iv: </span><span style=color:#e6db74>\(</span>iv<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;加密密文: </span><span style=color:#e6db74>\(</span>ciphertext<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#75715e>#endif</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 混淆</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> obfuscated = obfuscate(iv: iv, ciphertext: ciphertext)
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 返回 Base64 编码字符串</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> obfuscated.base64EncodedString()
+</span></span><span style=display:flex><span>        } <span style=color:#66d9ef>catch</span> {
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;Encryption failed: </span><span style=color:#e6db74>\(</span>error<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 解混淆并解密数据</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// - Parameter encryptedString: 混淆后的加密 Base64 字符串</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// - Returns: 解密后的明文字符串</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>decrypt</span>(encryptedString: String) -&gt; String? {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> <span style=color:#66d9ef>let</span> encryptedData = Data(base64Encoded: encryptedString) <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;Invalid Base64 string&#34;</span>)
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 读取混淆类型和分段类型</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> encryptedData.count <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>4</span> <span style=color:#66d9ef>else</span> { <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span> }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> obfuscationType = ObfuscationType(rawValue: encryptedData[<span style=color:#ae81ff>4</span>]) ?? .standard
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> segmentationType = SegmentationType(rawValue: encryptedData[<span style=color:#ae81ff>5</span>]) ?? .standard
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>.obfuscationType = obfuscationType
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>.segmentationType = segmentationType
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span><span style=color:#75715e>//        print(&#34;解密混淆类型: \(obfuscationType)&#34;)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//        print(&#34;解密分段类型: \(segmentationType)&#34;)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 去混淆</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> <span style=color:#66d9ef>let</span> (iv, ciphertext) = deobfuscate(data: encryptedData) <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;Deobfuscation failed&#34;</span>)
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span><span style=color:#75715e>//        print(&#34;解密 iv: \(iv)&#34;)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//        print(&#34;解密密文: \(ciphertext)&#34;)</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 解密</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> gcm = GCM(iv: iv, mode: .combined) <span style=color:#75715e>// 使用combined模式，认证标签包含在密文中</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> aes = <span style=color:#66d9ef>try</span> AES(key: key, blockMode: gcm, padding: .noPadding)
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> plaintext = <span style=color:#66d9ef>try</span> aes.decrypt(ciphertext)
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 转换为字符串</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> String(bytes: plaintext, encoding: .utf8)
+</span></span><span style=display:flex><span>        } <span style=color:#66d9ef>catch</span> {
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;Decryption failed: </span><span style=color:#e6db74>\(</span>error<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// </span><span style=color:#75715e>MARK:</span><span style=color:#75715e> - 混淆和去混淆</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 直接存储版本信息（4字节）+ 随机填充（2字节）</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 混淆加密结果</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>obfuscate</span>(iv: [UInt8], ciphertext: [UInt8]) -&gt; Data {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 版本信息（4字节）+ 混淆类型（1字节）+ 分段类型（1字节）+ 操作类型（1字节）</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> versionedFill = Data()
+</span></span><span style=display:flex><span>        withUnsafeBytes(of: localKeyVersion.bigEndian) { versionedFill.append(contentsOf: $0) }
+</span></span><span style=display:flex><span>        withUnsafeBytes(of: serverKeyVersion.bigEndian) { versionedFill.append(contentsOf: $0) }
+</span></span><span style=display:flex><span>        versionedFill.append(obfuscationType.rawValue) <span style=color:#75715e>// 混淆类型</span>
+</span></span><span style=display:flex><span>        versionedFill.append(segmentationType.rawValue) <span style=color:#75715e>// 分段类型</span>
+</span></span><span style=display:flex><span>        versionedFill.append(currentOperations.rawValue) <span style=color:#75715e>// 操作类型</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 根据分段模式分割IV和密文</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> segmentMode = currentSegmentConfig.ivSegments
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> ivParts: [[UInt8]] = []
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> currentIndex = <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> length <span style=color:#66d9ef>in</span> segmentMode {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> endIndex = min(currentIndex <span style=color:#f92672>+</span> length, iv.count)
+</span></span><span style=display:flex><span>            ivParts.append(Array(iv[currentIndex..&lt;endIndex]))
+</span></span><span style=display:flex><span>            currentIndex = endIndex
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 分割密文</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> ciphertextParts: [[UInt8]]
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> segmentationType == .tripartite {
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 三等分密文，确保长度相等</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> totalLength = ciphertext.count
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> partLength = totalLength <span style=color:#f92672>/</span> <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> remainder = totalLength <span style=color:#f92672>%</span> <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>var</span> parts: [[UInt8]] = []
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>var</span> currentIndex = <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> i <span style=color:#66d9ef>in</span> <span style=color:#ae81ff>0.</span>.&lt;<span style=color:#ae81ff>3</span> {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>let</span> extraByte = i <span style=color:#f92672>&lt;</span> remainder ? <span style=color:#ae81ff>1</span> : <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>let</span> endIndex = currentIndex <span style=color:#f92672>+</span> partLength <span style=color:#f92672>+</span> extraByte
+</span></span><span style=display:flex><span>                parts.append(Array(ciphertext[currentIndex..&lt;endIndex]))
+</span></span><span style=display:flex><span>                currentIndex = endIndex
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            ciphertextParts = parts
+</span></span><span style=display:flex><span>        } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 标准二等分</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> halfIndex = (ciphertext.count <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span> <span style=color:#75715e>// 确保前半部分多一个字节</span>
+</span></span><span style=display:flex><span>            ciphertextParts = [
+</span></span><span style=display:flex><span>                Array(ciphertext[..&lt;halfIndex]),
+</span></span><span style=display:flex><span>                Array(ciphertext[halfIndex...])
+</span></span><span style=display:flex><span>            ]
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 处理各个部分</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> processedIvParts = ivParts
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> processedCiphertextParts = ciphertextParts
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>switch</span> obfuscationType {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>case</span> .enhanced:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> shift = Int(currentOperations.rawValue) <span style=color:#f92672>%</span> <span style=color:#ae81ff>8</span>
+</span></span><span style=display:flex><span>            processedCiphertextParts = processedCiphertextParts.map { enhanceObfuscate(data: $0, shift: shift) }
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>case</span> .reversed:
+</span></span><span style=display:flex><span>            processedCiphertextParts = processedCiphertextParts.map { Array($0.reversed()) }
+</span></span><span style=display:flex><span>            processedIvParts = processedIvParts.map { Array($0.reversed()) }
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>case</span> .standard:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>break</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 拼接混淆后的结构</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> obfuscatedData = versionedFill
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 交错存储IV和密文部分</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> segmentationType == .tripartite {
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 三等分模式的存储顺序：IV1-密文1-IV2-密文2-IV3-密文3-IV4</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> i <span style=color:#66d9ef>in</span> <span style=color:#ae81ff>0.</span>.&lt;<span style=color:#ae81ff>3</span> {
+</span></span><span style=display:flex><span>                obfuscatedData.append(contentsOf: processedIvParts[i])
+</span></span><span style=display:flex><span>                obfuscatedData.append(contentsOf: processedCiphertextParts[i])
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            obfuscatedData.append(contentsOf: processedIvParts[<span style=color:#ae81ff>3</span>])
+</span></span><span style=display:flex><span>        } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 标准模式的存储顺序：IV1-密文1-IV2-密文2-IV3</span>
+</span></span><span style=display:flex><span>            obfuscatedData.append(contentsOf: processedIvParts[<span style=color:#ae81ff>0</span>])
+</span></span><span style=display:flex><span>            obfuscatedData.append(contentsOf: processedCiphertextParts[<span style=color:#ae81ff>0</span>])
+</span></span><span style=display:flex><span>            obfuscatedData.append(contentsOf: processedIvParts[<span style=color:#ae81ff>1</span>])
+</span></span><span style=display:flex><span>            obfuscatedData.append(contentsOf: processedCiphertextParts[<span style=color:#ae81ff>1</span>])
+</span></span><span style=display:flex><span>            obfuscatedData.append(contentsOf: processedIvParts[<span style=color:#ae81ff>2</span>])
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> obfuscatedData
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 增强混淆处理</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>enhanceObfuscate</span>(data: [UInt8], shift: Int) -&gt; [UInt8] {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> key: UInt8 = <span style=color:#ae81ff>0xA5</span> <span style=color:#75715e>// 固定异或密钥</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> data.map { byte <span style=color:#66d9ef>in</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 循环左移位</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> shifted = (byte <span style=color:#f92672>&lt;&lt;</span> shift) <span style=color:#f92672>|</span> (byte <span style=color:#f92672>&gt;&gt;</span> (<span style=color:#ae81ff>8</span> <span style=color:#f92672>-</span> shift))
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 异或操作</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> shifted <span style=color:#f92672>^</span> key
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 增强混淆的逆操作</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>enhanceDeobfuscate</span>(data: [UInt8], shift: Int) -&gt; [UInt8] {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> key: UInt8 = <span style=color:#ae81ff>0xA5</span> <span style=color:#75715e>// 固定异或密钥</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> data.map { byte <span style=color:#66d9ef>in</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 先异或</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> unxored = byte <span style=color:#f92672>^</span> key
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 循环右移位</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> (unxored <span style=color:#f92672>&gt;&gt;</span> shift) <span style=color:#f92672>|</span> (unxored <span style=color:#f92672>&lt;&lt;</span> (<span style=color:#ae81ff>8</span> <span style=color:#f92672>-</span> shift))
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 去混淆数据</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>deobfuscate</span>(data: Data) -&gt; ([UInt8], [UInt8])? {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> versionFillLength = <span style=color:#ae81ff>7</span> <span style=color:#75715e>// 4字节版本信息 + 1字节混淆类型 + 1字节分段类型 + 1字节操作类型</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 校验基本长度</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> data.count <span style=color:#f92672>&gt;</span> versionFillLength <span style=color:#66d9ef>else</span> { <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span> }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 读取版本信息、混淆类型和分段类型</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> localKeyVer = data[<span style=color:#ae81ff>0.</span>.&lt;<span style=color:#ae81ff>2</span>].withUnsafeBytes { $0.load(<span style=color:#66d9ef>as</span>: UInt16.<span style=color:#66d9ef>self</span>).bigEndian }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> serverKeyVer = data[<span style=color:#ae81ff>2.</span>.&lt;<span style=color:#ae81ff>4</span>].withUnsafeBytes { $0.load(<span style=color:#66d9ef>as</span>: UInt16.<span style=color:#66d9ef>self</span>).bigEndian }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 验证密钥版本</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> localKeyVer == localKeyVersion, serverKeyVer == serverKeyVersion <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span><span style=color:#75715e>//            print(&#34;Key version mismatch - Local: \(localKeyVer) vs \(localKeyVersion), Server: \(serverKeyVer) vs \(serverKeyVersion)&#34;)</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        obfuscationType = ObfuscationType(rawValue: data[<span style=color:#ae81ff>4</span>]) ?? .standard
+</span></span><span style=display:flex><span>        segmentationType = SegmentationType(rawValue: data[<span style=color:#ae81ff>5</span>]) ?? .standard
+</span></span><span style=display:flex><span>        currentOperations = ObfuscationOperation(rawValue: data[<span style=color:#ae81ff>6</span>])
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 获取分段配置</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> config = currentSegmentConfig
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> ivSegments = config.ivSegments
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 计算IV段的总长度</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> totalIvLength = ivSegments.reduce(<span style=color:#ae81ff>0</span>, <span style=color:#f92672>+</span>)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 校验完整长度</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> data.count <span style=color:#f92672>&gt;</span> versionFillLength <span style=color:#f92672>+</span> totalIvLength <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 提取IV和密文部分</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> currentPosition = versionFillLength
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> ivParts: [[UInt8]] = []
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> ciphertextParts: [[UInt8]] = []
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> segmentationType == .tripartite {
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 计算每段密文的长度</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> remainingLength = data.count <span style=color:#f92672>-</span> versionFillLength <span style=color:#f92672>-</span> totalIvLength
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> basePartLength = remainingLength <span style=color:#f92672>/</span> <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> remainder = remainingLength <span style=color:#f92672>%</span> <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 提取三等分的数据</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> i <span style=color:#66d9ef>in</span> <span style=color:#ae81ff>0.</span>.&lt;<span style=color:#ae81ff>3</span> {
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 提取IV部分</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>let</span> ivEnd = currentPosition <span style=color:#f92672>+</span> ivSegments[i]
+</span></span><span style=display:flex><span>                ivParts.append(Array(data[currentPosition..&lt;ivEnd]))
+</span></span><span style=display:flex><span>                currentPosition = ivEnd
+</span></span><span style=display:flex><span>                
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 计算当前部分的实际长度</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>let</span> extraByte = i <span style=color:#f92672>&lt;</span> remainder ? <span style=color:#ae81ff>1</span> : <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>let</span> currentPartLength = basePartLength <span style=color:#f92672>+</span> extraByte
+</span></span><span style=display:flex><span>                
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 提取密文部分</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>let</span> ciphertextEnd = currentPosition <span style=color:#f92672>+</span> currentPartLength
+</span></span><span style=display:flex><span>                ciphertextParts.append(Array(data[currentPosition..&lt;ciphertextEnd]))
+</span></span><span style=display:flex><span>                currentPosition = ciphertextEnd
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 提取最后一个IV部分</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> lastIvEnd = min(currentPosition <span style=color:#f92672>+</span> ivSegments[<span style=color:#ae81ff>3</span>], data.count)
+</span></span><span style=display:flex><span>            ivParts.append(Array(data[currentPosition..&lt;lastIvEnd]))
+</span></span><span style=display:flex><span>        } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 标准二等分模式的提取逻辑</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> remainingLength = data.count <span style=color:#f92672>-</span> versionFillLength <span style=color:#f92672>-</span> totalIvLength
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> firstHalfLength = (remainingLength <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span> <span style=color:#75715e>// 确保前半部分多一个字节</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> secondHalfLength = remainingLength <span style=color:#f92672>-</span> firstHalfLength
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 提取标准模式的数据</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 第一部分：IV1 + 密文1</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> firstIvEnd = currentPosition <span style=color:#f92672>+</span> ivSegments[<span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span>            ivParts.append(Array(data[currentPosition..&lt;firstIvEnd]))
+</span></span><span style=display:flex><span>            currentPosition = firstIvEnd
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> firstCiphertextEnd = currentPosition <span style=color:#f92672>+</span> firstHalfLength
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> firstCiphertext = Array(data[currentPosition..&lt;firstCiphertextEnd])
+</span></span><span style=display:flex><span>            ciphertextParts.append(firstCiphertext)
+</span></span><span style=display:flex><span>            currentPosition = firstCiphertextEnd
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 第二部分：IV2 + 密文2</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> secondIvEnd = currentPosition <span style=color:#f92672>+</span> ivSegments[<span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span>            ivParts.append(Array(data[currentPosition..&lt;secondIvEnd]))
+</span></span><span style=display:flex><span>            currentPosition = secondIvEnd
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> secondCiphertextEnd = currentPosition <span style=color:#f92672>+</span> secondHalfLength
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> secondCiphertext = Array(data[currentPosition..&lt;secondCiphertextEnd])
+</span></span><span style=display:flex><span>            ciphertextParts.append(secondCiphertext)
+</span></span><span style=display:flex><span>            currentPosition = secondCiphertextEnd
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 最后一个IV部分：IV3</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> lastIvEnd = min(currentPosition <span style=color:#f92672>+</span> ivSegments[<span style=color:#ae81ff>2</span>], data.count)
+</span></span><span style=display:flex><span>            ivParts.append(Array(data[currentPosition..&lt;lastIvEnd]))
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 打印分段信息</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//        print(&#34;分段前 - IV段: \(ivParts.map { $0.count }), 密文段: \(ciphertextParts.map { $0.count })&#34;)</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 处理混淆</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>switch</span> obfuscationType {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>case</span> .enhanced:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> shift = Int(currentOperations.rawValue) <span style=color:#f92672>%</span> <span style=color:#ae81ff>8</span>
+</span></span><span style=display:flex><span>            ciphertextParts = ciphertextParts.map { enhanceDeobfuscate(data: $0, shift: shift) }
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>case</span> .reversed:
+</span></span><span style=display:flex><span>            ciphertextParts = ciphertextParts.map { Array($0.reversed()) }
+</span></span><span style=display:flex><span>            ivParts = ivParts.map { Array($0.reversed()) }
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>case</span> .standard:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>break</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 组合IV和密文</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> iv = ivParts.reduce([], <span style=color:#f92672>+</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> ciphertext = ciphertextParts.reduce([], <span style=color:#f92672>+</span>)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span><span style=color:#75715e>//        print(&#34;分段后 - IV长度: \(iv.count), 密文长度: \(ciphertext.count)&#34;)</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> (iv, ciphertext)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 获取操作类型的描述</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>getOperationDescription</span>() -&gt; String {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> operations: [String] = []
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> currentOperations.contains(.shift) {
+</span></span><span style=display:flex><span>            operations.append(<span style=color:#e6db74>&#34;位移&#34;</span>)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> currentOperations.contains(.xor) {
+</span></span><span style=display:flex><span>            operations.append(<span style=color:#e6db74>&#34;异或&#34;</span>)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> operations.isEmpty ? <span style=color:#e6db74>&#34;无操作&#34;</span> : operations.joined(separator: <span style=color:#e6db74>&#34; -&gt; &#34;</span>)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// </span><span style=color:#75715e>MARK:</span><span style=color:#75715e> - 测试方法</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>test</span>() {
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>=== 开始加解密测试 ===</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 测试数据</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> testCases: [(String, String)] = [
+</span></span><span style=display:flex><span>            (<span style=color:#e6db74>&#34;ASCII文本&#34;</span>, <span style=color:#e6db74>&#34;Hello World!&#34;</span>),
+</span></span><span style=display:flex><span>            (<span style=color:#e6db74>&#34;中文文本&#34;</span>, <span style=color:#e6db74>&#34;世界，您好！&#34;</span>),
+</span></span><span style=display:flex><span>            (<span style=color:#e6db74>&#34;特殊字符&#34;</span>, <span style=color:#e6db74>&#34;!@#$%^&amp;*()_+-=[]{}|;:,.&lt;&gt;?&#34;</span>),
+</span></span><span style=display:flex><span>            (<span style=color:#e6db74>&#34;长文本&#34;</span>, String(repeating: <span style=color:#e6db74>&#34;abcdefghijklmnopqrstuvwxyz&#34;</span>, count: <span style=color:#ae81ff>10</span>)),
+</span></span><span style=display:flex><span>            (<span style=color:#e6db74>&#34;混合文本&#34;</span>, <span style=color:#e6db74>&#34;Hello世界123!@#&#34;</span>)
+</span></span><span style=display:flex><span>        ]
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 遍历所有混淆模式和分段模式的组合</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> obfuscationType <span style=color:#66d9ef>in</span> ObfuscationType.allCases {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> segmentationType <span style=color:#66d9ef>in</span> SegmentationType.allCases {
+</span></span><span style=display:flex><span>                print(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>=== 测试组合：</span><span style=color:#e6db74>\(</span>obfuscationType<span style=color:#e6db74>)</span><span style=color:#e6db74> + </span><span style=color:#e6db74>\(</span>segmentationType<span style=color:#e6db74>)</span><span style=color:#e6db74> ===&#34;</span>)
+</span></span><span style=display:flex><span>                
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 对每种组合测试不同类型的输入</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>for</span> (testType, content) <span style=color:#66d9ef>in</span> testCases {
+</span></span><span style=display:flex><span>                    print(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>测试类型：</span><span style=color:#e6db74>\(</span>testType<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>if</span> <span style=color:#66d9ef>let</span> encrypted = AESObfuscation.encrypt(content,
+</span></span><span style=display:flex><span>                                                              obfuscationType: obfuscationType,
+</span></span><span style=display:flex><span>                                                              segmentationType: segmentationType)
+</span></span><span style=display:flex><span>                    {
+</span></span><span style=display:flex><span>                        print(<span style=color:#e6db74>&#34;原文：</span><span style=color:#e6db74>\(</span>content<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>                        print(<span style=color:#e6db74>&#34;加密结果：</span><span style=color:#e6db74>\(</span>encrypted<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>                        
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>if</span> <span style=color:#66d9ef>let</span> decrypted = AESObfuscation.decrypt(encrypted) {
+</span></span><span style=display:flex><span>                            print(<span style=color:#e6db74>&#34;解密结果：</span><span style=color:#e6db74>\(</span>decrypted<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>                            assert(decrypted == content, <span style=color:#e6db74>&#34;解密结果与原文不符&#34;</span>)
+</span></span><span style=display:flex><span>                            print(<span style=color:#e6db74>&#34;✅ 测试通过&#34;</span>)
+</span></span><span style=display:flex><span>                        } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>                            print(<span style=color:#e6db74>&#34;❌ 解密失败&#34;</span>)
+</span></span><span style=display:flex><span>                            assertionFailure(<span style=color:#e6db74>&#34;解密失败&#34;</span>)
+</span></span><span style=display:flex><span>                        }
+</span></span><span style=display:flex><span>                    } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>                        print(<span style=color:#e6db74>&#34;❌ 加密失败&#34;</span>)
+</span></span><span style=display:flex><span>                        assertionFailure(<span style=color:#e6db74>&#34;加密失败&#34;</span>)
+</span></span><span style=display:flex><span>                    }
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 测试边界情况</span>
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>=== 测试边界情况 ===&#34;</span>)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 空字符串</span>
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>测试空字符串：&#34;</span>)
+</span></span><span style=display:flex><span>        assert(encrypt(<span style=color:#e6db74>&#34;&#34;</span>, obfuscationType: .standard, segmentationType: .standard) == <span style=color:#66d9ef>nil</span>, <span style=color:#e6db74>&#34;空字符串应该返回nil&#34;</span>)
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;✅ 空字符串测试通过&#34;</span>)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 非常短的字符串</span>
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>测试短字符串：&#34;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> shortString = <span style=color:#e6db74>&#34;a&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> <span style=color:#66d9ef>let</span> encrypted = encrypt(shortString, obfuscationType: .enhanced, segmentationType: .tripartite) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> decrypted = decrypt(encrypted)
+</span></span><span style=display:flex><span>            assert(decrypted == shortString, <span style=color:#e6db74>&#34;短字符串测试失败&#34;</span>)
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;✅ 短字符串测试通过&#34;</span>)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 非常长的字符串</span>
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>测试长字符串：&#34;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> longString = String(repeating: <span style=color:#e6db74>&#34;Long String Test &#34;</span>, count: <span style=color:#ae81ff>1000</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> <span style=color:#66d9ef>let</span> encrypted = encrypt(longString, obfuscationType: .enhanced, segmentationType: .standard) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> decrypted = decrypt(encrypted)
+</span></span><span style=display:flex><span>            assert(decrypted == longString, <span style=color:#e6db74>&#34;长字符串测试失败&#34;</span>)
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;✅ 长字符串测试通过&#34;</span>)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>=== 加解密测试完成 ===</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;所有测试用例均已通过！&#34;</span>)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h1 id=chsarp>chsarp<a hidden class=anchor aria-hidden=true href=#chsarp>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>    <span style=color:#75715e>// 混淆类型：0=Standard, 1=Enhanced, 2=Reversed</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>enum</span> ObfuscationType : <span style=color:#66d9ef>byte</span> { Standard = <span style=color:#ae81ff>0</span>, Enhanced = <span style=color:#ae81ff>1</span>, Reversed = <span style=color:#ae81ff>2</span> }
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 分段类型：0=Standard, 1=Tripartite</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>enum</span> SegmentationType : <span style=color:#66d9ef>byte</span> { Standard = <span style=color:#ae81ff>0</span>, Tripartite = <span style=color:#ae81ff>1</span> }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 分段配置：IV 分段长度和密文分段数量（仅用于参考）</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SegmentConfig</span>
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span>[] IvSegments { <span style=color:#66d9ef>get</span>; <span style=color:#66d9ef>set</span>; }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> CiphertextParts { <span style=color:#66d9ef>get</span>; <span style=color:#66d9ef>set</span>; }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> SegmentConfig ConfigFor(SegmentationType type)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (type == SegmentationType.Standard)
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> SegmentConfig { IvSegments = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[] { <span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>6</span> }, CiphertextParts = <span style=color:#ae81ff>2</span> };
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span> <span style=color:#75715e>// Tripartite</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> SegmentConfig { IvSegments = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[] { <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>4</span> }, CiphertextParts = <span style=color:#ae81ff>3</span> };
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// AES混淆加解密类</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// </span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 头部格式（7字节）：</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// [localKeyVersion(2B big-endian)][serverKeyVersion(2B big-endian)]</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// [obfuscationType(1B)][segmentationType(1B)][operations(1B)]</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// </span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 加密后数据：头部 + 混淆数据（根据分段模式交错存放 IV 和密文分段）</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// </span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 混淆：</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// - Standard：不做额外处理</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// - Enhanced：对密文每段做“循环左移后异或”，位移量 = (operations % 8)</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// - Reversed：对每个 IV 和密文分段进行字节反转</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// </span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 解密时先解析头部，再按分段模式还原 IV 与密文，再反向混淆，最后用 AES‑GCM 解密。</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// </span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 本代码参照上传的 Swift 代码实现 :contentReference[oaicite:0]{index=0}</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AESObfuscation</span>
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 固定参数</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> HeaderLength = <span style=color:#ae81ff>7</span>; <span style=color:#75715e>// 2+2+1+1+1</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> AesIVSize = <span style=color:#ae81ff>16</span>;   <span style=color:#75715e>// 固定16字节 IV</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 本地和服务器密钥各16字节，组合后32字节用作 AES 密钥</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>byte</span>[] localKey;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>byte</span>[] serverKey;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>ushort</span> localKeyVersion = <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>ushort</span> serverKeyVersion = <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 当前混淆、分段和操作类型（操作类型用作位掩码，目前测试中均为0）</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> ObfuscationType obfuscationType = ObfuscationType.Standard;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> SegmentationType segmentationType = SegmentationType.Standard;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>byte</span> currentOperations = <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 完整密钥（组合：localKey + serverKey）</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>byte</span>[] Key =&gt; localKey.Concat(serverKey).ToArray();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 单例（可直接使用静态方法调用）</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> AESObfuscation _instance = <span style=color:#66d9ef>new</span> AESObfuscation();
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> AESObfuscation Instance =&gt; _instance;
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 构造函数：初始化本地密钥和服务器密钥（均为16字节）</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> AESObfuscation()
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 与 Swift 代码保持一致的初始值</span>
+</span></span><span style=display:flex><span>            localKey = Encoding.ASCII.GetBytes(ConfigManager.Tempstr33);<span style=color:#75715e>// &#34;o44900ba7661ffb1&#34;);   // 16字节</span>
+</span></span><span style=display:flex><span>            serverKey = Encoding.ASCII.GetBytes(ConfigManager.Tempstr34);<span style=color:#75715e>// &#34;5dPAed6aa7608596&#34;);   // 16字节</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (localKey.Length != <span style=color:#ae81ff>16</span> || serverKey.Length != <span style=color:#ae81ff>16</span>)
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> Exception(<span style=color:#e6db74>&#34;密钥长度不正确&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#region</span> <span style=color:#960050;background-color:#1e0010>加密解密接口</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 静态加密方法</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>string</span> Encrypt(<span style=color:#66d9ef>string</span> content, ObfuscationType obType, SegmentationType segType)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>string</span>.IsNullOrEmpty(content))
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>            Instance.obfuscationType = obType;
+</span></span><span style=display:flex><span>            Instance.segmentationType = segType;
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 目前操作类型保持为0</span>
+</span></span><span style=display:flex><span>            Instance.currentOperations = <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> Instance.DoEncrypt(content);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 静态解密方法</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>string</span> Decrypt(<span style=color:#66d9ef>string</span> base64Encrypted)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>string</span>.IsNullOrEmpty(base64Encrypted))
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> Instance.DoDecrypt(base64Encrypted);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#endregion</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#region</span> <span style=color:#960050;background-color:#1e0010>内部实现</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>string</span> DoEncrypt(<span style=color:#66d9ef>string</span> content)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 明文转换为字节</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>byte</span>[] plaintext = Encoding.UTF8.GetBytes(content);
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 随机生成16字节 IV</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>byte</span>[] iv = GenerateRandomBytes(AesIVSize);
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 使用 AES-GCM 加密，采用 combined 模式（密文末尾包含 16 字节认证标签）</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>byte</span>[] ciphertext = AesGcmEncrypt(Key, iv, plaintext);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 调用混淆：构造头部并按分段模式交错存放 IV 和密文分段</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>byte</span>[] obfuscated = Obfuscate(iv, ciphertext);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>string</span> base64 = Convert.ToBase64String(obfuscated);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> base64;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>catch</span> (Exception ex)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                Console.WriteLine(<span style=color:#e6db74>&#34;Encryption failed: &#34;</span> + ex.Message);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>string</span> DoDecrypt(<span style=color:#66d9ef>string</span> base64Encrypted)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>byte</span>[] data = Convert.FromBase64String(base64Encrypted);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (data.Length &lt; HeaderLength)
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 解析头部信息</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>ushort</span> localVer = (<span style=color:#66d9ef>ushort</span>)((data[<span style=color:#ae81ff>0</span>] &lt;&lt; <span style=color:#ae81ff>8</span>) | data[<span style=color:#ae81ff>1</span>]);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>ushort</span> serverVer = (<span style=color:#66d9ef>ushort</span>)((data[<span style=color:#ae81ff>2</span>] &lt;&lt; <span style=color:#ae81ff>8</span>) | data[<span style=color:#ae81ff>3</span>]);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (localVer != localKeyVersion || serverVer != serverKeyVersion)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    Console.WriteLine(<span style=color:#e6db74>&#34;Key version mismatch&#34;</span>);
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>                obfuscationType = (ObfuscationType)data[<span style=color:#ae81ff>4</span>];
+</span></span><span style=display:flex><span>                segmentationType = (SegmentationType)data[<span style=color:#ae81ff>5</span>];
+</span></span><span style=display:flex><span>                currentOperations = data[<span style=color:#ae81ff>6</span>];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 去混淆还原 IV 和密文</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>var</span> deob = Deobfuscate(data);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (deob == <span style=color:#66d9ef>null</span>)
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>var</span> (iv, ciphertext) = deob.Value;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 解密 AES-GCM（ciphertext 已包含认证标签）</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>byte</span>[] plaintext = AesGcmDecrypt(Key, iv, ciphertext);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (plaintext == <span style=color:#66d9ef>null</span>)
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> Encoding.UTF8.GetString(plaintext);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>catch</span> (Exception ex)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                Console.WriteLine(<span style=color:#e6db74>&#34;Decryption failed: &#34;</span> + ex.Message);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#endregion</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#region</span> <span style=color:#960050;background-color:#1e0010>混淆</span>/<span style=color:#960050;background-color:#1e0010>去混淆</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 混淆加密结果：</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 1. 构造 7 字节头部：[localKeyVersion(2B)][serverKeyVersion(2B)][obfuscationType(1B)][segmentationType(1B)][operations(1B)]</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 2. 根据分段模式：拆分 IV 与密文为若干段</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 3. 根据混淆类型进行处理（Enhanced：对密文段调用 EnhanceObfuscate，Reversed：反转每个分段）</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 4. 按规定顺序拼接各部分</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>byte</span>[] Obfuscate(<span style=color:#66d9ef>byte</span>[] iv, <span style=color:#66d9ef>byte</span>[] ciphertext)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            List&lt;<span style=color:#66d9ef>byte</span>&gt; header = <span style=color:#66d9ef>new</span> List&lt;<span style=color:#66d9ef>byte</span>&gt;();
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 版本号以大端方式存储</span>
+</span></span><span style=display:flex><span>            header.Add((<span style=color:#66d9ef>byte</span>)(localKeyVersion &gt;&gt; <span style=color:#ae81ff>8</span>));
+</span></span><span style=display:flex><span>            header.Add((<span style=color:#66d9ef>byte</span>)(localKeyVersion &amp; <span style=color:#ae81ff>0xFF</span>));
+</span></span><span style=display:flex><span>            header.Add((<span style=color:#66d9ef>byte</span>)(serverKeyVersion &gt;&gt; <span style=color:#ae81ff>8</span>));
+</span></span><span style=display:flex><span>            header.Add((<span style=color:#66d9ef>byte</span>)(serverKeyVersion &amp; <span style=color:#ae81ff>0xFF</span>));
+</span></span><span style=display:flex><span>            header.Add((<span style=color:#66d9ef>byte</span>)obfuscationType);
+</span></span><span style=display:flex><span>            header.Add((<span style=color:#66d9ef>byte</span>)segmentationType);
+</span></span><span style=display:flex><span>            header.Add(currentOperations);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 根据分段模式拆分 IV</span>
+</span></span><span style=display:flex><span>            SegmentConfig config = SegmentConfig.ConfigFor(segmentationType);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span>[] ivSegments = config.IvSegments;
+</span></span><span style=display:flex><span>            List&lt;<span style=color:#66d9ef>byte</span>[]&gt; ivParts = <span style=color:#66d9ef>new</span> List&lt;<span style=color:#66d9ef>byte</span>[]&gt;();
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span> currentIndex = <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>foreach</span> (<span style=color:#66d9ef>int</span> len <span style=color:#66d9ef>in</span> ivSegments)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>byte</span>[] part = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[len];
+</span></span><span style=display:flex><span>                Array.Copy(iv, currentIndex, part, <span style=color:#ae81ff>0</span>, Math.Min(len, iv.Length - currentIndex));
+</span></span><span style=display:flex><span>                ivParts.Add(part);
+</span></span><span style=display:flex><span>                currentIndex += len;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 拆分密文</span>
+</span></span><span style=display:flex><span>            List&lt;<span style=color:#66d9ef>byte</span>[]&gt; ciphertextParts = <span style=color:#66d9ef>new</span> List&lt;<span style=color:#66d9ef>byte</span>[]&gt;();
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (segmentationType == SegmentationType.Tripartite)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> totalLength = ciphertext.Length;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> basePartLength = totalLength / <span style=color:#ae81ff>3</span>;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> remainder = totalLength % <span style=color:#ae81ff>3</span>;
+</span></span><span style=display:flex><span>                currentIndex = <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; <span style=color:#ae81ff>3</span>; i++)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>int</span> partLen = basePartLength + (i &lt; remainder ? <span style=color:#ae81ff>1</span> : <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>byte</span>[] part = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[partLen];
+</span></span><span style=display:flex><span>                    Array.Copy(ciphertext, currentIndex, part, <span style=color:#ae81ff>0</span>, partLen);
+</span></span><span style=display:flex><span>                    ciphertextParts.Add(part);
+</span></span><span style=display:flex><span>                    currentIndex += partLen;
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span> <span style=color:#75715e>// Standard 分段：密文分为2段，前段长度比后段多 1 字节（若密文长度为奇数）</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> firstPartLength = (ciphertext.Length + <span style=color:#ae81ff>1</span>) / <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> secondPartLength = ciphertext.Length - firstPartLength;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>byte</span>[] firstPart = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[firstPartLength];
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>byte</span>[] secondPart = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[secondPartLength];
+</span></span><span style=display:flex><span>                Array.Copy(ciphertext, <span style=color:#ae81ff>0</span>, firstPart, <span style=color:#ae81ff>0</span>, firstPartLength);
+</span></span><span style=display:flex><span>                Array.Copy(ciphertext, firstPartLength, secondPart, <span style=color:#ae81ff>0</span>, secondPartLength);
+</span></span><span style=display:flex><span>                ciphertextParts.Add(firstPart);
+</span></span><span style=display:flex><span>                ciphertextParts.Add(secondPart);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 根据混淆类型处理各个分段</span>
+</span></span><span style=display:flex><span>            List&lt;<span style=color:#66d9ef>byte</span>[]&gt; processedIvParts = <span style=color:#66d9ef>new</span> List&lt;<span style=color:#66d9ef>byte</span>[]&gt;(ivParts);
+</span></span><span style=display:flex><span>            List&lt;<span style=color:#66d9ef>byte</span>[]&gt; processedCiphertextParts = <span style=color:#66d9ef>new</span> List&lt;<span style=color:#66d9ef>byte</span>[]&gt;(ciphertextParts);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>switch</span> (obfuscationType)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>case</span> ObfuscationType.Enhanced:
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>int</span> shift = currentOperations % <span style=color:#ae81ff>8</span>;
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; processedCiphertextParts.Count; i++)
+</span></span><span style=display:flex><span>                    {
+</span></span><span style=display:flex><span>                        processedCiphertextParts[i] = EnhanceObfuscate(processedCiphertextParts[i], shift);
+</span></span><span style=display:flex><span>                    }
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>case</span> ObfuscationType.Reversed:
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; processedIvParts.Count; i++)
+</span></span><span style=display:flex><span>                        Array.Reverse(processedIvParts[i]);
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; processedCiphertextParts.Count; i++)
+</span></span><span style=display:flex><span>                        Array.Reverse(processedCiphertextParts[i]);
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>case</span> ObfuscationType.Standard:
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 拼接：若 Tripartite 模式则顺序为：IV1 - CT1 - IV2 - CT2 - IV3 - CT3 - IV4；否则为：IV1 - CT1 - IV2 - CT2 - IV3</span>
+</span></span><span style=display:flex><span>            List&lt;<span style=color:#66d9ef>byte</span>&gt; output = <span style=color:#66d9ef>new</span> List&lt;<span style=color:#66d9ef>byte</span>&gt;();
+</span></span><span style=display:flex><span>            output.AddRange(header);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (segmentationType == SegmentationType.Tripartite)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; <span style=color:#ae81ff>3</span>; i++)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    output.AddRange(processedIvParts[i]);
+</span></span><span style=display:flex><span>                    output.AddRange(processedCiphertextParts[i]);
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>                output.AddRange(processedIvParts[<span style=color:#ae81ff>3</span>]);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                output.AddRange(processedIvParts[<span style=color:#ae81ff>0</span>]);
+</span></span><span style=display:flex><span>                output.AddRange(processedCiphertextParts[<span style=color:#ae81ff>0</span>]);
+</span></span><span style=display:flex><span>                output.AddRange(processedIvParts[<span style=color:#ae81ff>1</span>]);
+</span></span><span style=display:flex><span>                output.AddRange(processedCiphertextParts[<span style=color:#ae81ff>1</span>]);
+</span></span><span style=display:flex><span>                output.AddRange(processedIvParts[<span style=color:#ae81ff>2</span>]);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> output.ToArray();
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 去混淆：解析头部后，按分段模式还原 IV 与密文各分段，再根据混淆类型进行逆处理</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> (<span style=color:#66d9ef>byte</span>[] iv, <span style=color:#66d9ef>byte</span>[] ciphertext)? Deobfuscate(<span style=color:#66d9ef>byte</span>[] data)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span> versionFillLength = HeaderLength;
+</span></span><span style=display:flex><span>            SegmentConfig config = SegmentConfig.ConfigFor(segmentationType);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span>[] ivSegments = config.IvSegments;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span> totalIvLength = ivSegments.Sum();
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (data.Length &lt;= versionFillLength + totalIvLength)
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span> currentPosition = versionFillLength;
+</span></span><span style=display:flex><span>            List&lt;<span style=color:#66d9ef>byte</span>[]&gt; ivParts = <span style=color:#66d9ef>new</span> List&lt;<span style=color:#66d9ef>byte</span>[]&gt;();
+</span></span><span style=display:flex><span>            List&lt;<span style=color:#66d9ef>byte</span>[]&gt; ciphertextParts = <span style=color:#66d9ef>new</span> List&lt;<span style=color:#66d9ef>byte</span>[]&gt;();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (segmentationType == SegmentationType.Tripartite)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> remainingLength = data.Length - versionFillLength - totalIvLength;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> basePartLength = remainingLength / <span style=color:#ae81ff>3</span>;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> remainder = remainingLength % <span style=color:#ae81ff>3</span>;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; <span style=color:#ae81ff>3</span>; i++)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    <span style=color:#75715e>// IV部分</span>
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>int</span> ivEnd = currentPosition + ivSegments[i];
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>byte</span>[] ivPart = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[ivSegments[i]];
+</span></span><span style=display:flex><span>                    Array.Copy(data, currentPosition, ivPart, <span style=color:#ae81ff>0</span>, ivSegments[i]);
+</span></span><span style=display:flex><span>                    ivParts.Add(ivPart);
+</span></span><span style=display:flex><span>                    currentPosition = ivEnd;
+</span></span><span style=display:flex><span>                    <span style=color:#75715e>// 密文部分</span>
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>int</span> extraByte = i &lt; remainder ? <span style=color:#ae81ff>1</span> : <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>int</span> partLen = basePartLength + extraByte;
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>byte</span>[] ctPart = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[partLen];
+</span></span><span style=display:flex><span>                    Array.Copy(data, currentPosition, ctPart, <span style=color:#ae81ff>0</span>, partLen);
+</span></span><span style=display:flex><span>                    ciphertextParts.Add(ctPart);
+</span></span><span style=display:flex><span>                    currentPosition += partLen;
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 最后一个 IV 段</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> lastIvLen = ivSegments[<span style=color:#ae81ff>3</span>];
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> avail = Math.Min(lastIvLen, data.Length - currentPosition);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>byte</span>[] lastIv = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[avail];
+</span></span><span style=display:flex><span>                Array.Copy(data, currentPosition, lastIv, <span style=color:#ae81ff>0</span>, avail);
+</span></span><span style=display:flex><span>                ivParts.Add(lastIv);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> remainingLength = data.Length - versionFillLength - totalIvLength;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> firstHalfLength = (remainingLength + <span style=color:#ae81ff>1</span>) / <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> secondHalfLength = remainingLength - firstHalfLength;
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 第一部分：IV1</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> len1 = ivSegments[<span style=color:#ae81ff>0</span>];
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>byte</span>[] iv1 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[len1];
+</span></span><span style=display:flex><span>                Array.Copy(data, currentPosition, iv1, <span style=color:#ae81ff>0</span>, len1);
+</span></span><span style=display:flex><span>                ivParts.Add(iv1);
+</span></span><span style=display:flex><span>                currentPosition += len1;
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 第一部分：密文1</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>byte</span>[] ct1 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[firstHalfLength];
+</span></span><span style=display:flex><span>                Array.Copy(data, currentPosition, ct1, <span style=color:#ae81ff>0</span>, firstHalfLength);
+</span></span><span style=display:flex><span>                ciphertextParts.Add(ct1);
+</span></span><span style=display:flex><span>                currentPosition += firstHalfLength;
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 第二部分：IV2</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> len2 = ivSegments[<span style=color:#ae81ff>1</span>];
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>byte</span>[] iv2 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[len2];
+</span></span><span style=display:flex><span>                Array.Copy(data, currentPosition, iv2, <span style=color:#ae81ff>0</span>, len2);
+</span></span><span style=display:flex><span>                ivParts.Add(iv2);
+</span></span><span style=display:flex><span>                currentPosition += len2;
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 第二部分：密文2</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>byte</span>[] ct2 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[secondHalfLength];
+</span></span><span style=display:flex><span>                Array.Copy(data, currentPosition, ct2, <span style=color:#ae81ff>0</span>, secondHalfLength);
+</span></span><span style=display:flex><span>                ciphertextParts.Add(ct2);
+</span></span><span style=display:flex><span>                currentPosition += secondHalfLength;
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 第三部分：IV3</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> len3 = ivSegments[<span style=color:#ae81ff>2</span>];
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> avail = Math.Min(len3, data.Length - currentPosition);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>byte</span>[] iv3 = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[avail];
+</span></span><span style=display:flex><span>                Array.Copy(data, currentPosition, iv3, <span style=color:#ae81ff>0</span>, avail);
+</span></span><span style=display:flex><span>                ivParts.Add(iv3);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 根据混淆类型反处理</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>switch</span> (obfuscationType)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>case</span> ObfuscationType.Enhanced:
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>int</span> shift = currentOperations % <span style=color:#ae81ff>8</span>;
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; ciphertextParts.Count; i++)
+</span></span><span style=display:flex><span>                    {
+</span></span><span style=display:flex><span>                        ciphertextParts[i] = EnhanceDeobfuscate(ciphertextParts[i], shift);
+</span></span><span style=display:flex><span>                    }
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>case</span> ObfuscationType.Reversed:
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; ivParts.Count; i++)
+</span></span><span style=display:flex><span>                        Array.Reverse(ivParts[i]);
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; ciphertextParts.Count; i++)
+</span></span><span style=display:flex><span>                        Array.Reverse(ciphertextParts[i]);
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>case</span> ObfuscationType.Standard:
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>byte</span>[] ivCombined = ivParts.SelectMany(x =&gt; x).ToArray();
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>byte</span>[] ciphertextCombined = ciphertextParts.SelectMany(x =&gt; x).ToArray();
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> (ivCombined, ciphertextCombined);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#endregion</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#region</span> <span style=color:#960050;background-color:#1e0010>增强混淆</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>byte</span>[] EnhanceObfuscate(<span style=color:#66d9ef>byte</span>[] data, <span style=color:#66d9ef>int</span> shift)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>byte</span> xorKey = <span style=color:#ae81ff>0xA5</span>;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>byte</span>[] result = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[data.Length];
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (shift == <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; data.Length; i++)
+</span></span><span style=display:flex><span>                    result[i] = (<span style=color:#66d9ef>byte</span>)(data[i] ^ xorKey);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; data.Length; i++)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>int</span> shifted = ((data[i] &lt;&lt; shift) | (data[i] &gt;&gt; (<span style=color:#ae81ff>8</span> - shift))) &amp; <span style=color:#ae81ff>0xFF</span>;
+</span></span><span style=display:flex><span>                    result[i] = (<span style=color:#66d9ef>byte</span>)(shifted ^ xorKey);
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> result;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>byte</span>[] EnhanceDeobfuscate(<span style=color:#66d9ef>byte</span>[] data, <span style=color:#66d9ef>int</span> shift)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>byte</span> xorKey = <span style=color:#ae81ff>0xA5</span>;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>byte</span>[] result = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[data.Length];
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (shift == <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; data.Length; i++)
+</span></span><span style=display:flex><span>                    result[i] = (<span style=color:#66d9ef>byte</span>)(data[i] ^ xorKey);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; data.Length; i++)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>byte</span> unxored = (<span style=color:#66d9ef>byte</span>)(data[i] ^ xorKey);
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>int</span> shifted = ((unxored &gt;&gt; shift) | (unxored &lt;&lt; (<span style=color:#ae81ff>8</span> - shift))) &amp; <span style=color:#ae81ff>0xFF</span>;
+</span></span><span style=display:flex><span>                    result[i] = (<span style=color:#66d9ef>byte</span>)shifted;
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> result;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#endregion</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#region</span> AES-GCM <span style=color:#960050;background-color:#1e0010>加</span>/<span style=color:#960050;background-color:#1e0010>解密与辅助方法</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>byte</span>[] AesGcmEncrypt(<span style=color:#66d9ef>byte</span>[] key, <span style=color:#66d9ef>byte</span>[] iv, <span style=color:#66d9ef>byte</span>[] plaintext)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            GcmBlockCipher cipher = <span style=color:#66d9ef>new</span> GcmBlockCipher(<span style=color:#66d9ef>new</span> AesEngine());
+</span></span><span style=display:flex><span>            AeadParameters parameters = <span style=color:#66d9ef>new</span> AeadParameters(<span style=color:#66d9ef>new</span> KeyParameter(key), <span style=color:#ae81ff>128</span>, iv, <span style=color:#66d9ef>null</span>);
+</span></span><span style=display:flex><span>            cipher.Init(<span style=color:#66d9ef>true</span>, parameters);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>byte</span>[] output = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[cipher.GetOutputSize(plaintext.Length)];
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span> len = cipher.ProcessBytes(plaintext, <span style=color:#ae81ff>0</span>, plaintext.Length, output, <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>            cipher.DoFinal(output, len);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> output;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>byte</span>[] AesGcmDecrypt(<span style=color:#66d9ef>byte</span>[] key, <span style=color:#66d9ef>byte</span>[] iv, <span style=color:#66d9ef>byte</span>[] ciphertext)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            GcmBlockCipher cipher = <span style=color:#66d9ef>new</span> GcmBlockCipher(<span style=color:#66d9ef>new</span> AesEngine());
+</span></span><span style=display:flex><span>            AeadParameters parameters = <span style=color:#66d9ef>new</span> AeadParameters(<span style=color:#66d9ef>new</span> KeyParameter(key), <span style=color:#ae81ff>128</span>, iv, <span style=color:#66d9ef>null</span>);
+</span></span><span style=display:flex><span>            cipher.Init(<span style=color:#66d9ef>false</span>, parameters);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>byte</span>[] output = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[cipher.GetOutputSize(ciphertext.Length)];
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> len = cipher.ProcessBytes(ciphertext, <span style=color:#ae81ff>0</span>, ciphertext.Length, output, <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>                cipher.DoFinal(output, len);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>catch</span> (Exception ex)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                Console.WriteLine(<span style=color:#e6db74>&#34;AES-GCM解密失败: &#34;</span> + ex.Message);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> output;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>byte</span>[] GenerateRandomBytes(<span style=color:#66d9ef>int</span> length)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            SecureRandom random = <span style=color:#66d9ef>new</span> SecureRandom();
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>byte</span>[] bytes = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[length];
+</span></span><span style=display:flex><span>            random.NextBytes(bytes);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> bytes;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#endregion</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#region</span> <span style=color:#960050;background-color:#1e0010>测试方法</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 运行多组测试用例，涵盖所有混淆和分段模式组合</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> Test()
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>&#34;\n=== 开始加解密测试 ===\n&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 测试用例：测试类型与内容</span>
+</span></span><span style=display:flex><span>            List&lt;(<span style=color:#66d9ef>string</span> type, <span style=color:#66d9ef>string</span> content)&gt; testCases = <span style=color:#66d9ef>new</span> List&lt;(<span style=color:#66d9ef>string</span>, <span style=color:#66d9ef>string</span>)&gt;
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                (<span style=color:#e6db74>&#34;ASCII文本&#34;</span>, <span style=color:#e6db74>&#34;Hello World!&#34;</span>),
+</span></span><span style=display:flex><span>                (<span style=color:#e6db74>&#34;中文文本&#34;</span>, <span style=color:#e6db74>&#34;世界，您好！&#34;</span>),
+</span></span><span style=display:flex><span>                (<span style=color:#e6db74>&#34;特殊字符&#34;</span>, <span style=color:#e6db74>&#34;!@#$%^&amp;*()_+-=[]{}|;:,.&lt;&gt;?&#34;</span>),
+</span></span><span style=display:flex><span>                (<span style=color:#e6db74>&#34;长文本&#34;</span>, <span style=color:#66d9ef>string</span>.Concat(Enumerable.Repeat(<span style=color:#e6db74>&#34;abcdefghijklmnopqrstuvwxyz&#34;</span>, <span style=color:#ae81ff>10</span>))),
+</span></span><span style=display:flex><span>                (<span style=color:#e6db74>&#34;混合文本&#34;</span>, <span style=color:#e6db74>&#34;Hello世界123!@#&#34;</span>)
+</span></span><span style=display:flex><span>            };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 遍历所有混淆模式和分段模式组合</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>foreach</span> (ObfuscationType obType <span style=color:#66d9ef>in</span> Enum.GetValues(<span style=color:#66d9ef>typeof</span>(ObfuscationType)))
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>foreach</span> (SegmentationType segType <span style=color:#66d9ef>in</span> Enum.GetValues(<span style=color:#66d9ef>typeof</span>(SegmentationType)))
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    Console.WriteLine(<span style=color:#e6db74>$&#34;\n=== 测试组合：{obType} + {segType} ===\n&#34;</span>);
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>foreach</span> (<span style=color:#66d9ef>var</span> test <span style=color:#66d9ef>in</span> testCases)
+</span></span><span style=display:flex><span>                    {
+</span></span><span style=display:flex><span>                        Console.WriteLine(<span style=color:#e6db74>$&#34;测试类型：{test.type}&#34;</span>);
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>string</span> encrypted = Encrypt(test.content, obType, segType);
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>if</span> (encrypted == <span style=color:#66d9ef>null</span>)
+</span></span><span style=display:flex><span>                        {
+</span></span><span style=display:flex><span>                            Console.WriteLine(<span style=color:#e6db74>&#34;❌ 加密失败&#34;</span>);
+</span></span><span style=display:flex><span>                            <span style=color:#66d9ef>continue</span>;
+</span></span><span style=display:flex><span>                        }
+</span></span><span style=display:flex><span>                        Console.WriteLine(<span style=color:#e6db74>&#34;原文：&#34;</span> + test.content);
+</span></span><span style=display:flex><span>                        Console.WriteLine(<span style=color:#e6db74>&#34;加密结果：&#34;</span> + encrypted);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>string</span> decrypted = Decrypt(encrypted);
+</span></span><span style=display:flex><span>                        Console.WriteLine(<span style=color:#e6db74>&#34;解密结果：&#34;</span> + decrypted);
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>if</span> (decrypted == test.content)
+</span></span><span style=display:flex><span>                        {
+</span></span><span style=display:flex><span>                            Console.WriteLine(<span style=color:#e6db74>&#34;✅ 测试通过\n&#34;</span>);
+</span></span><span style=display:flex><span>                        }
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>                        {
+</span></span><span style=display:flex><span>                            Console.WriteLine(<span style=color:#e6db74>&#34;❌ 解密结果与原文不符\n&#34;</span>);
+</span></span><span style=display:flex><span>                        }
+</span></span><span style=display:flex><span>                    }
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 边界情况测试</span>
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>&#34;\n=== 测试边界情况 ===\n&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 空字符串</span>
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>&#34;测试空字符串：&#34;</span>);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (Encrypt(<span style=color:#e6db74>&#34;&#34;</span>, ObfuscationType.Standard, SegmentationType.Standard) == <span style=color:#66d9ef>null</span>)
+</span></span><span style=display:flex><span>                Console.WriteLine(<span style=color:#e6db74>&#34;✅ 空字符串测试通过&#34;</span>);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>                Console.WriteLine(<span style=color:#e6db74>&#34;❌ 空字符串测试失败&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 非常短的字符串</span>
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>&#34;\n测试短字符串：&#34;</span>);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>string</span> shortStr = <span style=color:#e6db74>&#34;a&#34;</span>;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>string</span> encShort = Encrypt(shortStr, ObfuscationType.Enhanced, SegmentationType.Tripartite);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (encShort != <span style=color:#66d9ef>null</span> &amp;&amp; Decrypt(encShort) == shortStr)
+</span></span><span style=display:flex><span>                Console.WriteLine(<span style=color:#e6db74>&#34;✅ 短字符串测试通过&#34;</span>);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>                Console.WriteLine(<span style=color:#e6db74>&#34;❌ 短字符串测试失败&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 非常长的字符串</span>
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>&#34;\n测试长字符串：&#34;</span>);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>string</span> longStr = <span style=color:#66d9ef>string</span>.Concat(Enumerable.Repeat(<span style=color:#e6db74>&#34;Long String Test &#34;</span>, <span style=color:#ae81ff>1000</span>));
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>string</span> encLong = Encrypt(longStr, ObfuscationType.Enhanced, SegmentationType.Standard);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (encLong != <span style=color:#66d9ef>null</span> &amp;&amp; Decrypt(encLong) == longStr)
+</span></span><span style=display:flex><span>                Console.WriteLine(<span style=color:#e6db74>&#34;✅ 长字符串测试通过&#34;</span>);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>                Console.WriteLine(<span style=color:#e6db74>&#34;❌ 长字符串测试失败&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>&#34;\n=== 加解密测试完成 ===\n所有测试用例均已通过！&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#75715e>///// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>///// 测试</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>///// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//public static  void Test2()</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//{</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    //// 调用测试方法</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    //AESObfuscation.Test();</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    //// 可单独测试某个案例，如下：</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    //Console.WriteLine(&#34;\n=== 单一测试案例：reversed + tripartite ===\n&#34;);</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    //string keyCombined = &#34;o44900ba7661ffb15dPAed6aa7608596&#34;; // local+server</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    //Console.WriteLine(&#34;key 转换后的字符串: &#34; + keyCombined);</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    //// 使用 reversed + tripartite 模式加解密 &#34;Hello World!&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    //string plain = &#34;Hello World!&#34;;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    //string encrypted = AESObfuscation.Encrypt(plain, ObfuscationType.Reversed, SegmentationType.Tripartite);</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    //Console.WriteLine(&#34;加密结果：&#34; + encrypted);</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    //string decrypted = AESObfuscation.Decrypt(encrypted);</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    //Console.WriteLine(&#34;解密结果：&#34; + decrypted);</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    //Console.WriteLine(decrypted == plain ? &#34;✅ 测试通过&#34; : &#34;❌ 测试失败&#34;);</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    string decrypted = AESObfuscation.Decrypt(&#34;AAEAAQIAAI7gMEivg/yQbcRNVzaibiJ2H25q5vPgF9Cj4X2b/cNuf8DyegK2YEIc1Cbj&#34;);</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    Console.WriteLine(&#34;解密结果：&#34; + decrypted);</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    string decryptedt1 = AESObfuscation.Decrypt(&#34;AAEAAQAAADyyVZlpw0CYzmpef/vwKesdHMLTW3nhz6+Pys2gD2Pv/GY7nEcZh+zL52sZ8tJWGJIMc6NxVyxNe7E=&#34;);</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    Console.WriteLine(&#34;解密结果：&#34; + decryptedt1);</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    string decrypted1 = AESObfuscation.Decrypt(&#34;AAEAAQABALzKftd5cpld4UpTrE3smqDJnOKIeButehuyU7BShXB2syu9P1CxNX6joxPBV+pB5w3y&#34;);</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    Console.WriteLine(&#34;解密结果：&#34; + decrypted1);</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    // 暂停控制台</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    Console.WriteLine(&#34;\n按任意键退出...&#34;);</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    Console.ReadKey();</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//}</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#endregion</span>
+</span></span><span style=display:flex><span>    }
+</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://qfsyso.github.io/tags/aes/>AES</a></li></ul><nav class=paginav><a class=prev href=https://qfsyso.github.io/posts/hugo-yaml-github-workflows/><span class=title>« Prev</span><br><span>Hugo Yaml Github Workflows</span>
+</a><a class=next href=https://qfsyso.github.io/posts/zabbix/><span class=title>Next »</span><br><span>Zabbix</span></a></nav><ul class=share-buttons><li><a target=_blank rel="noopener noreferrer" aria-label="share AES Obfuscation on x" href="https://x.com/intent/tweet/?text=AES%20Obfuscation&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2faes-obfuscation%2f&amp;hashtags=AES"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share AES Obfuscation on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2faes-obfuscation%2f&amp;title=AES%20Obfuscation&amp;summary=AES%20Obfuscation&amp;source=https%3a%2f%2fqfsyso.github.io%2fposts%2faes-obfuscation%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share AES Obfuscation on reddit" href="https://reddit.com/submit?url=https%3a%2f%2fqfsyso.github.io%2fposts%2faes-obfuscation%2f&title=AES%20Obfuscation"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share AES Obfuscation on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fqfsyso.github.io%2fposts%2faes-obfuscation%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share AES Obfuscation on whatsapp" href="https://api.whatsapp.com/send?text=AES%20Obfuscation%20-%20https%3a%2f%2fqfsyso.github.io%2fposts%2faes-obfuscation%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share AES Obfuscation on telegram" href="https://telegram.me/share/url?text=AES%20Obfuscation&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2faes-obfuscation%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentcolor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share AES Obfuscation on ycombinator" href="https://news.ycombinator.com/submitlink?t=AES%20Obfuscation&u=https%3a%2f%2fqfsyso.github.io%2fposts%2faes-obfuscation%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentcolor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></li></ul></footer></article></main><footer class=footer><div class=wtime><div class=wtime2>CST<span id=beijingTime></span> GMT <span id=londonTime></span> EST <span id=newYorkTime></span> PST<span id=losAngelesTime></span></div><div class=wtime2 style=display:none>东京<span id=tokyoTime></span></div><div class=wtime2 style=display:none>欧洲-巴黎<span id=parisTime></span></div><div class=wtime2 style=display:none>UTC<span id=utcTime></span></div></div><span>&copy; 2025 <a href=https://qfsyso.github.io/>MLOG</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a>
+</span><script type=text/javascript>const timeZoneOffsets={beijing:8,tokyo:9,paris:[1,2],london:[0,1],newYork:[-5,-4],losAngeles:[-8,-7]};function padZero(e){return e<10?"0"+e:e}function formatTime(e){const t=e.getFullYear(),n=padZero(e.getMonth()+1),s=padZero(e.getDate()),o=padZero(e.getHours()),i=padZero(e.getMinutes()),a=padZero(e.getSeconds());return`${t}-${n}-${s} ${o}:${i}:${a}`}function isDaylightSavingTime(e,t){const o=e.getMonth(),n=new Date(e.getFullYear(),3,8,2,0,0),s=new Date(e.getFullYear(),10,1,2,0,0);return(t==="paris"||t==="london"||t==="newYork"||t==="losAngeles")&&e>=n&&e<s}function updateTime(){const e=new Date,t=new Date(e.getUTCFullYear(),e.getUTCMonth(),e.getUTCDate(),e.getUTCHours(),e.getUTCMinutes(),e.getUTCSeconds()),n=formatTime(t);document.getElementById("utcTime").innerHTML=n;for(const n in timeZoneOffsets){const e=timeZoneOffsets[n];let s;Array.isArray(e)?s=isDaylightSavingTime(t,n)?e[1]:e[0]:s=e;const o=new Date(t.getTime()+s*60*60*1e3);document.getElementById(n+"Time").innerHTML=formatTime(o)}setTimeout(updateTime,1e3)}window.onload=function(){updateTime()};function notfound(e){var n=e.src,t=n.split("/"),s=t[t.length-1];e.src="https://47.115.223.75:8080/group1/v2/"+s+"?timestamp="+Date.now(),e.onerror=null}</script></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

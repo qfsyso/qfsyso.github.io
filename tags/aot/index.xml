@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>AOT on MLOG</title><link>https://qfsyso.github.io/tags/aot/</link><description>Recent content in AOT on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Wed, 08 May 2024 13:01:11 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/aot/index.xml" rel="self" type="application/rss+xml"/><item><title>.NET native AOT</title><link>https://qfsyso.github.io/posts/.net-native-aot/</link><pubDate>Wed, 08 May 2024 13:01:11 +0000</pubDate><guid>https://qfsyso.github.io/posts/.net-native-aot/</guid><description>前言 .NET8对于性能的优化是方方面面的，所以AOT预编译机器码也是不例外的。本篇来看下对于AOT的优化。
+概述 首先要明确一个概念，.NET里面的AOT它是原生的。什么意思呢？也就是说通过ILC编译器(AOT编译器，编译出来的代码是各个平台上可以直接运行的二进制代码。比如MacOS的二进制，Linux二进制等等。所以称之为原生。
+C#源码被ILC编译之后，生成了一个完全原生态代码的可执行文件。在执行的时候不需要JIT来编译任何东西，因为JIT已经在ILC里面被充分利用过了。实际上AOT里面也没有包含JIT。那么它如何优化呢？只能是在ILC里面调用JIT的时候了。所以它这个优化依然依靠JIT。.NET8里面优化AOT的一个典型的例子，就是ASP.NET应用程序在使用AOT的时候表现不错，同时也降低了总成本。
+创建项目 启用AOT
+打包指令 dotnet publish DemoAot.csproj -o pub\ -c Release -r win-x64 linux下 先安装SDK 安装后
+dotnet --list-sdks dotnet publish DemoAot.csproj -o $PWD/pub -c Release -r linux-x64 macos下 安装SDK后
+dotnet --list-sdks dotnet publish DemoAot.csproj -o $PWD/pub -c Release -r osx-x64 重启服务器 通过命令 cd fser 及sudo nohup /root/fser/fileserver &amp;gt; output{当前时间}.log 2&amp;gt;&amp;amp;1 &amp;amp; 和命令 cd nets4 及sudo nohup dotnet /root/nets4/IM.dll &amp;gt; output{当前时间}.log 2&amp;gt;&amp;amp;1 &amp;amp; 自动化运行
+为了自动化运行这些程序启动命令，可以编写一个 Shell 脚本并结合系统启动服务（如 systemd）来执行。 以下是具体实现步骤：</description></item></channel></rss>

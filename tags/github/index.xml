@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Github on MLOG</title><link>https://qfsyso.github.io/tags/github/</link><description>Recent content in Github on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Sun, 23 Mar 2025 22:09:13 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo Yaml Github Workflows</title><link>https://qfsyso.github.io/posts/hugo-yaml-github-workflows/</link><pubDate>Sun, 23 Mar 2025 22:09:13 +0800</pubDate><guid>https://qfsyso.github.io/posts/hugo-yaml-github-workflows/</guid><description>关于 Hugo Hugo 是一个快速且灵活的静态网站生成器，专为构建博客、文档和其他静态网站而设计。Hugo 的运行不需要 Python、PHP 等高级语言以及数据库的依赖。它具备运行速度快、扩展性强、支持多语言、支持 MarkDown 等诸多优点。通过 Hugo 构建的网站非常安全和快速、并且可以托管在任何地方如 Google Cloud Storage、 GitHub Pages、 Gitee Pages、 Vercel 等
+1、Hugo 安装 Hugo 支持在任何能运行 go 编译器的工具链上安装，如 macOS、Windows、Linux、BSD 等。且支持源码安装、预编译二进制文件安装、包管理器安装等多种安装方式。
+2、macOS 安装 在 macOS 平台我们建议使用包管理器 Homebrew 安装，这将直接安装 Hugo 的扩展版:
+brew install hugo 3、Windows 和 Linux 安装 在 Windows 和 Linux 平台推荐使用预编译二进制文件安装 Hugo。预编译二进制文件可用于多种操作系统和架构，请访问 GitHub 上发布的最新版本 https://github.com/gohugoio/hugo/releases/tag/v0.145.0 下载二进制文件，建议下载扩展版。然后按照以下步骤安装:
+根据个人的操作系统和架构下载对应版本 解压缩二进制文件到目标目录 添加目标目录到环境变量 PATH 中 验证文件的执行权限 以上介绍了常用的操作系统和平台的最优安装方式，更多安装方式请参考官方安装手册、 中文版安装手册
+网站构建 在完成 Hugo 安装后，即可通过命令来创建站点、添加内容、配置网站、发布网站等动作。
+1、创建网站 通过 Hugo 执行程序进行网站的创建，命令：</description></item><item><title>2FA-Enable two-factor authentication (2FA)</title><link>https://qfsyso.github.io/posts/2fa-enable-two-factor-authentication-2fa/</link><pubDate>Tue, 18 Jun 2024 23:40:12 +0000</pubDate><guid>https://qfsyso.github.io/posts/2fa-enable-two-factor-authentication-2fa/</guid><description>开源免费的Authenticator: 2FA Client，支持多种浏览器。
+开源地址：Authenticator-Extension https://github.com/Authenticator-Extension/Authenticator
+Edge扩展：Authenticator: 2FA Client - Microsoft Edge Addons https://microsoftedge.microsoft.com/addons/detail/authenticator-2fa-client/ocglkepbibnalbgmbachknglpdipeoio
+Chrome扩展：身份验证器 - Chrome 应用商店 (google.com) https://chrome.google.com/webstore/detail/authenticator/bhghoamapcdpbohphigoooaddinpkbai
+安装好这个扩展程序以后，再次进入GitHub验证界面，等待二维码弹出。
+二维码弹出以后，点击浏览器扩展，点击Authenticator: 2FA Client
+点击二维码，选择指定区域，进行操作，等待代码就可以了。
+Enable two-factor authentication (2FA)</description></item><item><title> hexo githubio</title><link>https://qfsyso.github.io/posts/hexo-githubio/</link><pubDate>Tue, 28 May 2024 03:38:21 +0000</pubDate><guid>https://qfsyso.github.io/posts/hexo-githubio/</guid><description>hexo安装 npm install hexo-cli -g hexo init blog cd blog npm install hexo server
+key配置 ssh-keygen -t ed25519 -C &amp;ldquo;email@e.com&amp;rdquo; 添加key到github
+err git@github.com: Permission denied (publickey). fatal: Could not read from remote repository.
+配置GitHub仓库 在GitHub上创建一个新的仓库，其名称应该是 用户名.github.io，其中用户名是你的GitHub用户名。 git config &amp;ndash;global user.email &amp;ldquo;xx@qq.com&amp;rdquo; git config &amp;ndash;global user.name &amp;ldquo;user&amp;rdquo;
+_config.yml deploy: type: git repo: # 替换为你的GitHub仓库url branch: master
+安装hexo-deployer-git插件： npm install hexo-deployer-git &amp;ndash;save
+部署到GitHub： hexo clean hexo g #hexo generate hexo d #hexo deploy</description></item></channel></rss>

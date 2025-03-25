@@ -1,0 +1,387 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>.NET9 lock Aspire UUID JsonSerializerOptions | MLOG</title>
+<meta name=keywords content=".NET"><meta name=description content='.NET9 迄今为止最高效、最现代、最安全、最智能、性能最高的.NET版本
+dotnet --list-sdks # 指令查看是否以安装.NET9。 下载.NET9 SDK安装 or
+IDE Visual Studio 更新
+Lock 引入 System.Threading.Lock 是 .NET 提供的一个更优雅的锁定机制，可以替代传统的基于 Monitor 的锁定方式。以下是新锁定机制的特点及示例代码：
+using System; using System.Threading; class Program { private static readonly Lock _lock = new(); static void Main() { // 使用新锁定机制 using (_lock.EnterScope()) { Console.WriteLine("这是线程安全的代码块"); // 在这里执行线程安全的操作 } // 演示多线程场景 Thread thread1 = new(() => AccessResource("线程1")); Thread thread2 = new(() => AccessResource("线程2")); thread1.Start(); thread2.Start(); thread1.Join(); thread2.Join(); } static void AccessResource(string threadName) { using (_lock.'><meta name=author content="dwd"><link rel=canonical href=https://qfsyso.github.io/posts/.net9-lock-aspire-uuid-jsonserializeroptions/><link crossorigin=anonymous href=/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF+13Dyqob6ASlTrTye8=" rel="preload stylesheet" as=style><link rel=icon href=https://qfsyso.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://qfsyso.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://qfsyso.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://qfsyso.github.io/apple-touch-icon.png><link rel=mask-icon href=https://qfsyso.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://qfsyso.github.io/posts/.net9-lock-aspire-uuid-jsonserializeroptions/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://qfsyso.github.io/posts/.net9-lock-aspire-uuid-jsonserializeroptions/"><meta property="og:site_name" content="MLOG"><meta property="og:title" content=".NET9 lock Aspire UUID JsonSerializerOptions "><meta property="og:description" content='.NET9 迄今为止最高效、最现代、最安全、最智能、性能最高的.NET版本
+dotnet --list-sdks # 指令查看是否以安装.NET9。 下载.NET9 SDK安装 or
+IDE Visual Studio 更新
+Lock 引入 System.Threading.Lock 是 .NET 提供的一个更优雅的锁定机制，可以替代传统的基于 Monitor 的锁定方式。以下是新锁定机制的特点及示例代码：
+using System; using System.Threading; class Program { private static readonly Lock _lock = new(); static void Main() { // 使用新锁定机制 using (_lock.EnterScope()) { Console.WriteLine("这是线程安全的代码块"); // 在这里执行线程安全的操作 } // 演示多线程场景 Thread thread1 = new(() => AccessResource("线程1")); Thread thread2 = new(() => AccessResource("线程2")); thread1.Start(); thread2.Start(); thread1.Join(); thread2.Join(); } static void AccessResource(string threadName) { using (_lock.'><meta property="og:locale" content="zh-CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-01-02T00:05:49+00:00"><meta property="article:modified_time" content="2025-01-02T00:05:49+00:00"><meta property="article:tag" content=".NET"><meta name=twitter:card content="summary"><meta name=twitter:title content=".NET9 lock Aspire UUID JsonSerializerOptions "><meta name=twitter:description content='.NET9 迄今为止最高效、最现代、最安全、最智能、性能最高的.NET版本
+dotnet --list-sdks # 指令查看是否以安装.NET9。 下载.NET9 SDK安装 or
+IDE Visual Studio 更新
+Lock 引入 System.Threading.Lock 是 .NET 提供的一个更优雅的锁定机制，可以替代传统的基于 Monitor 的锁定方式。以下是新锁定机制的特点及示例代码：
+using System; using System.Threading; class Program { private static readonly Lock _lock = new(); static void Main() { // 使用新锁定机制 using (_lock.EnterScope()) { Console.WriteLine("这是线程安全的代码块"); // 在这里执行线程安全的操作 } // 演示多线程场景 Thread thread1 = new(() => AccessResource("线程1")); Thread thread2 = new(() => AccessResource("线程2")); thread1.Start(); thread2.Start(); thread1.Join(); thread2.Join(); } static void AccessResource(string threadName) { using (_lock.'><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://qfsyso.github.io/posts/"},{"@type":"ListItem","position":2,"name":".NET9 lock Aspire UUID JsonSerializerOptions ","item":"https://qfsyso.github.io/posts/.net9-lock-aspire-uuid-jsonserializeroptions/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":".NET9 lock Aspire UUID JsonSerializerOptions ","name":".NET9 lock Aspire UUID JsonSerializerOptions ","description":".NET9 迄今为止最高效、最现代、最安全、最智能、性能最高的.NET版本\ndotnet --list-sdks # 指令查看是否以安装.NET9。 下载.NET9 SDK安装 or\nIDE Visual Studio 更新\nLock 引入 System.Threading.Lock 是 .NET 提供的一个更优雅的锁定机制，可以替代传统的基于 Monitor 的锁定方式。以下是新锁定机制的特点及示例代码：\nusing System; using System.Threading; class Program { private static readonly Lock _lock = new(); static void Main() { // 使用新锁定机制 using (_lock.EnterScope()) { Console.WriteLine(\u0026#34;这是线程安全的代码块\u0026#34;); // 在这里执行线程安全的操作 } // 演示多线程场景 Thread thread1 = new(() =\u0026gt; AccessResource(\u0026#34;线程1\u0026#34;)); Thread thread2 = new(() =\u0026gt; AccessResource(\u0026#34;线程2\u0026#34;)); thread1.Start(); thread2.Start(); thread1.Join(); thread2.Join(); } static void AccessResource(string threadName) { using (_lock.","keywords":[".NET"],"articleBody":".NET9 迄今为止最高效、最现代、最安全、最智能、性能最高的.NET版本\ndotnet --list-sdks # 指令查看是否以安装.NET9。 下载.NET9 SDK安装 or\nIDE Visual Studio 更新\nLock 引入 System.Threading.Lock 是 .NET 提供的一个更优雅的锁定机制，可以替代传统的基于 Monitor 的锁定方式。以下是新锁定机制的特点及示例代码：\nusing System; using System.Threading; class Program { private static readonly Lock _lock = new(); static void Main() { // 使用新锁定机制 using (_lock.EnterScope()) { Console.WriteLine(\"这是线程安全的代码块\"); // 在这里执行线程安全的操作 } // 演示多线程场景 Thread thread1 = new(() =\u003e AccessResource(\"线程1\")); Thread thread2 = new(() =\u003e AccessResource(\"线程2\")); thread1.Start(); thread2.Start(); thread1.Join(); thread2.Join(); } static void AccessResource(string threadName) { using (_lock.EnterScope()) { Console.WriteLine($\"{threadName} 正在访问共享资源...\"); Thread.Sleep(1000); // 模拟一些操作 Console.WriteLine($\"{threadName} 完成访问\"); } } } 定义锁对象：\nprivate static readonly Lock _lock = new(); Lock 类型专门用于实现锁定，比 object 更清晰和安全。 进入锁定范围： using (_lock.EnterScope()) EnterScope 返回一个 ref struct，它在离开作用域时自动释放锁。 多线程场景： 多个线程尝试访问共享资源，通过 using 确保代码块是线程安全的。 优势 避免传统 Monitor.Enter 和 Monitor.Exit 的繁琐代码及潜在的错误。 自动释放锁，减少资源泄漏的风险。 类型安全的设计避免了在异步场景中的误用。 注意事项 Lock.EnterScope 返回 ref struct，因此它不能被捕获或在异步方法中使用。 Lock 是不可复制的，确保锁的独占性和安全性。 这是一个更现代化的线程同步方式，非常适合在新项目中使用。\n更安全、更高效。 可以和using一起使用\n.NET Aspire - Blazor Web Web API 可以选择使用 Redis 进行缓存 测试项目\nhttps://learn.microsoft.com/zh-cn/dotnet/aspire/\nhttps://github.com/communitytoolkit/aspire https://learn.microsoft.com/zh-cn/dotnet/aspire/whats-new/dotnet-aspire-9?tabs=windows\n对比.NET8 ,.NET9 多了 vue recat angular web项目\nUUID v7 我们经常在实体中使用Guid作为主键，并且通过Guid.NewGuid()可以很方便的生成一个新的Guid，而此方法生成的Guid是依据UUID第四个版本规范生成的。\n当前已经可以通过Guid.CreateVersion7()方法创建UUID第七个版本，这个版本UUID主要功能就是包含了时间戳，数据结构如下：\n| 48位时间戳 | 12位随机 | 62位随机 |\n这也意味着v7版本的UUID可以按时间排序了，在数据库中使用起来更方便，同时Guid.CreateVersion7()方法还有一个重载方法接收DateTimeOffset类型时间戳，用来通过指定时间创建UUID。\n// v4 UUID var guid_v4 = Guid.NewGuid(); // v7 UUID var guid_v7 = Guid.CreateVersion7(); // v7 UUID with timestamp var guid_v7_time = Guid.CreateVersion7(TimeProvider.System.GetLocalNow()); Console.WriteLine(guid_v4); Console.WriteLine(guid_v7); Console.WriteLine(guid_v7_time); \\e 在 C# 中，随着新的转义序列 \\e 的引入，开发者可以更方便地表示 Unicode 字符 U+001B (ESCAPE 字符)。以下是一些代码示例，展示如何使用新的转义序列 \\e 和传统方式的区别。\nusing System; class Program { static void Main() { // 使用新的转义序列 \\e string newEscapeSequence = \"\\e[31mHello, World!\\e[0m\"; // ANSI 转义代码：红色文本 Console.WriteLine(\"Using \\\\e:\"); Console.WriteLine(newEscapeSequence); // 使用旧的方式 \\u001b string oldUnicodeEscape = \"\\u001b[31mHello, World!\\u001b[0m\"; // ANSI 转义代码：红色文本 Console.WriteLine(\"Using \\\\u001b:\"); Console.WriteLine(oldUnicodeEscape); // 使用旧的方式 \\x1b string oldHexEscape = \"\\x1b[31mHello, World!\\x1b[0m\"; // ANSI 转义代码：红色文本 Console.WriteLine(\"Using \\\\x1b:\"); Console.WriteLine(oldHexEscape); // 注意：\\x1b 后可能意外包含后续的有效十六进制字符 string potentialIssue = \"\\x1b7Hello\"; // 可能被解析为 \\x1b7 而不是单独的 \\x1b Console.WriteLine(\"Potential issue with \\\\x1b:\"); Console.WriteLine(potentialIssue); } } 推荐使用 \\e：它更简洁并且没有可能的歧义。 避免使用 \\x1b：如果后续字符是十六进制数字，可能导致意外结果。例如，\\x1b7 会被解析为一个字符，而不是 ESC 字符后跟 7。 向后兼容：C# 仍然支持 \\u001b 和 \\x1b，但建议逐步迁移到 \\e。 新的转义序列 \\e 提高了代码可读性和安全性，特别是在处理 ANSI 转义序列时。\n以下是一些更丰富的示例，展示如何使用新的 \\e 转义序列，以及如何在各种场景中替代旧的方式。\n示例 1: 控制台中的颜色切换 using System; class Program { static void Main() { // 使用 \\e 转义序列来改变文字颜色 string redText = \"\\e[31mThis is red text\\e[0m\"; // 红色文本 string greenText = \"\\e[32mThis is green text\\e[0m\"; // 绿色文本 string yellowText = \"\\e[33mThis is yellow text\\e[0m\"; // 黄色文本 Console.WriteLine(redText); Console.WriteLine(greenText); Console.WriteLine(yellowText); } } 示例 2: 带有光标移动的控制台输出 using System; class Program { static void Main() { // 使用 \\e 来控制光标位置 string moveCursorUp = \"\\e[1A\"; // 光标上移 1 行 string moveCursorDown = \"\\e[1B\"; // 光标下移 1 行 string moveCursorRight = \"\\e[10C\"; // 光标右移 10 列 Console.WriteLine(\"Line 1\"); Console.WriteLine(\"Line 2\"); Console.WriteLine(moveCursorUp + \"Moved Up\"); Console.WriteLine(moveCursorRight + \"Moved Right\"); } } 示例 3: 格式化多种样式 using System; class Program { static void Main() { // 使用 ANSI 转义序列来混合样式 string boldAndRed = \"\\e[1;31mBold and Red Text\\e[0m\"; // 粗体 + 红色 string underlineAndGreen = \"\\e[4;32mUnderline and Green Text\\e[0m\"; // 下划线 + 绿色 string inverted = \"\\e[7mInverted Colors\\e[0m\"; // 反转颜色 Console.WriteLine(boldAndRed); Console.WriteLine(underlineAndGreen); Console.WriteLine(inverted); } } 示例 4: 清屏和隐藏光标 using System; class Program { static void Main() { // 使用 \\e 控制控制台清屏和隐藏光标 string clearScreen = \"\\e[2J\"; // 清屏 string hideCursor = \"\\e[?25l\"; // 隐藏光标 string showCursor = \"\\e[?25h\"; // 显示光标 Console.WriteLine(\"This will be cleared...\"); Console.WriteLine(clearScreen + \"Screen Cleared!\"); Console.WriteLine(hideCursor + \"Cursor Hidden!\"); Console.WriteLine(\"Press Enter to show cursor again...\"); Console.ReadLine(); Console.WriteLine(showCursor + \"Cursor Visible!\"); } } 示例 5: 动态加载进度条 using System; using System.Threading; class Program { static void Main() { string progressBarTemplate = \"\\e[32m[####################]\\e[0m\"; string clearLine = \"\\e[2K\\r\"; for (int i = 0; i \u003c= 20; i++) { string progress = new string('#', i) + new string(' ', 20 - i); Console.Write(clearLine + $\"\\e[32m[{progress}]\\e[0m {i * 5}%\"); Thread.Sleep(200); // 模拟任务处理时间 } Console.WriteLine(\"\\nDone!\"); } } 示例总结 颜色：用 \\e 定义颜色文本非常方便。 光标控制：\\e 可用来实现光标的移动、隐藏和显示。 混合样式：支持多种样式组合，比如粗体、下划线和颜色。 屏幕操作：清屏、隐藏光标等功能大幅提高了终端交互的灵活性。 动态效果：用 \\e 创建进度条、动态输出等非常直观。\n索引运算符 隐式“从末尾开始”索引运算符 ^，需要按照以下步骤操作。以下是完整的用法指南：\n前置条件 环境要求： C# 8.0 或更高版本。 .NET Core 3.0 或更高版本，或 .NET Framework 支持的版本。 buffer 属性要求： buffer 必须是支持索引器的类型，例如数组 (T[])、列表 (List) 或其他实现了 IList 的集合类型。\n代码示例 1. 使用数组 using System; class S { public int[] buffer = new int[10]; // 定义一个大小为10的数组 } class Program { static void Main() { var v = new S() { buffer = { [^1] = 0, // 倒数第1个元素设置为 0 [^2] = 1, // 倒数第2个元素设置为 1 [^3] = 2, // 倒数第3个元素设置为 2 [^4] = 3, // 倒数第4个元素设置为 3 [^5] = 4 // 倒数第5个元素设置为 4 } }; // 输出结果 Console.WriteLine(string.Join(\", \", v.buffer)); // 输出: 0, 0, 0, 0, 4, 3, 2, 1, 0, 0 } } 2. 使用 List 如果 buffer 是一个 List，可以这样初始化：\nusing System; using System.Collections.Generic; class S { public List\u003cint\u003e buffer = new List\u003cint\u003e(new int[10]); // 初始化为10个元素 } class Program { static void Main() { var v = new S() { buffer = { [^1] = 0, [^2] = 1, [^3] = 2, [^4] = 3, [^5] = 4 } }; // 输出结果 Console.WriteLine(string.Join(\", \", v.buffer)); // 输出: 0, 0, 0, 0, 4, 3, 2, 1, 0, 0 } } JSON JsonSerializerOptions 缩进选项 ，可支持自定义写入 JSON 的缩进字符和缩进大小。\nvar options = new JsonSerializerOptions { WriteIndented = true, IndentCharacter = '\\t', IndentSize = 2, }; string json = JsonSerializer.Serialize( new { Value = 1 }, options ); Console.WriteLine(json); var data = new { Name = \"Alice\", Age = 30, Skills = new[] { \"C#\", \"ASP.NET Core\", \"Blazor\" } }; // 默认缩进格式 var defaultOptions = new JsonSerializerOptions { WriteIndented = true }; Console.WriteLine(\"默认格式:\"); Console.WriteLine(JsonSerializer.Serialize(data, defaultOptions)); // 使用自定义缩进字符（制表符）和大小 var customOptions = new JsonSerializerOptions { WriteIndented = true, IndentCharacter = '\\t', // 使用制表符 IndentSize = 1 // 每层缩进 1 个制表符 }; Console.WriteLine(\"\\n自定义制表符缩进:\"); Console.WriteLine(JsonSerializer.Serialize(data, customOptions)); // 使用自定义空格缩进 var customSpaceOptions = new JsonSerializerOptions { WriteIndented = true, IndentCharacter = ' ', // 使用空格 IndentSize = 4 // 每层缩进 4 个空格 }; Console.WriteLine(\"\\n自定义空格缩进:\"); Console.WriteLine(JsonSerializer.Serialize(data, customSpaceOptions)); 结果 { “Value”: 1 } 默认格式: { “Name”: “Alice”, “Age”: 30, “Skills”: [ “C#”, “ASP.NET Core”, “Blazor” ] }\n自定义制表符缩进: { “Name”: “Alice”, “Age”: 30, “Skills”: [ “C#”, “ASP.NET Core”, “Blazor” ] }\n自定义空格缩进: { “Name”: “Alice”, “Age”: 30, “Skills”: [ “C#”, “ASP.NET Core”, “Blazor” ] }\nJsonSerializerOptions 新增了对自定义 JSON 缩进字符和缩进大小的支持。这项特性主要通过两个新属性实现：\nIndentChars: 指定用于缩进的字符（默认为空格 \" “）。 IndentSize: 指定缩进的大小（默认为 2）。 这些属性让开发者灵活控制 JSON 格式，适配不同需求：\n日志优化: 提高可读性，便于结构定位。 前端适配: 符合框架缩进要求。 空间节约: 减少 JSON 体积。 工具兼容: 满足外部格式要求。\nJsonSerializerOptions.Web 是一个新的单例实例，专为 Web 应用程序设计，提供了默认的 JSON 序列化选项。它的主要特点包括：\n属性命名策略：将属性名称从 PascalCase 转换为 camelCase，以符合 JavaScript 的命名惯例。\n忽略默认值：在序列化过程中，忽略属性的默认值（如 null、0、false），以减少传输的数据量。\n数字处理：允许从字符串读取数字，以提高灵活性。\n这些默认设置使得在 Web 环境中进行 JSON 序列化时，无需手动配置即可获得符合 Web 标准的输出。\npublic class Product { public int Id { get; set; } public string Name { get; set; } = \"P1-DWD1\"; public decimal Price { get; set; } = 0.0m; // 默认值 public string? Description { get; set; } = null; // 可空类型 } public class Program { static void Main(string[] args) { var product = new Product(); // 使用 JsonSerializerOptions.Web 进行序列化 string json = JsonSerializer.Serialize(product, JsonSerializerOptions.Web); Console.WriteLine(json); } } {“id”:0,“name”:“P1-DWD1”,“price”:0.0,“description”:null}\nDebian .NET9 wget https://download.visualstudio.microsoft.com/download/pr/xxx/dotnet-sdk-9.0.0.deb sudo dpkg -i dotnet-sdk-9.0.0.deb sudo apt-get install -f # 如果有依赖问题 dotnet --version ","wordCount":"1059","inLanguage":"en","datePublished":"2025-01-02T00:05:49Z","dateModified":"2025-01-02T00:05:49Z","author":{"@type":"Person","name":"dwd"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://qfsyso.github.io/posts/.net9-lock-aspire-uuid-jsonserializeroptions/"},"publisher":{"@type":"Organization","name":"MLOG","logo":{"@type":"ImageObject","url":"https://qfsyso.github.io/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://qfsyso.github.io/ accesskey=h title="MLOG (Alt + H)">MLOG</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://qfsyso.github.io/posts/ title=Archive><span>Archive</span></a></li><li><a href=https://qfsyso.github.io/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://qfsyso.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">.NET9 lock Aspire UUID JsonSerializerOptions</h1><div class=post-meta><span title='2025-01-02 00:05:49 +0000 UTC'>January 2, 2025</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;dwd</div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#net9 aria-label=.NET9>.NET9</a></li><li><a href=#lock aria-label=Lock>Lock</a></li><li><a href=#net-aspire----blazor-web-web-api aria-label=".NET Aspire  - Blazor Web Web API">.NET Aspire - Blazor Web Web API</a></li><li><a href=#uuid-v7 aria-label="UUID v7">UUID v7</a></li><li><a href=#e aria-label=\e>\e</a><ul><li><a href=#%e7%a4%ba%e4%be%8b-1-%e6%8e%a7%e5%88%b6%e5%8f%b0%e4%b8%ad%e7%9a%84%e9%a2%9c%e8%89%b2%e5%88%87%e6%8d%a2 aria-label="示例 1: 控制台中的颜色切换">示例 1: 控制台中的颜色切换</a></li><li><a href=#%e7%a4%ba%e4%be%8b-2-%e5%b8%a6%e6%9c%89%e5%85%89%e6%a0%87%e7%a7%bb%e5%8a%a8%e7%9a%84%e6%8e%a7%e5%88%b6%e5%8f%b0%e8%be%93%e5%87%ba aria-label="示例 2: 带有光标移动的控制台输出">示例 2: 带有光标移动的控制台输出</a></li><li><a href=#%e7%a4%ba%e4%be%8b-3-%e6%a0%bc%e5%bc%8f%e5%8c%96%e5%a4%9a%e7%a7%8d%e6%a0%b7%e5%bc%8f aria-label="示例 3: 格式化多种样式">示例 3: 格式化多种样式</a></li><li><a href=#%e7%a4%ba%e4%be%8b-4-%e6%b8%85%e5%b1%8f%e5%92%8c%e9%9a%90%e8%97%8f%e5%85%89%e6%a0%87 aria-label="示例 4: 清屏和隐藏光标">示例 4: 清屏和隐藏光标</a></li><li><a href=#%e7%a4%ba%e4%be%8b-5-%e5%8a%a8%e6%80%81%e5%8a%a0%e8%bd%bd%e8%bf%9b%e5%ba%a6%e6%9d%a1 aria-label="示例 5: 动态加载进度条">示例 5: 动态加载进度条</a></li></ul></li><li><a href=#%e7%b4%a2%e5%bc%95%e8%bf%90%e7%ae%97%e7%ac%a6 aria-label=索引运算符>索引运算符</a><ul><li><a href=#%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b aria-label=代码示例>代码示例</a><ul><li><a href=#1-%e4%bd%bf%e7%94%a8%e6%95%b0%e7%bb%84 aria-label="1. 使用数组">1. 使用数组</a></li><li><a href=#2-%e4%bd%bf%e7%94%a8-listt aria-label="2. 使用 List">2. 使用 List</a></li></ul></li></ul></li><li><a href=#json aria-label=JSON>JSON</a><ul><ul><li><a href=#jsonserializeroptions aria-label=JsonSerializerOptions>JsonSerializerOptions</a></li><li><a href=#jsonserializeroptionsweb aria-label=JsonSerializerOptions.Web>JsonSerializerOptions.Web</a></li></ul></ul></li><li><a href=#debian-net9 aria-label="Debian .NET9">Debian .NET9</a></li></ul></div></details></div><div class=post-content><h1 id=net9>.NET9<a hidden class=anchor aria-hidden=true href=#net9>#</a></h1><p>迄今为止最高效、最现代、最安全、最智能、性能最高的.NET版本</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>dotnet --list-sdks
+</span></span><span style=display:flex><span><span style=color:#75715e># 指令查看是否以安装.NET9。</span>
+</span></span></code></pre></div><p>下载.NET9 SDK安装 or<br>IDE Visual Studio 更新</p><h1 id=lock>Lock<a hidden class=anchor aria-hidden=true href=#lock>#</a></h1><p>引入 System.Threading.Lock 是 .NET 提供的一个更优雅的锁定机制，可以替代传统的基于 Monitor 的锁定方式。以下是新锁定机制的特点及示例代码：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Program</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> Lock _lock = <span style=color:#66d9ef>new</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> Main()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 使用新锁定机制</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>using</span> (_lock.EnterScope())
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>&#34;这是线程安全的代码块&#34;</span>);
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 在这里执行线程安全的操作</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 演示多线程场景</span>
+</span></span><span style=display:flex><span>        Thread thread1 = <span style=color:#66d9ef>new</span>(() =&gt; AccessResource(<span style=color:#e6db74>&#34;线程1&#34;</span>));
+</span></span><span style=display:flex><span>        Thread thread2 = <span style=color:#66d9ef>new</span>(() =&gt; AccessResource(<span style=color:#e6db74>&#34;线程2&#34;</span>));
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        thread1.Start();
+</span></span><span style=display:flex><span>        thread2.Start();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        thread1.Join();
+</span></span><span style=display:flex><span>        thread2.Join();
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> AccessResource(<span style=color:#66d9ef>string</span> threadName)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>using</span> (_lock.EnterScope())
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>$&#34;{threadName} 正在访问共享资源...&#34;</span>);
+</span></span><span style=display:flex><span>            Thread.Sleep(<span style=color:#ae81ff>1000</span>); <span style=color:#75715e>// 模拟一些操作</span>
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>$&#34;{threadName} 完成访问&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>定义锁对象：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> Lock _lock = <span style=color:#66d9ef>new</span>();
+</span></span></code></pre></div><p>Lock 类型专门用于实现锁定，比 object 更清晰和安全。
+进入锁定范围：
+using (_lock.EnterScope())
+EnterScope 返回一个 ref struct，它在离开作用域时自动释放锁。
+多线程场景：
+多个线程尝试访问共享资源，通过 using 确保代码块是线程安全的。
+优势
+避免传统 Monitor.Enter 和 Monitor.Exit 的繁琐代码及潜在的错误。
+自动释放锁，减少资源泄漏的风险。
+类型安全的设计避免了在异步场景中的误用。
+注意事项
+Lock.EnterScope 返回 ref struct，因此它不能被捕获或在异步方法中使用。
+Lock 是不可复制的，确保锁的独占性和安全性。
+这是一个更现代化的线程同步方式，非常适合在新项目中使用。</p><p>更安全、更高效。 可以和using一起使用</p><h1 id=net-aspire----blazor-web-web-api>.NET Aspire - Blazor Web Web API<a hidden class=anchor aria-hidden=true href=#net-aspire----blazor-web-web-api>#</a></h1><p>可以选择使用 Redis 进行缓存 测试项目</p><p><a href=https://learn.microsoft.com/zh-cn/dotnet/aspire/>https://learn.microsoft.com/zh-cn/dotnet/aspire/</a><br><a href=https://github.com/communitytoolkit/aspire>https://github.com/communitytoolkit/aspire</a>
+<a href="https://learn.microsoft.com/zh-cn/dotnet/aspire/whats-new/dotnet-aspire-9?tabs=windows">https://learn.microsoft.com/zh-cn/dotnet/aspire/whats-new/dotnet-aspire-9?tabs=windows</a></p><p>对比.NET8 ,.NET9 多了 vue recat angular web项目</p><h1 id=uuid-v7>UUID v7<a hidden class=anchor aria-hidden=true href=#uuid-v7>#</a></h1><p>我们经常在实体中使用Guid作为主键，并且通过Guid.NewGuid()可以很方便的生成一个新的Guid，而此方法生成的Guid是依据UUID第四个版本规范生成的。</p><p>当前已经可以通过Guid.CreateVersion7()方法创建UUID第七个版本，这个版本UUID主要功能就是包含了时间戳，数据结构如下：</p><p><strong>| 48位时间戳 | 12位随机 | 62位随机 |</strong></p><p>这也意味着v7版本的UUID可以按时间排序了，在数据库中使用起来更方便，同时Guid.CreateVersion7()方法还有一个重载方法接收DateTimeOffset类型时间戳，用来通过指定时间创建UUID。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>            <span style=color:#75715e>// v4 UUID</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>var</span> guid_v4 = Guid.NewGuid();
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// v7 UUID</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>var</span> guid_v7 = Guid.CreateVersion7();
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// v7 UUID with timestamp</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>var</span> guid_v7_time = Guid.CreateVersion7(TimeProvider.System.GetLocalNow());
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            Console.WriteLine(guid_v4);
+</span></span><span style=display:flex><span>            Console.WriteLine(guid_v7);
+</span></span><span style=display:flex><span>            Console.WriteLine(guid_v7_time);
+</span></span></code></pre></div><h1 id=e>\e<a hidden class=anchor aria-hidden=true href=#e>#</a></h1><p>在 C# 中，随着新的转义序列 \e 的引入，开发者可以更方便地表示 Unicode 字符 U+001B (ESCAPE 字符)。以下是一些代码示例，展示如何使用新的转义序列 \e 和传统方式的区别。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Program</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> Main()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 使用新的转义序列 \e</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> newEscapeSequence = <span style=color:#e6db74>&#34;\e[31mHello, World!\e[0m&#34;</span>; <span style=color:#75715e>// ANSI 转义代码：红色文本</span>
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>&#34;Using \\e:&#34;</span>);
+</span></span><span style=display:flex><span>        Console.WriteLine(newEscapeSequence);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 使用旧的方式 \u001b</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> oldUnicodeEscape = <span style=color:#e6db74>&#34;\u001b[31mHello, World!\u001b[0m&#34;</span>; <span style=color:#75715e>// ANSI 转义代码：红色文本</span>
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>&#34;Using \\u001b:&#34;</span>);
+</span></span><span style=display:flex><span>        Console.WriteLine(oldUnicodeEscape);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 使用旧的方式 \x1b</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> oldHexEscape = <span style=color:#e6db74>&#34;\x1b[31mHello, World!\x1b[0m&#34;</span>; <span style=color:#75715e>// ANSI 转义代码：红色文本</span>
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>&#34;Using \\x1b:&#34;</span>);
+</span></span><span style=display:flex><span>        Console.WriteLine(oldHexEscape);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 注意：\x1b 后可能意外包含后续的有效十六进制字符</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> potentialIssue = <span style=color:#e6db74>&#34;\x1b7Hello&#34;</span>; <span style=color:#75715e>// 可能被解析为 \x1b7 而不是单独的 \x1b</span>
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>&#34;Potential issue with \\x1b:&#34;</span>);
+</span></span><span style=display:flex><span>        Console.WriteLine(potentialIssue);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>推荐使用 \e：它更简洁并且没有可能的歧义。
+避免使用 \x1b：如果后续字符是十六进制数字，可能导致意外结果。例如，\x1b7 会被解析为一个字符，而不是 ESC 字符后跟 7。
+向后兼容：C# 仍然支持 \u001b 和 \x1b，但建议逐步迁移到 \e。
+新的转义序列 \e 提高了代码可读性和安全性，特别是在处理 ANSI 转义序列时。</p><p>以下是一些更丰富的示例，展示如何使用新的 \e 转义序列，以及如何在各种场景中替代旧的方式。</p><h2 id=示例-1-控制台中的颜色切换>示例 1: 控制台中的颜色切换<a hidden class=anchor aria-hidden=true href=#示例-1-控制台中的颜色切换>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Program</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> Main()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 使用 \e 转义序列来改变文字颜色</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> redText = <span style=color:#e6db74>&#34;\e[31mThis is red text\e[0m&#34;</span>;  <span style=color:#75715e>// 红色文本</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> greenText = <span style=color:#e6db74>&#34;\e[32mThis is green text\e[0m&#34;</span>;  <span style=color:#75715e>// 绿色文本</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> yellowText = <span style=color:#e6db74>&#34;\e[33mThis is yellow text\e[0m&#34;</span>;  <span style=color:#75715e>// 黄色文本</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        Console.WriteLine(redText);
+</span></span><span style=display:flex><span>        Console.WriteLine(greenText);
+</span></span><span style=display:flex><span>        Console.WriteLine(yellowText);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=示例-2-带有光标移动的控制台输出>示例 2: 带有光标移动的控制台输出<a hidden class=anchor aria-hidden=true href=#示例-2-带有光标移动的控制台输出>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Program</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> Main()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 使用 \e 来控制光标位置</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> moveCursorUp = <span style=color:#e6db74>&#34;\e[1A&#34;</span>; <span style=color:#75715e>// 光标上移 1 行</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> moveCursorDown = <span style=color:#e6db74>&#34;\e[1B&#34;</span>; <span style=color:#75715e>// 光标下移 1 行</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> moveCursorRight = <span style=color:#e6db74>&#34;\e[10C&#34;</span>; <span style=color:#75715e>// 光标右移 10 列</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>&#34;Line 1&#34;</span>);
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>&#34;Line 2&#34;</span>);
+</span></span><span style=display:flex><span>        Console.WriteLine(moveCursorUp + <span style=color:#e6db74>&#34;Moved Up&#34;</span>);
+</span></span><span style=display:flex><span>        Console.WriteLine(moveCursorRight + <span style=color:#e6db74>&#34;Moved Right&#34;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=示例-3-格式化多种样式>示例 3: 格式化多种样式<a hidden class=anchor aria-hidden=true href=#示例-3-格式化多种样式>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Program</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> Main()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 使用 ANSI 转义序列来混合样式</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> boldAndRed = <span style=color:#e6db74>&#34;\e[1;31mBold and Red Text\e[0m&#34;</span>; <span style=color:#75715e>// 粗体 + 红色</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> underlineAndGreen = <span style=color:#e6db74>&#34;\e[4;32mUnderline and Green Text\e[0m&#34;</span>; <span style=color:#75715e>// 下划线 + 绿色</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> inverted = <span style=color:#e6db74>&#34;\e[7mInverted Colors\e[0m&#34;</span>; <span style=color:#75715e>// 反转颜色</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        Console.WriteLine(boldAndRed);
+</span></span><span style=display:flex><span>        Console.WriteLine(underlineAndGreen);
+</span></span><span style=display:flex><span>        Console.WriteLine(inverted);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=示例-4-清屏和隐藏光标>示例 4: 清屏和隐藏光标<a hidden class=anchor aria-hidden=true href=#示例-4-清屏和隐藏光标>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Program</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> Main()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 使用 \e 控制控制台清屏和隐藏光标</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> clearScreen = <span style=color:#e6db74>&#34;\e[2J&#34;</span>; <span style=color:#75715e>// 清屏</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> hideCursor = <span style=color:#e6db74>&#34;\e[?25l&#34;</span>; <span style=color:#75715e>// 隐藏光标</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> showCursor = <span style=color:#e6db74>&#34;\e[?25h&#34;</span>; <span style=color:#75715e>// 显示光标</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>&#34;This will be cleared...&#34;</span>);
+</span></span><span style=display:flex><span>        Console.WriteLine(clearScreen + <span style=color:#e6db74>&#34;Screen Cleared!&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        Console.WriteLine(hideCursor + <span style=color:#e6db74>&#34;Cursor Hidden!&#34;</span>);
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>&#34;Press Enter to show cursor again...&#34;</span>);
+</span></span><span style=display:flex><span>        Console.ReadLine();
+</span></span><span style=display:flex><span>        Console.WriteLine(showCursor + <span style=color:#e6db74>&#34;Cursor Visible!&#34;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=示例-5-动态加载进度条>示例 5: 动态加载进度条<a hidden class=anchor aria-hidden=true href=#示例-5-动态加载进度条>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Program</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> Main()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> progressBarTemplate = <span style=color:#e6db74>&#34;\e[32m[####################]\e[0m&#34;</span>;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> clearLine = <span style=color:#e6db74>&#34;\e[2K\r&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt;= <span style=color:#ae81ff>20</span>; i++)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>string</span> progress = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>string</span>(<span style=color:#e6db74>&#39;#&#39;</span>, i) + <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>string</span>(<span style=color:#e6db74>&#39; &#39;</span>, <span style=color:#ae81ff>20</span> - i);
+</span></span><span style=display:flex><span>            Console.Write(clearLine + <span style=color:#e6db74>$&#34;\e[32m[{progress}]\e[0m {i * 5}%&#34;</span>);
+</span></span><span style=display:flex><span>            Thread.Sleep(<span style=color:#ae81ff>200</span>); <span style=color:#75715e>// 模拟任务处理时间</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>&#34;\nDone!&#34;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>示例总结
+颜色：用 \e 定义颜色文本非常方便。
+光标控制：\e 可用来实现光标的移动、隐藏和显示。
+混合样式：支持多种样式组合，比如粗体、下划线和颜色。
+屏幕操作：清屏、隐藏光标等功能大幅提高了终端交互的灵活性。
+动态效果：用 \e 创建进度条、动态输出等非常直观。</p><h1 id=索引运算符>索引运算符<a hidden class=anchor aria-hidden=true href=#索引运算符>#</a></h1><p>隐式“从末尾开始”索引运算符 ^，需要按照以下步骤操作。以下是完整的用法指南：</p><p>前置条件
+环境要求：
+C# 8.0 或更高版本。
+.NET Core 3.0 或更高版本，或 .NET Framework 支持的版本。
+buffer 属性要求：
+buffer 必须是支持索引器的类型，例如数组 (T[])、列表 (List) 或其他实现了 IList 的集合类型。</p><h2 id=代码示例>代码示例<a hidden class=anchor aria-hidden=true href=#代码示例>#</a></h2><h3 id=1-使用数组>1. 使用数组<a hidden class=anchor aria-hidden=true href=#1-使用数组>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>S</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span>[] buffer = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>10</span>]; <span style=color:#75715e>// 定义一个大小为10的数组</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Program</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> Main()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> v = <span style=color:#66d9ef>new</span> S()
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            buffer =
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span><span style=color:#a6e22e>                [^1]</span> = <span style=color:#ae81ff>0</span>,  <span style=color:#75715e>// 倒数第1个元素设置为 0</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>                [^2]</span> = <span style=color:#ae81ff>1</span>,  <span style=color:#75715e>// 倒数第2个元素设置为 1</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>                [^3]</span> = <span style=color:#ae81ff>2</span>,  <span style=color:#75715e>// 倒数第3个元素设置为 2</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>                [^4]</span> = <span style=color:#ae81ff>3</span>,  <span style=color:#75715e>// 倒数第4个元素设置为 3</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>                [^5]</span> = <span style=color:#ae81ff>4</span>   <span style=color:#75715e>// 倒数第5个元素设置为 4</span>
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 输出结果</span>
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#66d9ef>string</span>.Join(<span style=color:#e6db74>&#34;, &#34;</span>, v.buffer));
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 输出: 0, 0, 0, 0, 4, 3, 2, 1, 0, 0</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=2-使用-listt>2. 使用 List<a hidden class=anchor aria-hidden=true href=#2-使用-listt>#</a></h3><p>如果 buffer 是一个 List，可以这样初始化：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Collections.Generic;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>S</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> List&lt;<span style=color:#66d9ef>int</span>&gt; buffer = <span style=color:#66d9ef>new</span> List&lt;<span style=color:#66d9ef>int</span>&gt;(<span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span>[<span style=color:#ae81ff>10</span>]); <span style=color:#75715e>// 初始化为10个元素</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Program</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> Main()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> v = <span style=color:#66d9ef>new</span> S()
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            buffer =
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span><span style=color:#a6e22e>                [^1]</span> = <span style=color:#ae81ff>0</span>,
+</span></span><span style=display:flex><span><span style=color:#a6e22e>                [^2]</span> = <span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span><span style=color:#a6e22e>                [^3]</span> = <span style=color:#ae81ff>2</span>,
+</span></span><span style=display:flex><span><span style=color:#a6e22e>                [^4]</span> = <span style=color:#ae81ff>3</span>,
+</span></span><span style=display:flex><span><span style=color:#a6e22e>                [^5]</span> = <span style=color:#ae81ff>4</span>
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 输出结果</span>
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#66d9ef>string</span>.Join(<span style=color:#e6db74>&#34;, &#34;</span>, v.buffer));
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 输出: 0, 0, 0, 0, 4, 3, 2, 1, 0, 0</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h1 id=json>JSON<a hidden class=anchor aria-hidden=true href=#json>#</a></h1><p>JsonSerializerOptions 缩进选项 ，可支持自定义写入 JSON 的缩进字符和缩进大小。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>            var options <span style=color:#f92672>=</span> new JsonSerializerOptions
+</span></span><span style=display:flex><span>            <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>                WriteIndented <span style=color:#f92672>=</span> true,
+</span></span><span style=display:flex><span>                IndentCharacter <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;\t&#39;</span>,
+</span></span><span style=display:flex><span>                IndentSize <span style=color:#f92672>=</span> 2,
+</span></span><span style=display:flex><span>            <span style=color:#f92672>}</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            string json <span style=color:#f92672>=</span> JsonSerializer.Serialize<span style=color:#f92672>(</span>
+</span></span><span style=display:flex><span>                new <span style=color:#f92672>{</span> Value <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>}</span>,
+</span></span><span style=display:flex><span>                options
+</span></span><span style=display:flex><span>                <span style=color:#f92672>)</span>;
+</span></span><span style=display:flex><span>            Console.WriteLine<span style=color:#f92672>(</span>json<span style=color:#f92672>)</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            var data <span style=color:#f92672>=</span> new
+</span></span><span style=display:flex><span>            <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>                Name <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Alice&#34;</span>,
+</span></span><span style=display:flex><span>                Age <span style=color:#f92672>=</span> 30,
+</span></span><span style=display:flex><span>                Skills <span style=color:#f92672>=</span> new<span style=color:#f92672>[]</span> <span style=color:#f92672>{</span> <span style=color:#e6db74>&#34;C#&#34;</span>, <span style=color:#e6db74>&#34;ASP.NET Core&#34;</span>, <span style=color:#e6db74>&#34;Blazor&#34;</span> <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>}</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            // 默认缩进格式
+</span></span><span style=display:flex><span>            var defaultOptions <span style=color:#f92672>=</span> new JsonSerializerOptions
+</span></span><span style=display:flex><span>            <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>                WriteIndented <span style=color:#f92672>=</span> true
+</span></span><span style=display:flex><span>            <span style=color:#f92672>}</span>;
+</span></span><span style=display:flex><span>            Console.WriteLine<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;默认格式:&#34;</span><span style=color:#f92672>)</span>;
+</span></span><span style=display:flex><span>            Console.WriteLine<span style=color:#f92672>(</span>JsonSerializer.Serialize<span style=color:#f92672>(</span>data, defaultOptions<span style=color:#f92672>))</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            // 使用自定义缩进字符（制表符）和大小
+</span></span><span style=display:flex><span>            var customOptions <span style=color:#f92672>=</span> new JsonSerializerOptions
+</span></span><span style=display:flex><span>            <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>                WriteIndented <span style=color:#f92672>=</span> true,
+</span></span><span style=display:flex><span>                IndentCharacter <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;\t&#39;</span>, // 使用制表符
+</span></span><span style=display:flex><span>                IndentSize <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>      // 每层缩进 <span style=color:#ae81ff>1</span> 个制表符
+</span></span><span style=display:flex><span>            <span style=color:#f92672>}</span>;
+</span></span><span style=display:flex><span>            Console.WriteLine<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;\n自定义制表符缩进:&#34;</span><span style=color:#f92672>)</span>;
+</span></span><span style=display:flex><span>            Console.WriteLine<span style=color:#f92672>(</span>JsonSerializer.Serialize<span style=color:#f92672>(</span>data, customOptions<span style=color:#f92672>))</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            // 使用自定义空格缩进
+</span></span><span style=display:flex><span>            var customSpaceOptions <span style=color:#f92672>=</span> new JsonSerializerOptions
+</span></span><span style=display:flex><span>            <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>                WriteIndented <span style=color:#f92672>=</span> true,
+</span></span><span style=display:flex><span>                IndentCharacter <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39; &#39;</span>,  // 使用空格
+</span></span><span style=display:flex><span>                IndentSize <span style=color:#f92672>=</span> <span style=color:#ae81ff>4</span>      // 每层缩进 <span style=color:#ae81ff>4</span> 个空格
+</span></span><span style=display:flex><span>            <span style=color:#f92672>}</span>;
+</span></span><span style=display:flex><span>            Console.WriteLine<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;\n自定义空格缩进:&#34;</span><span style=color:#f92672>)</span>;
+</span></span><span style=display:flex><span>            Console.WriteLine<span style=color:#f92672>(</span>JsonSerializer.Serialize<span style=color:#f92672>(</span>data, customSpaceOptions<span style=color:#f92672>))</span>;
+</span></span></code></pre></div><p>结果
+{
+&ldquo;Value&rdquo;: 1
+}
+默认格式:
+{
+&ldquo;Name&rdquo;: &ldquo;Alice&rdquo;,
+&ldquo;Age&rdquo;: 30,
+&ldquo;Skills&rdquo;: [
+&ldquo;C#&rdquo;,
+&ldquo;ASP.NET Core&rdquo;,
+&ldquo;Blazor&rdquo;
+]
+}</p><p>自定义制表符缩进:
+{
+&ldquo;Name&rdquo;: &ldquo;Alice&rdquo;,
+&ldquo;Age&rdquo;: 30,
+&ldquo;Skills&rdquo;: [
+&ldquo;C#&rdquo;,
+&ldquo;ASP.NET Core&rdquo;,
+&ldquo;Blazor&rdquo;
+]
+}</p><p>自定义空格缩进:
+{
+&ldquo;Name&rdquo;: &ldquo;Alice&rdquo;,
+&ldquo;Age&rdquo;: 30,
+&ldquo;Skills&rdquo;: [
+&ldquo;C#&rdquo;,
+&ldquo;ASP.NET Core&rdquo;,
+&ldquo;Blazor&rdquo;
+]
+}</p><h3 id=jsonserializeroptions>JsonSerializerOptions<a hidden class=anchor aria-hidden=true href=#jsonserializeroptions>#</a></h3><p>新增了对自定义 JSON 缩进字符和缩进大小的支持。这项特性主要通过两个新属性实现：</p><p>IndentChars: 指定用于缩进的字符（默认为空格 " &ldquo;）。
+IndentSize: 指定缩进的大小（默认为 2）。
+这些属性让开发者灵活控制 JSON 格式，适配不同需求：</p><p>日志优化: 提高可读性，便于结构定位。
+前端适配: 符合框架缩进要求。
+空间节约: 减少 JSON 体积。
+工具兼容: 满足外部格式要求。</p><h3 id=jsonserializeroptionsweb>JsonSerializerOptions.Web<a hidden class=anchor aria-hidden=true href=#jsonserializeroptionsweb>#</a></h3><p>是一个新的单例实例，专为 Web 应用程序设计，提供了默认的 JSON 序列化选项。它的主要特点包括：</p><p>属性命名策略：将属性名称从 PascalCase 转换为 camelCase，以符合 JavaScript 的命名惯例。</p><p>忽略默认值：在序列化过程中，忽略属性的默认值（如 null、0、false），以减少传输的数据量。</p><p>数字处理：允许从字符串读取数字，以提高灵活性。</p><p>这些默认设置使得在 Web 环境中进行 JSON 序列化时，无需手动配置即可获得符合 Web 标准的输出。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>    public class Product
+</span></span><span style=display:flex><span>    <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        public int Id <span style=color:#f92672>{</span> get; set; <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>        public string Name <span style=color:#f92672>{</span> get; set; <span style=color:#f92672>}</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;P1-DWD1&#34;</span>;
+</span></span><span style=display:flex><span>        public decimal Price <span style=color:#f92672>{</span> get; set; <span style=color:#f92672>}</span> <span style=color:#f92672>=</span> 0.0m; // 默认值
+</span></span><span style=display:flex><span>        public string? Description <span style=color:#f92672>{</span> get; set; <span style=color:#f92672>}</span> <span style=color:#f92672>=</span> null; // 可空类型
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    public class Program
+</span></span><span style=display:flex><span>    <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        static void Main<span style=color:#f92672>(</span>string<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>            var product <span style=color:#f92672>=</span> new Product<span style=color:#f92672>()</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            // 使用 JsonSerializerOptions.Web 进行序列化
+</span></span><span style=display:flex><span>            string json <span style=color:#f92672>=</span> JsonSerializer.Serialize<span style=color:#f92672>(</span>product, JsonSerializerOptions.Web<span style=color:#f92672>)</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            Console.WriteLine<span style=color:#f92672>(</span>json<span style=color:#f92672>)</span>;
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>{&ldquo;id&rdquo;:0,&ldquo;name&rdquo;:&ldquo;P1-DWD1&rdquo;,&ldquo;price&rdquo;:0.0,&ldquo;description&rdquo;:null}</p><h1 id=debian-net9>Debian .NET9<a hidden class=anchor aria-hidden=true href=#debian-net9>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>
+</span></span><span style=display:flex><span>wget https://download.visualstudio.microsoft.com/download/pr/xxx/dotnet-sdk-9.0.0.deb
+</span></span><span style=display:flex><span>sudo dpkg -i dotnet-sdk-9.0.0.deb
+</span></span><span style=display:flex><span>sudo apt-get install -f  <span style=color:#75715e># 如果有依赖问题</span>
+</span></span><span style=display:flex><span>dotnet --version
+</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://qfsyso.github.io/tags/.net/>.NET</a></li></ul><nav class=paginav><a class=prev href=https://qfsyso.github.io/posts/deepseek-local-deploy/><span class=title>« Prev</span><br><span>deepseek local deploy</span>
+</a><a class=next href=https://qfsyso.github.io/posts/vps-cloud-mobile/><span class=title>Next »</span><br><span>vps cloud mobile</span></a></nav><ul class=share-buttons><li><a target=_blank rel="noopener noreferrer" aria-label="share .NET9 lock Aspire UUID JsonSerializerOptions  on x" href="https://x.com/intent/tweet/?text=.NET9%20lock%20Aspire%20UUID%20JsonSerializerOptions%20&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2f.net9-lock-aspire-uuid-jsonserializeroptions%2f&amp;hashtags=.NET"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share .NET9 lock Aspire UUID JsonSerializerOptions  on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2f.net9-lock-aspire-uuid-jsonserializeroptions%2f&amp;title=.NET9%20lock%20Aspire%20UUID%20JsonSerializerOptions%20&amp;summary=.NET9%20lock%20Aspire%20UUID%20JsonSerializerOptions%20&amp;source=https%3a%2f%2fqfsyso.github.io%2fposts%2f.net9-lock-aspire-uuid-jsonserializeroptions%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share .NET9 lock Aspire UUID JsonSerializerOptions  on reddit" href="https://reddit.com/submit?url=https%3a%2f%2fqfsyso.github.io%2fposts%2f.net9-lock-aspire-uuid-jsonserializeroptions%2f&title=.NET9%20lock%20Aspire%20UUID%20JsonSerializerOptions%20"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share .NET9 lock Aspire UUID JsonSerializerOptions  on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fqfsyso.github.io%2fposts%2f.net9-lock-aspire-uuid-jsonserializeroptions%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share .NET9 lock Aspire UUID JsonSerializerOptions  on whatsapp" href="https://api.whatsapp.com/send?text=.NET9%20lock%20Aspire%20UUID%20JsonSerializerOptions%20%20-%20https%3a%2f%2fqfsyso.github.io%2fposts%2f.net9-lock-aspire-uuid-jsonserializeroptions%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share .NET9 lock Aspire UUID JsonSerializerOptions  on telegram" href="https://telegram.me/share/url?text=.NET9%20lock%20Aspire%20UUID%20JsonSerializerOptions%20&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2f.net9-lock-aspire-uuid-jsonserializeroptions%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentcolor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share .NET9 lock Aspire UUID JsonSerializerOptions  on ycombinator" href="https://news.ycombinator.com/submitlink?t=.NET9%20lock%20Aspire%20UUID%20JsonSerializerOptions%20&u=https%3a%2f%2fqfsyso.github.io%2fposts%2f.net9-lock-aspire-uuid-jsonserializeroptions%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentcolor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></li></ul></footer></article></main><footer class=footer><div class=wtime><div class=wtime2>CST<span id=beijingTime></span> GMT <span id=londonTime></span> EST <span id=newYorkTime></span> PST<span id=losAngelesTime></span></div><div class=wtime2 style=display:none>东京<span id=tokyoTime></span></div><div class=wtime2 style=display:none>欧洲-巴黎<span id=parisTime></span></div><div class=wtime2 style=display:none>UTC<span id=utcTime></span></div></div><span>&copy; 2025 <a href=https://qfsyso.github.io/>MLOG</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a>
+</span><script type=text/javascript>const timeZoneOffsets={beijing:8,tokyo:9,paris:[1,2],london:[0,1],newYork:[-5,-4],losAngeles:[-8,-7]};function padZero(e){return e<10?"0"+e:e}function formatTime(e){const t=e.getFullYear(),n=padZero(e.getMonth()+1),s=padZero(e.getDate()),o=padZero(e.getHours()),i=padZero(e.getMinutes()),a=padZero(e.getSeconds());return`${t}-${n}-${s} ${o}:${i}:${a}`}function isDaylightSavingTime(e,t){const o=e.getMonth(),n=new Date(e.getFullYear(),3,8,2,0,0),s=new Date(e.getFullYear(),10,1,2,0,0);return(t==="paris"||t==="london"||t==="newYork"||t==="losAngeles")&&e>=n&&e<s}function updateTime(){const e=new Date,t=new Date(e.getUTCFullYear(),e.getUTCMonth(),e.getUTCDate(),e.getUTCHours(),e.getUTCMinutes(),e.getUTCSeconds()),n=formatTime(t);document.getElementById("utcTime").innerHTML=n;for(const n in timeZoneOffsets){const e=timeZoneOffsets[n];let s;Array.isArray(e)?s=isDaylightSavingTime(t,n)?e[1]:e[0]:s=e;const o=new Date(t.getTime()+s*60*60*1e3);document.getElementById(n+"Time").innerHTML=formatTime(o)}setTimeout(updateTime,1e3)}window.onload=function(){updateTime()};function notfound(e){var n=e.src,t=n.split("/"),s=t[t.length-1];e.src="https://47.115.223.75:8080/group1/v2/"+s+"?timestamp="+Date.now(),e.onerror=null}</script></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

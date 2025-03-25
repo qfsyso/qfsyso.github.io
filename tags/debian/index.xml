@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Debian on MLOG</title><link>https://qfsyso.github.io/tags/debian/</link><description>Recent content in Debian on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Mon, 17 Mar 2025 01:55:59 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/debian/index.xml" rel="self" type="application/rss+xml"/><item><title>Zabbix</title><link>https://qfsyso.github.io/posts/zabbix/</link><pubDate>Mon, 17 Mar 2025 01:55:59 +0000</pubDate><guid>https://qfsyso.github.io/posts/zabbix/</guid><description>Zabbix服务器监控 Server端 apt update apache php
+apt install apache2 php php-mysql php-mysqlnd php-ldap php-bcmath php-mbstring php-gd php-pdo php-xml libapache2-mod-php systemctl status apache2 # systemctl start apache2 # systemctl stop apache2 # systemctl restart apache2 db
+apt install mariadb-server mariadb-client systemctl status mariadb mysql_secure_installation 回车 Y 密码 YYYY
+mysql -u root -p create database zabbix character set utf8 collate utf8_bin; grant all privileges on zabbix.* to zabbix@localhost identified by ‘123123.zxcvb’; grant all privileges on zabbix.</description></item><item><title> debian mssql</title><link>https://qfsyso.github.io/posts/debian-mssql/</link><pubDate>Mon, 17 Mar 2025 01:29:20 +0000</pubDate><guid>https://qfsyso.github.io/posts/debian-mssql/</guid><description>Debian 上运行 SQL Server 在 Debian 上安装 SQL Server 2017+ for Linux 微软官方支持 SQL Server 2017 / 2019 / 2022 在 Linux 上运行，但 Debian 没有官方支持，只支持 Ubuntu 和 Red Hat 系列。
+可以用 Debian 兼容的方式 安装 SQL Server 2017+，方法如下：
+1. 检查系统版本 确保的 Debian 版本是 Debian 10+（较新的版本兼容性更好）。
+cat /etc/os-release 如果是 Debian 9 或更早，建议升级到 Debian 10+，否则可能会遇到依赖问题。
+2. 添加 Microsoft SQL Server 仓库 （1）导入 Microsoft GPG 密钥 sudo apt update sudo apt install curl curl -fsSL https://packages.</description></item><item><title>Beszel Lightweight Monitor</title><link>https://qfsyso.github.io/posts/beszel-lightweight-monitor/</link><pubDate>Sun, 16 Mar 2025 02:32:30 +0000</pubDate><guid>https://qfsyso.github.io/posts/beszel-lightweight-monitor/</guid><description>Beszel 为何选择Beszel？Beszel 凭借轻量、易用、功能全面的特性，成为开源监控领域的一匹黑马。无论是个人用户还是技术团队，均可通过其快速搭建高效的监控体系。 项目地址:https://github.com/henrygd/beszel
+Beszel官网：https://beszel.dev/
+在两个服务器上部署 Beszel 的步骤。 第一步：准备工作 管理员的权限
+第二步：下载安装脚本（两个服务器都要做） 对于 Hub（管理中心）
+curl -sL https://raw.githubusercontent.com/henrygd/beszel/main/supplemental/scripts/install-hub.sh -o install-hub.sh &amp;amp;&amp;amp; chmod +x install-hub.sh 对于 Agent（监控小帮手）
+curl -sL https://raw.githubusercontent.com/henrygd/beszel/main/supplemental/scripts/install-agent.sh -o install-agent.sh &amp;amp;&amp;amp; chmod +x install-agent.sh 第三步：运行安装脚本（两个服务器分别做） 安装 Hub 在放 Hub 的服务器的命令行里，输入：
+./install-hub.sh 安装 Agent 在放 Agent 的服务器的命令行里，输入：
+./install-agent.sh 第四步：检查是否安装成功 检查 Hub 在安装 Hub 的服务器上，输入下面的命令来看看 Hub 是不是在正常工作：
+systemctl status beszel-hub.service 检查 Agent
+systemctl status beszel-agent.service 同个服务器 curl -sL https://raw.githubusercontent.com/henrygd/beszel/main/supplemental/scripts/install-agent.sh -o install-agent.sh &amp;amp;&amp;amp; chmod +x install-agent.</description></item><item><title>update domain 4 iRedMail</title><link>https://qfsyso.github.io/posts/update-domain-4-iredmail/</link><pubDate>Sat, 21 Dec 2024 23:20:53 +0000</pubDate><guid>https://qfsyso.github.io/posts/update-domain-4-iredmail/</guid><description>更换 iRedMail 的域名 （如从 mail.example.com 更换为 mail.mydomain.com）， 需要修改多个配置文件和数据库记录，并确保新的域名配置正确。 以下是操作步骤：
+步骤 1：更新 DNS 记录 在域名托管平台更新 mail.mydomain.com 的 DNS 记录： A记录：指向邮件服务器的 IP 地址。 MX记录：指向 mail.mydomain.com。 SPF 记录：确保包括新的域名。 DKIM 和 DMARC 记录：重新生成并更新。 确保 DNS 更改后可以通过 dig 或 nslookup 验证生效。
+步骤 2：更新主机名 修改主机名：
+hostnamectl set-hostname mail.mydomain.com 更新 /etc/hosts 文件：
+127.0.0.1 localhost 127.0.1.1 mail.mydomain.com mail 更新 /etc/mailname 文件：
+mail.mydomain.com 步骤 3：更新 iRedMail 配置文件 修改 Postfix 配置： 编辑 /etc/postfix/main.cf：
+myhostname = mail.mydomain.com mydomain = mydomain.com myorigin = $mydomain 重启 Postfix：</description></item><item><title> win bilud go 4 linux</title><link>https://qfsyso.github.io/posts/win-bilud-go-4-linux/</link><pubDate>Mon, 26 Aug 2024 00:58:39 +0000</pubDate><guid>https://qfsyso.github.io/posts/win-bilud-go-4-linux/</guid><description>1. 安装必要的工具和依赖 首先，确保你已经安装了Go编译器和VS Code。如果还没有安装Go，可以从官方网站下载并安装。
+2. 配置Go环境 打开VS Code，按 Ctrl + Shift + P 打开命令面板，输入 &amp;ldquo;shell&amp;rdquo; 选择 &amp;ldquo;Shell: Windows&amp;rdquo; 或 &amp;ldquo;Shell: Linux&amp;rdquo;
+创建一个新的Go项目 在VS Code中创建一个新的文件夹作为你的Go项目目录，然后在终端中导航到该目录并初始化一个新的Go项目：
+mkdir my-go-app cd my-go-app go mod init my-go-app touch main.go 4. 编写Go程序 在 main.go 文件中编写一个简单的Hello World程序：
+package main import &amp;#34;fmt&amp;#34; func main() { fmt.Println(&amp;#34;Hello, World!&amp;#34;) } 5. 安装交叉编译工具 ⭐ Go提供了一些工具来进行跨平台编译。你可以使用以下命令来安装这些工具：
+go install github.com/golang/tools/cmd/goimports@latest go install golang.org/x/lint/golint@latest go install github.com/cweill/gotests/...@latest 6. 配置VS Code以使用Linux环境 你需要一个Linux环境来进行交叉编译。Windows Subsystem for Linux (WSL)来实现。 (https://learn.</description></item><item><title>Debian ufw</title><link>https://qfsyso.github.io/posts/debian-ufw/</link><pubDate>Sun, 18 Aug 2024 12:44:31 +0000</pubDate><guid>https://qfsyso.github.io/posts/debian-ufw/</guid><description>安装ufw sudo apt update sudo apt install ufw #开启防火墙
+sudo ufw enable #关闭防火墙
+ufw disable ufw status verbose ufw status numbered sudo ufw status #查看状态 sudo ufw disable #关闭 sudo ufw enble #开启 sudo ufw allow 8000/tcp #添加规则，允许所有ip访问8000端口 sudo ufw deny 8000/tcp #添加或者修改规则，禁止访问8000端口 sudo ufw delete 8000/tcp #删除该规则 恢复默认策略： ufw default deny incoming ufw default allow outgoing ufw default reject routed 重置UFW（将删除所有自定义策略并关闭UFW）
+ufw reset 添加允许连接的商端口：
+ufw allow [port] 放行指定范围的端口：
+ufw allow 10010:10086/tcp ufw allow 10010:10086/udp 允许指定ip访问</description></item><item><title>debian mysql</title><link>https://qfsyso.github.io/posts/debian-mysql/</link><pubDate>Mon, 12 Aug 2024 21:47:36 +0000</pubDate><guid>https://qfsyso.github.io/posts/debian-mysql/</guid><description>1.更新软件包列表 运行 apt update 命令来完成。
+sudo apt update
+2. 安装MySQL APT配置工具 安装MySQL
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.32-1_all.deb apt install gnupg dpkg -i mysql-apt-config_0.8.32-1_all.deb apt update 3. 安装MySQL服务器 apt install mysql-server 4 . 更新软件包列表 以便APT可以识别新添加的MySQL仓库。
+sudo apt update 5. 启动MySQL服务 启动MySQL服务并设置它在系统启动时自动启动。
+sudo systemctl start mysql sudo systemctl enable mysql 6. 登录MySQL服务器 使用root用户登录到MySQL服务器。
+mysql -u root -p 输入密码后，您将进入MySQL命令行。使用 exit 命令退出。
+ALTER USER &amp;#39;myuser&amp;#39;@&amp;#39;localhost&amp;#39; IDENTIFIED BY &amp;#39;new_password&amp;#39;; 可选
+7.测试 CREATE DATABASE mydatabase; Query OK, 1 row affected (0.</description></item><item><title>debian apt update</title><link>https://qfsyso.github.io/posts/debian-apt-update/</link><pubDate>Mon, 12 Aug 2024 21:41:40 +0000</pubDate><guid>https://qfsyso.github.io/posts/debian-apt-update/</guid><description>debian更换apt源 在Debian系统中更换APT源，你需要编辑/etc/apt/sources.list文件，将其中的现有源地址替换为新的源地址。以下是一个基本的步骤和示例：
+打开终端。
+使用文本编辑器编辑sources.list文件，例如使用nano或vim：
+sudo nano /etc/apt/sources.list 或者
+sudo vim /etc/apt/sources.list 注释掉或删除旧的源地址行（在行首加#可以将其注释掉）。
+添加新的源地址。例如，Debian官方的非US源，可以添加以下行：
+deb http://deb.debian.org/debian bullseye main contrib non-free deb-src http://deb.debian.org/debian bullseye main contrib non-free 这里的bullseye是Debian的代号，例如bookworm、buster等。
+deb http://mirrors.aliyun.com/debian/ stable main contrib non-free 保存文件并退出编辑器。
+更新APT源：
+sudo apt update 升级已安装的包：
+sudo apt upgrade 请确保你使用的源与你的Debian版本兼容。可信的源可以保证软件包的安全和可靠性。</description></item><item><title>Debian docker mssql</title><link>https://qfsyso.github.io/posts/debian-docker-mssql/</link><pubDate>Tue, 06 Aug 2024 19:30:54 +0000</pubDate><guid>https://qfsyso.github.io/posts/debian-docker-mssql/</guid><description>docker curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh 查看架构
+uname -m 安装 docker run -e &amp;#34;ACCEPT_EULA=Y&amp;#34; -e &amp;#34;SA_PASSWORD=Qq123123.&amp;#34; -e &amp;#34;TZ=Asia/Shanghai&amp;#34; -p 1433:1433 --name sqlserver2022 -d mcr.microsoft.com/mssql/server:2022-latest 开放端口 1433
+进入容器
+docker exec -it sqlserver2022 /bin/bash 使用navicat test sa Qq123123. 测试连接
+SQL测试
+CREATE DATABASE mydb; GO USE mydb; GO CREATE TABLE Users ( UserId INT PRIMARY KEY IDENTITY(1,1), UserName NVARCHAR(50) NOT NULL ); GO INSERT INTO Users (UserName) VALUES (&amp;#39;zs&amp;#39;); INSERT INTO Users (UserName) VALUES (&amp;#39;ls&amp;#39;); INSERT INTO Users (UserName) VALUES (&amp;#39;w5&amp;#39;); GO SELECT * FROM Users; GO BACKUP USE master; GO BACKUP DATABASE mydb TO DISK = &amp;#39;mydblog.</description></item><item><title> VM Linux win</title><link>https://qfsyso.github.io/posts/vm-linux-win/</link><pubDate>Mon, 24 Jun 2024 23:38:07 +0000</pubDate><guid>https://qfsyso.github.io/posts/vm-linux-win/</guid><description>debian12.5.0服务器安装 参考https://blog.csdn.net/Go_ahead_forever/article/details/132679793
+相关命令问题 新用户使用sudo报错 xx is not the sudoers file. 原因：book用户没有sudo的权限 解决：https://blog.csdn.net/weixin_37787043/article/details/123045557
+更新 清华-镜像源 (会快一些)： 参考文档： https://blog.csdn.net/sinat_15028281/article/details/135638596
+su root cp etc/apt/sources.list etc/apt/sources.list.backup // 备份 vi etc/apt/sources.list // 修改镜像源 将etc/apt/sources.list文件内的内容清空，写入以下内容：
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware deb https://security.</description></item><item><title>Debian nginx https</title><link>https://qfsyso.github.io/posts/debian-nginx-https/</link><pubDate>Tue, 07 May 2024 19:13:24 +0000</pubDate><guid>https://qfsyso.github.io/posts/debian-nginx-https/</guid><description>debian安装 nginx 在Debian系统上安装Nginx，可以按照以下步骤操作：
+如果 sudo: command not found
+apt-get install sudo 首先，更新的包索引：
+sudo apt update 接下来，安装Nginx：
+sudo apt install nginx 安装完成后，启动Nginx服务：
+sudo systemctl start nginx （可选）设置Nginx开机自启动：
+sudo systemctl enable nginx 可以通过运行以下命令来检查Nginx的状态：
+sudo systemctl status nginx 现在，可以在Web浏览器中输入服务器的IP地址或域名来访问默认的Nginx欢迎页面。如果是在本地安装的Nginx，可以通过访问 http://localhost 来查看这个页面。
+如果需要配置Nginx，可以编辑 /etc/nginx/nginx.conf 文件或者在 /etc/nginx/sites-available/ 目录下创建或编辑配置文件，并使用 sudo ln -s /etc/nginx/sites-available/your-config /etc/nginx/sites-enabled/ 命令来启用它。
+sudo whereis nginx Nginx 默认安装位置 配置文件所在目录 /etc/
+nginx配置 检测Nginx配置文件是否正确
+nginx -t 重载Nginx配置
+nginx -s reload 自定义Nginx站点配置文件存放目录 /etc/nginx/conf.d/
+nginx网站目录 /var/www/
+域名证书
+阿里云证书 免费证书 https://help.</description></item><item><title> .NET获取内存</title><link>https://qfsyso.github.io/posts/.net%E8%8E%B7%E5%8F%96%E5%86%85%E5%AD%98/</link><pubDate>Mon, 06 May 2024 14:57:24 +0000</pubDate><guid>https://qfsyso.github.io/posts/.net%E8%8E%B7%E5%8F%96%E5%86%85%E5%AD%98/</guid><description>在.NET 控制台应用程序中，你可以使用System.Diagnostics命名空间下的Process类来获取当前进程的内存使用情况。以下是一个简单的示例代码，展示如何获取并显示当前进程的内存使用量：
+using System; using System.Diagnostics; namespace DisplayProcessMemory { class Program { static void Main(string[] args) { // 获取当前进程 Process currentProcess = Process.GetCurrentProcess(); // 使用需要的内存量 long workingSet64 = currentProcess.WorkingSet64; // 显示内存使用量 Console.WriteLine($&amp;#34;当前进程占用内存: {workingSet64} 字节&amp;#34;); // 单位转换为兆字节 double memoryInMB = workingSet64 / 1024.0 / 1024.0; Console.WriteLine($&amp;#34;当前进程占用内存: {memoryInMB.ToString(&amp;#34;F2&amp;#34;)} MB&amp;#34;); } } } 在.NET中，可以使用System.Diagnostics命名空间下的Process类来获取当前进程的信息，但是直接获取网络带宽使用情况不是Process类提供的功能。你可以使用System.Net.NetworkInformation命名空间下的IPGlobalProperties类来获取网络接口的信息，然后累计所有网络接口的传输数据量来估算带宽使用。
+以下是一个简单的示例代码，用于显示当前进程的网络传输数据量（发送和接收）：
+using System; using System.Diagnostics; using System.Net.NetworkInformation; class Program { static void Main() { Process currentProcess = Process.GetCurrentProcess(); Console.WriteLine($&amp;#34;Process ID: {currentProcess.</description></item><item><title>Debian Nodejs HEXO</title><link>https://qfsyso.github.io/posts/debian-nodejs-hexo/</link><pubDate>Fri, 03 May 2024 17:02:53 +0000</pubDate><guid>https://qfsyso.github.io/posts/debian-nodejs-hexo/</guid><description>Debian Nodejs HEXO
+安装Node.js环境 sudo apt update debian安装最新node v20.12.0 在Debian系统上安装特定版本的Node.js（例如v20.12.0），你可以使用NodeSource二进制分发。以下是安装v20.12.0的步骤：
+首先，打开终端。
+使用curl下载NodeSource的安装脚本：
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 安装Node.js：
+sudo apt-get install -y nodejs 验证Node.js是否安装成功：
+node --version 如果你想要确保安装了特定的v20.12.0版本，可以在安装完Node.js后运行以下命令来验证版本：
+node -v 如果显示的版本号是v20.12.0，则表示已经成功安装了该版本。
+安装HEXO 使用npm包管理器，直接安装hexo
+npm install hexo -g hexo init blog cd blog npm install hexo server hexo 修改端口号 _config.yml # 或者使用 vim _config.yml
+Docs: https://hexo.io/docs/server.html server: port: 12311 # 修改这里为你想要的端口号 compress: true header: true hexo s</description></item><item><title>Debian Gnome-Desktop GUI</title><link>https://qfsyso.github.io/posts/debian-gnome-desktop-gui/</link><pubDate>Fri, 26 Apr 2024 23:19:27 +0000</pubDate><guid>https://qfsyso.github.io/posts/debian-gnome-desktop-gui/</guid><description>debian gnome-desktop
+🌞更新 sudo apt update sudo apt -y upgrade ​
+🎨安装 sudo apt -y install task-gnome-desktop 这个过程比较久
+​
+🍎分配 sudo systemctl set-default graphical.target vi /etc/pam.d/gdm-password ``` bash 注释 auth required pam_succeed_if.so user != root quiet_success ``` bash #auth required pam_succeed_if.so user != root quiet_success 🛋️重启 sudo reboot 🔑通过VNC连接 ​
+配置后
+​</description></item><item><title>Debian Docker Redis</title><link>https://qfsyso.github.io/posts/debian-docker-redis/</link><pubDate>Fri, 12 Apr 2024 09:27:49 +0000</pubDate><guid>https://qfsyso.github.io/posts/debian-docker-redis/</guid><description>Debian安装docker
+1.使用官方脚本自动安装docker 安装命令如下：
+curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh 如果安装提示
+-bash sudo command not found
+则需要
+#update sudo apt-get update sudo apt-get install sudo 再执行安装脚本1
+安装成功后可以输入 docker命令查看docker版本
+#version docker --version 能查到表明安装成功
+2.pull redis #pull redis docker pull redis:latest pull redis镜像 3.创建reids容器 docker run -itd --name redis-test -p 6379:6379 redis 4.测试redis docker exec -it redis-test /bin/bash redis-cli set test 1 get test set test 1 提示ok
+get test 一些命令</description></item></channel></rss>

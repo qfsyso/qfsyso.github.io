@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linux on MLOG</title><link>https://qfsyso.github.io/tags/linux/</link><description>Recent content in Linux on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Sun, 16 Mar 2025 02:38:41 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Mobile SSH</title><link>https://qfsyso.github.io/posts/mobile-ssh/</link><pubDate>Sun, 16 Mar 2025 02:38:41 +0000</pubDate><guid>https://qfsyso.github.io/posts/mobile-ssh/</guid><description>ConnectBot ConnectBot是一款开源的SSH客户端，以其简洁实用而闻名。虽然界面相对简单，但功能却不失强大。ConnectBot支持多种加密方式，能够同时管理多个SSH会话，是一款稳定可靠的工具。
+简洁的用户界面，易于上手；
+强大的加密支持，保证连接安全；
+开源项目，社区支持良好。
+https://github.com/connectbot/connectbot
+Termux Termux不仅仅是一个SSH客户端，它更像是一个完整的Linux环境模拟器。用户可以在Termux中安装各种软件包，使其功能得到无限扩展。对于那些熟悉Linux系统的用户来说，Termux是一个极具吸引力的选择。
+丰富的软件包支持，可拓展性强；
+完整的Linux环境，适合高级用户；
+可以通过APT包管理器安装和更新软件。
+Termux还可以安装debian https://blog.csdn.net/2301_81229576/article/details/145148000</description></item><item><title>Beszel Lightweight Monitor</title><link>https://qfsyso.github.io/posts/beszel-lightweight-monitor/</link><pubDate>Sun, 16 Mar 2025 02:32:30 +0000</pubDate><guid>https://qfsyso.github.io/posts/beszel-lightweight-monitor/</guid><description>Beszel 为何选择Beszel？Beszel 凭借轻量、易用、功能全面的特性，成为开源监控领域的一匹黑马。无论是个人用户还是技术团队，均可通过其快速搭建高效的监控体系。 项目地址:https://github.com/henrygd/beszel
+Beszel官网：https://beszel.dev/
+在两个服务器上部署 Beszel 的步骤。 第一步：准备工作 管理员的权限
+第二步：下载安装脚本（两个服务器都要做） 对于 Hub（管理中心）
+curl -sL https://raw.githubusercontent.com/henrygd/beszel/main/supplemental/scripts/install-hub.sh -o install-hub.sh &amp;amp;&amp;amp; chmod +x install-hub.sh 对于 Agent（监控小帮手）
+curl -sL https://raw.githubusercontent.com/henrygd/beszel/main/supplemental/scripts/install-agent.sh -o install-agent.sh &amp;amp;&amp;amp; chmod +x install-agent.sh 第三步：运行安装脚本（两个服务器分别做） 安装 Hub 在放 Hub 的服务器的命令行里，输入：
+./install-hub.sh 安装 Agent 在放 Agent 的服务器的命令行里，输入：
+./install-agent.sh 第四步：检查是否安装成功 检查 Hub 在安装 Hub 的服务器上，输入下面的命令来看看 Hub 是不是在正常工作：
+systemctl status beszel-hub.service 检查 Agent
+systemctl status beszel-agent.service 同个服务器 curl -sL https://raw.githubusercontent.com/henrygd/beszel/main/supplemental/scripts/install-agent.sh -o install-agent.sh &amp;amp;&amp;amp; chmod +x install-agent.</description></item><item><title>android run linux</title><link>https://qfsyso.github.io/posts/android-run-linux/</link><pubDate>Sat, 26 Oct 2024 22:39:32 +0000</pubDate><guid>https://qfsyso.github.io/posts/android-run-linux/</guid><description>在安卓中运行linux AnLinux-App https://github.com/EXALAB/AnLinux-App download anlinux
+安装完 选择安装的linux系统
+复制启动/安装命令
+安装termux（如果没装） https://github.com/termux/termux-app
+（安装好了之后，进入termux界面：
+执行termux-setup-storage 来申请一下内存卡权限
+然后同意就行了，之后执行以下命令：
+pkg update &amp;amp;&amp;amp; pkg upgrade） 启动 粘贴运行命令
+安装完
+./start-debian.sh 启动 debian
+查IP su apt update apt install sudo sudo apt install net-tools ifconfig 修改密码 su # 输入当前 root 用户的密码 passwd # 输入新密码 Enter new UNIX password: # 再次输入新密码以确认 Retype new UNIX password: # 确认密码更改成功 passwd: password updated successfully exit linux 命令 1：文件管理 mv命令 – 移动或改名文件 ls命令 – 显示目录中文件及其属性信息 cp命令 – 复制文件或目录 mkdir命令 – 创建目录文件 pwd命令 – 显示当前工作目录的路径 tar命令 – 压缩和解压缩文件 cd命令 – 切换目录 chmod命令 – 改变文件或目录权限 2：文档编辑 cat命令 – 在终端设备上显示文件内容 grep命令 – 强大的文本搜索工具 rm命令 – 删除文件或目录 echo命令 – 输出字符串或提取后的变量值 tail命令 – 查看文件尾部内容 rmdir命令 – 删除空目录文件 sed命令 – 批量编辑文本文件 vi命令 – 文本编辑器 3：系统管理 find命令 – 根据路径和条件搜索指定文件 rpm命令 – RPM软件包管理器 ps命令 – 显示进程状态 startx命令 – 初始化X-window系统 uname命令 – 显示系统内核信息 kill命令 – 杀死进程 resize2fs命令 – 同步文件系统容量到内核 useradd命令 – 创建并设置用户信息 4：磁盘管理 df命令 – 显示磁盘空间使用量情况 fdisk命令 – 管理磁盘分区 lsblk命令 – 查看系统的磁盘使用情况 mkfs.</description></item><item><title> .NET build release 4 linux</title><link>https://qfsyso.github.io/posts/.net-build-release-4-linux/</link><pubDate>Sun, 29 Sep 2024 11:52:15 +0000</pubDate><guid>https://qfsyso.github.io/posts/.net-build-release-4-linux/</guid><description>在项目中使用 dotnet publish 命令来发布应用程序。
+将发布的应用程序文件夹复制到 Linux 服务器上。
+在 Linux 服务器上安装 .NET 运行时，如果应用是 self-contained（独立部署）的。
+使用 systemd 创建一个服务单元文件来管理应用作为服务运行。
+启动应用程序服务。
+发布应用程序：
+dotnet publish -c Release -o ./publish 将发布文件夹复制到 Linux 服务器：
+scp -r ./publish [user]@[host]:/var/www/myapp 运行
+dotnet myapp.dll 创建 systemd 服务文件 /etc/systemd/system/myapp.service：
+[Unit] Description=My .NET App [Service] WorkingDirectory=/var/www/myapp ExecStart=/var/www/myapp/MyApp Restart=always RestartSec=10 SyslogIdentifier=dotnet-myapp User=www-data Environment=ASPNETCORE_ENVIRONMENT=Production [Install] WantedBy=multi-user.target 启动服务：
+sudo systemctl enable myapp.service sudo systemctl start myapp.service 确保应用程序配置了正确的端口监听和防火墙规则。
+++++++++++++++++++&amp;ndash;
+api wr wwwroot json
+using Microsoft.AspNetCore.Mvc; using System.</description></item><item><title> win bilud go 4 linux</title><link>https://qfsyso.github.io/posts/win-bilud-go-4-linux/</link><pubDate>Mon, 26 Aug 2024 00:58:39 +0000</pubDate><guid>https://qfsyso.github.io/posts/win-bilud-go-4-linux/</guid><description>1. 安装必要的工具和依赖 首先，确保你已经安装了Go编译器和VS Code。如果还没有安装Go，可以从官方网站下载并安装。
+2. 配置Go环境 打开VS Code，按 Ctrl + Shift + P 打开命令面板，输入 &amp;ldquo;shell&amp;rdquo; 选择 &amp;ldquo;Shell: Windows&amp;rdquo; 或 &amp;ldquo;Shell: Linux&amp;rdquo;
+创建一个新的Go项目 在VS Code中创建一个新的文件夹作为你的Go项目目录，然后在终端中导航到该目录并初始化一个新的Go项目：
+mkdir my-go-app cd my-go-app go mod init my-go-app touch main.go 4. 编写Go程序 在 main.go 文件中编写一个简单的Hello World程序：
+package main import &amp;#34;fmt&amp;#34; func main() { fmt.Println(&amp;#34;Hello, World!&amp;#34;) } 5. 安装交叉编译工具 ⭐ Go提供了一些工具来进行跨平台编译。你可以使用以下命令来安装这些工具：
+go install github.com/golang/tools/cmd/goimports@latest go install golang.org/x/lint/golint@latest go install github.com/cweill/gotests/...@latest 6. 配置VS Code以使用Linux环境 你需要一个Linux环境来进行交叉编译。Windows Subsystem for Linux (WSL)来实现。 (https://learn.</description></item><item><title> Linux CPU now</title><link>https://qfsyso.github.io/posts/linux-cpu-now/</link><pubDate>Mon, 05 Aug 2024 01:51:08 +0000</pubDate><guid>https://qfsyso.github.io/posts/linux-cpu-now/</guid><description>linux 查看正在 cpu占用 在Linux中，可以使用多种命令来查看哪个进程正在使用CPU资源。以下是几个常用的命令：
+top - 实时显示系统中各个进程的资源占用情况，包括CPU使用率。
+top htop - top的增强版，提供更直观的界面，需要单独安装。
+htop ps - 显示当前运行的进程信息，结合aux选项可以查看CPU占用率。
+ps aux --sort=-%cpu | head pidstat - 用于监视个别任务的CPU和内存使用情况，通常与时间结合使用。
+pidstat 1 这些命令会以实时或者定时的方式输出CPU占用前几的进程，帮助识别和解决CPU占用高的问题。
+查看docker docker ps docker ps -a docker start cont C# 获取Cpu win PerformanceCounter 实例，用于监控总 CPU 使用率（&amp;quot;_Total&amp;quot; 表示监控所有 CPU 核心的总体使用情况）。
+dotnet add package System.Diagnostics.PerformanceCounter // 创建一个用于获取 CPU 占用率的 PerformanceCounter 对象 PerformanceCounter cpuCounter = new PerformanceCounter(&amp;#34;Processor&amp;#34;, &amp;#34;% Processor Time&amp;#34;, &amp;#34;_Total&amp;#34;); // 先执行一次 NextValue()，因为第一次调用通常会返回 0 cpuCounter.NextValue(); Thread.Sleep(1000); // 等待 1 秒以便获取准确值 while (true) { // 获取当前的 CPU 使用率 float cpuUsage = cpuCounter.</description></item><item><title> VM Linux win</title><link>https://qfsyso.github.io/posts/vm-linux-win/</link><pubDate>Mon, 24 Jun 2024 23:38:07 +0000</pubDate><guid>https://qfsyso.github.io/posts/vm-linux-win/</guid><description>debian12.5.0服务器安装 参考https://blog.csdn.net/Go_ahead_forever/article/details/132679793
+相关命令问题 新用户使用sudo报错 xx is not the sudoers file. 原因：book用户没有sudo的权限 解决：https://blog.csdn.net/weixin_37787043/article/details/123045557
+更新 清华-镜像源 (会快一些)： 参考文档： https://blog.csdn.net/sinat_15028281/article/details/135638596
+su root cp etc/apt/sources.list etc/apt/sources.list.backup // 备份 vi etc/apt/sources.list // 修改镜像源 将etc/apt/sources.list文件内的内容清空，写入以下内容：
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware deb https://security.</description></item><item><title>.NET native AOT</title><link>https://qfsyso.github.io/posts/.net-native-aot/</link><pubDate>Wed, 08 May 2024 13:01:11 +0000</pubDate><guid>https://qfsyso.github.io/posts/.net-native-aot/</guid><description>前言 .NET8对于性能的优化是方方面面的，所以AOT预编译机器码也是不例外的。本篇来看下对于AOT的优化。
+概述 首先要明确一个概念，.NET里面的AOT它是原生的。什么意思呢？也就是说通过ILC编译器(AOT编译器，编译出来的代码是各个平台上可以直接运行的二进制代码。比如MacOS的二进制，Linux二进制等等。所以称之为原生。
+C#源码被ILC编译之后，生成了一个完全原生态代码的可执行文件。在执行的时候不需要JIT来编译任何东西，因为JIT已经在ILC里面被充分利用过了。实际上AOT里面也没有包含JIT。那么它如何优化呢？只能是在ILC里面调用JIT的时候了。所以它这个优化依然依靠JIT。.NET8里面优化AOT的一个典型的例子，就是ASP.NET应用程序在使用AOT的时候表现不错，同时也降低了总成本。
+创建项目 启用AOT
+打包指令 dotnet publish DemoAot.csproj -o pub\ -c Release -r win-x64 linux下 先安装SDK 安装后
+dotnet --list-sdks dotnet publish DemoAot.csproj -o $PWD/pub -c Release -r linux-x64 macos下 安装SDK后
+dotnet --list-sdks dotnet publish DemoAot.csproj -o $PWD/pub -c Release -r osx-x64 重启服务器 通过命令 cd fser 及sudo nohup /root/fser/fileserver &amp;gt; output{当前时间}.log 2&amp;gt;&amp;amp;1 &amp;amp; 和命令 cd nets4 及sudo nohup dotnet /root/nets4/IM.dll &amp;gt; output{当前时间}.log 2&amp;gt;&amp;amp;1 &amp;amp; 自动化运行
+为了自动化运行这些程序启动命令，可以编写一个 Shell 脚本并结合系统启动服务（如 systemd）来执行。 以下是具体实现步骤：</description></item></channel></rss>

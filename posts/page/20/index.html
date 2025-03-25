@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Posts | MLOG</title>
+<meta name="keywords" content="">
+<meta name="description" content="Posts - MLOG">
+<meta name="author" content="dwd">
+<link rel="canonical" href="http://localhost:1313/posts/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.6da9a63d25a9608bca2f7f907a030e887a7dd3c3f3918e4cc113129361414bda.css" integrity="sha256-bammPSWpYIvKL3&#43;QegMOiHp908PzkY5MwRMSk2FBS9o=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/posts/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="MLOG (Alt + H)">MLOG</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Archive">
+                    <span class="active">Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Posts
+  </h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent"> .NET netty proto
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>DotNetty是微软的Azure团队，使用C#实现的Netty的版本发布。不但使用了C#和.Net平台的技术特点，并且保留了Netty原来绝大部分的编程接口。让我们在使用时，完全可以依照Netty官方的教程来学习和使用DotNetty应用程序。
+Netty 是一个异步事件驱动的网络应用程序框架，用于快速开发可维护的高性能协议服务器和客户端。
+优点 关注点分离——业务和网络逻辑解耦； 模块化和可复用性； 可测试性作为首要的要求 历史 阻塞Socket通信特点：
+建立连接要阻塞线程，读取数据要阻塞线程 如果要管理多个客户端，就需要为每个客户端建立不同的线程 会有大量的线程在休眠状态，等待接收数据，资源浪费 每个线程都要占用系统资源 线程的切换很耗费系统资源 非阻塞Socket（NIO）特点： 每个Socket如果需要读写操作，都通过事件通知的方式通知选择器，这样就实现了一个线程管理多个Socket的目的。 ​
+选择器甚至可以在所有的Socket空闲的时候允许线程先去干别的事情 减少了线程数量导致的资源占用，减少了线程切换导致的资源消耗
+Protobuf wakeng
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-03 02:09:32 +0000 UTC'>May 3, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  .NET netty proto" href="http://localhost:1313/posts/.net-netty-proto/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET 检测地址/主机/域名是否正常
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>🌱PING 地址/主机名/域名
+/// &lt;summary&gt; /// PING /// &lt;/summary&gt; /// &lt;param name=&#34;ip&#34;&gt;ip&lt;/param&gt; /// &lt;returns&gt;&lt;/returns&gt; public static bool PingIp(string ip) { System.Net.NetworkInformation.Ping p = new System.Net.NetworkInformation.Ping(); System.Net.NetworkInformation.PingOptions options = new System.Net.NetworkInformation.PingOptions(); options.DontFragment = true; string data = &#34;Test Data!&#34;; byte[] buffer = Encoding.ASCII.GetBytes(data); int timeout = 2000; // Timeout System.Net.NetworkInformation.PingReply reply = p.Send(ip, timeout, buffer, options); if (reply.Status == System.Net.NetworkInformation.IPStatus.Success) { // AddToConvo(ip &#43; reply.Status); return true; } else { // AddToConvo(ip &#43; reply.Status); return false; } } 👀调用方法
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-28 19:09:40 +0000 UTC'>April 28, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET 检测地址/主机/域名是否正常" href="http://localhost:1313/posts/.net-%E6%A3%80%E6%B5%8B%E5%9C%B0%E5%9D%80/%E4%B8%BB%E6%9C%BA/%E5%9F%9F%E5%90%8D%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET Avalonia Linux 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>环境WIN10 VS2022 debian
+👻前言 Avalonia 是一个用于创建跨平台用户界面 (UI) 的开源框架。它是一个基于 .NET 平台的框架，允许开发者使用 XAML 和 C#（F#）来构建跨平台的应用程序。Avalonia 的目标是提供与 Windows Presentation Foundation (WPF) 类似的开发体验，但能够在 Windows、macOS 和 Linux 等多个平台上运行。
+使用 Avalonia，开发者可以创建各种类型的应用程序，包括桌面应用、移动应用和嵌入式应用。一些可以通过 Avalonia 实现的功能和应用包括：
+桌面应用程序：如办公软件、IDE、游戏客户端等。
+移动应用程序：通过 Avalonia 可以构建支持多个平台的移动应用，如 Windows、macOS 和 Linux 上的移动应用。
+跨平台工具：Avalonia 可以用于构建跨平台的开发工具、实用工具等。
+游戏开发：Avalonia 也可以用于构建游戏的用户界面，适合基于 .NET 平台的游戏开发。
+Avalonia 提供了一个强大的工具集，使开发者能够创建具有各种功能和样式的跨平台应用程序。
+💻安装Avalonia 选择管理拓展，点击下载，安装
+​
+​
+📦创建项目 ​
+​
+​
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-27 00:07:15 +0000 UTC'>April 27, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET Avalonia Linux " href="http://localhost:1313/posts/.net-avalonia-linux/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Debian Gnome-Desktop GUI 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>debian gnome-desktop
+🌞更新 sudo apt update sudo apt -y upgrade ​
+🎨安装 sudo apt -y install task-gnome-desktop 这个过程比较久
+​
+🍎分配 sudo systemctl set-default graphical.target vi /etc/pam.d/gdm-password ``` bash 注释 auth required pam_succeed_if.so user != root quiet_success ``` bash #auth required pam_succeed_if.so user != root quiet_success 🛋️重启 sudo reboot 🔑通过VNC连接 ​
+配置后
+​
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-26 23:19:27 +0000 UTC'>April 26, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Debian Gnome-Desktop GUI " href="http://localhost:1313/posts/debian-gnome-desktop-gui/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">HarmonyOS Study ArkTS
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>💡 环境搭建 HarmonyOS开发环境搭建
+DevEco Studio安装 https://developer.huawei.com/consumer/cn/deveco-studio/
+​
+🚀安装nodejs ​
+🤵安装ohpm ​
+🍔安装SDK ​
+​
+💥Emulator安装 ​
+Q:The graphic card OpenGL version is too old for Previewer to work..
+解决方法分两步：
+1、下载enGL库：https://github.com/pal1000/mesa-dist-win/releases/download/23.1.1/mesa3d-23.1.1-release-msvc.7z
+2、解压下载的zip文件,双击执行systemwidedeploy.cmd文件，然后按任意键，出现一个菜单，选择1，然后开始安装OpenGL驱动，出现complete 后关闭终端，重新运行程序即可生效。
+🌶️新建ArkTs项目 ​
+​
+​
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-21 13:00:43 +0000 UTC'>April 21, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to HarmonyOS Study ArkTS" href="http://localhost:1313/posts/harmonyos-study-arkts/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent"> .NET 反编译
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>反编译是对程序进行逆向分析、研究，以推导出软件产品所使用的思路、原理、结构、算法、处理过程、运行方法等设计要素。
+反编译.NET程序需要使用专门的反编译工具
+🧿使用dotPeek进行反编译 1.下载dotPeek dotPeek：JetBrains 出品的免费 .NET 反编译器与程序集浏览器
+​
+2.File &gt; Open
+​
+3.打开需要反编译的文件方法
+​
+🧝‍♂️使用ILSpy进行反编译 下载并安装 ILSpy：https://github.com/icsharpcode/ILSpy/releases 2.文件-打开-exe
+​
+3.查看反编译内容
+找到Form1 可以看到里面反编译的内容
+​
+复制到vs里面
+替换代码添加相关引用即可
+🤖使用Reflector进行反编译 1.File &gt; Open Assembly
+​ ​
+2.点开WinTime.exe内容
+​
+3.查看反编译内容
+可以看到反编译出来的控件和方法 ​
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-21 06:14:22 +0000 UTC'>April 21, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  .NET 反编译" href="http://localhost:1313/posts/.net-%E5%8F%8D%E7%BC%96%E8%AF%91/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent"> .NET SMTP
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>SMTP（Simple Mail Transfer Protocol）是用于电子邮件传输的规则集，可以从邮件客户端向接收电子邮件服务器发送、中继或转发邮件。发件人可使用SMTP 服务器来执行发送电子邮件的过程。SMTP服务器则是按照这些规则中转电子邮件的服务器。
+IMAP可以理解为收邮件。 ​
+🐧使用QQ邮箱发邮件 首先需要设置开启邮箱的SMTP服务
+登录(https://mail.qq.com/)电脑网页版邮箱进入【设置】-&gt;【帐户】-&gt;【POP3/IMAP/SMTP服务】， 开启或关闭相应服务最后保存更改即可。 ​
+QQ邮箱 POP3 和 SMTP 服务器地址设置如下：
+邮箱	POP3服务器（端口995）	SMTP服务器（端口465或587） qq.com	pop.qq.com	smtp.qq.com SMTP服务器需要身份验证。
+以下是示例代码：
+using ConsoleApp1Test; //xxx string server = &#34;smtp.qq.com&#34;; string username = &#34;my test email&#34;; string password = &#34;xxx; string from = &#34;from@qq.com&#34;; string to = &#34;to@qq.com&#34;; string subject = &#34;Test Email&#34;; string content = &#34;This is a test email sent asynchronously.&#34;; bool isHtml = false; // 是否为 HTML 格式 try { bool success = await MailHelper. SendMailAsync(server, username, password, from, to, null, subject, content, isHtml); if (success) { Console.WriteLine(&#34;邮件发送成功！&#34;); } else { Console.WriteLine(&#34;邮件发送失败！&#34;); } } catch (Exception ex) { Console.WriteLine($&#34;邮件发送出错：{ex.Message}&#34;); } using System; using System.Collections.Generic; using System.Linq; using System.Net.Mail; using System.Text; using System.Threading.Tasks; namespace ConsoleApp1Test { internal class MailHelper { public static async Task&lt;bool&gt; SendMailAsync(string server, string username, string password, string from, string to, string cc, string subject, string content, bool isHtml) { try { using (var smtp = new SmtpClient(server)) { smtp.UseDefaultCredentials = false; smtp.Credentials = new System.Net.NetworkCredential(username, password); smtp.EnableSsl = true; // 启用加密 smtp.DeliveryMethod = SmtpDeliveryMethod.Network; using (var mail = new MailMessage()) { mail.From = new MailAddress(from); mail.To.Add(to); mail.SubjectEncoding = Encoding.UTF8; mail.Subject = subject; mail.IsBodyHtml = isHtml; mail.BodyEncoding = Encoding.UTF8; mail.Body = content; await smtp.SendMailAsync(mail); // 异步发送邮件 } return true; } } catch (Exception err) { // 发送失败时的异常处理 // 可以在此处记录日志 return false; } } } } ​ ​
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-20 21:13:11 +0000 UTC'>April 20, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  .NET SMTP" href="http://localhost:1313/posts/.net-smtp/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/posts/page/19/">
+      «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/posts/page/21/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+
+    <div class="wtime">
+        <div class="wtime2">CST<span id="beijingTime"></span> GMT <span id="londonTime"></span> EST <span id="newYorkTime"></span>  PST<span id="losAngelesTime"></span></div>
+        <div class="wtime2" style="display: none;"> 东京<span id="tokyoTime"></span></div>
+        <div class="wtime2" style="display: none;">欧洲-巴黎<span id="parisTime"></span></div>
+
+        <div  class="wtime2" style="display: none;">UTC<span id="utcTime"></span></div>
+    </div>
+        <span>&copy; 2025 <a href="http://localhost:1313/">MLOG</a></span> · 
+
+
+    <span>
+ 
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+
+
+
+<script type="text/javascript">
+
+    
+    const timeZoneOffsets = {
+            'beijing': 8,  
+            'tokyo': 9,  
+            'paris': [1, 2],  
+            'london': [0, 1],  
+            'newYork': [-5, -4],  
+            'losAngeles': [-8, -7]  
+        };
+
+        function padZero(num) {
+            return num < 10? '0' + num : num;
+        }
+
+        function formatTime(date) {
+            const year = date.getFullYear();
+            const month = padZero(date.getMonth() + 1);
+            const day = padZero(date.getDate());
+            const hours = padZero(date.getHours());
+            const minutes = padZero(date.getMinutes());
+            const seconds = padZero(date.getSeconds());
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        }
+
+        function isDaylightSavingTime(date, zone) {
+            const month = date.getMonth();
+            const dstStart = new Date(date.getFullYear(), 3, 8, 2, 0, 0);  
+            const dstEnd = new Date(date.getFullYear(), 10, 1, 2, 0, 0);  
+            if (zone === 'paris' || zone === 'london' || zone === 'newYork' || zone === 'losAngeles') {
+                return date >= dstStart && date < dstEnd;
+            }
+            return false;
+        }
+
+        function updateTime() {
+            const now = new Date();
+            const utcDate = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(),
+                now.getUTCMinutes(), now.getUTCSeconds());
+            const utcTime = formatTime(utcDate);
+            document.getElementById('utcTime').innerHTML = utcTime;
+
+            for (const zone in timeZoneOffsets) {
+                const offsets = timeZoneOffsets[zone];
+                let offset;
+                if (Array.isArray(offsets)) {
+                    offset = isDaylightSavingTime(utcDate, zone)? offsets[1] : offsets[0];
+                } else {
+                    offset = offsets;
+                }
+                const zoneDate = new Date(utcDate.getTime() + offset * 60 * 60 * 1000);
+                document.getElementById(zone + 'Time').innerHTML = formatTime(zoneDate);
+            }
+
+            setTimeout(updateTime, 1000);
+        }
+
+        window.onload = function () {
+            updateTime();
+        };
+    function notfound(imgElement) {  
+            var src = imgElement.src;  
+            var parts = src.split('/'); 
+            var filename = parts[parts.length - 1]; 
+            
+      
+            imgElement.src = "https://47.115.223.75:8080/group1/v2/" + filename+"?timestamp=" + Date.now();
+    
+            imgElement.onerror = null; 
+        }  
+
+    </script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

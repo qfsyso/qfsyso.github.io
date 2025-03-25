@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Azure on MLOG</title><link>https://qfsyso.github.io/tags/azure/</link><description>Recent content in Azure on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Fri, 07 Jun 2024 01:03:12 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/azure/index.xml" rel="self" type="application/rss+xml"/><item><title>Azure OpenAI Build Natural Language</title><link>https://qfsyso.github.io/posts/azure-openai-build-natural-language/</link><pubDate>Fri, 07 Jun 2024 01:03:12 +0000</pubDate><guid>https://qfsyso.github.io/posts/azure-openai-build-natural-language/</guid><description>https://learn.microsoft.com/en-us/credentials/applied-skills/build-natural-language-solution-azure-ai/#applied-skill-take-the-assessment?ocid=reactor
+start 进入环境中，点击Step 1，然后点击Password右边的T，登录环境 双击打开桌面的Email文件 对Inbox的内容进行逐个点击，其中Existing Environment包含了微软官方提供的Azure的用户名和密码，proof of concept、Invoice validation、chatbot backend 分别表示的是本次考试的三大任务的具体要求 将邮箱中Existing Environment的用户名和密码依次复制到Azure的标签页面中，并点击Sign in完成Azure的登录
+试验一： Proof of Concept (POC) 点击邮件中的 Proof of Concept (POC) 菜单会出现具体的内容要求，如下图所示。
+在第一个实验中主要是使用微软的 language 服务，并且创建的时候要符合要求，这个服务要满足客户自定义文本标准和 NER。 在实验中另外一个要求是需要使用代码最后调用这个你创建服务。 流程操作 首先在登录主页面搜索栏 搜索RG1，并点击Resource Groups下面的RG1 进入后点击 Create 按钮 之后在首页内搜索language service 点击进入到 Language service 后，点击 Create 之后点击右下方的第二个 select 按钮 选择好之后，点击下方的按钮 continue to create your resource
+在配置页面，按照我们的题目要求，在 Region 中选择 North Europe， 其中 Name 从邮件中找，在 Proof of concept 这里 lang开头的这个名字，作为刚才创建资源的 Name 值 主要需要注意的是在 Pricing tier层里，需要选择 Free F0 的这个，这一点也是题目要求的。 下面选择 Existing storege account ，在存储账户这里，需要选择题目要求的以sa开头的这个账户。</description></item><item><title>Azure AI Develop Generative AI solutions</title><link>https://qfsyso.github.io/posts/azure-ai-develop-generative-ai-solutions/</link><pubDate>Thu, 06 Jun 2024 00:18:03 +0000</pubDate><guid>https://qfsyso.github.io/posts/azure-ai-develop-generative-ai-solutions/</guid><description>Start https://learn.microsoft.com/en-us/credentials/applied-skills/develop-generative-ai-solutions-with-azure-openai-service/#applied-skill-take-the-assessment
+部署Azure OpenAI 服务 ​
+点击Step 1，然后点击Password右边的T ​
+鼠标双击Email ​ 对Inbox的内容进行逐个点击，其中Existing Environment包含了微软官方提供的Azure的用户名和密码，Validate proof of concept、Company chatbot、Developer tasks和Use company data分别表示的是本次考试的四大任务的具体要求
+切换到Azure登录的标签页
+​ 将邮箱中Existing Environment的用户名和密码依次复制到Azure的标签页面中，并点击Sign in完成Azure的登录
+然后在浏览器中输入URL：https://portal.azure.com/#home，点击Azure AI services
+​ 其中Resource group、Pricing tier勾选下拉列表的存在项，Name可自行填入(如azureservice)，然后点击Next ​
+网络中选择第一项：All networks，然后点击页面左下方的Next Tags可直接点击左下方的Next 然后在Review+submit页面点击Create ​ 等待几十秒后，deployment完成后，点击Deployment details 点击Resource中的名称，如azureservice ​ 点击Endpoints右边的Click here to view endpoints ​ ​
+点击Key 1右侧的复制按钮，复制其到C:\files\AzureOpenAIPoc\Python.env中的AZURE_OAI_KEY变量中。 点击Endpoint右侧的复制按钮，分别复制任意一个 KEY 和 EndPoint 到C:\files\AzureOpenAIPoc\Python.env中的AZURE_OAI_KEY 和 AZURE_OAI_ENDPOINT。 然后在浏览器中输入https://portal.azure.com/#home，并点击Name下的名称 点击Go to Azure OpenAI Studio
+然后点击Create new deployment
+按照下图中的内容进行下拉选择或者填写，其中Select a model勾选为gpt-35-turbo-16k，Deployment name可自定义填写，如gpt_deploy，将Tokens per Minute Rate Limit设置为5K，Enable Dynamic Quota设置为Disabled，最后点击Create： 确保Status为Succeed，则说明部署成功了 将C:\files\AzureOpenAIPoc\Python.</description></item><item><title>Azure OpenAI Natural Language</title><link>https://qfsyso.github.io/posts/azure-openai-natural-language/</link><pubDate>Tue, 04 Jun 2024 23:02:14 +0000</pubDate><guid>https://qfsyso.github.io/posts/azure-openai-natural-language/</guid><description>简介 Azure OpenAI 为开发人员提供了一个平台，用于在 Python 和 C# SDK 以及 REST API 的帮助下向其应用程序添加人工智能功能。 该平台提供了各种 AI 模型，每个模型都专用于不同的任务，这些任务可通过 Azure OpenAI 服务进行部署。
+本模块指导你了解如何将 Azure OpenAI 构建到自己的应用程序中，为你提供一个使用生成式 AI 开发解决方案的起点。
+将 Azure OpenAI 集成到应用中 Azure OpenAI 提供 C# 和 Python SDK 以及 REST API，开发人员可以用来向其应用程序添加 AI 功能。 Azure OpenAI 中的生成式 AI 功能通过模型提供。 Azure OpenAI 服务中可用的模型属于不同的系列，每个系列都有自己的重点。 若要使用这些模型之一，需要通过 Azure OpenAI 服务进行部署。
+重要
+Azure OpenAI 已发布，但支持负责任地使用该服务的访问权限有限。 用户需要先申请访问权限并获得批准，然后才能创建 Azure OpenAI 资源。
+创建 Azure OpenAI 资源 可以通过 Azure 命令行接口 (CLI) 和 Azure 门户部署 Azure OpenAI 资源。 通过 Azure 门户创建 Azure OpenAI 资源类似于部署单个 Azure AI 服务资源，并且是 Azure AI 服务的一部分。</description></item><item><title>Azure OpenAI Solution</title><link>https://qfsyso.github.io/posts/azure-openai-solution/</link><pubDate>Sat, 01 Jun 2024 20:02:53 +0000</pubDate><guid>https://qfsyso.github.io/posts/azure-openai-solution/</guid><description>开始使用 Azure OpenAI 服务 简介 假设你想要生成一个汇总文本和建议代码的支持应用程序。 若要生成此应用，需要利用 ChatGPT 中显示的功能，ChatGPT 是 OpenAI 研究公司构建的聊天机器人，它接受用户的自然语言输入，并返回机器创建的类人响应。
+生成式 AI 模型支持 ChatGPT 基于自然语言提示生成新内容（如文本、代码和图像）的能力。 许多生成 AI 模型是深度学习算法的子集。 这些算法支持视觉、语音、语言、决策、搜索等各种工作负载。
+Azure OpenAI 服务将这些生成式 AI 模型引入 Azure 平台，使你能够开发功能强大的 AI 解决方案，这些解决方案受益于 Azure 云平台提供的其他服务的安全性、可伸缩性和集成。 这些模型可用于通过 REST API、各种 SDK 和 Studio 接口生成应用程序。 本模块将指导你完成 Azure OpenAI Studio 体验，为你使用生成式 AI 进一步开发解决方案奠定了基础。
+访问 Azure OpenAI 服务 使用 Azure OpenAI 构建生成型 AI 解决方案的第一步是在 Azure 订阅中预配 Azure OpenAI 资源。 Azure OpenAI 服务目前处于受限访问状态。 用户需要在 https://aka.ms/oai/access 上申请服务访问权限。
+注意
+Azure OpenAI 服务已发布，但支持以合乎道德的方式使用该服务的访问权限有限。 可以在此处阅读 Azure OpenAI 服务的 Microsoft 透明度说明。</description></item></channel></rss>
