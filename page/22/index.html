@@ -123,6 +123,28 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Debian Docker Redis
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Debian安装docker
+1.使用官方脚本自动安装docker 安装命令如下：
+curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh 如果安装提示
+-bash sudo command not found
+则需要
+#update sudo apt-get update sudo apt-get install sudo 再执行安装脚本1
+安装成功后可以输入 docker命令查看docker版本
+#version docker --version 能查到表明安装成功
+2.pull redis #pull redis docker pull redis:latest pull redis镜像 3.创建reids容器 docker run -itd --name redis-test -p 6379:6379 redis 4.测试redis docker exec -it redis-test /bin/bash redis-cli set test 1 get test set test 1 提示ok
+get test 一些命令
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-12 09:27:49 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Debian Docker Redis" href="http://localhost:1313/posts/debian-docker-redis/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">.NET SignalR Redis 
     </h2>
   </header>

@@ -123,6 +123,26 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent"> .NET SMTP
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>SMTP（Simple Mail Transfer Protocol）是用于电子邮件传输的规则集，可以从邮件客户端向接收电子邮件服务器发送、中继或转发邮件。发件人可使用SMTP 服务器来执行发送电子邮件的过程。SMTP服务器则是按照这些规则中转电子邮件的服务器。
+IMAP可以理解为收邮件。 ​
+🐧使用QQ邮箱发邮件 首先需要设置开启邮箱的SMTP服务
+登录(https://mail.qq.com/)电脑网页版邮箱进入【设置】-&gt;【帐户】-&gt;【POP3/IMAP/SMTP服务】， 开启或关闭相应服务最后保存更改即可。 ​
+QQ邮箱 POP3 和 SMTP 服务器地址设置如下：
+邮箱	POP3服务器（端口995）	SMTP服务器（端口465或587） qq.com	pop.qq.com	smtp.qq.com SMTP服务器需要身份验证。
+以下是示例代码：
+using ConsoleApp1Test; //xxx string server = &#34;smtp.qq.com&#34;; string username = &#34;my test email&#34;; string password = &#34;xxx; string from = &#34;from@qq.com&#34;; string to = &#34;to@qq.com&#34;; string subject = &#34;Test Email&#34;; string content = &#34;This is a test email sent asynchronously.&#34;; bool isHtml = false; // 是否为 HTML 格式 try { bool success = await MailHelper. SendMailAsync(server, username, password, from, to, null, subject, content, isHtml); if (success) { Console.WriteLine(&#34;邮件发送成功！&#34;); } else { Console.WriteLine(&#34;邮件发送失败！&#34;); } } catch (Exception ex) { Console.WriteLine($&#34;邮件发送出错：{ex.Message}&#34;); } using System; using System.Collections.Generic; using System.Linq; using System.Net.Mail; using System.Text; using System.Threading.Tasks; namespace ConsoleApp1Test { internal class MailHelper { public static async Task&lt;bool&gt; SendMailAsync(string server, string username, string password, string from, string to, string cc, string subject, string content, bool isHtml) { try { using (var smtp = new SmtpClient(server)) { smtp.UseDefaultCredentials = false; smtp.Credentials = new System.Net.NetworkCredential(username, password); smtp.EnableSsl = true; // 启用加密 smtp.DeliveryMethod = SmtpDeliveryMethod.Network; using (var mail = new MailMessage()) { mail.From = new MailAddress(from); mail.To.Add(to); mail.SubjectEncoding = Encoding.UTF8; mail.Subject = subject; mail.IsBodyHtml = isHtml; mail.BodyEncoding = Encoding.UTF8; mail.Body = content; await smtp.SendMailAsync(mail); // 异步发送邮件 } return true; } } catch (Exception err) { // 发送失败时的异常处理 // 可以在此处记录日志 return false; } } } } ​ ​
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-20 21:13:11 +0000 UTC'>April 20, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  .NET SMTP" href="http://localhost:1313/posts/.net-smtp/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Socket to WebSocket
     </h2>
   </header>
@@ -263,28 +283,6 @@ utf8mb4_unicode_ci
   </div>
   <footer class="entry-footer"><span title='2024-04-13 09:27:51 +0000 UTC'>April 13, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to MySQL Incorrect string value " href="http://localhost:1313/posts/mysql-incorrect-string-value/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Debian Docker Redis
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Debian安装docker
-1.使用官方脚本自动安装docker 安装命令如下：
-curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh 如果安装提示
--bash sudo command not found
-则需要
-#update sudo apt-get update sudo apt-get install sudo 再执行安装脚本1
-安装成功后可以输入 docker命令查看docker版本
-#version docker --version 能查到表明安装成功
-2.pull redis #pull redis docker pull redis:latest pull redis镜像 3.创建reids容器 docker run -itd --name redis-test -p 6379:6379 redis 4.测试redis docker exec -it redis-test /bin/bash redis-cli set test 1 get test set test 1 提示ok
-get test 一些命令
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-12 09:27:49 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian Docker Redis" href="http://localhost:1313/posts/debian-docker-redis/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

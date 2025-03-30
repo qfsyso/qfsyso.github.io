@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head>
-	<meta name="generator" content="Hugo 0.145.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>MLOG</title>
-
+<title>TypeScriptS | MLOG</title>
+<meta name="keywords" content="">
 <meta name="description" content="A simple blog ">
 <meta name="author" content="dwd">
-<link rel="canonical" href="http://localhost:1313/">
+<link rel="canonical" href="http://localhost:1313/tags/typescripts/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.6da9a63d25a9608bca2f7f907a030e887a7dd3c3f3918e4cc113129361414bda.css" integrity="sha256-bammPSWpYIvKL3&#43;QegMOiHp908PzkY5MwRMSk2FBS9o=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
@@ -19,9 +18,8 @@
 <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml">
-<link rel="alternate" type="application/json" href="http://localhost:1313/index.json">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/typescripts/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/tags/typescripts/">
 <noscript>
     <style>
         #theme-toggle,
@@ -120,107 +118,13 @@
     </nav>
 </header>
 <main class="main"> 
+<header class="page-header">
+  <h1>
+    TypeScriptS
+  </h1>
+</header>
 
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Debian Nodejs HEXO 
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Debian Nodejs HEXO
-安装Node.js环境 sudo apt update debian安装最新node v20.12.0 在Debian系统上安装特定版本的Node.js（例如v20.12.0），你可以使用NodeSource二进制分发。以下是安装v20.12.0的步骤：
-首先，打开终端。
-使用curl下载NodeSource的安装脚本：
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 安装Node.js：
-sudo apt-get install -y nodejs 验证Node.js是否安装成功：
-node --version 如果你想要确保安装了特定的v20.12.0版本，可以在安装完Node.js后运行以下命令来验证版本：
-node -v 如果显示的版本号是v20.12.0，则表示已经成功安装了该版本。
-安装HEXO 使用npm包管理器，直接安装hexo
-npm install hexo -g hexo init blog cd blog npm install hexo server hexo 修改端口号 _config.yml # 或者使用 vim _config.yml
-Docs: https://hexo.io/docs/server.html server: port: 12311 # 修改这里为你想要的端口号 compress: true header: true hexo s </p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-03 17:02:53 +0000 UTC'>May 3, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian Nodejs HEXO " href="http://localhost:1313/posts/debian-nodejs-hexo/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent"> .NET netty proto
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>DotNetty是微软的Azure团队，使用C#实现的Netty的版本发布。不但使用了C#和.Net平台的技术特点，并且保留了Netty原来绝大部分的编程接口。让我们在使用时，完全可以依照Netty官方的教程来学习和使用DotNetty应用程序。
-Netty 是一个异步事件驱动的网络应用程序框架，用于快速开发可维护的高性能协议服务器和客户端。
-优点 关注点分离——业务和网络逻辑解耦； 模块化和可复用性； 可测试性作为首要的要求 历史 阻塞Socket通信特点：
-建立连接要阻塞线程，读取数据要阻塞线程 如果要管理多个客户端，就需要为每个客户端建立不同的线程 会有大量的线程在休眠状态，等待接收数据，资源浪费 每个线程都要占用系统资源 线程的切换很耗费系统资源 非阻塞Socket（NIO）特点： 每个Socket如果需要读写操作，都通过事件通知的方式通知选择器，这样就实现了一个线程管理多个Socket的目的。 ​
-选择器甚至可以在所有的Socket空闲的时候允许线程先去干别的事情 减少了线程数量导致的资源占用，减少了线程切换导致的资源消耗
-Protobuf wakeng
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-03 02:09:32 +0000 UTC'>May 3, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to  .NET netty proto" href="http://localhost:1313/posts/.net-netty-proto/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET 检测地址/主机/域名是否正常
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>🌱PING 地址/主机名/域名
-/// &lt;summary&gt; /// PING /// &lt;/summary&gt; /// &lt;param name=&#34;ip&#34;&gt;ip&lt;/param&gt; /// &lt;returns&gt;&lt;/returns&gt; public static bool PingIp(string ip) { System.Net.NetworkInformation.Ping p = new System.Net.NetworkInformation.Ping(); System.Net.NetworkInformation.PingOptions options = new System.Net.NetworkInformation.PingOptions(); options.DontFragment = true; string data = &#34;Test Data!&#34;; byte[] buffer = Encoding.ASCII.GetBytes(data); int timeout = 2000; // Timeout System.Net.NetworkInformation.PingReply reply = p.Send(ip, timeout, buffer, options); if (reply.Status == System.Net.NetworkInformation.IPStatus.Success) { // AddToConvo(ip &#43; reply.Status); return true; } else { // AddToConvo(ip &#43; reply.Status); return false; } } 👀调用方法
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-28 19:09:40 +0000 UTC'>April 28, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET 检测地址/主机/域名是否正常" href="http://localhost:1313/posts/.net-%E6%A3%80%E6%B5%8B%E5%9C%B0%E5%9D%80/%E4%B8%BB%E6%9C%BA/%E5%9F%9F%E5%90%8D%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET Avalonia Linux 
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>环境WIN10 VS2022 debian
-👻前言 Avalonia 是一个用于创建跨平台用户界面 (UI) 的开源框架。它是一个基于 .NET 平台的框架，允许开发者使用 XAML 和 C#（F#）来构建跨平台的应用程序。Avalonia 的目标是提供与 Windows Presentation Foundation (WPF) 类似的开发体验，但能够在 Windows、macOS 和 Linux 等多个平台上运行。
-使用 Avalonia，开发者可以创建各种类型的应用程序，包括桌面应用、移动应用和嵌入式应用。一些可以通过 Avalonia 实现的功能和应用包括：
-桌面应用程序：如办公软件、IDE、游戏客户端等。
-移动应用程序：通过 Avalonia 可以构建支持多个平台的移动应用，如 Windows、macOS 和 Linux 上的移动应用。
-跨平台工具：Avalonia 可以用于构建跨平台的开发工具、实用工具等。
-游戏开发：Avalonia 也可以用于构建游戏的用户界面，适合基于 .NET 平台的游戏开发。
-Avalonia 提供了一个强大的工具集，使开发者能够创建具有各种功能和样式的跨平台应用程序。
-💻安装Avalonia 选择管理拓展，点击下载，安装
-​
-​
-📦创建项目 ​
-​
-​
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-27 00:07:15 +0000 UTC'>April 27, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET Avalonia Linux " href="http://localhost:1313/posts/.net-avalonia-linux/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Debian Gnome-Desktop GUI 
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>debian gnome-desktop
-🌞更新 sudo apt update sudo apt -y upgrade ​
-🎨安装 sudo apt -y install task-gnome-desktop 这个过程比较久
-​
-🍎分配 sudo systemctl set-default graphical.target vi /etc/pam.d/gdm-password ``` bash 注释 auth required pam_succeed_if.so user != root quiet_success ``` bash #auth required pam_succeed_if.so user != root quiet_success 🛋️重启 sudo reboot 🔑通过VNC连接 ​
-配置后
-​
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-26 23:19:27 +0000 UTC'>April 26, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian Gnome-Desktop GUI " href="http://localhost:1313/posts/debian-gnome-desktop-gui/"></a>
-</article>
-
-<article class="post-entry"> 
+<article class="post-entry tag-entry"> 
   <header class="entry-header">
     <h2 class="entry-hint-parent">HarmonyOS Study ArkTS
     </h2>
@@ -246,48 +150,6 @@ Q:The graphic card OpenGL version is too old for Previewer to work..
   <footer class="entry-footer"><span title='2024-04-21 13:00:43 +0000 UTC'>April 21, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to HarmonyOS Study ArkTS" href="http://localhost:1313/posts/harmonyos-study-arkts/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent"> .NET 反编译
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>反编译是对程序进行逆向分析、研究，以推导出软件产品所使用的思路、原理、结构、算法、处理过程、运行方法等设计要素。
-反编译.NET程序需要使用专门的反编译工具
-🧿使用dotPeek进行反编译 1.下载dotPeek dotPeek：JetBrains 出品的免费 .NET 反编译器与程序集浏览器
-​
-2.File &gt; Open
-​
-3.打开需要反编译的文件方法
-​
-🧝‍♂️使用ILSpy进行反编译 下载并安装 ILSpy：https://github.com/icsharpcode/ILSpy/releases 2.文件-打开-exe
-​
-3.查看反编译内容
-找到Form1 可以看到里面反编译的内容
-​
-复制到vs里面
-替换代码添加相关引用即可
-🤖使用Reflector进行反编译 1.File &gt; Open Assembly
-​ ​
-2.点开WinTime.exe内容
-​
-3.查看反编译内容
-可以看到反编译出来的控件和方法 ​
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-21 06:14:22 +0000 UTC'>April 21, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to  .NET 反编译" href="http://localhost:1313/posts/.net-%E5%8F%8D%E7%BC%96%E8%AF%91/"></a>
-</article>
-<footer class="page-footer">
-  <nav class="pagination">
-    <a class="prev" href="http://localhost:1313/page/19/">
-      «&nbsp;Prev&nbsp;
-    </a>
-    <a class="next" href="http://localhost:1313/page/21/">Next&nbsp;&nbsp;»
-    </a>
-  </nav>
-</footer>
     </main>
     
 <footer class="footer">

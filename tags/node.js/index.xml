@@ -1,11 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Node.js on MLOG</title><link>https://qfsyso.github.io/tags/node.js/</link><description>Recent content in Node.js on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Fri, 17 May 2024 19:00:03 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/node.js/index.xml" rel="self" type="application/rss+xml"/><item><title>Nodejs base</title><link>https://qfsyso.github.io/posts/nodejs-base/</link><pubDate>Fri, 17 May 2024 19:00:03 +0000</pubDate><guid>https://qfsyso.github.io/posts/nodejs-base/</guid><description>简单的说 Node.js 就是运行在服务端的 JavaScript。
-Node.js 是一个基于 Chrome JavaScript 运行时建立的一个平台。
-Node.js 是一个事件驱动 I/O 服务端 JavaScript 环境，基于 Google 的 V8 引擎，V8 引擎执行 Javascript 的速度非常快，性能非常好。
-🛠Node.js安装 Node.js安装在上一篇文章Debian Node.js HEXO 有讲到
-截至目前最新的版本是20.12.2
-#查看版本 node -v v20.12.2
-win下可以在官网下载安装 https://nodejs.org/en/download
-debian nodejs node 14版本
-$ apt-get update $ curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash - #如果提示sudo 命令没有找到，一定要下载，执行apt-get install sudo -y 即可，然后再执行上述命令
-$ apt-get install nodejs -y $ node --version //验证 当然如果需要安装node20版本，只需将上述命令替换为：
-$ curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 💬helloworld hi.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Node.js on MLOG</title>
+    <link>http://localhost:1313/tags/node.js/</link>
+    <description>Recent content in Node.js on MLOG</description>
+    <generator>Hugo -- 0.145.0</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 17 May 2024 19:00:03 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/node.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nodejs base</title>
+      <link>http://localhost:1313/posts/nodejs-base/</link>
+      <pubDate>Fri, 17 May 2024 19:00:03 +0000</pubDate>
+      <guid>http://localhost:1313/posts/nodejs-base/</guid>
+      <description>&lt;p&gt;简单的说 Node.js 就是运行在服务端的 JavaScript。&lt;/p&gt;
+&lt;p&gt;Node.js 是一个基于 Chrome JavaScript 运行时建立的一个平台。&lt;/p&gt;
+&lt;p&gt;Node.js 是一个事件驱动 I/O 服务端 JavaScript 环境，基于 Google 的 V8 引擎，V8 引擎执行 Javascript 的速度非常快，性能非常好。&lt;/p&gt;
+&lt;h1 id=&#34;nodejs安装&#34;&gt;🛠Node.js安装&lt;/h1&gt;
+&lt;p&gt;Node.js安装在上一篇文章Debian Node.js HEXO 有讲到&lt;/p&gt;
+&lt;p&gt;截至目前最新的版本是20.12.2&lt;/p&gt;
+&lt;p&gt;#查看版本
+node -v
+v20.12.2&lt;/p&gt;
+&lt;p&gt;win下可以在官网下载安装
+&lt;a href=&#34;https://nodejs.org/en/download&#34;&gt;https://nodejs.org/en/download&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;debian-nodejs&#34;&gt;debian nodejs&lt;/h2&gt;
+&lt;p&gt;node 14版本&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ apt-get update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;#如果提示sudo 命令没有找到，一定要下载，执行apt-get install sudo -y 即可，然后再执行上述命令&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ apt-get install nodejs -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ node --version  //验证
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;当然如果需要安装&lt;strong&gt;node20&lt;/strong&gt;版本，只需将上述命令替换为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;helloworld&#34;&gt;💬helloworld&lt;/h1&gt;
+&lt;p&gt;hi.js&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

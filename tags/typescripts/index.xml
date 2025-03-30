@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>TypeScriptS on MLOG</title>
+    <link>http://localhost:1313/tags/typescripts/</link>
+    <description>Recent content in TypeScriptS on MLOG</description>
+    <generator>Hugo -- 0.145.0</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 21 Apr 2024 13:00:43 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/typescripts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HarmonyOS Study ArkTS</title>
+      <link>http://localhost:1313/posts/harmonyos-study-arkts/</link>
+      <pubDate>Sun, 21 Apr 2024 13:00:43 +0000</pubDate>
+      <guid>http://localhost:1313/posts/harmonyos-study-arkts/</guid>
+      <description>&lt;h1 id=&#34;-环境搭建&#34;&gt;💡 环境搭建&lt;/h1&gt;
+&lt;p&gt;HarmonyOS开发环境搭建&lt;/p&gt;
+&lt;p&gt;DevEco Studio安装
+&lt;a href=&#34;https://developer.huawei.com/consumer/cn/deveco-studio/&#34;&gt;https://developer.huawei.com/consumer/cn/deveco-studio/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;​&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h1 id=&#34;安装nodejs&#34;&gt;🚀安装nodejs&lt;/h1&gt;
+&lt;p&gt;​&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h1 id=&#34;安装ohpm&#34;&gt;🤵安装ohpm&lt;/h1&gt;
+&lt;p&gt;​&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h1 id=&#34;安装sdk&#34;&gt;🍔安装SDK&lt;/h1&gt;
+&lt;p&gt;​&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;​&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h1 id=&#34;emulator安装&#34;&gt;💥Emulator安装&lt;/h1&gt;
+&lt;p&gt;​&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Q:The graphic card OpenGL version is too old for Previewer to work..&lt;/p&gt;
+&lt;p&gt;解决方法分两步：&lt;/p&gt;
+&lt;p&gt;1、下载enGL库：https://github.com/pal1000/mesa-dist-win/releases/download/23.1.1/mesa3d-23.1.1-release-msvc.7z&lt;/p&gt;
+&lt;p&gt;2、解压下载的zip文件,双击执行systemwidedeploy.cmd文件，然后按任意键，出现一个菜单，选择1，然后开始安装OpenGL驱动，出现complete 后关闭终端，重新运行程序即可生效。&lt;/p&gt;
+&lt;h1 id=&#34;新建arkts项目&#34;&gt;🌶️新建ArkTs项目&lt;/h1&gt;
+&lt;p&gt;​&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;​&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;​&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

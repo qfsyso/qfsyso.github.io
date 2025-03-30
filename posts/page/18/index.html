@@ -126,6 +126,25 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET Blazor
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Blazor 是一个使用 C#、HTML 和 CSS 构建交互式 Web UI 的开源框架，支持服务器端和客户端运行，允许开发者利用 C# 和 .NET 生态来创建 Web 应用。
+🌱Create carete Blazor Web
+Program.cs 是启动服务器以及在其中配置应用服务和中间件的应用的入口点。 在 Components 目录中:
+App.razor 为应用的根组件。 Routes.razor 配置 Blazor 路由器。 Pages 目录包含应用的一些示例网页。 BlazorApp.csproj 定义应用项目及其依赖项，且可以通过双击解决方案资源管理器中的 BlazorApp 项目节点进行查看。 Properties 目录中的 launchSettings.json 文件为本地开发环境定义不同的配置文件设置。创建项目时会自动分配端口号并将其保存在此文件上。
+🪴Run pages home.razor
+@page &#34;/&#34; &lt;PageTitle&gt;Home&lt;/PageTitle&gt; &lt;h1&gt;Hello, world m qqqqq&lt;/h1&gt; hihihi 🌴Counter counter.razor
+@page &#34;/counter&#34; @rendermode InteractiveServer &lt;PageTitle&gt;Counter&lt;/PageTitle&gt; &lt;h1&gt;Counter&lt;/h1&gt; &lt;p role=&#34;status&#34;&gt;Current count: @currentCount&lt;/p&gt; &lt;button class=&#34;btn btn-primary&#34; @onclick=&#34;IncrementCount&#34;&gt;Click me&lt;/button&gt; @code { private int currentCount = 0; private void IncrementCount() { currentCount&#43;&#43;; } } 像Vue
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-18 23:10:13 +0000 UTC'>May 18, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET Blazor" href="http://localhost:1313/posts/.net-blazor/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">.NET RabbitMQ NOTE
     </h2>
   </header>
@@ -223,22 +242,6 @@ pod install </p>
   </div>
   <footer class="entry-footer"><span title='2024-05-14 10:51:59 +0000 UTC'>May 14, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to IOS POD" href="http://localhost:1313/posts/ios-pod/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET webp
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>在C#中，可以使用Image类和Bitmap类来处理图像，并且可以借助Magick.NET库来将JPG图片转换为WEBP格式。
-安装Magick.NET-Q8-AnyCPU NuGet包。
-using ImageMagick; 转换方法
-public void ConvertJpgToWebP2(string inputFilePath, string outputFilePath) { using (var image = new MagickImage(inputFilePath)) { // 设置WEBP压缩质量，范围从0（最好的质量）到100（最快速压缩） image.Quality = 80; image.Format = MagickFormat.WebP; image.Write(outputFilePath); } } 调用
-string jpgPath = &#34;E:\\net8test\\ConsoleApp1Test\\ConsoleApp1Test\\bin\\Debug\\net8.0\\55.jpg&#34;; string webpPath = &#34;E:\\net8test\\ConsoleApp1Test\\ConsoleApp1Test\\bin\\Debug\\net8.0\\55.webp&#34;; Ig ig = new Ig(); ig.ConvertJpgToWebP2(jpgPath, webpPath); </p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-10 09:28:17 +0000 UTC'>May 10, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET webp" href="http://localhost:1313/posts/.net-webp/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
