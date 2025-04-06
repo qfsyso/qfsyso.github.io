@@ -123,159 +123,48 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET i18n 
+    <h2 class="entry-hint-parent">some code
     </h2>
   </header>
   <div class="entry-content">
-    <p>环境 WIN10 VS2022 .NET8
-👋创建项目 ​
-👀创建Resources Controllers HomeController.en.resx
-​ HomeController.fr.resx
-​ HomeController.zh.resx
-​
-🌱Program.cs添加国际化支持 // 添加国际化支持 builder.Services.AddLocalization(options =&gt; { options.ResourcesPath = &#34;Resources&#34;; }); var app = builder.Build(); // 多语言 var supportedCultures = new List&lt;CultureInfo&gt; { new CultureInfo(&#34;en&#34;), new CultureInfo(&#34;zh&#34;), new CultureInfo(&#34;fr&#34;), }; app.UseRequestLocalization(new RequestLocalizationOptions { DefaultRequestCulture = new RequestCulture(&#34;zh&#34;), SupportedCultures = supportedCultures, SupportedUICultures = supportedCultures }); ⚡注入localizer private readonly IStringLocalizer&lt;HomeController&gt; localizer; public HomeController(ILogger&lt;HomeController&gt; logger, IStringLocalizer&lt;HomeController&gt; localizer) { _logger = logger; this.localizer = localizer; } ``` # 📫编写调用方法 [HttpGet] public ActionResult&lt;string&gt; Get() { string rsstr= localizer.GetString(&#34;String1&#34;).Value;//?ui-culture=zh return rsstr; } 默认是中文 ?ui-culture=en 则取对应HomeController.en.resx 里面的String1 ​&lt;img onerror=&#34;notfound(this);&#34; src=&#34;https://cdn.jsdelivr.net/gh/qfsysw/resources/v2/2024041306.jpg&#34;&gt; ​&lt;img onerror=&#34;notfound(this);&#34; src=&#34;https://cdn.jsdelivr.net/gh/qfsysw/resources/v2/2024041307.jpg&#34;&gt; 🐟 </p>
+    <p>something git chatbox https://github.com/Bin-Huang/chatbox Desktop Client App for AI Models/LLMs (GPT, Claude, Gemini, Ollama…)
+fofa https://fofa.info/ app=“Ollama” &amp;&amp; is_domain=false https://github.com/ollama/ollama/blob/main/docs/api.md
+win激活 https://github.com/zbezj/HEU_KMS_Activator
+twitter awe https://github.com/DennisThink/awesome_twitter_CN?tab=readme-ov-file
+pyvideotrans https://github.com/jianchang512/pyvideotrans
+ChatTTS https://github.com/2noise/ChatTTS
+coqui TTS https://github.com/coqui-ai/TTS TTS
+gpt-sovits https://github.com/RVC-Boss/GPT-SoVITS
+mRemoteNG 集成多协议的远程连接管理工具 https://github.com/mRemoteNG/mRemoteNG
+烟花源码 https://github.com/NianBroken/Firework_Simulator
+烟花生日源码 https://github.com/louislivi/fireworks
+ddos https://github.com/sammwyy/MikuMikuBeam
+SamWaf防火墙 开源的轻量级 Web 应用防火墙 https://github.com/samwafgo/SamWaf
+AndEggs 安卓彩蛋 https://github.com/hushenghao/AndroidEasterEggs
+Vue-ElPlus-Admin 通用Vue后台 https://github.com/zanjiahao/Vue-ElPlus-Admin
+ChatGPT/Gemini A cross-platform ChatGPT/Gemini UI (Web / PWA / Linux / Win / MacOS). 一键拥有你自己的跨平台 ChatGPT/Gemini 应用 https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web
+ScreenToGif allows you to record a selected area of your screen, edit and save it as a gif or video. https://github.com/NickeManarin/ScreenToGif
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-04-16 01:29:17 +0000 UTC'>April 16, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET i18n " href="http://localhost:1313/posts/.net-i18n/"></a>
+  <footer class="entry-footer"><span title='2023-08-03 02:12:50 +0000 UTC'>August 3, 2023</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to some code" href="http://localhost:1313/posts/some-code/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">MySQL Incorrect string value 
+    <h2 class="entry-hint-parent">100件小事
     </h2>
   </header>
   <div class="entry-content">
-    <p>MySQL存储IOS传过来emoji错误处理 Incorrect string value: ‘‘ for column ‘xxx‘ at row MySQL Incorrect string value: ‘\xF0\x9F\x8D\xBA‘ for column ‘xxx‘ at row
-​
-调用接口提示
-Incorrect string value: ‘\xF0\x9F\x8D\xBA’ for column ‘xxx’ at row
-😵‍💫
-需要把mysql字段排序规则
-utf8mb4_0900_ai_ci
-改成
-utf8mb4_unicode_ci
-​
-💤SQL调整 ALTER TABLE MUser CHANGE Signature Signature VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL;
-设置该列的字符集为utf8mb4。utf8mb4是MySQL中的一个字符集，它可以存储四字节的UTF-8字符，因此可以支持更多的Unicode字符，如某些表情符号。 设置该列的校对规则为utf8mb4_unicode_ci。校对规则决定了字符如何比较和排序。utf8mb4_unicode_ci是一个不区分大小写的校对规则，它基于Unicode标准。 ALTER DATABASE IDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-...</p>
+    <p> </p>
   </div>
-  <footer class="entry-footer"><span title='2024-04-13 09:27:51 +0000 UTC'>April 13, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to MySQL Incorrect string value " href="http://localhost:1313/posts/mysql-incorrect-string-value/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Debian Docker Redis
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Debian安装docker
-1.使用官方脚本自动安装docker 安装命令如下：
-curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh 如果安装提示
--bash sudo command not found
-则需要
-#update sudo apt-get update sudo apt-get install sudo 再执行安装脚本1
-安装成功后可以输入 docker命令查看docker版本
-#version docker --version 能查到表明安装成功
-2.pull redis #pull redis docker pull redis:latest pull redis镜像 3.创建reids容器 docker run -itd --name redis-test -p 6379:6379 redis 4.测试redis docker exec -it redis-test /bin/bash redis-cli set test 1 get test set test 1 提示ok
-get test 一些命令
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-12 09:27:49 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian Docker Redis" href="http://localhost:1313/posts/debian-docker-redis/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET SignalR Redis 
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>环境 Win10 VS2022 .NET8 Docker Redis
-前言
-什么是 SignalR？ ASP.NET Core SignalR 是一个开放源代码库，可用于简化向应用添加实时 Web 功能。 实时 Web 功能使服务器端代码能够将内容推送到客户端。
-适合 SignalR 的候选项：
-需要从服务器进行高频率更新的应用。 （游戏、社交网络、投票、拍卖、地图和 GPS 应用） 仪表板和监视应用。 （公司仪表板、即时销售更新或出行警报） 协作应用。 （包括白板应用和团队会议软件） 需要通知的应用。（ 社交网络、电子邮件、聊天、游戏等） SignalR 提供用于创建服务器到客户端的远程过程调用 (RPC) API。 RPC 从服务器端 .NET Core 代码调用客户端上的函数。支持JavaScript ，.NET ，JAVA，Swift （官方没有明确支持，这是第三方库）其中每个平台都有各自的客户端 SDK。 因此，RPC 调用所调用的编程语言有所不同。
-ASP.NET Core SignalR 的一些功能：
-自动处理连接管理。 同时向所有连接的客户端发送消息。 例如聊天室。 向特定客户端或客户端组发送消息。 对其进行缩放，以处理不断增加的流量。 SignalR 中心协议 1.👋nuget引入SignalR ​​ ​
-2.👀创建SignalR Hub
-using Microsoft.AspNetCore.SignalR; using System.Threading.Tasks; namespace WebSignalR { public class ChatHub : Hub { public async Task SendMessage(string user, string message) { await Clients.All.SendAsync(&#34;ReceiveMessage&#34;, user, message); } } } 3.🌱 Program.cs添加SignalR服务 (Startup.cs)
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-12 07:44:04 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET SignalR Redis " href="http://localhost:1313/posts/.net-signalr-redis/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET Swagger 
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>开发环境 Win10 VS2022 .NET8.0
-1.从NuGet添加Swagger ​
-在解决方案资源管理器中右键单击项目&gt;管理 NuGet 包 将包源设置为“nuget.org” 确保启用“包括预发行”选项 在搜索框中输入“Swashbuckle.AspNetCore” 从“浏览”选项卡中选择最新的“Swashbuckle.AspNetCore”包，然后单击“安装”
-2.将 Swagger 生成器添加到以下位置的服务集合中Program.cs： builder.Services.AddControllers(); builder.Services.AddEndpointsApiExplorer(); builder.Services.AddSwaggerGen(); ​
-启用中间件 生成
-app.UseSwagger(); app.UseSwaggerUI(); app.UseSwaggerUI(options =&gt; { options.SwaggerEndpoint(&#34;/swagger/v1/swagger.json&#34;, &#34;v1&#34;); options.RoutePrefix = string.Empty; }); ​
-3.添加API控制器 创建api
-// GET api/&lt;myapi&gt;/5 /// &lt;summary&gt; /// getid /// &lt;/summary&gt; /// &lt;param name=&#34;id&#34;&gt;id参数&lt;/param&gt; /// &lt;returns&gt;valuestr&lt;/returns&gt; [HttpGet(&#34;{id}&#34;)] public string Get(int id) { return &#34;value&#34; &#43; id; } // POST api/&lt;myapi&gt; [HttpPost] public string Post([FromBody] string value) { //post逻辑代码 return &#34;myPost&#34;; } // PUT api/&lt;myapi&gt;/5 [HttpPut(&#34;{id}&#34;)] public string Put(int id, [FromBody] string value) { //put逻辑代码 return &#34;myPut&#34;; } // DELETE api/&lt;myapi&gt;/5 [HttpDelete(&#34;{id}&#34;)] public string Delete(int id) { //delete逻辑代码 return &#34;myDelete&#34;; } ​
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-11 23:27:19 +0000 UTC'>April 11, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET Swagger " href="http://localhost:1313/posts/.net-swagger/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Docker MySQL 
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>1.下载docker desktop https://www.docker.com/products/docker-desktop/
-创建容器 docker run 创建并启动mysql容器
-–name 容器名字
--d 后台运行容器
--p 映射端口
--e 参数
-截至目前最新的mysql是mysql8.0.36 那就整这个试下。
-docker run -d --name mysql-container -e TZ=UTC -p 30306:3306 -e MYSQL_ROOT_PASSWORD=你的密码 mysql:8.0.36-debian ​
-等待一会，看到mysql已经pull下来。
-回到docker看到容器已经创建。
-​
-​
-可以输入docker images查看
-​
-3.创建mysql数据库管理软件容器
-docker run --name myadmin -d --link mysql-container:db -p 8880:80 phpmyadmin/phpmyadmin ​
-回到docker查看下容器是否创建成功。 ​
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-11 08:35:22 +0000 UTC'>April 11, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Docker MySQL " href="http://localhost:1313/posts/docker-mysql/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Hello World Hexo
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick Start Create a new post npm install hexo-cli -g hexo init blog cd blog npm install hexo server $ hexo new &#34;My New Post&#34; More info: Writing
-Run server $ hexo server More info: Server
-Generate static files $ hexo generate More info: Generating
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-03-20 22:16:01 +0000 UTC'>March 20, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Hello World Hexo" href="http://localhost:1313/posts/hello-world-hexo/"></a>
+  <footer class="entry-footer"><span title='2023-02-20 10:27:36 +0000 UTC'>February 20, 2023</span>&nbsp;·&nbsp;0 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to 100件小事" href="http://localhost:1313/posts/100%E4%BB%B6%E5%B0%8F%E4%BA%8B/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="prev" href="http://localhost:1313/page/21/">
+    <a class="prev" href="http://localhost:1313/page/22/">
       «&nbsp;Prev&nbsp;
-    </a>
-    <a class="next" href="http://localhost:1313/page/23/">Next&nbsp;&nbsp;»
     </a>
   </nav>
 </footer>
