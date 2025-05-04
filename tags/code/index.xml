@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Code on MLOG</title><link>https://qfsyso.github.io/tags/code/</link><description>Recent content in Code on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Thu, 03 Aug 2023 02:12:50 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/code/index.xml" rel="self" type="application/rss+xml"/><item><title>some code</title><link>https://qfsyso.github.io/posts/some-code/</link><pubDate>Thu, 03 Aug 2023 02:12:50 +0000</pubDate><guid>https://qfsyso.github.io/posts/some-code/</guid><description>something git chatbox https://github.com/Bin-Huang/chatbox Desktop Client App for AI Models/LLMs (GPT, Claude, Gemini, Ollama&amp;hellip;)
 fofa https://fofa.info/ app=&amp;ldquo;Ollama&amp;rdquo; &amp;amp;&amp;amp; is_domain=false https://github.com/ollama/ollama/blob/main/docs/api.md
+dbeaver sql工具 https://github.com/dbeaver/dbeaver/releases
+sing-boxyg https://github.com/yonggekkk/sing-box-yg
+music-desktop https://github.com/lyswhut/lx-music-desktop
+RDP、VNC、SSH 远程 https://github.com/mRemoteNG/mRemoteNG
+clash linux https://github.com/Elegycloud/clash-for-linux-backup
+ssh https://github.com/cmliu/webssh https://github.com/chaos-zhu/easynode https://github.com/crazypeace/huashengdun-webssh https://github.com/huashengdun/webssh https://github.com/Jrohy/webssh
+docker run -d --name webssh --restart always -p 18888:8888 cmliu/webssh:latest v2rayN https://github.com/2dust/v2rayN/
+ClashX.Meta https://github.com/MetaCubeX/ClashX.Meta/tree/meta
+mpvplaer https://github.com/mpvnet-player/mpv.net
+h5 game https://github.com/hackycy/h5-game-collection
 win激活 https://github.com/zbezj/HEU_KMS_Activator
 twitter awe https://github.com/DennisThink/awesome_twitter_CN?tab=readme-ov-file
 pyvideotrans https://github.com/jianchang512/pyvideotrans
 ChatTTS https://github.com/2noise/ChatTTS
-coqui TTS https://github.com/coqui-ai/TTS TTS
-gpt-sovits https://github.com/RVC-Boss/GPT-SoVITS
-mRemoteNG 集成多协议的远程连接管理工具 https://github.com/mRemoteNG/mRemoteNG
-烟花源码 https://github.com/NianBroken/Firework_Simulator
-烟花生日源码 https://github.com/louislivi/fireworks
-ddos https://github.com/sammwyy/MikuMikuBeam
-SamWaf防火墙 开源的轻量级 Web 应用防火墙 https://github.com/samwafgo/SamWaf
-AndEggs 安卓彩蛋 https://github.com/hushenghao/AndroidEasterEggs
-Vue-ElPlus-Admin 通用Vue后台 https://github.com/zanjiahao/Vue-ElPlus-Admin
-ChatGPT/Gemini A cross-platform ChatGPT/Gemini UI (Web / PWA / Linux / Win / MacOS). 一键拥有你自己的跨平台 ChatGPT/Gemini 应用 https://github.</description></item></channel></rss>
+coqui TTS https://github.com/coqui-ai/TTS TTS</description></item></channel></rss>
