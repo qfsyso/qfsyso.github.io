@@ -1,473 +1,73 @@
-<!DOCTYPE html>
-<html lang="en" dir="auto">
-
-<head>
-	<meta name="generator" content="Hugo 0.145.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
-<title>MLOG</title>
-
-<meta name="description" content="A simple blog ">
-<meta name="author" content="dwd">
-<link rel="canonical" href="http://localhost:1313/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.6da9a63d25a9608bca2f7f907a030e887a7dd3c3f3918e4cc113129361414bda.css" integrity="sha256-bammPSWpYIvKL3&#43;QegMOiHp908PzkY5MwRMSk2FBS9o=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml">
-<link rel="alternate" type="application/json" href="http://localhost:1313/index.json">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
-        }
-
-    </style>
-</noscript>
-</head>
-
-<body class="list" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="MLOG (Alt + H)">MLOG</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="http://localhost:1313/posts/" title="Archive">
-                    <span>Archive</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
-                    <span>Tags</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
-                    <span>Search</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main"> 
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">HarmonyOS Study ArkTS
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>💡 环境搭建 HarmonyOS开发环境搭建
-DevEco Studio安装 https://developer.huawei.com/consumer/cn/deveco-studio/
-​
-🚀安装nodejs ​
-🤵安装ohpm ​
-🍔安装SDK ​
-​
-💥Emulator安装 ​
-Q:The graphic card OpenGL version is too old for Previewer to work..
-解决方法分两步：
-1、下载enGL库：https://github.com/pal1000/mesa-dist-win/releases/download/23.1.1/mesa3d-23.1.1-release-msvc.7z
-2、解压下载的zip文件,双击执行systemwidedeploy.cmd文件，然后按任意键，出现一个菜单，选择1，然后开始安装OpenGL驱动，出现complete 后关闭终端，重新运行程序即可生效。
-🌶️新建ArkTs项目 ​
+<!doctype html><html lang=en dir=auto><head><meta name=generator content="Hugo 0.145.0"><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>MLOG</title>
+<meta name=description content="A simple blog "><meta name=author content="dwd"><link rel=canonical href=https://qfsyso.github.io/><link crossorigin=anonymous href=/assets/css/stylesheet.6da9a63d25a9608bca2f7f907a030e887a7dd3c3f3918e4cc113129361414bda.css integrity="sha256-bammPSWpYIvKL3+QegMOiHp908PzkY5MwRMSk2FBS9o=" rel="preload stylesheet" as=style><link rel=icon href=https://qfsyso.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://qfsyso.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://qfsyso.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://qfsyso.github.io/apple-touch-icon.png><link rel=mask-icon href=https://qfsyso.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://qfsyso.github.io/index.xml><link rel=alternate type=application/json href=https://qfsyso.github.io/index.json><link rel=alternate hreflang=en href=https://qfsyso.github.io/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://qfsyso.github.io/"><meta property="og:site_name" content="MLOG"><meta property="og:title" content="MLOG"><meta property="og:description" content="A simple blog "><meta property="og:locale" content="zh-CN"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="MLOG"><meta name=twitter:description content="A simple blog "><script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","name":"MLOG","url":"https://qfsyso.github.io/","description":"A simple blog ","logo":"https://qfsyso.github.io/favicon.ico","sameAs":[]}</script></head><body class=list id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://qfsyso.github.io/ accesskey=h title="MLOG (Alt + H)">MLOG</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://qfsyso.github.io/posts/ title=Archive><span>Archive</span></a></li><li><a href=https://qfsyso.github.io/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://qfsyso.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li></ul></nav></header><main class=main><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Debian nginx https</h2></header><div class=entry-content><p>debian安装 nginx 在Debian系统上安装Nginx，可以按照以下步骤操作：
+如果 sudo: command not found
+apt-get install sudo 首先，更新的包索引：
+sudo apt update 接下来，安装Nginx：
+sudo apt install nginx 安装完成后，启动Nginx服务：
+sudo systemctl start nginx （可选）设置Nginx开机自启动：
+sudo systemctl enable nginx 可以通过运行以下命令来检查Nginx的状态：
+sudo systemctl status nginx 现在，可以在Web浏览器中输入服务器的IP地址或域名来访问默认的Nginx欢迎页面。如果是在本地安装的Nginx，可以通过访问 http://localhost 来查看这个页面。
+如果需要配置Nginx，可以编辑 /etc/nginx/nginx.conf 文件或者在 /etc/nginx/sites-available/ 目录下创建或编辑配置文件，并使用 sudo ln -s /etc/nginx/sites-available/your-config /etc/nginx/sites-enabled/ 命令来启用它。
+sudo whereis nginx Nginx 默认安装位置 配置文件所在目录 /etc/
+nginx配置 检测Nginx配置文件是否正确
+nginx -t 重载Nginx配置
+nginx -s reload 自定义Nginx站点配置文件存放目录 /etc/nginx/conf.d/
+nginx网站目录 /var/www/
+域名证书
+...</p></div><footer class=entry-footer><span title='2024-05-07 19:13:24 +0000 UTC'>May 7, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Debian nginx https" href=https://qfsyso.github.io/posts/debian-nginx-https/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>.NET获取内存</h2></header><div class=entry-content><p>在.NET 控制台应用程序中，你可以使用System.Diagnostics命名空间下的Process类来获取当前进程的内存使用情况。以下是一个简单的示例代码，展示如何获取并显示当前进程的内存使用量：
+using System; using System.Diagnostics; namespace DisplayProcessMemory { class Program { static void Main(string[] args) { // 获取当前进程 Process currentProcess = Process.GetCurrentProcess(); // 使用需要的内存量 long workingSet64 = currentProcess.WorkingSet64; // 显示内存使用量 Console.WriteLine($"当前进程占用内存: {workingSet64} 字节"); // 单位转换为兆字节 double memoryInMB = workingSet64 / 1024.0 / 1024.0; Console.WriteLine($"当前进程占用内存: {memoryInMB.ToString("F2")} MB"); } } } 在.NET中，可以使用System.Diagnostics命名空间下的Process类来获取当前进程的信息，但是直接获取网络带宽使用情况不是Process类提供的功能。你可以使用System.Net.NetworkInformation命名空间下的IPGlobalProperties类来获取网络接口的信息，然后累计所有网络接口的传输数据量来估算带宽使用。
+以下是一个简单的示例代码，用于显示当前进程的网络传输数据量（发送和接收）：
+using System; using System.Diagnostics; using System.Net.NetworkInformation; class Program { static void Main() { Process currentProcess = Process.GetCurrentProcess(); Console.WriteLine($"Process ID: {currentProcess.Id}"); IPGlobalProperties ipProperties = IPGlobalProperties.GetIPGlobalProperties(); TcpStatistics tcpStats = ipProperties.GetTcpIPv4Statistics(); Console.WriteLine($"Total bytes received: {tcpStats.BytesReceived}"); Console.WriteLine($"Total bytes sent: {tcpStats.BytesSent}"); // 输出网络接口统计信息 NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces(); foreach (NetworkInterface networkInterface in networkInterfaces) { Console.WriteLine($"Interface: {networkInterface.Name}"); Console.WriteLine($"Bytes received: {networkInterface.GetIPv4Statistics().BytesReceived}"); Console.WriteLine($"Bytes sent: {networkInterface.GetIPv4Statistics().BytesSent}"); } } } 请注意，这个示例显示的是从系统启动以来累计的网络接口数据量。如果你需要监测特定时间段内的带宽使用情况，你需要定期获取数据并计算差值。另外，这个示例仅包括了IPv4的数据，如果需要IPv6或者更多细节，请相应地扩展代码。
+...</p></div><footer class=entry-footer><span title='2024-05-06 14:57:24 +0000 UTC'>May 6, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to  .NET获取内存" href=https://qfsyso.github.io/posts/.net%E8%8E%B7%E5%8F%96%E5%86%85%E5%AD%98/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Debian Nodejs HEXO</h2></header><div class=entry-content><p>Debian Nodejs HEXO
+安装Node.js环境 sudo apt update debian安装最新node v20.12.0 在Debian系统上安装特定版本的Node.js（例如v20.12.0），你可以使用NodeSource二进制分发。以下是安装v20.12.0的步骤：
+首先，打开终端。
+使用curl下载NodeSource的安装脚本：
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 安装Node.js：
+sudo apt-get install -y nodejs 验证Node.js是否安装成功：
+node --version 如果你想要确保安装了特定的v20.12.0版本，可以在安装完Node.js后运行以下命令来验证版本：
+node -v 如果显示的版本号是v20.12.0，则表示已经成功安装了该版本。
+安装HEXO 使用npm包管理器，直接安装hexo
+npm install hexo -g hexo init blog cd blog npm install hexo server hexo 修改端口号 _config.yml # 或者使用 vim _config.yml
+Docs: https://hexo.io/docs/server.html server: port: 12311 # 修改这里为你想要的端口号 compress: true header: true hexo s</p></div><footer class=entry-footer><span title='2024-05-03 17:02:53 +0000 UTC'>May 3, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Debian Nodejs HEXO " href=https://qfsyso.github.io/posts/debian-nodejs-hexo/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>.NET netty proto</h2></header><div class=entry-content><p>DotNetty是微软的Azure团队，使用C#实现的Netty的版本发布。不但使用了C#和.Net平台的技术特点，并且保留了Netty原来绝大部分的编程接口。让我们在使用时，完全可以依照Netty官方的教程来学习和使用DotNetty应用程序。
+Netty 是一个异步事件驱动的网络应用程序框架，用于快速开发可维护的高性能协议服务器和客户端。
+优点 关注点分离——业务和网络逻辑解耦； 模块化和可复用性； 可测试性作为首要的要求 历史 阻塞Socket通信特点：
+建立连接要阻塞线程，读取数据要阻塞线程 如果要管理多个客户端，就需要为每个客户端建立不同的线程 会有大量的线程在休眠状态，等待接收数据，资源浪费 每个线程都要占用系统资源 线程的切换很耗费系统资源 非阻塞Socket（NIO）特点： 每个Socket如果需要读写操作，都通过事件通知的方式通知选择器，这样就实现了一个线程管理多个Socket的目的。 ​
+选择器甚至可以在所有的Socket空闲的时候允许线程先去干别的事情 减少了线程数量导致的资源占用，减少了线程切换导致的资源消耗
+Protobuf wakeng</p></div><footer class=entry-footer><span title='2024-05-03 02:09:32 +0000 UTC'>May 3, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to  .NET netty proto" href=https://qfsyso.github.io/posts/.net-netty-proto/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>.NET 检测地址/主机/域名是否正常</h2></header><div class=entry-content><p>🌱PING 地址/主机名/域名
+/// &lt;summary> /// PING /// &lt;/summary> /// &lt;param name="ip">ip&lt;/param> /// &lt;returns>&lt;/returns> public static bool PingIp(string ip) { System.Net.NetworkInformation.Ping p = new System.Net.NetworkInformation.Ping(); System.Net.NetworkInformation.PingOptions options = new System.Net.NetworkInformation.PingOptions(); options.DontFragment = true; string data = "Test Data!"; byte[] buffer = Encoding.ASCII.GetBytes(data); int timeout = 2000; // Timeout System.Net.NetworkInformation.PingReply reply = p.Send(ip, timeout, buffer, options); if (reply.Status == System.Net.NetworkInformation.IPStatus.Success) { // AddToConvo(ip + reply.Status); return true; } else { // AddToConvo(ip + reply.Status); return false; } } 👀调用方法
+...</p></div><footer class=entry-footer><span title='2024-04-28 19:09:40 +0000 UTC'>April 28, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to .NET 检测地址/主机/域名是否正常" href=https://qfsyso.github.io/posts/.net-%E6%A3%80%E6%B5%8B%E5%9C%B0%E5%9D%80/%E4%B8%BB%E6%9C%BA/%E5%9F%9F%E5%90%8D%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>.NET Avalonia Linux</h2></header><div class=entry-content><p>环境WIN10 VS2022 debian
+👻前言 Avalonia 是一个用于创建跨平台用户界面 (UI) 的开源框架。它是一个基于 .NET 平台的框架，允许开发者使用 XAML 和 C#（F#）来构建跨平台的应用程序。Avalonia 的目标是提供与 Windows Presentation Foundation (WPF) 类似的开发体验，但能够在 Windows、macOS 和 Linux 等多个平台上运行。
+使用 Avalonia，开发者可以创建各种类型的应用程序，包括桌面应用、移动应用和嵌入式应用。一些可以通过 Avalonia 实现的功能和应用包括：
+桌面应用程序：如办公软件、IDE、游戏客户端等。
+移动应用程序：通过 Avalonia 可以构建支持多个平台的移动应用，如 Windows、macOS 和 Linux 上的移动应用。
+跨平台工具：Avalonia 可以用于构建跨平台的开发工具、实用工具等。
+游戏开发：Avalonia 也可以用于构建游戏的用户界面，适合基于 .NET 平台的游戏开发。
+Avalonia 提供了一个强大的工具集，使开发者能够创建具有各种功能和样式的跨平台应用程序。
+💻安装Avalonia 选择管理拓展，点击下载，安装
 ​
 ​
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-21 13:00:43 +0000 UTC'>April 21, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to HarmonyOS Study ArkTS" href="http://localhost:1313/posts/harmonyos-study-arkts/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent"> .NET 反编译
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>反编译是对程序进行逆向分析、研究，以推导出软件产品所使用的思路、原理、结构、算法、处理过程、运行方法等设计要素。
-反编译.NET程序需要使用专门的反编译工具
-🧿使用dotPeek进行反编译 1.下载dotPeek dotPeek：JetBrains 出品的免费 .NET 反编译器与程序集浏览器
+📦创建项目 ​
 ​
-2.File &gt; Open
 ​
-3.打开需要反编译的文件方法
+编码…
+📚在win下运行 ​
+查看linux内核
+uname -a
 ​
-🧝‍♂️使用ILSpy进行反编译 下载并安装 ILSpy：https://github.com/icsharpcode/ILSpy/releases 2.文件-打开-exe
+🔑打包发布 复制到linux
+授予权限
+📻在linux下运行 迁移Socket发布到linux ​
 ​
-3.查看反编译内容
-找到Form1 可以看到里面反编译的内容
+实现win linux web 基于socket实时聊天</p></div><footer class=entry-footer><span title='2024-04-27 00:07:15 +0000 UTC'>April 27, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to .NET Avalonia Linux " href=https://qfsyso.github.io/posts/.net-avalonia-linux/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Debian Gnome-Desktop GUI</h2></header><div class=entry-content><p>debian gnome-desktop
+🌞更新 sudo apt update sudo apt -y upgrade ​
+🎨安装 sudo apt -y install task-gnome-desktop 这个过程比较久
 ​
-复制到vs里面
-替换代码添加相关引用即可
-🤖使用Reflector进行反编译 1.File &gt; Open Assembly
-​ ​
-2.点开WinTime.exe内容
-​
-3.查看反编译内容
-可以看到反编译出来的控件和方法 ​
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-21 06:14:22 +0000 UTC'>April 21, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to  .NET 反编译" href="http://localhost:1313/posts/.net-%E5%8F%8D%E7%BC%96%E8%AF%91/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent"> .NET SMTP
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>SMTP（Simple Mail Transfer Protocol）是用于电子邮件传输的规则集，可以从邮件客户端向接收电子邮件服务器发送、中继或转发邮件。发件人可使用SMTP 服务器来执行发送电子邮件的过程。SMTP服务器则是按照这些规则中转电子邮件的服务器。
-IMAP可以理解为收邮件。 ​
-🐧使用QQ邮箱发邮件 首先需要设置开启邮箱的SMTP服务
-登录(https://mail.qq.com/)电脑网页版邮箱进入【设置】-&gt;【帐户】-&gt;【POP3/IMAP/SMTP服务】， 开启或关闭相应服务最后保存更改即可。 ​
-QQ邮箱 POP3 和 SMTP 服务器地址设置如下：
-邮箱	POP3服务器（端口995）	SMTP服务器（端口465或587） qq.com	pop.qq.com	smtp.qq.com SMTP服务器需要身份验证。
-以下是示例代码：
-using ConsoleApp1Test; //xxx string server = &#34;smtp.qq.com&#34;; string username = &#34;my test email&#34;; string password = &#34;xxx; string from = &#34;from@qq.com&#34;; string to = &#34;to@qq.com&#34;; string subject = &#34;Test Email&#34;; string content = &#34;This is a test email sent asynchronously.&#34;; bool isHtml = false; // 是否为 HTML 格式 try { bool success = await MailHelper. SendMailAsync(server, username, password, from, to, null, subject, content, isHtml); if (success) { Console.WriteLine(&#34;邮件发送成功！&#34;); } else { Console.WriteLine(&#34;邮件发送失败！&#34;); } } catch (Exception ex) { Console.WriteLine($&#34;邮件发送出错：{ex.Message}&#34;); } using System; using System.Collections.Generic; using System.Linq; using System.Net.Mail; using System.Text; using System.Threading.Tasks; namespace ConsoleApp1Test { internal class MailHelper { public static async Task&lt;bool&gt; SendMailAsync(string server, string username, string password, string from, string to, string cc, string subject, string content, bool isHtml) { try { using (var smtp = new SmtpClient(server)) { smtp.UseDefaultCredentials = false; smtp.Credentials = new System.Net.NetworkCredential(username, password); smtp.EnableSsl = true; // 启用加密 smtp.DeliveryMethod = SmtpDeliveryMethod.Network; using (var mail = new MailMessage()) { mail.From = new MailAddress(from); mail.To.Add(to); mail.SubjectEncoding = Encoding.UTF8; mail.Subject = subject; mail.IsBodyHtml = isHtml; mail.BodyEncoding = Encoding.UTF8; mail.Body = content; await smtp.SendMailAsync(mail); // 异步发送邮件 } return true; } } catch (Exception err) { // 发送失败时的异常处理 // 可以在此处记录日志 return false; } } } } ​ ​
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-20 21:13:11 +0000 UTC'>April 20, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to  .NET SMTP" href="http://localhost:1313/posts/.net-smtp/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Socket to WebSocket
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>前言 针对IOS App Proxy Server无法直连WebSocket，建立 Socket中转端。
-​
-WebSocket 端：
-WebSocket 端用于实现实时通信功能。
-WebSocket 端通过 WebSocket 协议与中转端通信，中转端可以通过 WebSocket 或其他传输协议与 WebSocket 端建立连接，收发消息。
-定义 SendMessageToChatRoomIP 和 JoinChatRoom，用于处理来自客户端的消息和连接事件。
-中转端 C1 （Socket Server）：
-中转端 C1 是一个独立的应用程序，用于连接WebSocket端，建立Socket服务。
-中转端 C1 的主要功能是接收来自客户端 C2 的消息，并将其转发给 WebSocket 端，或者接收来自 WebSocket 端的消息，并转发给客户端 C2。
-客户端 C2 x N ：
-客户端 C2 ，主要与中转端连接 发送数据，接收数据。
-在客户端 C2 中，连接到中转端 C1、发送消息给中转端 C1、接收来自中转端 C1 的消息。
-调用关系为：
-客户端 C2 通过与中转端 C1 的通信，向 WebSocket 端发送消息或接收来自 WebSocket 端的消息。
-中转端 C1 接收来自客户端 C2 的消息，并将其转发给 WebSocket 端，或者接收来自 WebSocket 端的消息，并转发给客户端 C2。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-20 12:56:50 +0000 UTC'>April 20, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Socket to WebSocket" href="http://localhost:1313/posts/socket-to-websocket/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET JWT 
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>前言
-JWT (JSON Web Token) 是一种安全传输信息的开放标准，由Header、Payload和Signature三部分组成。它主要用于身份验证、信息交换和授权。JWT可验证用户身份，确保访问权限，实现单点登录，并在客户端和服务器之间安全地交换信息。因其简单、安全和便捷，JWT在现代Web应用中广泛使用。
-用JWT有多个原因：
-无状态的身份验证：JWT允许服务器无需保存用户的会话信息，因为所有必要的信息都存储在令牌本身中。这降低了服务器的存储需求，并提高了系统的可扩展性。
-跨域身份验证：由于JWT是自我包含的，并且可以被轻松传递，因此它非常适合跨域身份验证。用户可以在一个服务上验证身份，然后使用相同的令牌访问另一个服务，从而实现单点登录（SSO）。
-安全性：JWT可以通过使用强大的加密算法（如HS256, RS256等）进行签名，以确保其完整性和真实性。服务器可以使用公钥验证令牌的签名，从而确保它没有被篡改，并且确实是由受信任的颁发者签发的。
-减少数据库查询：由于用户的身份信息都存储在JWT中，服务器无需每次都去数据库中查询用户的身份信息，从而减少了数据库的压力和查询时间。
-可定制性：JWT的Payload部分可以包含自定义的信息，如用户角色、权限等，这使得JWT非常灵活，并可以根据具体需求进行定制。
-易于分发和共享：JWT可以轻松地通过网络传输，并且可以在多个服务和客户端之间共享，这使得它在微服务架构和分布式系统中非常有用。
-标准化和互操作性：JWT是一个开放标准（RFC 7519），这意味着不同的系统和语言都可以使用相同的方式生成和验证JWT，从而提高了系统的互操作性。
-环境 Win10 VS2022 .NET8
-✨ 建立项目jwttest 1.创建TestJwtController ​
-2.下载JWT ​
-3.建实体类 /// &lt;summary&gt; /// 用户信息类 /// &lt;/summary&gt; public class LoginRs { /// &lt;summary&gt; /// 用户ID /// &lt;/summary&gt; public string UserId { get; set; } /// &lt;summary&gt; /// 用户密码 /// &lt;/summary&gt; public string PasswordMD5 { get; set; } } /// &lt;summary&gt; /// 用户登录信息类 /// &lt;/summary&gt; public class LoginInfo { /// &lt;summary&gt; /// 用户信息 /// &lt;/summary&gt; public string UserId { get; set; } /// &lt;summary&gt; /// 检验时间 /// &lt;/summary&gt; public DateTime Expires { get; set; } } /// &lt;summary&gt; /// rsmodel /// &lt;/summary&gt; public class RsModel { /// &lt;summary&gt; /// 是否成功 /// &lt;/summary&gt; public bool isOk { get; set; } /// &lt;summary&gt; /// 返回值 /// &lt;/summary&gt; public int code { get; set; } /// &lt;summary&gt; /// 返回消息 /// &lt;/summary&gt; public string msg { get; set; } /// &lt;summary&gt; /// 返回数据 /// &lt;/summary&gt; public object rsData { get; set; } } 4.添加post login // POST api/&lt;ValuesController&gt; [HttpPost] public string Login([FromBody] LoginRs loginRequest) { if (loginRequest == null) return JsonConvert.SerializeObject(new RsModel() { code = 0, isOk = false, msg = &#34;登录信息为空！&#34; }); #region 判断userid pwd if (loginRequest.UserId != &#34;admin&#34; || loginRequest.PasswordMD5 != &#34;admin&#34;) { return JsonConvert.SerializeObject(new RsModel() { code = 0, isOk = false, msg = &#34;用户名和密码不正确！&#34; }); } #endregion LoginInfo Info = new LoginInfo() { UserId = loginRequest.UserId, Expires = DateTime.Now.AddDays(1) }; const string secretKey = &#34;myseckey&#34;;//口令加密秘钥 byte[] key = Encoding.UTF8.GetBytes(secretKey); IJwtAlgorithm algorithm = new HMACSHA256Algorithm();//加密方式 IJsonSerializer serializer = new JsonNetSerializer();//序列化Json IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();//base64加解密 IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);//JWT编码 var token = encoder.Encode(Info, key);//生成令牌 return JsonConvert.SerializeObject(new RsModel() { code = 1, isOk = true, rsData = token, msg = &#34;登录成功！&#34; }); } ​
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-19 01:26:35 +0000 UTC'>April 19, 2024</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET JWT " href="http://localhost:1313/posts/.net-jwt/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET spider
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>前言 爬虫可以用于外汇，期货，基金，货币，比分，电商，文章等信息的采集。通过数据分析，竞品分析，为商业决策提供数据支持。
-​ 金价暴涨，抓取下今日的金价。
-💡使用HttpClient爬取数据 try { // 创建HttpClient实例 using (var httpClient = new HttpClient()) { //模拟User-Agent httpClient.DefaultRequestHeaders.Add(&#34;User-Agent&#34;, GetUserAgent()); // 发送GET请求并获取响应 xxx.com是某网站的页面~（保护） var response = await httpClient.GetAsync(&#34;https://xxx.com&#34;); response.EnsureSuccessStatusCode(); var htmlContent = await response.Content.ReadAsStringAsync(); } } catch (HttpRequestException ex) { // 处理请求异常 ViewBag.Error = &#34;Failed to retrieve price data: &#34; &#43; ex.Message; } 🚀模拟User-Agent // 生成随机 User-Agent private string GetUserAgent() { string[] userAgents = new string[] { &#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36&#34;, &#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.190 Safari/537.36&#34;, // }; Random random = new Random(); int index = random.Next(userAgents.Length); return userAgents[index]; } 🤵使用HTML解析库 （HtmlAgilityPack）提取价格
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-18 12:59:30 +0000 UTC'>April 18, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET spider" href="http://localhost:1313/posts/.net-spider/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Vue study
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>前言 Vue.js，这个轻量级且灵活的JavaScript框架，就像一位魔术师，用它的魔法棒将数据和视图巧妙地连接在一起。当数据发生变化时，Vue.js就像变魔术一样，让视图自动更新，为开发者带来了极大的便利。
-Vue.js的诞生，源于一位名叫尤雨溪的开发者对前端开发的热爱与追求。在Google工作期间，他受到了Angular的启发，决定开发一款更加轻量、灵活的框架。于是，Vue.js应运而生，它的名字来源于“View”的缩写，寓意着它专注于视图层的开发。Vue.js不断地完善和发展。它引入了响应式数据绑定、组件化开发等核心概念，让前端开发变得更加高效和可维护。
-👋 Vue环境搭建 首先，搭一个打代码的环境
-1.安装node.js 在使用VS Code之前，需要安装Vue的开发环境。
-安装Vue的最简单方法是使用npm包管理器，先安装Node.js和npm。
-node官网 =&gt; https://nodejs.org/en/download
-2.配置环境变量 在nodejs安装目录下新建node_cache（nodejs缓存）、node_global（全局包存放）两个文件夹，如下图所示。
-​​
-打开cmd命令提示符，配置文件路径如下：
-​​
-配置环境变量
-​​
-系统属性-&gt;高级-&gt;环境变量-&gt;新增环境变量： ​​
-系统变量 ​​
-​​
-3.VSCode配置 Visual Studio Code
-以管理员身份运行VSCode
-VSCode安装插件ESLint
-安装js打包工具
-npm install -g webpack ​​
-​​
-4.安装Vue CLI npm install -g vue-cli (vue-cli npm install @vue/cli -g --unsafe-perm) 5.在VS Code中打开Vue项目 5.1. 在VS Code中，File &gt; Open Folder… 选择“文件”&gt; “打开文件夹”。 ​​
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-17 08:59:30 +0000 UTC'>April 17, 2024</span>&nbsp;·&nbsp;10 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Vue study" href="http://localhost:1313/posts/vue-study/"></a>
-</article>
-<footer class="page-footer">
-  <nav class="pagination">
-    <a class="prev" href="http://localhost:1313/page/20/">
-      «&nbsp;Prev&nbsp;
-    </a>
-    <a class="next" href="http://localhost:1313/page/22/">Next&nbsp;&nbsp;»
-    </a>
-  </nav>
-</footer>
-    </main>
-    
-<footer class="footer">
-
-    <div class="wtime">
-        <div class="wtime2">CST<span id="beijingTime"></span> GMT <span id="londonTime"></span> EST <span id="newYorkTime"></span>  PST<span id="losAngelesTime"></span></div>
-        <div class="wtime2" style="display: none;"> 东京<span id="tokyoTime"></span></div>
-        <div class="wtime2" style="display: none;">欧洲-巴黎<span id="parisTime"></span></div>
-
-        <div  class="wtime2" style="display: none;">UTC<span id="utcTime"></span></div>
-    </div>
-        <span>&copy; 2025 <a href="http://localhost:1313/">MLOG</a></span> · 
-
-
-    <span>
- 
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-
-
-
-<script type="text/javascript">
-
-    
-    const timeZoneOffsets = {
-            'beijing': 8,  
-            'tokyo': 9,  
-            'paris': [1, 2],  
-            'london': [0, 1],  
-            'newYork': [-5, -4],  
-            'losAngeles': [-8, -7]  
-        };
-
-        function padZero(num) {
-            return num < 10? '0' + num : num;
-        }
-
-        function formatTime(date) {
-            const year = date.getFullYear();
-            const month = padZero(date.getMonth() + 1);
-            const day = padZero(date.getDate());
-            const hours = padZero(date.getHours());
-            const minutes = padZero(date.getMinutes());
-            const seconds = padZero(date.getSeconds());
-            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-        }
-
-        function isDaylightSavingTime(date, zone) {
-            const month = date.getMonth();
-            const dstStart = new Date(date.getFullYear(), 3, 8, 2, 0, 0);  
-            const dstEnd = new Date(date.getFullYear(), 10, 1, 2, 0, 0);  
-            if (zone === 'paris' || zone === 'london' || zone === 'newYork' || zone === 'losAngeles') {
-                return date >= dstStart && date < dstEnd;
-            }
-            return false;
-        }
-
-        function updateTime() {
-            const now = new Date();
-            const utcDate = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(),
-                now.getUTCMinutes(), now.getUTCSeconds());
-            const utcTime = formatTime(utcDate);
-            document.getElementById('utcTime').innerHTML = utcTime;
-
-            for (const zone in timeZoneOffsets) {
-                const offsets = timeZoneOffsets[zone];
-                let offset;
-                if (Array.isArray(offsets)) {
-                    offset = isDaylightSavingTime(utcDate, zone)? offsets[1] : offsets[0];
-                } else {
-                    offset = offsets;
-                }
-                const zoneDate = new Date(utcDate.getTime() + offset * 60 * 60 * 1000);
-                document.getElementById(zone + 'Time').innerHTML = formatTime(zoneDate);
-            }
-
-            setTimeout(updateTime, 1000);
-        }
-
-        window.onload = function () {
-            updateTime();
-        };
-    function notfound(imgElement) {  
-            var src = imgElement.src;  
-            var parts = src.split('/'); 
-            var filename = parts[parts.length - 1]; 
-            
-      
-            imgElement.src = "https://47.115.223.75:8080/group1/v2/" + filename+"?timestamp=" + Date.now();
-    
-            imgElement.onerror = null; 
-        }  
-
-    </script>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
-
-<script>
-    let menu = document.getElementById('menu')
-    if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-</body>
-
-</html>
+🍎分配 sudo systemctl set-default graphical.target vi /etc/pam.d/gdm-password ``` bash 注释 auth required pam_succeed_if.so user != root quiet_success ``` bash #auth required pam_succeed_if.so user != root quiet_success 🛋️重启 sudo reboot 🔑通过VNC连接 ​
+配置后
+​</p></div><footer class=entry-footer><span title='2024-04-26 23:19:27 +0000 UTC'>April 26, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Debian Gnome-Desktop GUI " href=https://qfsyso.github.io/posts/debian-gnome-desktop-gui/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://qfsyso.github.io/page/20/>«&nbsp;Prev&nbsp;
+</a><a class=next href=https://qfsyso.github.io/page/22/>Next&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><div class=wtime><div class=wtime2>CST<span id=beijingTime></span> GMT <span id=londonTime></span> EST <span id=newYorkTime></span> PST<span id=losAngelesTime></span></div><div class=wtime2 style=display:none>东京<span id=tokyoTime></span></div><div class=wtime2 style=display:none>欧洲-巴黎<span id=parisTime></span></div><div class=wtime2 style=display:none>UTC<span id=utcTime></span></div></div><span>&copy; 2025 <a href=https://qfsyso.github.io/>MLOG</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a>
+</span><script type=text/javascript>const timeZoneOffsets={beijing:8,tokyo:9,paris:[1,2],london:[0,1],newYork:[-5,-4],losAngeles:[-8,-7]};function padZero(e){return e<10?"0"+e:e}function formatTime(e){const t=e.getFullYear(),n=padZero(e.getMonth()+1),s=padZero(e.getDate()),o=padZero(e.getHours()),i=padZero(e.getMinutes()),a=padZero(e.getSeconds());return`${t}-${n}-${s} ${o}:${i}:${a}`}function isDaylightSavingTime(e,t){const o=e.getMonth(),n=new Date(e.getFullYear(),3,8,2,0,0),s=new Date(e.getFullYear(),10,1,2,0,0);return(t==="paris"||t==="london"||t==="newYork"||t==="losAngeles")&&e>=n&&e<s}function updateTime(){const e=new Date,t=new Date(e.getUTCFullYear(),e.getUTCMonth(),e.getUTCDate(),e.getUTCHours(),e.getUTCMinutes(),e.getUTCSeconds()),n=formatTime(t);document.getElementById("utcTime").innerHTML=n;for(const n in timeZoneOffsets){const e=timeZoneOffsets[n];let s;Array.isArray(e)?s=isDaylightSavingTime(t,n)?e[1]:e[0]:s=e;const o=new Date(t.getTime()+s*60*60*1e3);document.getElementById(n+"Time").innerHTML=formatTime(o)}setTimeout(updateTime,1e3)}window.onload=function(){updateTime()};function notfound(e){var n=e.src,t=n.split("/"),s=t[t.length-1];e.src="https://47.115.223.75:8080/group1/v2/"+s+"?timestamp="+Date.now(),e.onerror=null}</script></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script></body></html>

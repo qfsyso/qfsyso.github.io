@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>SQL on MLOG</title><link>https://qfsyso.github.io/tags/sql/</link><description>Recent content in SQL on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Thu, 01 May 2025 14:53:42 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/sql/index.xml" rel="self" type="application/rss+xml"/><item><title>MSSQL 2 MySQL</title><link>https://qfsyso.github.io/posts/mssql-2-mysql/</link><pubDate>Thu, 01 May 2025 14:53:42 +0800</pubDate><guid>https://qfsyso.github.io/posts/mssql-2-mysql/</guid><description>DBeaver https://github.com/dbeaver/dbeaver/releases 简介：一款开源的多数据库管理工具，支持多种数据库系统，包括SQL Server和MySQL。利用DBeaver，可以轻松地在不同数据库系统之间进行数据迁移。 操作步骤：
+安装DBeaver： 从官网下载并安装DBeaver到计算机上。
+连接到SQL Server： 在DBeaver中，点击“Database” &amp;gt; “New Database Connection”，选择“SQL Server”并填写连接信息。
+连接到MySQL： 同样的步骤，点击“Database” &amp;gt; “New Database Connection”，选择“MySQL”并填写连接信息。
+导出SQL Server数据： 在成功连接SQL Server后，选择需要迁移的表，然后右键点击并选择“Export Data”，在弹出的窗口中，选择“MySQL”作为目标。
+导入到MySQL： 在导出设置中，配置好MySQL连接的信息，并选择目标数据库，点击“Start”开始导入过程。
+主键 自增处理 -- 修改现有列为自增主键 ALTER TABLE ZX.Lies MODIFY COLUMN ID INT AUTO_INCREMENT PRIMARY KEY; ALTER TABLE your_table_name MODIFY Content VARCHAR(1000); ALTER TABLE zx.Lies MODIFY Content6 VARCHAR(1000); DROP TABLE zx.ZhongjieProducts MySQL Workbench Migration Wizard ​​步骤：​
+安装依赖​​： 安装 MySQL Workbench。 https://dev.mysql.com/downloads/workbench/ 安装 ODBC Driver for SQL Server。 https://learn.</description></item></channel></rss>

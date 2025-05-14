@@ -8,10 +8,9 @@ clash linux https://github.com/Elegycloud/clash-for-linux-backup
 ssh https://github.com/cmliu/webssh https://github.com/chaos-zhu/easynode https://github.com/crazypeace/huashengdun-webssh https://github.com/huashengdun/webssh https://github.com/Jrohy/webssh
 docker run -d --name webssh --restart always -p 18888:8888 cmliu/webssh:latest v2rayN https://github.com/2dust/v2rayN/
 ClashX.Meta https://github.com/MetaCubeX/ClashX.Meta/tree/meta
+AssetBundle工具 解压uti .bundle 文件 https://github.com/Perfare/AssetStudio/releases
 mpvplaer https://github.com/mpvnet-player/mpv.net
 h5 game https://github.com/hackycy/h5-game-collection
 win激活 https://github.com/zbezj/HEU_KMS_Activator
 twitter awe https://github.com/DennisThink/awesome_twitter_CN?tab=readme-ov-file
-pyvideotrans https://github.com/jianchang512/pyvideotrans
-ChatTTS https://github.com/2noise/ChatTTS
-coqui TTS https://github.com/coqui-ai/TTS TTS</description></item></channel></rss>
+pyvideotrans https://github.com/jianchang512/pyvideotrans</description></item></channel></rss>
