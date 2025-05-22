@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 <title>Posts | MLOG</title>
 <meta name="keywords" content="">
 <meta name="description" content="Posts - MLOG">
 <meta name="author" content="dwd">
-<link rel="canonical" href="https://qfsyso.github.io/posts/">
+<link rel="canonical" href="http://localhost:1313/posts/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.6da9a63d25a9608bca2f7f907a030e887a7dd3c3f3918e4cc113129361414bda.css" integrity="sha256-bammPSWpYIvKL3&#43;QegMOiHp908PzkY5MwRMSk2FBS9o=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://qfsyso.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://qfsyso.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://qfsyso.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://qfsyso.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://qfsyso.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://qfsyso.github.io/posts/index.xml">
-<link rel="alternate" hreflang="en" href="https://qfsyso.github.io/posts/">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/posts/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/">
 <noscript>
     <style>
         #theme-toggle,
@@ -56,31 +56,7 @@
         }
 
     </style>
-</noscript><meta property="og:url" content="https://qfsyso.github.io/posts/">
-  <meta property="og:site_name" content="MLOG">
-  <meta property="og:title" content="Posts">
-  <meta property="og:description" content="A simple blog ">
-  <meta property="og:locale" content="zh-CN">
-  <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Posts">
-<meta name="twitter:description" content="A simple blog ">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://qfsyso.github.io/posts/"
-    }
-  ]
-}
-</script>
+</noscript>
 </head>
 
 <body class="list" id="top">
@@ -98,7 +74,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://qfsyso.github.io/" accesskey="h" title="MLOG (Alt + H)">MLOG</a>
+            <a href="http://localhost:1313/" accesskey="h" title="MLOG (Alt + H)">MLOG</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -124,17 +100,17 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://qfsyso.github.io/posts/" title="Archive">
+                <a href="http://localhost:1313/posts/" title="Archive">
                     <span class="active">Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://qfsyso.github.io/tags/" title="Tags">
+                <a href="http://localhost:1313/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://qfsyso.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
@@ -147,6 +123,47 @@
     Posts
   </h1>
 </header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET JWT 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>前言
+JWT (JSON Web Token) 是一种安全传输信息的开放标准，由Header、Payload和Signature三部分组成。它主要用于身份验证、信息交换和授权。JWT可验证用户身份，确保访问权限，实现单点登录，并在客户端和服务器之间安全地交换信息。因其简单、安全和便捷，JWT在现代Web应用中广泛使用。
+用JWT有多个原因：
+无状态的身份验证：JWT允许服务器无需保存用户的会话信息，因为所有必要的信息都存储在令牌本身中。这降低了服务器的存储需求，并提高了系统的可扩展性。
+跨域身份验证：由于JWT是自我包含的，并且可以被轻松传递，因此它非常适合跨域身份验证。用户可以在一个服务上验证身份，然后使用相同的令牌访问另一个服务，从而实现单点登录（SSO）。
+安全性：JWT可以通过使用强大的加密算法（如HS256, RS256等）进行签名，以确保其完整性和真实性。服务器可以使用公钥验证令牌的签名，从而确保它没有被篡改，并且确实是由受信任的颁发者签发的。
+减少数据库查询：由于用户的身份信息都存储在JWT中，服务器无需每次都去数据库中查询用户的身份信息，从而减少了数据库的压力和查询时间。
+可定制性：JWT的Payload部分可以包含自定义的信息，如用户角色、权限等，这使得JWT非常灵活，并可以根据具体需求进行定制。
+易于分发和共享：JWT可以轻松地通过网络传输，并且可以在多个服务和客户端之间共享，这使得它在微服务架构和分布式系统中非常有用。
+标准化和互操作性：JWT是一个开放标准（RFC 7519），这意味着不同的系统和语言都可以使用相同的方式生成和验证JWT，从而提高了系统的互操作性。
+环境 Win10 VS2022 .NET8
+✨ 建立项目jwttest 1.创建TestJwtController ​
+2.下载JWT ​
+3.建实体类 /// &lt;summary&gt; /// 用户信息类 /// &lt;/summary&gt; public class LoginRs { /// &lt;summary&gt; /// 用户ID /// &lt;/summary&gt; public string UserId { get; set; } /// &lt;summary&gt; /// 用户密码 /// &lt;/summary&gt; public string PasswordMD5 { get; set; } } /// &lt;summary&gt; /// 用户登录信息类 /// &lt;/summary&gt; public class LoginInfo { /// &lt;summary&gt; /// 用户信息 /// &lt;/summary&gt; public string UserId { get; set; } /// &lt;summary&gt; /// 检验时间 /// &lt;/summary&gt; public DateTime Expires { get; set; } } /// &lt;summary&gt; /// rsmodel /// &lt;/summary&gt; public class RsModel { /// &lt;summary&gt; /// 是否成功 /// &lt;/summary&gt; public bool isOk { get; set; } /// &lt;summary&gt; /// 返回值 /// &lt;/summary&gt; public int code { get; set; } /// &lt;summary&gt; /// 返回消息 /// &lt;/summary&gt; public string msg { get; set; } /// &lt;summary&gt; /// 返回数据 /// &lt;/summary&gt; public object rsData { get; set; } } 4.添加post login // POST api/&lt;ValuesController&gt; [HttpPost] public string Login([FromBody] LoginRs loginRequest) { if (loginRequest == null) return JsonConvert.SerializeObject(new RsModel() { code = 0, isOk = false, msg = &#34;登录信息为空！&#34; }); #region 判断userid pwd if (loginRequest.UserId != &#34;admin&#34; || loginRequest.PasswordMD5 != &#34;admin&#34;) { return JsonConvert.SerializeObject(new RsModel() { code = 0, isOk = false, msg = &#34;用户名和密码不正确！&#34; }); } #endregion LoginInfo Info = new LoginInfo() { UserId = loginRequest.UserId, Expires = DateTime.Now.AddDays(1) }; const string secretKey = &#34;myseckey&#34;;//口令加密秘钥 byte[] key = Encoding.UTF8.GetBytes(secretKey); IJwtAlgorithm algorithm = new HMACSHA256Algorithm();//加密方式 IJsonSerializer serializer = new JsonNetSerializer();//序列化Json IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();//base64加解密 IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);//JWT编码 var token = encoder.Encode(Info, key);//生成令牌 return JsonConvert.SerializeObject(new RsModel() { code = 1, isOk = true, rsData = token, msg = &#34;登录成功！&#34; }); } ​
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-19 01:26:35 +0000 UTC'>April 19, 2024</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET JWT " href="http://localhost:1313/posts/.net-jwt/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET spider
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>前言 爬虫可以用于外汇，期货，基金，货币，比分，电商，文章等信息的采集。通过数据分析，竞品分析，为商业决策提供数据支持。
+​ 金价暴涨，抓取下今日的金价。
+💡使用HttpClient爬取数据 try { // 创建HttpClient实例 using (var httpClient = new HttpClient()) { //模拟User-Agent httpClient.DefaultRequestHeaders.Add(&#34;User-Agent&#34;, GetUserAgent()); // 发送GET请求并获取响应 xxx.com是某网站的页面~（保护） var response = await httpClient.GetAsync(&#34;https://xxx.com&#34;); response.EnsureSuccessStatusCode(); var htmlContent = await response.Content.ReadAsStringAsync(); } } catch (HttpRequestException ex) { // 处理请求异常 ViewBag.Error = &#34;Failed to retrieve price data: &#34; &#43; ex.Message; } 🚀模拟User-Agent // 生成随机 User-Agent private string GetUserAgent() { string[] userAgents = new string[] { &#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36&#34;, &#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.190 Safari/537.36&#34;, // }; Random random = new Random(); int index = random.Next(userAgents.Length); return userAgents[index]; } 🤵使用HTML解析库 （HtmlAgilityPack）提取价格
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-18 12:59:30 +0000 UTC'>April 18, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET spider" href="http://localhost:1313/posts/.net-spider/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">
@@ -182,7 +199,7 @@ npm install -g webpack ​​
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-04-17 08:59:30 +0000 UTC'>April 17, 2024</span>&nbsp;·&nbsp;10 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Vue study" href="https://qfsyso.github.io/posts/vue-study/"></a>
+  <a class="entry-link" aria-label="post link to Vue study" href="http://localhost:1313/posts/vue-study/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -200,7 +217,7 @@ npm install -g webpack ​​
 🌱Program.cs添加国际化支持 // 添加国际化支持 builder.Services.AddLocalization(options =&gt; { options.ResourcesPath = &#34;Resources&#34;; }); var app = builder.Build(); // 多语言 var supportedCultures = new List&lt;CultureInfo&gt; { new CultureInfo(&#34;en&#34;), new CultureInfo(&#34;zh&#34;), new CultureInfo(&#34;fr&#34;), }; app.UseRequestLocalization(new RequestLocalizationOptions { DefaultRequestCulture = new RequestCulture(&#34;zh&#34;), SupportedCultures = supportedCultures, SupportedUICultures = supportedCultures }); ⚡注入localizer private readonly IStringLocalizer&lt;HomeController&gt; localizer; public HomeController(ILogger&lt;HomeController&gt; logger, IStringLocalizer&lt;HomeController&gt; localizer) { _logger = logger; this.localizer = localizer; } ``` # 📫编写调用方法 [HttpGet] public ActionResult&lt;string&gt; Get() { string rsstr= localizer.GetString(&#34;String1&#34;).Value;//?ui-culture=zh return rsstr; } 默认是中文 ?ui-culture=en 则取对应HomeController.en.resx 里面的String1 ​&lt;img onerror=&#34;notfound(this);&#34; src=&#34;https://cdn.jsdelivr.net/gh/qfsysw/resources/v2/2024041306.jpg&#34;&gt; ​&lt;img onerror=&#34;notfound(this);&#34; src=&#34;https://cdn.jsdelivr.net/gh/qfsysw/resources/v2/2024041307.jpg&#34;&gt; 🐟 </p>
   </div>
   <footer class="entry-footer"><span title='2024-04-16 01:29:17 +0000 UTC'>April 16, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET i18n " href="https://qfsyso.github.io/posts/.net-i18n/"></a>
+  <a class="entry-link" aria-label="post link to .NET i18n " href="http://localhost:1313/posts/.net-i18n/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -228,7 +245,7 @@ utf8mb4_unicode_ci
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-04-13 09:27:51 +0000 UTC'>April 13, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to MySQL Incorrect string value " href="https://qfsyso.github.io/posts/mysql-incorrect-string-value/"></a>
+  <a class="entry-link" aria-label="post link to MySQL Incorrect string value " href="http://localhost:1313/posts/mysql-incorrect-string-value/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -250,7 +267,7 @@ get test 一些命令
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-04-12 09:27:49 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian Docker Redis" href="https://qfsyso.github.io/posts/debian-docker-redis/"></a>
+  <a class="entry-link" aria-label="post link to Debian Docker Redis" href="http://localhost:1313/posts/debian-docker-redis/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -271,69 +288,14 @@ using Microsoft.AspNetCore.SignalR; using System.Threading.Tasks; namespace WebS
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-04-12 07:44:04 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET SignalR Redis " href="https://qfsyso.github.io/posts/.net-signalr-redis/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET Swagger 
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>开发环境 Win10 VS2022 .NET8.0
-1.从NuGet添加Swagger ​
-在解决方案资源管理器中右键单击项目&gt;管理 NuGet 包 将包源设置为“nuget.org” 确保启用“包括预发行”选项 在搜索框中输入“Swashbuckle.AspNetCore” 从“浏览”选项卡中选择最新的“Swashbuckle.AspNetCore”包，然后单击“安装”
-2.将 Swagger 生成器添加到以下位置的服务集合中Program.cs： builder.Services.AddControllers(); builder.Services.AddEndpointsApiExplorer(); builder.Services.AddSwaggerGen(); ​
-启用中间件 生成
-app.UseSwagger(); app.UseSwaggerUI(); app.UseSwaggerUI(options =&gt; { options.SwaggerEndpoint(&#34;/swagger/v1/swagger.json&#34;, &#34;v1&#34;); options.RoutePrefix = string.Empty; }); ​
-3.添加API控制器 创建api
-// GET api/&lt;myapi&gt;/5 /// &lt;summary&gt; /// getid /// &lt;/summary&gt; /// &lt;param name=&#34;id&#34;&gt;id参数&lt;/param&gt; /// &lt;returns&gt;valuestr&lt;/returns&gt; [HttpGet(&#34;{id}&#34;)] public string Get(int id) { return &#34;value&#34; &#43; id; } // POST api/&lt;myapi&gt; [HttpPost] public string Post([FromBody] string value) { //post逻辑代码 return &#34;myPost&#34;; } // PUT api/&lt;myapi&gt;/5 [HttpPut(&#34;{id}&#34;)] public string Put(int id, [FromBody] string value) { //put逻辑代码 return &#34;myPut&#34;; } // DELETE api/&lt;myapi&gt;/5 [HttpDelete(&#34;{id}&#34;)] public string Delete(int id) { //delete逻辑代码 return &#34;myDelete&#34;; } ​
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-11 23:27:19 +0000 UTC'>April 11, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET Swagger " href="https://qfsyso.github.io/posts/.net-swagger/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Docker MySQL 
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>1.下载docker desktop https://www.docker.com/products/docker-desktop/
-创建容器 docker run 创建并启动mysql容器
-–name 容器名字
--d 后台运行容器
--p 映射端口
--e 参数
-截至目前最新的mysql是mysql8.0.36 那就整这个试下。
-docker run -d --name mysql-container -e TZ=UTC -p 30306:3306 -e MYSQL_ROOT_PASSWORD=你的密码 mysql:8.0.36-debian ​
-等待一会，看到mysql已经pull下来。
-回到docker看到容器已经创建。
-​
-​
-可以输入docker images查看
-​
-3.创建mysql数据库管理软件容器
-docker run --name myadmin -d --link mysql-container:db -p 8880:80 phpmyadmin/phpmyadmin ​
-回到docker查看下容器是否创建成功。 ​
-复制地址到浏览器访问。 ​
-​
-okok
-唉哟不错哦~
-扩展：ubuntu版本
-docker run -d --name mysql-container -e TZ=UTC -p 30306:3306 -e MYSQL_ROOT_PASSWORD=xxxxxx ubuntu/mysql:8.0-22.04_beta https://hub.docker.com/r/ubuntu/mysql?uuid=D64B1F2A-A81A-4D2C-B66B-FCFAECE77EFE
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-11 08:35:22 +0000 UTC'>April 11, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Docker MySQL " href="https://qfsyso.github.io/posts/docker-mysql/"></a>
+  <a class="entry-link" aria-label="post link to .NET SignalR Redis " href="http://localhost:1313/posts/.net-signalr-redis/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="prev" href="https://qfsyso.github.io/posts/page/22/">
+    <a class="prev" href="http://localhost:1313/posts/page/22/">
       «&nbsp;Prev&nbsp;
     </a>
-    <a class="next" href="https://qfsyso.github.io/posts/page/24/">Next&nbsp;&nbsp;»
+    <a class="next" href="http://localhost:1313/posts/page/24/">Next&nbsp;&nbsp;»
     </a>
   </nav>
 </footer>
@@ -348,7 +310,7 @@ docker run -d --name mysql-container -e TZ=UTC -p 30306:3306 -e MYSQL_ROOT_PASSW
 
         <div  class="wtime2" style="display: none;">UTC<span id="utcTime"></span></div>
     </div>
-        <span>&copy; 2025 <a href="https://qfsyso.github.io/">MLOG</a></span> · 
+        <span>&copy; 2025 <a href="http://localhost:1313/">MLOG</a></span> · 
 
 
     <span>

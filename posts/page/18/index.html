@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 <title>Posts | MLOG</title>
 <meta name="keywords" content="">
 <meta name="description" content="Posts - MLOG">
 <meta name="author" content="dwd">
-<link rel="canonical" href="https://qfsyso.github.io/posts/">
+<link rel="canonical" href="http://localhost:1313/posts/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.6da9a63d25a9608bca2f7f907a030e887a7dd3c3f3918e4cc113129361414bda.css" integrity="sha256-bammPSWpYIvKL3&#43;QegMOiHp908PzkY5MwRMSk2FBS9o=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://qfsyso.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://qfsyso.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://qfsyso.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://qfsyso.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://qfsyso.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://qfsyso.github.io/posts/index.xml">
-<link rel="alternate" hreflang="en" href="https://qfsyso.github.io/posts/">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/posts/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/">
 <noscript>
     <style>
         #theme-toggle,
@@ -56,31 +56,7 @@
         }
 
     </style>
-</noscript><meta property="og:url" content="https://qfsyso.github.io/posts/">
-  <meta property="og:site_name" content="MLOG">
-  <meta property="og:title" content="Posts">
-  <meta property="og:description" content="A simple blog ">
-  <meta property="og:locale" content="zh-CN">
-  <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Posts">
-<meta name="twitter:description" content="A simple blog ">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://qfsyso.github.io/posts/"
-    }
-  ]
-}
-</script>
+</noscript>
 </head>
 
 <body class="list" id="top">
@@ -98,7 +74,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://qfsyso.github.io/" accesskey="h" title="MLOG (Alt + H)">MLOG</a>
+            <a href="http://localhost:1313/" accesskey="h" title="MLOG (Alt + H)">MLOG</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -124,17 +100,17 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://qfsyso.github.io/posts/" title="Archive">
+                <a href="http://localhost:1313/posts/" title="Archive">
                     <span class="active">Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://qfsyso.github.io/tags/" title="Tags">
+                <a href="http://localhost:1313/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://qfsyso.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
@@ -150,6 +126,36 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent"> .NET Dockerhub
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>📚Dockerfile FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build WORKDIR /src COPY [&#34;MyMvcApp.csproj&#34;, &#34;./&#34;] RUN dotnet restore &#34;MyMvcApp.csproj&#34; COPY . . WORKDIR &#34;/src/&#34; RUN dotnet build &#34;MyMvcApp.csproj&#34; -c Release -o /app/build FROM build AS publish RUN dotnet publish &#34;MyMvcApp.csproj&#34; -c Release -o /app/publish FROM base AS final WORKDIR /app COPY --from=publish /app/publish . ENTRYPOINT [&#34;dotnet&#34;, &#34;MyMvcApp.dll&#34;] ✏️ Docker 镜像 docker build -t mymvcapp:latest . 📝在 Docker Hub 上创建仓库 登录 Docker Hub (https://hub.docker.com)。 点击 “Create Repository”。 输入仓库名称，例如 mymvcapp，然后点击 “Create”。
+💻将 Docker 镜像推送到 Docker Hub 首先，登录 Docker Hub：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-06-01 01:24:22 +0000 UTC'>June 1, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  .NET Dockerhub" href="http://localhost:1313/posts/.net-dockerhub/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET Redis 10s Rate Limiter Sliding Window Algorithm
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>在.NET中使用Redis来限制接口请求频率（每10秒只允许请求一次）
+NuGet setup StackExchange.Redis
+实现速率限制逻辑： 在你的控制器或服务层中，你需要编写一个方法来检查并更新Redis中的速率限制计数器。 设置Redis键： 为每个用户或每个IP地址（取决于你的需求）设置一个唯一的键。这个键将用于存储最后一次请求的时间戳和/或请求计数。 检查时间戳： 当请求到达时，从Redis中获取该键的值（时间戳）。如果键不存在或时间戳超过10秒，则允许请求并更新键的值（设置为当前时间戳）。 处理超过速率的请求： 如果时间戳在10秒内，则拒绝或限制该请求（返回限制状态码）。
+private static readonly Lazy&lt;ConnectionMultiplexer&gt; LazyConnection = new Lazy&lt;ConnectionMultiplexer&gt;(() =&gt; { // 配置Redis连接字符串 &#34;localhost,abortConnect=false&#34; return ConnectionMultiplexer.Connect(&#34;localhost:6379&#34;); }); private static ConnectionMultiplexer Connection =&gt; LazyConnection.Value; private static IDatabase Db =&gt; Connection.GetDatabase(); public async Task&lt;ActionResult&gt; MyAction() { IPAddress clientIpAddress = HttpContext.Connection.RemoteIpAddress; string ipAddress = clientIpAddress.ToString(); string redisKey = $&#34;rate-limit:{ipAddress}&#34;; // 构建Redis键名 // 获取当前时间戳（可以是Unix时间戳或任何你选择的格式） long currentTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds(); // 尝试从Redis获取时间戳 var redisValue = await Db.StringGetAsync(redisKey); long lastTimestamp = redisValue.HasValue ? (long)redisValue : 0; // 检查是否超过10秒 if (currentTimestamp - lastTimestamp &gt;= 10) { // 如果超过10秒，则允许请求并更新Redis键 await Db.StringSetAsync(redisKey, currentTimestamp, TimeSpan.FromSeconds(10)); // 设置键的过期时间为10秒 return Content(&#34;Request allowed.&#34;); } else { // 如果未超过10秒，则拒绝请求 HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.TooManyRequests) { ReasonPhrase = &#34;Too Many Requests&#34;, Content = new StringContent(&#34;Rate limit exceeded. Please try again later.&#34;) }; // 处理请求 return Content(&#34;Please try again later. &#34;);// throw new HttpResponseException(response); // 或者返回自定义的ActionResult } } 扩展为参数
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-31 06:24:16 +0000 UTC'>May 31, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET Redis 10s Rate Limiter Sliding Window Algorithm" href="http://localhost:1313/posts/.net-redis-10s-rate-limiter-sliding-window-algorithm/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">.NET RocketMQ
     </h2>
   </header>
@@ -162,7 +168,7 @@ RocketMQ架构 生产者（Producer） 用于产生消息的运行实体，通�
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-05-29 20:17:33 +0000 UTC'>May 29, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET RocketMQ" href="https://qfsyso.github.io/posts/.net-rocketmq/"></a>
+  <a class="entry-link" aria-label="post link to .NET RocketMQ" href="http://localhost:1313/posts/.net-rocketmq/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -181,7 +187,7 @@ _config.yml deploy: type: git repo: # 替换为你的GitHub仓库url branch: mas
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-05-28 03:38:21 +0000 UTC'>May 28, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to  hexo githubio" href="https://qfsyso.github.io/posts/hexo-githubio/"></a>
+  <a class="entry-link" aria-label="post link to  hexo githubio" href="http://localhost:1313/posts/hexo-githubio/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -199,7 +205,7 @@ ERR 201 module.json5 添加
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-05-26 23:56:19 +0000 UTC'>May 26, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to HarmonyOS socket websocket" href="https://qfsyso.github.io/posts/harmonyos-socket-websocket/"></a>
+  <a class="entry-link" aria-label="post link to HarmonyOS socket websocket" href="http://localhost:1313/posts/harmonyos-socket-websocket/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -216,7 +222,7 @@ i = 0 rand_list = [] while i &lt; 4: rand_num = random.randint(0, 499) if rand_n
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-05-26 23:02:42 +0000 UTC'>May 26, 2024</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Python study" href="https://qfsyso.github.io/posts/python-study/"></a>
+  <a class="entry-link" aria-label="post link to Python study" href="http://localhost:1313/posts/python-study/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -231,51 +237,14 @@ FROM node:16-alpine WORKDIR /usr/src/app COPY package*.json ./ RUN npm ci --only
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-05-26 23:01:07 +0000 UTC'>May 26, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Node socket.io" href="https://qfsyso.github.io/posts/node-socket.io/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">HarmonyOS Interface Router ArkTS ArkUI
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>🎬️create @Component export default struct TitleBar { build(){ Row(){ Text(&#39;transition&#39;) .fontSize(&#39;30fp&#39;) .fontColor(Color.White) } .width(&#39;100%&#39;) .height(&#39;8%&#39;) .backgroundColor(&#39;#4169E1&#39;) .padding({left:10}) } } 🎞️interface export interface IList{ title:string; url :string; } @State listData:IList[]=[ // @State listData:Array&lt;IList&gt;=[ { title:&#39;in&#39;, url:&#39;pages/home1&#39; }, { title:&#39;scale&#39;, url:&#39;pages/home2&#39; }, { title:&#39;small&#39;, url:&#39;pages/home3&#39; }, { title:&#39;in&#39;, url:&#39;&#39; } ] 💡foreach ForEach(this.listData,( item: IList,index?:number)=&gt;{ //listitem Button({type:ButtonType.Capsule}){ Text(item.title) .fontSize(&#39;35fp&#39;) .fontColor(Color.White) } //... }) 🔦router import router from &#39;@ohos.router&#39; 📼mainpage &#34;pages/home1&#34; 📹️onclick .onClick(()=&gt;{ //router router.pushUrl({url:item.url}) }) 📺️setInterval //home1 page1 import router from &#39;@ohos.router&#39; @Entry @Component struct Index { @State TOTAL_TIME:number = 6;//s @State FIRST_CT:number =3;//s aboutToAppear(){ //timer let timer= setInterval(()=&gt;{ this.TOTAL_TIME--; if(this.TOTAL_TIME===0){ //end router.pushUrl({ url:&#34;pages/Index&#34; }) clearInterval(timer); } },1000) } build() { Column() { Row() { if(this.TOTAL_TIME&gt;this.FIRST_CT){ //1 Image($r(&#39;app.media.t2&#39;)) .objectFit(ImageFit.Contain) }else if(this.TOTAL_TIME&lt;this.FIRST_CT) { //2 Image($r(&#39;app.media.bc&#39;)) .objectFit(ImageFit.Contain) .width(&#39;30%&#39;) Text(&#39; - m - &#39;) .fontSize(&#39;30fp&#39;) } } .width(&#39;100%&#39;) .height(&#39;100%&#39;) .justifyContent(FlexAlign.Center) // Text(&#39;in&#39;) // .fontSize(&#39;50fp&#39;) } .width(&#39;100%&#39;) } } ​
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-23 21:49:44 +0000 UTC'>May 23, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to HarmonyOS Interface Router ArkTS ArkUI" href="https://qfsyso.github.io/posts/harmonyos-interface-router-arkts-arkui/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">DotNetty ByteBuffer
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>DotNetty是一个高性能的.NET网络通信框架，基于Netty，支持TCP、UDP、HTTP、WebSocket等协议。适用于高并发、低延迟场景，如实时通信、游戏服务器、IoT应用及大型分布式系统，通过异步I/O、零拷贝等技术提升性能，具备易用性、可扩展性。 架构上，围绕Channel、EventLoop、ChannelPipeline、ChannelHandlerContext设计，包含Transport、Codec、Handler等模块，简化网络编程，加速数据传输处理。
-ByteBuffer 用于高效处理字节数据，固定容量，通过allocate或wrap创建。涉及position和limit追踪读写位置，提供get/put等读写方法，flip切换读写模式，clear清空缓冲区，compact移动数据并准备下一轮读写，适用于高性能IO与网络通信。.
-优点 零拷贝通过复合缓冲区实现。 动态容量增长。 无需flip切换读写模式。 分离读写索引。 内置引用计数。 支持缓冲区池化。 优化网络通信中的字节处理。
-结构 readerIndex 读取，随读增。 writerIndex 写入，随写增。 capacity容量。
-ByteBuffer属性 readIndex：下一个读位 writeIndex：下一个写位置 capacity：容量 0：缓冲区开始位置
-已经读取的区域：[0,readerindex) 可读取的区域：[readerindex,writerIndex) 可写的区域: [writerIndex,capacity) 读写独立索引，操作命名区分（read/write自动进，get/set不影响索引）。 支持设定最大容量，超限写操作将抛异常，默认上限Integer.MAX_VALUE。 readerIndex writerIndex 本质为灵活高效字节容器
-堆缓冲区 最常用的 ByteBuffer 模式是将数据存储在堆空间中。这种模式被称为支撑数组（backing array），它能在没有使用池化的情况下提供快速的分配和释放。可以由 hasArray() 来判断检查 ByteBuffer是否由数组支撑。如果不是，则这是一个直接缓冲区。
-直接缓冲区 直接缓冲区是另外一种 ByteBuffer 模式。 直接缓冲区的主要缺点是，相对于基于堆的缓冲区，它们的分配和释放都较为昂贵。
-复合缓冲区 复合缓冲区 CompositeByteBuf，它为多个 ByteBuffer提供一个聚合视图。比如 HTTP 协议， 分为消息头和消息体，这两部分可能由应用程序的不同模块产生，各有各的 ByteBuffer，将会在消息被发送的时候组装为一个 ByteBuffer，此时可以将这两个 ByteBuffer聚合为一个 CompositeByteBuf，然后使用统一和通用的 ByteBuffer API 来操作。
-如何在的程序中获得 ByteBuf 的实例，并使用它呢？Netty 提供了两种方式
-ByteBufAllocator 接口 ByteBufAllocator 分配任意类型的 ByteBuffer 实例。
-buffer(): 基于堆/直接内存ByteBuffer。 heapBuffer(): 仅堆内存。 directBuffer(): 仅直接内存。 compositeBuffer(): 可组合多个缓冲区，支持堆/直接内存。 ioBuffer(): 适配I/O操作，优先直接内存(需Unsafe支持)。 ByteBufAllocator： Channel ChannelHandlerContext
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-23 21:47:10 +0000 UTC'>May 23, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to DotNetty ByteBuffer" href="https://qfsyso.github.io/posts/dotnetty-bytebuffer/"></a>
+  <a class="entry-link" aria-label="post link to Node socket.io" href="http://localhost:1313/posts/node-socket.io/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="prev" href="https://qfsyso.github.io/posts/page/17/">
+    <a class="prev" href="http://localhost:1313/posts/page/17/">
       «&nbsp;Prev&nbsp;
     </a>
-    <a class="next" href="https://qfsyso.github.io/posts/page/19/">Next&nbsp;&nbsp;»
+    <a class="next" href="http://localhost:1313/posts/page/19/">Next&nbsp;&nbsp;»
     </a>
   </nav>
 </footer>
@@ -290,7 +259,7 @@ buffer(): 基于堆/直接内存ByteBuffer。 heapBuffer(): 仅堆内存。 dire
 
         <div  class="wtime2" style="display: none;">UTC<span id="utcTime"></span></div>
     </div>
-        <span>&copy; 2025 <a href="https://qfsyso.github.io/">MLOG</a></span> · 
+        <span>&copy; 2025 <a href="http://localhost:1313/">MLOG</a></span> · 
 
 
     <span>

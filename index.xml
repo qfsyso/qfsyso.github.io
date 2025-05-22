@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>MLOG</title><link>https://qfsyso.github.io/</link><description>Recent content on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Thu, 15 May 2025 20:36:50 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Honor Of King</title><link>https://qfsyso.github.io/posts/honor-of-king/</link><pubDate>Thu, 15 May 2025 20:36:50 +0800</pubDate><guid>https://qfsyso.github.io/posts/honor-of-king/</guid><description>镜 一、技能机制解析 被动-铸镜
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>MLOG</title><link>https://qfsyso.github.io/</link><description>Recent content on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Fri, 23 May 2025 00:31:40 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Snapdrop</title><link>https://qfsyso.github.io/posts/snapdrop/</link><pubDate>Fri, 23 May 2025 00:31:40 +0800</pubDate><guid>https://qfsyso.github.io/posts/snapdrop/</guid><description>Snapdrop：开源浏览器版 AirDrop 文件传输工具 Snapdrop 是一个纯浏览器实现的开源局域网文件传输工具，基于 WebRTC 和 WebSocket 技术，提供类似 Apple AirDrop 的跨平台即时文件共享体验。
+🚀 Snapdrop 的优势 设备自动发现：同一局域网内自动识别设备，无需手动连接或配对。 无平台限制：只要能打开浏览器（Chrome / Safari / Edge / Firefox 等）即可使用。 匿名上传与下载：无需登录，匿名操作保障隐私。 端到端加密：基于 WebRTC 的 DTLS 和 SDES 协议，确保传输安全。 PWA 支持：可添加到手机主屏，像 App 一样快捷打开。 ⚙️ 快速使用方式 在线使用 直接访问 https://snapdrop.net 确保设备处于同一 Wi-Fi 或局域网 浏览器打开 Snapdrop 网页 选择设备 → 上传文件 → 对方点击下载即可 自托管部署（增强隐私） 方式一：手动部署 git clone https://github.com/Snapdrop/Snapdrop.git cd Snapdrop npm install npm start 访问：http://localhost:3000
+方式二：使用 Docker 一键部署 docker run -d --name=snapdrop -p 80:80 -p 443:443 \ -v /path/to/config:/config \ lscr.</description></item><item><title>Caddy</title><link>https://qfsyso.github.io/posts/caddy/</link><pubDate>Fri, 23 May 2025 00:21:01 +0800</pubDate><guid>https://qfsyso.github.io/posts/caddy/</guid><description>Debian 系统部署 Caddy Web 服务器的详细指南 本文档提供了在 Debian 系统上安装和配置 Caddy Web 服务器的步骤，包括多种安装方法、服务管理、HTTPS 配置、高级功能以及注意事项。此外，还对比了 Caddy 与 Nginx 的主要优势，并介绍了 Caddy 的一些高级特性。
+一、安装方法 APT 存储库安装（推荐） 更新系统：
+sudo apt update &amp;amp;&amp;amp; sudo apt upgrade -y 添加密钥和存储库：
+sudo apt install -y debian-archive-keyring apt-transport-https curl curl -1sLf &amp;#39;https://dl.cloudsmith.io/public/caddy/stable/gpg.key&amp;#39; | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg curl -1sLf &amp;#39;https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt&amp;#39; | sudo tee /etc/apt/sources.list.d/caddy-stable.list 安装 Caddy：
+sudo apt update &amp;amp;&amp;amp; sudo apt install caddy 快速脚本安装 curl https://getcaddy.com | bash -s personal http.</description></item><item><title>ZhangZhou PlanB</title><link>https://qfsyso.github.io/posts/zhangzhou-planb/</link><pubDate>Thu, 22 May 2025 21:39:50 +0800</pubDate><guid>https://qfsyso.github.io/posts/zhangzhou-planb/</guid><description>漳州 d2 ✅ Day 1：古韵与市井美食之旅 上午｜【南山寺 &amp;amp; 南山桥风光】 南山寺：始建于唐代，是漳州最有历史韵味的寺庙之一，香火旺盛，环境清幽。
+南山桥+九龙江景观道：走在桥上可以远眺九龙江两岸，拍照打卡很出片。
+📍推荐路线：南山寺 → 南山桥散步 → 漳州碧湖生态公园边走边拍
+中午｜【府埕口·闽南古早味】 推荐美食：
+沙茶面（阿强沙茶面）
+五香卷、卤面
+烧肉粽（推荐“阿辉烧肉粽”）
+位置：中山路、南昌路一带的小吃非常集中。
+下午｜【古城文化游：府埕古街 + 漳州文庙】 府埕古街：保留完整的闽南红砖古厝，适合拍照、喝咖啡、买伴手礼。
+漳州文庙：福建保存较完整的文庙之一，有浓厚的儒学气息。
+晚上｜【夜游碧湖 + 晚餐】 碧湖夜景：灯光下的碧湖十分迷人，湖边步道凉爽舒适。
+推荐晚餐：
+阿国海鲜大排档（新浦路附近）或
+西洋坪牛排/闽南热炒
+Day 2：生态与艺文慢生活之旅 上午｜【龙文湿地公园 or 云洞岩】 龙文湿地公园：适合拍照、晨跑，园内有水杉、鸟类栖息点，绿意盎然。
+云洞岩：轻松爬山，俯瞰漳州城区，山中庙宇古迹众多。
+📝备注：两个景点都在城区10公里以内，可任选其一安排。
+中午｜【大润发美食城 or 延安北路闽南餐厅】 经济实惠选择：大润发楼下的各种小吃摊
+推荐餐厅：漳州特色的“金汤酸菜鱼”、“扁食汤”、“蚝仔煎”
+下午｜【艺术与休闲：漳州博物馆 + 艺术馆】 漳州博物馆：了解漳州的历史、陶瓷文化
+漳州市美术馆 or 漳州图书馆新馆：现代化设计，有时会有展览
+晚上｜【尾声晚餐 + 夜市】 胜利东路夜市 or 新浦东市场夜市：探访当地人气夜市
+美食推荐：
+烧烤串串 四果汤 地瓜粥 芋泥鸭
+🎁 补充推荐（如时间宽裕）： 九龙公园：适合带小孩，园内有小动物区。
+漳州东南花都（迷你版）：市区花卉市场聚集地，适合买盆栽小花。
+漳州市区 ​​d1 ​​上午：漳州古城（芗城区）​​</description></item><item><title>Eat Plan</title><link>https://qfsyso.github.io/posts/eat-plan/</link><pubDate>Wed, 21 May 2025 08:12:26 +0800</pubDate><guid>https://qfsyso.github.io/posts/eat-plan/</guid><description> 时间 餐次 食物 参数 热量（大卡） 替换建议 周一 早餐 全麦面包 + 水煮蛋 + 无糖豆浆 + 拌黄瓜 面包40g，鸡蛋50g，豆浆200ml，黄瓜100g，橄榄油5g 约300 面包可换燕麦粥（30g燕麦+150ml牛奶），黄瓜换圣女果100g 周一 午餐 杂粮饭 + 香煎鸡胸肉 + 清炒西兰花 杂粮饭80g（生重），鸡胸肉150g，西兰花200g，橄榄油8g 约500 杂粮饭换糙米饭，鸡胸肉换鲈鱼/瘦牛肉，西兰花换菠菜/油麦菜 周一 晚餐 蒸红薯 + 白灼虾 + 凉拌菠菜 红薯100g，虾80g，菠菜150g，芝麻油3g 约350 红薯换玉米半根，虾换豆腐100g，菠菜换莴笋/绿豆芽 周二 早餐 燕麦粥 + 水煮蛋 + 圣女果 燕麦30g，牛奶150ml，鸡蛋50g，圣女果100g 约280 燕麦换全麦面包2片，圣女果换黄瓜100g 周二 午餐 糙米饭 + 清蒸鲈鱼 + 清炒油麦菜 糙米饭100g（生重），鲈鱼150g，油麦菜200g，橄榄油5g 约520 鲈鱼换巴沙鱼/鸡胸肉，油麦菜换空心菜/西兰花 周二 晚餐 荞麦面 + 卤鸡腿（去皮） + 番茄冬瓜汤 荞麦面50g（干重），鸡腿100g，番茄50g，冬瓜100g，橄榄油3g 约350 荞麦面换魔芋面，鸡腿换虾仁/瘦牛肉，冬瓜汤换紫菜蛋花汤 周三 早餐 全麦三明治 + 无糖酸奶 面包40g，生菜50g，火腿50g，番茄30g，酸奶100g 约320 三明治换包子（全麦素馅80g），酸奶换豆浆200ml 周三 午餐 小米饭 + 瘦牛肉炒青椒 + 凉拌莴笋 小米饭100g（生重），牛肉120g，青椒150g，莴笋150g，橄榄油8g 约550 小米饭换藜麦饭，牛肉换鸡胸肉，青椒换胡萝卜/芹菜 周三 晚餐 蒸土豆 + 豆腐炖白菜 + 清炒绿豆芽 土豆150g，豆腐100g，白菜200g，绿豆芽100g，橄榄油6g 约330 土豆换南瓜，豆腐换鸡蛋1个（蒸蛋），绿豆芽换娃娃菜 周四 早餐 玉米 + 水煮蛋 + 黑咖啡 + 水煮西兰花 玉米100g，鸡蛋50g，西兰花50g 约250 玉米换燕麦粥（30g燕麦），西兰花换黄瓜100g 周四 午餐 意大利面 + 烤鸡胸肉 + 番茄菠菜沙拉 意面80g（干重），鸡胸肉120g，番茄100g，菠菜100g，橄榄油5g 约530 意面换荞麦面，鸡胸肉换鳕鱼，沙拉换清炒菠菜 周四 晚餐 蒸南瓜 + 清炖鲫鱼 + 清炒空心菜 南瓜150g，鲫鱼150g，空心菜200g，橄榄油3g 约380 南瓜换山药，鲫鱼换虾仁/豆腐，空心菜换油菜 周五 早餐 全麦素馅包子 + 茶叶蛋 + 凉拌海带丝 包子80g，鸡蛋50g，海带丝50g 约280 包子换燕麦饼（30g燕麦+鸡蛋1个），海带丝换莴笋100g 周五 午餐 杂粮饭（大米 + 藜麦） + 香煎巴沙鱼 + 蒜蓉西兰花 杂粮饭100g（生重），巴沙鱼150g，西兰花200g，橄榄油5g 约510 巴沙鱼换鲈鱼/鸡胸肉，西兰花换芦笋/生菜 周五 晚餐 燕麦饼 + 虾仁蒸蛋 + 清炒娃娃菜 燕麦30g，鸡蛋50g，虾仁50g，娃娃菜150g，橄榄油3g 约320 燕麦饼换全麦面包1片，虾仁换瘦牛肉，娃娃菜换豆芽 周六 早餐 全麦面包 + 牛油果 + 水煮蛋 + 黄瓜 面包20g，牛油果30g，鸡蛋50g，黄瓜100g 约260 牛油果换无糖酸奶100g，黄瓜换小番茄100g 周六 午餐 糙米饭 + 红烧瘦肉 + 清炒胡萝卜丝 糙米饭80g（生重），瘦猪肉100g，胡萝卜150g，橄榄油3g 约480 瘦肉换鸡胸肉（烤/蒸），胡萝卜换青椒/芹菜 周六 晚餐 魔芋丝结 + 卤牛肉 + 菠菜蛋花汤 魔芋丝100g，牛肉100g，菠菜50g，鸡蛋50g，橄榄油2g 约310 魔芋丝换荞麦面50g，牛肉换虾仁，蛋花汤换冬瓜汤 周日 早餐 小米粥 + 酱牛肉 + 拌莴笋 小米30g，牛肉50g，莴笋100g，橄榄油2g 约220 小米粥换玉米半根，牛肉换水煮蛋1个，莴笋换海带丝 周日 午餐 荞麦面 + 烤鸡胸肉 + 凉拌木耳 荞麦面70g（干重），鸡胸肉120g，木耳100g，橄榄油3g 约490 荞麦面换意大利面，鸡胸肉换瘦牛肉，木耳换黄瓜沙拉 周日 晚餐 蒸山药 + 清蒸虾 + 清炒油菜 山药150g，虾80g，油菜200g，橄榄油5g 约350 山药换红薯，虾换巴沙鱼，油菜换西兰花 使用说明 热量控制：每日总热量约 1500-1700 大卡，可根据体重变化调整主食或蛋白质重量（如体重下降过慢，可减少主食 10-20g / 餐）。 灵活替换：同类别食材（如主食、蛋白质、蔬菜）可按 “替换建议” 自由搭配，避免单调。 烹饪提示：食用油总量建议≤10g / 天，尽量使用橄榄油或菜籽油，避免油炸、糖醋做法。 加餐选项：可在上午 10 点 / 下午 3 点加食低脂酸奶 100g 或 10g 坚果（单独记录热量）。</description></item><item><title>Honor Of King</title><link>https://qfsyso.github.io/posts/honor-of-king/</link><pubDate>Thu, 15 May 2025 20:36:50 +0800</pubDate><guid>https://qfsyso.github.io/posts/honor-of-king/</guid><description>镜 一、技能机制解析 被动-铸镜
 攻击目标后触发镜像标记，再次攻击可触发额外伤害并刷新技能CD，刷野/连招时需穿插平A触发被动。 一技能-开锋
 突进并强化普攻，主要位移和起手技能，命中减少冷却时间。 二技能-裂空
 范围伤害+回血+减速，开局优先加点用于续航和快速清野。 三技能-见影

@@ -1,5 +1,73 @@
 <!doctype html><html lang=en dir=auto><head><meta name=generator content="Hugo 0.126.3"><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>MLOG</title>
-<meta name=description content="A simple blog "><meta name=author content="dwd"><link rel=canonical href=https://qfsyso.github.io/><link crossorigin=anonymous href=/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF+13Dyqob6ASlTrTye8=" rel="preload stylesheet" as=style><link rel=icon href=https://qfsyso.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://qfsyso.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://qfsyso.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://qfsyso.github.io/apple-touch-icon.png><link rel=mask-icon href=https://qfsyso.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://qfsyso.github.io/index.xml><link rel=alternate type=application/json href=https://qfsyso.github.io/index.json><link rel=alternate hreflang=en href=https://qfsyso.github.io/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://qfsyso.github.io/"><meta property="og:site_name" content="MLOG"><meta property="og:title" content="MLOG"><meta property="og:description" content="A simple blog "><meta property="og:locale" content="zh-CN"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="MLOG"><meta name=twitter:description content="A simple blog "><script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","name":"MLOG","url":"https://qfsyso.github.io/","description":"A simple blog ","logo":"https://qfsyso.github.io/favicon.ico","sameAs":[]}</script></head><body class=list id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://qfsyso.github.io/ accesskey=h title="MLOG (Alt + H)">MLOG</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://qfsyso.github.io/posts/ title=Archive><span>Archive</span></a></li><li><a href=https://qfsyso.github.io/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://qfsyso.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li></ul></nav></header><main class=main><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>.NET SMTP</h2></header><div class=entry-content><p>SMTP（Simple Mail Transfer Protocol）是用于电子邮件传输的规则集，可以从邮件客户端向接收电子邮件服务器发送、中继或转发邮件。发件人可使用SMTP 服务器来执行发送电子邮件的过程。SMTP服务器则是按照这些规则中转电子邮件的服务器。
+<meta name=description content="A simple blog "><meta name=author content="dwd"><link rel=canonical href=https://qfsyso.github.io/><link crossorigin=anonymous href=/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF+13Dyqob6ASlTrTye8=" rel="preload stylesheet" as=style><link rel=icon href=https://qfsyso.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://qfsyso.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://qfsyso.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://qfsyso.github.io/apple-touch-icon.png><link rel=mask-icon href=https://qfsyso.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://qfsyso.github.io/index.xml><link rel=alternate type=application/json href=https://qfsyso.github.io/index.json><link rel=alternate hreflang=en href=https://qfsyso.github.io/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://qfsyso.github.io/"><meta property="og:site_name" content="MLOG"><meta property="og:title" content="MLOG"><meta property="og:description" content="A simple blog "><meta property="og:locale" content="zh-CN"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="MLOG"><meta name=twitter:description content="A simple blog "><script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","name":"MLOG","url":"https://qfsyso.github.io/","description":"A simple blog ","logo":"https://qfsyso.github.io/favicon.ico","sameAs":[]}</script></head><body class=list id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://qfsyso.github.io/ accesskey=h title="MLOG (Alt + H)">MLOG</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://qfsyso.github.io/posts/ title=Archive><span>Archive</span></a></li><li><a href=https://qfsyso.github.io/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://qfsyso.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li></ul></nav></header><main class=main><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>.NET Avalonia Linux</h2></header><div class=entry-content><p>环境WIN10 VS2022 debian
+👻前言 Avalonia 是一个用于创建跨平台用户界面 (UI) 的开源框架。它是一个基于 .NET 平台的框架，允许开发者使用 XAML 和 C#（F#）来构建跨平台的应用程序。Avalonia 的目标是提供与 Windows Presentation Foundation (WPF) 类似的开发体验，但能够在 Windows、macOS 和 Linux 等多个平台上运行。
+使用 Avalonia，开发者可以创建各种类型的应用程序，包括桌面应用、移动应用和嵌入式应用。一些可以通过 Avalonia 实现的功能和应用包括：
+桌面应用程序：如办公软件、IDE、游戏客户端等。
+移动应用程序：通过 Avalonia 可以构建支持多个平台的移动应用，如 Windows、macOS 和 Linux 上的移动应用。
+跨平台工具：Avalonia 可以用于构建跨平台的开发工具、实用工具等。
+游戏开发：Avalonia 也可以用于构建游戏的用户界面，适合基于 .NET 平台的游戏开发。
+Avalonia 提供了一个强大的工具集，使开发者能够创建具有各种功能和样式的跨平台应用程序。
+💻安装Avalonia 选择管理拓展，点击下载，安装
+​
+​
+📦创建项目 ​
+​
+​
+编码…
+📚在win下运行 ​
+查看linux内核
+uname -a
+​
+🔑打包发布 复制到linux
+授予权限
+📻在linux下运行 迁移Socket发布到linux ​
+​
+实现win linux web 基于socket实时聊天</p></div><footer class=entry-footer><span title='2024-04-27 00:07:15 +0000 UTC'>April 27, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to .NET Avalonia Linux " href=https://qfsyso.github.io/posts/.net-avalonia-linux/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Debian Gnome-Desktop GUI</h2></header><div class=entry-content><p>debian gnome-desktop
+🌞更新 sudo apt update sudo apt -y upgrade ​
+🎨安装 sudo apt -y install task-gnome-desktop 这个过程比较久
+​
+🍎分配 sudo systemctl set-default graphical.target vi /etc/pam.d/gdm-password ``` bash 注释 auth required pam_succeed_if.so user != root quiet_success ``` bash #auth required pam_succeed_if.so user != root quiet_success 🛋️重启 sudo reboot 🔑通过VNC连接 ​
+配置后
+​</p></div><footer class=entry-footer><span title='2024-04-26 23:19:27 +0000 UTC'>April 26, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Debian Gnome-Desktop GUI " href=https://qfsyso.github.io/posts/debian-gnome-desktop-gui/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>HarmonyOS Study ArkTS</h2></header><div class=entry-content><p>💡 环境搭建 HarmonyOS开发环境搭建
+DevEco Studio安装 https://developer.huawei.com/consumer/cn/deveco-studio/
+​
+🚀安装nodejs ​
+🤵安装ohpm ​
+🍔安装SDK ​
+​
+💥Emulator安装 ​
+Q:The graphic card OpenGL version is too old for Previewer to work..
+解决方法分两步：
+1、下载enGL库：https://github.com/pal1000/mesa-dist-win/releases/download/23.1.1/mesa3d-23.1.1-release-msvc.7z
+2、解压下载的zip文件,双击执行systemwidedeploy.cmd文件，然后按任意键，出现一个菜单，选择1，然后开始安装OpenGL驱动，出现complete 后关闭终端，重新运行程序即可生效。
+🌶️新建ArkTs项目 ​
+​
+​
+entry：HarmonyOS工程模块，编译构建生成一个HAP包。
+src > main > ets：用于存放ets源码。 src > main > ets > MainAbility：应用/服务的入口。 src > main > ets > MainAbility > pages：MainAbility包含的页面。 src > main > ets > MainAbility > pages > index.ets：pages列表中的第一个页面，即应用的首页入口。 src > main > ets > MainAbility > app....</p></div><footer class=entry-footer><span title='2024-04-21 13:00:43 +0000 UTC'>April 21, 2024</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to HarmonyOS Study ArkTS" href=https://qfsyso.github.io/posts/harmonyos-study-arkts/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>.NET 反编译</h2></header><div class=entry-content><p>反编译是对程序进行逆向分析、研究，以推导出软件产品所使用的思路、原理、结构、算法、处理过程、运行方法等设计要素。
+反编译.NET程序需要使用专门的反编译工具
+🧿使用dotPeek进行反编译 1.下载dotPeek dotPeek：JetBrains 出品的免费 .NET 反编译器与程序集浏览器
+​
+2.File > Open
+​
+3.打开需要反编译的文件方法
+​
+🧝‍♂️使用ILSpy进行反编译 下载并安装 ILSpy：https://github.com/icsharpcode/ILSpy/releases 2.文件-打开-exe
+​
+3.查看反编译内容
+找到Form1 可以看到里面反编译的内容
+​
+复制到vs里面
+替换代码添加相关引用即可
+🤖使用Reflector进行反编译 1.File > Open Assembly
+​ ​
+2.点开WinTime.exe内容
+​
+3.查看反编译内容
+可以看到反编译出来的控件和方法 ​
+点开方法，可以看到方法内的内容
+注意：
+反编译的代码可能不完全等同于原始源代码，因为编译器可能会进行优化，并且某些信息可能因为混淆技术而无法恢复。</p></div><footer class=entry-footer><span title='2024-04-21 06:14:22 +0000 UTC'>April 21, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to  .NET 反编译" href=https://qfsyso.github.io/posts/.net-%E5%8F%8D%E7%BC%96%E8%AF%91/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>.NET SMTP</h2></header><div class=entry-content><p>SMTP（Simple Mail Transfer Protocol）是用于电子邮件传输的规则集，可以从邮件客户端向接收电子邮件服务器发送、中继或转发邮件。发件人可使用SMTP 服务器来执行发送电子邮件的过程。SMTP服务器则是按照这些规则中转电子邮件的服务器。
 IMAP可以理解为收邮件。 ​
 🐧使用QQ邮箱发邮件 首先需要设置开启邮箱的SMTP服务
 登录(https://mail.qq.com/)电脑网页版邮箱进入【设置】->【帐户】->【POP3/IMAP/SMTP服务】， 开启或关闭相应服务最后保存更改即可。 ​
@@ -65,46 +133,7 @@ npm install -g webpack ​​
 ​ HomeController.fr.resx
 ​ HomeController.zh.resx
 ​
-🌱Program.cs添加国际化支持 // 添加国际化支持 builder.Services.AddLocalization(options => { options.ResourcesPath = "Resources"; }); var app = builder.Build(); // 多语言 var supportedCultures = new List&lt;CultureInfo> { new CultureInfo("en"), new CultureInfo("zh"), new CultureInfo("fr"), }; app.UseRequestLocalization(new RequestLocalizationOptions { DefaultRequestCulture = new RequestCulture("zh"), SupportedCultures = supportedCultures, SupportedUICultures = supportedCultures }); ⚡注入localizer private readonly IStringLocalizer&lt;HomeController> localizer; public HomeController(ILogger&lt;HomeController> logger, IStringLocalizer&lt;HomeController> localizer) { _logger = logger; this....</p></div><footer class=entry-footer><span title='2024-04-16 01:29:17 +0000 UTC'>April 16, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to .NET i18n " href=https://qfsyso.github.io/posts/.net-i18n/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>MySQL Incorrect string value</h2></header><div class=entry-content><p>MySQL存储IOS传过来emoji错误处理 Incorrect string value: ‘‘ for column ‘xxx‘ at row MySQL Incorrect string value: ‘\xF0\x9F\x8D\xBA‘ for column ‘xxx‘ at row
-​
-调用接口提示
-Incorrect string value: ‘\xF0\x9F\x8D\xBA’ for column ‘xxx’ at row
-😵‍💫
-需要把mysql字段排序规则
-utf8mb4_0900_ai_ci
-改成
-utf8mb4_unicode_ci
-​
-💤SQL调整 ALTER TABLE MUser CHANGE Signature Signature VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL;
-设置该列的字符集为utf8mb4。utf8mb4是MySQL中的一个字符集，它可以存储四字节的UTF-8字符，因此可以支持更多的Unicode字符，如某些表情符号。 设置该列的校对规则为utf8mb4_unicode_ci。校对规则决定了字符如何比较和排序。utf8mb4_unicode_ci是一个不区分大小写的校对规则，它基于Unicode标准。 ALTER DATABASE IDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-设置该数据库的字符集为utf8mb4。
-设置该数据库的校对规则为utf8mb4_unicode_ci。
-​
-💤服务端连接调整 ChatSet utf8mb4...</p></div><footer class=entry-footer><span title='2024-04-13 09:27:51 +0000 UTC'>April 13, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to MySQL Incorrect string value " href=https://qfsyso.github.io/posts/mysql-incorrect-string-value/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Debian Docker Redis</h2></header><div class=entry-content><p>Debian安装docker
-1.使用官方脚本自动安装docker 安装命令如下：
-curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh 如果安装提示
--bash sudo command not found
-则需要
-#update sudo apt-get update sudo apt-get install sudo 再执行安装脚本1
-安装成功后可以输入 docker命令查看docker版本
-#version docker --version 能查到表明安装成功
-2.pull redis #pull redis docker pull redis:latest pull redis镜像 3.创建reids容器 docker run -itd --name redis-test -p 6379:6379 redis 4.测试redis docker exec -it redis-test /bin/bash redis-cli set test 1 get test set test 1 提示ok
-get test 一些命令...</p></div><footer class=entry-footer><span title='2024-04-12 09:27:49 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Debian Docker Redis" href=https://qfsyso.github.io/posts/debian-docker-redis/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>.NET SignalR Redis</h2></header><div class=entry-content><p>环境 Win10 VS2022 .NET8 Docker Redis
-前言
-什么是 SignalR？ ASP.NET Core SignalR 是一个开放源代码库，可用于简化向应用添加实时 Web 功能。 实时 Web 功能使服务器端代码能够将内容推送到客户端。
-适合 SignalR 的候选项：
-需要从服务器进行高频率更新的应用。 （游戏、社交网络、投票、拍卖、地图和 GPS 应用） 仪表板和监视应用。 （公司仪表板、即时销售更新或出行警报） 协作应用。 （包括白板应用和团队会议软件） 需要通知的应用。（ 社交网络、电子邮件、聊天、游戏等） SignalR 提供用于创建服务器到客户端的远程过程调用 (RPC) API。 RPC 从服务器端 .NET Core 代码调用客户端上的函数。支持JavaScript ，.NET ，JAVA，Swift （官方没有明确支持，这是第三方库）其中每个平台都有各自的客户端 SDK。 因此，RPC 调用所调用的编程语言有所不同。
-ASP.NET Core SignalR 的一些功能：
-自动处理连接管理。 同时向所有连接的客户端发送消息。 例如聊天室。 向特定客户端或客户端组发送消息。 对其进行缩放，以处理不断增加的流量。 SignalR 中心协议 1.👋nuget引入SignalR ​​ ​
-2.👀创建SignalR Hub
-using Microsoft.AspNetCore.SignalR; using System.Threading.Tasks; namespace WebSignalR { public class ChatHub : Hub { public async Task SendMessage(string user, string message) { await Clients....</p></div><footer class=entry-footer><span title='2024-04-12 07:44:04 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to .NET SignalR Redis " href=https://qfsyso.github.io/posts/.net-signalr-redis/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>.NET Swagger</h2></header><div class=entry-content><p>开发环境 Win10 VS2022 .NET8.0
-1.从NuGet添加Swagger ​
-在解决方案资源管理器中右键单击项目>管理 NuGet 包 将包源设置为“nuget.org” 确保启用“包括预发行”选项 在搜索框中输入“Swashbuckle.AspNetCore” 从“浏览”选项卡中选择最新的“Swashbuckle.AspNetCore”包，然后单击“安装”
-2.将 Swagger 生成器添加到以下位置的服务集合中Program.cs： builder.Services.AddControllers(); builder.Services.AddEndpointsApiExplorer(); builder.Services.AddSwaggerGen(); ​
-启用中间件 生成
-app.UseSwagger(); app.UseSwaggerUI(); app.UseSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1"); options.RoutePrefix = string.Empty; }); ​
-3.添加API控制器 创建api
-// GET api/&lt;myapi>/5 /// &lt;summary> /// getid /// &lt;/summary> /// &lt;param name="id">id参数&lt;/param> /// &lt;returns>valuestr&lt;/returns> [HttpGet("{id}")] public string Get(int id) { return "value" + id; } // POST api/&lt;myapi> [HttpPost] public string Post([FromBody] string value) { //post逻辑代码 return "myPost"; } // PUT api/&lt;myapi>/5 [HttpPut("{id}")] public string Put(int id, [FromBody] string value) { //put逻辑代码 return "myPut"; } // DELETE api/&lt;myapi>/5 [HttpDelete("{id}")] public string Delete(int id) { //delete逻辑代码 return "myDelete"; } ​...</p></div><footer class=entry-footer><span title='2024-04-11 23:27:19 +0000 UTC'>April 11, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to .NET Swagger " href=https://qfsyso.github.io/posts/.net-swagger/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://qfsyso.github.io/page/15/>«&nbsp;Prev&nbsp;
+🌱Program.cs添加国际化支持 // 添加国际化支持 builder.Services.AddLocalization(options => { options.ResourcesPath = "Resources"; }); var app = builder.Build(); // 多语言 var supportedCultures = new List&lt;CultureInfo> { new CultureInfo("en"), new CultureInfo("zh"), new CultureInfo("fr"), }; app.UseRequestLocalization(new RequestLocalizationOptions { DefaultRequestCulture = new RequestCulture("zh"), SupportedCultures = supportedCultures, SupportedUICultures = supportedCultures }); ⚡注入localizer private readonly IStringLocalizer&lt;HomeController> localizer; public HomeController(ILogger&lt;HomeController> logger, IStringLocalizer&lt;HomeController> localizer) { _logger = logger; this....</p></div><footer class=entry-footer><span title='2024-04-16 01:29:17 +0000 UTC'>April 16, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to .NET i18n " href=https://qfsyso.github.io/posts/.net-i18n/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://qfsyso.github.io/page/15/>«&nbsp;Prev&nbsp;
 </a><a class=next href=https://qfsyso.github.io/page/17/>Next&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><div class=wtime><div class=wtime2>CST<span id=beijingTime></span> GMT <span id=londonTime></span> EST <span id=newYorkTime></span> PST<span id=losAngelesTime></span></div><div class=wtime2 style=display:none>东京<span id=tokyoTime></span></div><div class=wtime2 style=display:none>欧洲-巴黎<span id=parisTime></span></div><div class=wtime2 style=display:none>UTC<span id=utcTime></span></div></div><span>&copy; 2025 <a href=https://qfsyso.github.io/>MLOG</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
