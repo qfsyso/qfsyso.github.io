@@ -123,6 +123,59 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Typescript study
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>typescript ≈ javascript plus
+🔗setup npm install typescript -g tsc -version npm install ts-node -g 🖌️hello world let str = &#34;hi&#34; console.log(str); ts-node t.ts 🖋️datatype let a1 :string =&#39;abc&#39; let a2:number = 2 let a3 :boolean =true let nu:null =null let un:undefined = undefined let a4:string|null = null let a5:1|2|3 = 2 any let a:any a= 1 a=&#34;1&#34; a=true strong type
+let a:string = &#34;123&#34; a=1 Err
+let a:unknown a= 1 a=&#34;1&#34; a=true let b :String if(typeof a ==&#34;string&#34;) { b=a } enum 枚举 enum Color { RED,BLUE,BLACK} let color = Color.BLACK; //Color[2] console.log(color); ts-node t.ts or to js
+tsc t.ts to see t.js
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-20 00:07:45 +0000 UTC'>May 20, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Typescript study" href="http://localhost:1313/posts/typescript-study/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET Blazor
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Blazor 是一个使用 C#、HTML 和 CSS 构建交互式 Web UI 的开源框架，支持服务器端和客户端运行，允许开发者利用 C# 和 .NET 生态来创建 Web 应用。
+🌱Create carete Blazor Web
+Program.cs 是启动服务器以及在其中配置应用服务和中间件的应用的入口点。 在 Components 目录中:
+App.razor 为应用的根组件。 Routes.razor 配置 Blazor 路由器。 Pages 目录包含应用的一些示例网页。 BlazorApp.csproj 定义应用项目及其依赖项，且可以通过双击解决方案资源管理器中的 BlazorApp 项目节点进行查看。 Properties 目录中的 launchSettings.json 文件为本地开发环境定义不同的配置文件设置。创建项目时会自动分配端口号并将其保存在此文件上。
+🪴Run pages home.razor
+@page &#34;/&#34; &lt;PageTitle&gt;Home&lt;/PageTitle&gt; &lt;h1&gt;Hello, world m qqqqq&lt;/h1&gt; hihihi 🌴Counter counter.razor
+@page &#34;/counter&#34; @rendermode InteractiveServer &lt;PageTitle&gt;Counter&lt;/PageTitle&gt; &lt;h1&gt;Counter&lt;/h1&gt; &lt;p role=&#34;status&#34;&gt;Current count: @currentCount&lt;/p&gt; &lt;button class=&#34;btn btn-primary&#34; @onclick=&#34;IncrementCount&#34;&gt;Click me&lt;/button&gt; @code { private int currentCount = 0; private void IncrementCount() { currentCount&#43;&#43;; } } 像Vue
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-18 23:10:13 +0000 UTC'>May 18, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET Blazor" href="http://localhost:1313/posts/.net-blazor/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET RabbitMQ NOTE
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>setup rabbitmq docker run –name=rabbit -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=xxx -d rabbitmq:management
+ip:15672
+nuget RabbitMQ.Client
+Send
+//1.1.实例化连接工厂 var factory = new ConnectionFactory() { HostName = &#34;localhost&#34; }; //2. 建立连接 using (var connection = factory.CreateConnection()) { //3. 创建信道 using (var channel = connection.CreateModel()) { //4. 申明队列 channel.QueueDeclare(queue: &#34;hello&#34;, durable: false, exclusive: false, autoDelete: false, arguments: null); //5. 构建byte消息数据包 string message = args.Length &gt; 0 ? args[0] : &#34;Hello RabbitMQ!&#34;; var body = Encoding.UTF8.GetBytes(message); //6. 发送数据包 channel.BasicPublish(exchange: &#34;&#34;, routingKey: &#34;hello&#34;, basicProperties: null, body: body); Console.WriteLine(&#34; [x] Sent {0}&#34;, message); } } Received
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-18 23:05:20 +0000 UTC'>May 18, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET RabbitMQ NOTE" href="http://localhost:1313/posts/.net-rabbitmq-note/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Nodejs Study
     </h2>
   </header>
@@ -189,52 +242,6 @@ using System; using System.IO; using System.Security.Cryptography; using System.
   </div>
   <footer class="entry-footer"><span title='2024-05-15 15:01:42 +0000 UTC'>May 15, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to .NET AES DES" href="http://localhost:1313/posts/.net-aes-des/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">IOS POD
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>IOS POD
-brew install cocoapod gem install cocoapod sudo gem install cocoapod sudo brew update ruby update rvm install 2.7 cd xx
-pod install </p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-14 10:51:59 +0000 UTC'>May 14, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to IOS POD" href="http://localhost:1313/posts/ios-pod/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET webp
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>在C#中，可以使用Image类和Bitmap类来处理图像，并且可以借助Magick.NET库来将JPG图片转换为WEBP格式。
-安装Magick.NET-Q8-AnyCPU NuGet包。
-using ImageMagick; 转换方法
-public void ConvertJpgToWebP2(string inputFilePath, string outputFilePath) { using (var image = new MagickImage(inputFilePath)) { // 设置WEBP压缩质量，范围从0（最好的质量）到100（最快速压缩） image.Quality = 80; image.Format = MagickFormat.WebP; image.Write(outputFilePath); } } 调用
-string jpgPath = &#34;E:\\net8test\\ConsoleApp1Test\\ConsoleApp1Test\\bin\\Debug\\net8.0\\55.jpg&#34;; string webpPath = &#34;E:\\net8test\\ConsoleApp1Test\\ConsoleApp1Test\\bin\\Debug\\net8.0\\55.webp&#34;; Ig ig = new Ig(); ig.ConvertJpgToWebP2(jpgPath, webpPath); </p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-10 09:28:17 +0000 UTC'>May 10, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET webp" href="http://localhost:1313/posts/.net-webp/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Hexo Categories Tags
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>配置categories 新建页面categories: hexo new page &#34;categories&#34; 执行命令后将新生成文件夹categories，并在该文件夹下生成index.md文件。
-编辑categories/index.md文件: vi {path}/source/categories/index.md 编辑内容：
-&#43;&#43;&#43; title: 分类 date = &#39;2017-10-25 22:00:00 type: &#34;categories&#34; &#43;&#43;&#43; 编辑主题配置文件themes/xx/_config.yml: vi {path}/themes/xx/_config.yml 将menu中的categories的注释去掉：
-menu: home: / || home #tags = [&#34; /tags/ || tags categories: /categories/ || th archives: /archives/ || archive #about: /about/ || user #schedule: /schedule/ || calendar #sitemap: /sitemap.xml || sitemap #commonweal: /404/ || heartbeat 编辑文章在Front-matter区域（即&#43;&#43;&#43;分隔的区域）指定categories即可： &#43;&#43;&#43; title: test date = &#39;2017-01-01 00:00:00 categories: - 类别名称 tags = [&#34; - 标签 &#43;&#43;&#43; categories/index.md &#43;&#43;&#43; title: 分类 date = &#39;2024-05-08 22:00:00 type: &#34;categories&#34; &#43;&#43;&#43; - [分类](/categories/) - [分类-技术](/categories/技术/) - [分类-生活](/categories/生活/) 分类具有顺序性和层次性，而标签没有顺序和层次。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-09 13:25:52 +0000 UTC'>May 9, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Hexo Categories Tags" href="http://localhost:1313/posts/hexo-categories-tags/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

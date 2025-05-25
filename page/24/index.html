@@ -123,6 +123,77 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">MySQL Incorrect string value 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>MySQL存储IOS传过来emoji错误处理 Incorrect string value: ‘‘ for column ‘xxx‘ at row MySQL Incorrect string value: ‘\xF0\x9F\x8D\xBA‘ for column ‘xxx‘ at row
+​
+调用接口提示
+Incorrect string value: ‘\xF0\x9F\x8D\xBA’ for column ‘xxx’ at row
+😵‍💫
+需要把mysql字段排序规则
+utf8mb4_0900_ai_ci
+改成
+utf8mb4_unicode_ci
+​
+💤SQL调整 ALTER TABLE MUser CHANGE Signature Signature VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL;
+设置该列的字符集为utf8mb4。utf8mb4是MySQL中的一个字符集，它可以存储四字节的UTF-8字符，因此可以支持更多的Unicode字符，如某些表情符号。 设置该列的校对规则为utf8mb4_unicode_ci。校对规则决定了字符如何比较和排序。utf8mb4_unicode_ci是一个不区分大小写的校对规则，它基于Unicode标准。 ALTER DATABASE IDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+设置该数据库的字符集为utf8mb4。
+设置该数据库的校对规则为utf8mb4_unicode_ci。
+​
+💤服务端连接调整 ChatSet utf8mb4
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-13 09:27:51 +0000 UTC'>April 13, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to MySQL Incorrect string value " href="http://localhost:1313/posts/mysql-incorrect-string-value/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Debian Docker Redis
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Debian安装docker
+1.使用官方脚本自动安装docker 安装命令如下：
+curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh 如果安装提示
+-bash sudo command not found
+则需要
+#update sudo apt-get update sudo apt-get install sudo 再执行安装脚本1
+安装成功后可以输入 docker命令查看docker版本
+#version docker --version 能查到表明安装成功
+2.pull redis #pull redis docker pull redis:latest pull redis镜像 3.创建reids容器 docker run -itd --name redis-test -p 6379:6379 redis 4.测试redis docker exec -it redis-test /bin/bash redis-cli set test 1 get test set test 1 提示ok
+get test 一些命令
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-12 09:27:49 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Debian Docker Redis" href="http://localhost:1313/posts/debian-docker-redis/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET SignalR Redis 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>环境 Win10 VS2022 .NET8 Docker Redis
+前言
+什么是 SignalR？ ASP.NET Core SignalR 是一个开放源代码库，可用于简化向应用添加实时 Web 功能。 实时 Web 功能使服务器端代码能够将内容推送到客户端。
+适合 SignalR 的候选项：
+需要从服务器进行高频率更新的应用。 （游戏、社交网络、投票、拍卖、地图和 GPS 应用） 仪表板和监视应用。 （公司仪表板、即时销售更新或出行警报） 协作应用。 （包括白板应用和团队会议软件） 需要通知的应用。（ 社交网络、电子邮件、聊天、游戏等） SignalR 提供用于创建服务器到客户端的远程过程调用 (RPC) API。 RPC 从服务器端 .NET Core 代码调用客户端上的函数。支持JavaScript ，.NET ，JAVA，Swift （官方没有明确支持，这是第三方库）其中每个平台都有各自的客户端 SDK。 因此，RPC 调用所调用的编程语言有所不同。
+ASP.NET Core SignalR 的一些功能：
+自动处理连接管理。 同时向所有连接的客户端发送消息。 例如聊天室。 向特定客户端或客户端组发送消息。 对其进行缩放，以处理不断增加的流量。 SignalR 中心协议 1.👋nuget引入SignalR ​​ ​
+2.👀创建SignalR Hub
+using Microsoft.AspNetCore.SignalR; using System.Threading.Tasks; namespace WebSignalR { public class ChatHub : Hub { public async Task SendMessage(string user, string message) { await Clients.All.SendAsync(&#34;ReceiveMessage&#34;, user, message); } } } 3.🌱 Program.cs添加SignalR服务 (Startup.cs)
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-12 07:44:04 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET SignalR Redis " href="http://localhost:1313/posts/.net-signalr-redis/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">.NET Swagger 
     </h2>
   </header>
@@ -220,23 +291,12 @@ coqui TTS https://github.com/coqui-ai/TTS TTS
   <footer class="entry-footer"><span title='2023-08-03 02:12:50 +0000 UTC'>August 3, 2023</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to some code" href="http://localhost:1313/posts/some-code/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">100件小事
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>
-手牵手逛街 一起看海 一起看雪 喂我吃东西 一起堆雪人 一起坐摩天轮 一起恶作剧 一起坐海盗船 吃同一杯冰淇淋 一起搬东西 一起布置我们的小窝 一起看日出 一起看恐怖片 送惊喜小礼物 为我做顿饭 一起看爱情片 一起看日落 一起数星星 一起洗衣服 一起听同一首曲子 在朋友面前介绍我 把肩膀借给我靠 为我擦眼泪 唱歌给我听 为我写篇日记 在大街上背我 随叫随到 一起看球赛 比赛啃西瓜 在沙滩上画心 一起没形象的大叫 一起熬夜玩游戏 为我系鞋带 一起拉粑 一起发呆 一起过我们的纪念日 一起做陶瓷 一起许愿 一起做蛋糕 学对方说话 一起模仿搞笑的事情 为我剪指甲 吃我剩下的饭饭 把你欺负的对我没辙 一起打水仗 一起拍照片 一起骑脚踏车 戴同一条围巾 戴同一双手套 讲故事哄我睡觉 一起吃棉花糖 一起唱歌 一起淋雨 一起面对所有难堪 一起爬山 一起露营 一起跑步 一起傻笑 一起吃路边摊 一起去猫咖 穿情侣装显摆 一起打羽毛球 一起吃爱吃的东西到吐 一起踩马路到脚软 一起去旅行 一起去动物园 咬一下你的脸颊 对我说晚安 一起看电影 一起买菜 比赛石头剪刀布 一起见对方的朋友 一起做鬼脸 一起走遍世界各地 一起吃大餐，牵手进去，扶墙出来 一起扎气球赢奖品 站在马路的两侧大喊 看你打场比赛 一起看演唱会 一起沿铁轨 一起坐地铁 一起放风筝 一起看花田 趁你睡觉偷亲你一下 一起放孔明灯 一起钓鱼 一起下棋 一起在烈日下暴晒 手机屏保设置对方的照片 一起敷面膜 一起捏对方的脸 打赌各种各样的事 一起看烟火 在树下埋下我们的约定 去海边放漂流瓶 拍一次婚纱照 求婚 结婚 完成人生各项大事 白头偕老 </p>
-  </div>
-  <footer class="entry-footer"><span title='2023-02-20 10:27:36 +0000 UTC'>February 20, 2023</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to 100件小事" href="http://localhost:1313/posts/100%E4%BB%B6%E5%B0%8F%E4%BA%8B/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="http://localhost:1313/page/23/">
       «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/page/25/">Next&nbsp;&nbsp;»
     </a>
   </nav>
 </footer>

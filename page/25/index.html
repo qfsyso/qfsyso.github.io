@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head>
+	<meta name="generator" content="Hugo 0.145.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Debian | MLOG</title>
-<meta name="keywords" content="">
+<title>MLOG</title>
+
 <meta name="description" content="A simple blog ">
 <meta name="author" content="dwd">
-<link rel="canonical" href="http://localhost:1313/tags/debian/">
+<link rel="canonical" href="http://localhost:1313/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.6da9a63d25a9608bca2f7f907a030e887a7dd3c3f3918e4cc113129361414bda.css" integrity="sha256-bammPSWpYIvKL3&#43;QegMOiHp908PzkY5MwRMSk2FBS9o=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
@@ -18,8 +19,9 @@
 <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/debian/index.xml">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/tags/debian/">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml">
+<link rel="alternate" type="application/json" href="http://localhost:1313/index.json">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/">
 <noscript>
     <style>
         #theme-toggle,
@@ -118,93 +120,22 @@
     </nav>
 </header>
 <main class="main"> 
-<header class="page-header">
-  <h1>
-    Debian
-  </h1>
-</header>
 
-<article class="post-entry tag-entry"> 
+<article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent"> .NET获取内存
+    <h2 class="entry-hint-parent">100件小事
     </h2>
   </header>
   <div class="entry-content">
-    <p>在.NET 控制台应用程序中，你可以使用System.Diagnostics命名空间下的Process类来获取当前进程的内存使用情况。以下是一个简单的示例代码，展示如何获取并显示当前进程的内存使用量：
-using System; using System.Diagnostics; namespace DisplayProcessMemory { class Program { static void Main(string[] args) { // 获取当前进程 Process currentProcess = Process.GetCurrentProcess(); // 使用需要的内存量 long workingSet64 = currentProcess.WorkingSet64; // 显示内存使用量 Console.WriteLine($&#34;当前进程占用内存: {workingSet64} 字节&#34;); // 单位转换为兆字节 double memoryInMB = workingSet64 / 1024.0 / 1024.0; Console.WriteLine($&#34;当前进程占用内存: {memoryInMB.ToString(&#34;F2&#34;)} MB&#34;); } } } 在.NET中，可以使用System.Diagnostics命名空间下的Process类来获取当前进程的信息，但是直接获取网络带宽使用情况不是Process类提供的功能。你可以使用System.Net.NetworkInformation命名空间下的IPGlobalProperties类来获取网络接口的信息，然后累计所有网络接口的传输数据量来估算带宽使用。
-以下是一个简单的示例代码，用于显示当前进程的网络传输数据量（发送和接收）：
-using System; using System.Diagnostics; using System.Net.NetworkInformation; class Program { static void Main() { Process currentProcess = Process.GetCurrentProcess(); Console.WriteLine($&#34;Process ID: {currentProcess.Id}&#34;); IPGlobalProperties ipProperties = IPGlobalProperties.GetIPGlobalProperties(); TcpStatistics tcpStats = ipProperties.GetTcpIPv4Statistics(); Console.WriteLine($&#34;Total bytes received: {tcpStats.BytesReceived}&#34;); Console.WriteLine($&#34;Total bytes sent: {tcpStats.BytesSent}&#34;); // 输出网络接口统计信息 NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces(); foreach (NetworkInterface networkInterface in networkInterfaces) { Console.WriteLine($&#34;Interface: {networkInterface.Name}&#34;); Console.WriteLine($&#34;Bytes received: {networkInterface.GetIPv4Statistics().BytesReceived}&#34;); Console.WriteLine($&#34;Bytes sent: {networkInterface.GetIPv4Statistics().BytesSent}&#34;); } } } 请注意，这个示例显示的是从系统启动以来累计的网络接口数据量。如果你需要监测特定时间段内的带宽使用情况，你需要定期获取数据并计算差值。另外，这个示例仅包括了IPv4的数据，如果需要IPv6或者更多细节，请相应地扩展代码。
-...</p>
+    <p>
+手牵手逛街 一起看海 一起看雪 喂我吃东西 一起堆雪人 一起坐摩天轮 一起恶作剧 一起坐海盗船 吃同一杯冰淇淋 一起搬东西 一起布置我们的小窝 一起看日出 一起看恐怖片 送惊喜小礼物 为我做顿饭 一起看爱情片 一起看日落 一起数星星 一起洗衣服 一起听同一首曲子 在朋友面前介绍我 把肩膀借给我靠 为我擦眼泪 唱歌给我听 为我写篇日记 在大街上背我 随叫随到 一起看球赛 比赛啃西瓜 在沙滩上画心 一起没形象的大叫 一起熬夜玩游戏 为我系鞋带 一起拉粑 一起发呆 一起过我们的纪念日 一起做陶瓷 一起许愿 一起做蛋糕 学对方说话 一起模仿搞笑的事情 为我剪指甲 吃我剩下的饭饭 把你欺负的对我没辙 一起打水仗 一起拍照片 一起骑脚踏车 戴同一条围巾 戴同一双手套 讲故事哄我睡觉 一起吃棉花糖 一起唱歌 一起淋雨 一起面对所有难堪 一起爬山 一起露营 一起跑步 一起傻笑 一起吃路边摊 一起去猫咖 穿情侣装显摆 一起打羽毛球 一起吃爱吃的东西到吐 一起踩马路到脚软 一起去旅行 一起去动物园 咬一下你的脸颊 对我说晚安 一起看电影 一起买菜 比赛石头剪刀布 一起见对方的朋友 一起做鬼脸 一起走遍世界各地 一起吃大餐，牵手进去，扶墙出来 一起扎气球赢奖品 站在马路的两侧大喊 看你打场比赛 一起看演唱会 一起沿铁轨 一起坐地铁 一起放风筝 一起看花田 趁你睡觉偷亲你一下 一起放孔明灯 一起钓鱼 一起下棋 一起在烈日下暴晒 手机屏保设置对方的照片 一起敷面膜 一起捏对方的脸 打赌各种各样的事 一起看烟火 在树下埋下我们的约定 去海边放漂流瓶 拍一次婚纱照 求婚 结婚 完成人生各项大事 白头偕老 </p>
   </div>
-  <footer class="entry-footer"><span title='2024-05-06 14:57:24 +0000 UTC'>May 6, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to  .NET获取内存" href="http://localhost:1313/posts/.net%E8%8E%B7%E5%8F%96%E5%86%85%E5%AD%98/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Debian Nodejs HEXO 
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Debian Nodejs HEXO
-安装Node.js环境 sudo apt update debian安装最新node v20.12.0 在Debian系统上安装特定版本的Node.js（例如v20.12.0），你可以使用NodeSource二进制分发。以下是安装v20.12.0的步骤：
-首先，打开终端。
-使用curl下载NodeSource的安装脚本：
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 安装Node.js：
-sudo apt-get install -y nodejs 验证Node.js是否安装成功：
-node --version 如果你想要确保安装了特定的v20.12.0版本，可以在安装完Node.js后运行以下命令来验证版本：
-node -v 如果显示的版本号是v20.12.0，则表示已经成功安装了该版本。
-安装HEXO 使用npm包管理器，直接安装hexo
-npm install hexo -g hexo init blog cd blog npm install hexo server hexo 修改端口号 _config.yml # 或者使用 vim _config.yml
-Docs: https://hexo.io/docs/server.html server: port: 12311 # 修改这里为你想要的端口号 compress: true header: true hexo s </p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-03 17:02:53 +0000 UTC'>May 3, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian Nodejs HEXO " href="http://localhost:1313/posts/debian-nodejs-hexo/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Debian Gnome-Desktop GUI 
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>debian gnome-desktop
-🌞更新 sudo apt update sudo apt -y upgrade ​
-🎨安装 sudo apt -y install task-gnome-desktop 这个过程比较久
-​
-🍎分配 sudo systemctl set-default graphical.target vi /etc/pam.d/gdm-password ``` bash 注释 auth required pam_succeed_if.so user != root quiet_success ``` bash #auth required pam_succeed_if.so user != root quiet_success 🛋️重启 sudo reboot 🔑通过VNC连接 ​
-配置后
-​
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-26 23:19:27 +0000 UTC'>April 26, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian Gnome-Desktop GUI " href="http://localhost:1313/posts/debian-gnome-desktop-gui/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Debian Docker Redis
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Debian安装docker
-1.使用官方脚本自动安装docker 安装命令如下：
-curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh 如果安装提示
--bash sudo command not found
-则需要
-#update sudo apt-get update sudo apt-get install sudo 再执行安装脚本1
-安装成功后可以输入 docker命令查看docker版本
-#version docker --version 能查到表明安装成功
-2.pull redis #pull redis docker pull redis:latest pull redis镜像 3.创建reids容器 docker run -itd --name redis-test -p 6379:6379 redis 4.测试redis docker exec -it redis-test /bin/bash redis-cli set test 1 get test set test 1 提示ok
-get test 一些命令
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-12 09:27:49 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian Docker Redis" href="http://localhost:1313/posts/debian-docker-redis/"></a>
+  <footer class="entry-footer"><span title='2023-02-20 10:27:36 +0000 UTC'>February 20, 2023</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to 100件小事" href="http://localhost:1313/posts/100%E4%BB%B6%E5%B0%8F%E4%BA%8B/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="prev" href="http://localhost:1313/tags/debian/page/2/">
+    <a class="prev" href="http://localhost:1313/page/24/">
       «&nbsp;Prev&nbsp;
     </a>
   </nav>

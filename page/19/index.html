@@ -123,6 +123,56 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">HarmonyOS socket websocket
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>socket import socket from &#39;@ohos.net.socket&#39;; create
+let tcp = socket.constructTCPSocketInstance(); let promise = tcp.connect({ address: {address: &#39;192.168.1.11&#39;, port: 24524, family: 1} , timeout: 6000}); promise.then(() =&gt; { console.log(&#39;connect success&#39;); tcp.send({ data:&#39;Hello, server!&#39; },err =&gt; { if (err) { console.log(&#39;send fail&#39;); return; } console.log(&#39;send success&#39;); }) }).catch(err =&gt; { console.log(&#39;connect fail&#39;); }); ERR 系统识别到新的sdk路径 请清除模拟器数据后 Sdk Path has been changed to xxx
+1.在Local Emulator的设备列表窗口，点击“Wipe User Data”清除模拟器数据，然后重新启动模拟器。 2.重新创建一个模拟器，然后启动新建的模拟器。
+console.log Log =&gt; show only js log
+ERR 201 module.json5 添加
+&#34;requestPermissions&#34;: [ { &#34;name&#34;: &#34;ohos.permission.INTERNET&#34; } ] ERR connect fail 2301088
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-26 23:56:19 +0000 UTC'>May 26, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to HarmonyOS socket websocket" href="http://localhost:1313/posts/harmonyos-socket-websocket/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Python study
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> 🌠setup 安装 python.org
+🐷helloworld if __name__ == &#39;__main__&#39;: print(&#39;helloworld&#39;) python test.py var 变量
+if __name__ == &#39;__main__&#39;: company, date, *others = [&#39;hi&#39;, &#39;20240521&#39;, &#39;000&#39;, &#39;11111&#39;] print(company, date) print(others) random 随机
+i = 0 rand_list = [] while i &lt; 4: rand_num = random.randint(0, 499) if rand_num not in rand_list: rand_list.append(rand_num) i &#43;= 1 print(rand_list) list 列表 可变
+# 创建一个空列表 my_list = [] # 向列表中添加元素 my_list.append(1) my_list.append(2) my_list.append(3) print(my_list) # 输出: [1, 2, 3] # 修改列表中的元素 my_list[1] = &#39;two&#39; print(my_list) # 输出: [1, &#39;two&#39;, 3] # 列表切片 sub_list = my_list[1:3] print(sub_list) # 输出: [&#39;two&#39;, 3] # 删除列表中的元素 del my_list[2] print(my_list) # 输出: [1, &#39;two&#39;] # 创建一个包含0到9的偶数列表 even_numbers = [i for i in range(10) if i % 2 == 0] print(even_numbers) # 输出: [0, 2, 4, 6, 8] tuple 元组 不可变
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-26 23:02:42 +0000 UTC'>May 26, 2024</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Python study" href="http://localhost:1313/posts/python-study/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Node socket.io
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>server
+npm install express npm install socket.io const express = require(&#39;express&#39;); const http = require(&#39;http&#39;); const socketIO = require(&#39;socket.io&#39;); const app = express(); const server = http.createServer(app); const io = socketIO(server); io.on(&#39;connection&#39;, (socket) =&gt; { console.log(&#39;User connected&#39;); socket.on(&#39;chat message&#39;, (msg) =&gt; { console.log(&#39;message: &#39; &#43; msg); io.emit(&#39;chat message&#39;, msg); // to all }); socket.on(&#39;disconnect&#39;, () =&gt; { console.log(&#39;User disconnected&#39;); }); }); server.listen(24525, () =&gt; { console.log(&#39;Node Server is running on port 24525&#39;); }); docker dockerfile
+FROM node:16-alpine WORKDIR /usr/src/app COPY package*.json ./ RUN npm ci --only=production COPY . . EXPOSE 24525 CMD [&#34;node&#34;, &#34;skio.js&#34;] docker build -t nodeskio . docker run -p 24525:24525 -d nodeskio ##login push #docker login #docker push your-image-name client
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-26 23:01:07 +0000 UTC'>May 26, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Node socket.io" href="http://localhost:1313/posts/node-socket.io/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">HarmonyOS Interface Router ArkTS ArkUI
     </h2>
   </header>
@@ -186,59 +236,6 @@ C# run nodejs // n.js // 监听来自标准输入的消息 process.stdin.on(&#39
   </div>
   <footer class="entry-footer"><span title='2024-05-20 21:13:27 +0000 UTC'>May 20, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to c# run nodejs" href="http://localhost:1313/posts/c%23-run-nodejs/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Typescript study
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>typescript ≈ javascript plus
-🔗setup npm install typescript -g tsc -version npm install ts-node -g 🖌️hello world let str = &#34;hi&#34; console.log(str); ts-node t.ts 🖋️datatype let a1 :string =&#39;abc&#39; let a2:number = 2 let a3 :boolean =true let nu:null =null let un:undefined = undefined let a4:string|null = null let a5:1|2|3 = 2 any let a:any a= 1 a=&#34;1&#34; a=true strong type
-let a:string = &#34;123&#34; a=1 Err
-let a:unknown a= 1 a=&#34;1&#34; a=true let b :String if(typeof a ==&#34;string&#34;) { b=a } enum 枚举 enum Color { RED,BLUE,BLACK} let color = Color.BLACK; //Color[2] console.log(color); ts-node t.ts or to js
-tsc t.ts to see t.js
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-20 00:07:45 +0000 UTC'>May 20, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Typescript study" href="http://localhost:1313/posts/typescript-study/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET Blazor
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Blazor 是一个使用 C#、HTML 和 CSS 构建交互式 Web UI 的开源框架，支持服务器端和客户端运行，允许开发者利用 C# 和 .NET 生态来创建 Web 应用。
-🌱Create carete Blazor Web
-Program.cs 是启动服务器以及在其中配置应用服务和中间件的应用的入口点。 在 Components 目录中:
-App.razor 为应用的根组件。 Routes.razor 配置 Blazor 路由器。 Pages 目录包含应用的一些示例网页。 BlazorApp.csproj 定义应用项目及其依赖项，且可以通过双击解决方案资源管理器中的 BlazorApp 项目节点进行查看。 Properties 目录中的 launchSettings.json 文件为本地开发环境定义不同的配置文件设置。创建项目时会自动分配端口号并将其保存在此文件上。
-🪴Run pages home.razor
-@page &#34;/&#34; &lt;PageTitle&gt;Home&lt;/PageTitle&gt; &lt;h1&gt;Hello, world m qqqqq&lt;/h1&gt; hihihi 🌴Counter counter.razor
-@page &#34;/counter&#34; @rendermode InteractiveServer &lt;PageTitle&gt;Counter&lt;/PageTitle&gt; &lt;h1&gt;Counter&lt;/h1&gt; &lt;p role=&#34;status&#34;&gt;Current count: @currentCount&lt;/p&gt; &lt;button class=&#34;btn btn-primary&#34; @onclick=&#34;IncrementCount&#34;&gt;Click me&lt;/button&gt; @code { private int currentCount = 0; private void IncrementCount() { currentCount&#43;&#43;; } } 像Vue
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-18 23:10:13 +0000 UTC'>May 18, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET Blazor" href="http://localhost:1313/posts/.net-blazor/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET RabbitMQ NOTE
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>setup rabbitmq docker run –name=rabbit -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=xxx -d rabbitmq:management
-ip:15672
-nuget RabbitMQ.Client
-Send
-//1.1.实例化连接工厂 var factory = new ConnectionFactory() { HostName = &#34;localhost&#34; }; //2. 建立连接 using (var connection = factory.CreateConnection()) { //3. 创建信道 using (var channel = connection.CreateModel()) { //4. 申明队列 channel.QueueDeclare(queue: &#34;hello&#34;, durable: false, exclusive: false, autoDelete: false, arguments: null); //5. 构建byte消息数据包 string message = args.Length &gt; 0 ? args[0] : &#34;Hello RabbitMQ!&#34;; var body = Encoding.UTF8.GetBytes(message); //6. 发送数据包 channel.BasicPublish(exchange: &#34;&#34;, routingKey: &#34;hello&#34;, basicProperties: null, body: body); Console.WriteLine(&#34; [x] Sent {0}&#34;, message); } } Received
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-18 23:05:20 +0000 UTC'>May 18, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET RabbitMQ NOTE" href="http://localhost:1313/posts/.net-rabbitmq-note/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
