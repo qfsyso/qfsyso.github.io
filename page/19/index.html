@@ -167,7 +167,7 @@ npm install express npm install socket.io const express = require(&#39;express&#
 FROM node:16-alpine WORKDIR /usr/src/app COPY package*.json ./ RUN npm ci --only=production COPY . . EXPOSE 24525 CMD [&#34;node&#34;, &#34;skio.js&#34;] docker build -t nodeskio . docker run -p 24525:24525 -d nodeskio ##login push #docker login #docker push your-image-name client
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-05-26 23:01:07 +0000 UTC'>May 26, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
+  <footer class="entry-footer"><span title='2024-05-26 23:01:07 +0000 UTC'>May 26, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to Node socket.io" href="http://localhost:1313/posts/node-socket.io/"></a>
 </article>
 
