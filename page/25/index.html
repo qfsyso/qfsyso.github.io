@@ -123,6 +123,126 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET SignalR Redis 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>环境 Win10 VS2022 .NET8 Docker Redis
+前言
+什么是 SignalR？ ASP.NET Core SignalR 是一个开放源代码库，可用于简化向应用添加实时 Web 功能。 实时 Web 功能使服务器端代码能够将内容推送到客户端。
+适合 SignalR 的候选项：
+需要从服务器进行高频率更新的应用。 （游戏、社交网络、投票、拍卖、地图和 GPS 应用） 仪表板和监视应用。 （公司仪表板、即时销售更新或出行警报） 协作应用。 （包括白板应用和团队会议软件） 需要通知的应用。（ 社交网络、电子邮件、聊天、游戏等） SignalR 提供用于创建服务器到客户端的远程过程调用 (RPC) API。 RPC 从服务器端 .NET Core 代码调用客户端上的函数。支持JavaScript ，.NET ，JAVA，Swift （官方没有明确支持，这是第三方库）其中每个平台都有各自的客户端 SDK。 因此，RPC 调用所调用的编程语言有所不同。
+ASP.NET Core SignalR 的一些功能：
+自动处理连接管理。 同时向所有连接的客户端发送消息。 例如聊天室。 向特定客户端或客户端组发送消息。 对其进行缩放，以处理不断增加的流量。 SignalR 中心协议 1.👋nuget引入SignalR ​​ ​
+2.👀创建SignalR Hub
+using Microsoft.AspNetCore.SignalR; using System.Threading.Tasks; namespace WebSignalR { public class ChatHub : Hub { public async Task SendMessage(string user, string message) { await Clients.All.SendAsync(&#34;ReceiveMessage&#34;, user, message); } } } 3.🌱 Program.cs添加SignalR服务 (Startup.cs)
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-12 07:44:04 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET SignalR Redis " href="http://localhost:1313/posts/.net-signalr-redis/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET Swagger 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>开发环境 Win10 VS2022 .NET8.0
+1.从NuGet添加Swagger ​
+在解决方案资源管理器中右键单击项目&gt;管理 NuGet 包 将包源设置为“nuget.org” 确保启用“包括预发行”选项 在搜索框中输入“Swashbuckle.AspNetCore” 从“浏览”选项卡中选择最新的“Swashbuckle.AspNetCore”包，然后单击“安装”
+2.将 Swagger 生成器添加到以下位置的服务集合中Program.cs： builder.Services.AddControllers(); builder.Services.AddEndpointsApiExplorer(); builder.Services.AddSwaggerGen(); ​
+启用中间件 生成
+app.UseSwagger(); app.UseSwaggerUI(); app.UseSwaggerUI(options =&gt; { options.SwaggerEndpoint(&#34;/swagger/v1/swagger.json&#34;, &#34;v1&#34;); options.RoutePrefix = string.Empty; }); ​
+3.添加API控制器 创建api
+// GET api/&lt;myapi&gt;/5 /// &lt;summary&gt; /// getid /// &lt;/summary&gt; /// &lt;param name=&#34;id&#34;&gt;id参数&lt;/param&gt; /// &lt;returns&gt;valuestr&lt;/returns&gt; [HttpGet(&#34;{id}&#34;)] public string Get(int id) { return &#34;value&#34; &#43; id; } // POST api/&lt;myapi&gt; [HttpPost] public string Post([FromBody] string value) { //post逻辑代码 return &#34;myPost&#34;; } // PUT api/&lt;myapi&gt;/5 [HttpPut(&#34;{id}&#34;)] public string Put(int id, [FromBody] string value) { //put逻辑代码 return &#34;myPut&#34;; } // DELETE api/&lt;myapi&gt;/5 [HttpDelete(&#34;{id}&#34;)] public string Delete(int id) { //delete逻辑代码 return &#34;myDelete&#34;; } ​
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-11 23:27:19 +0000 UTC'>April 11, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET Swagger " href="http://localhost:1313/posts/.net-swagger/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Docker MySQL 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>1.下载docker desktop https://www.docker.com/products/docker-desktop/
+创建容器 docker run 创建并启动mysql容器
+–name 容器名字
+-d 后台运行容器
+-p 映射端口
+-e 参数
+截至目前最新的mysql是mysql8.0.36 那就整这个试下。
+docker run -d --name mysql-container -e TZ=UTC -p 30306:3306 -e MYSQL_ROOT_PASSWORD=你的密码 mysql:8.0.36-debian ​
+等待一会，看到mysql已经pull下来。
+回到docker看到容器已经创建。
+​
+​
+可以输入docker images查看
+​
+3.创建mysql数据库管理软件容器
+docker run --name myadmin -d --link mysql-container:db -p 8880:80 phpmyadmin/phpmyadmin ​
+回到docker查看下容器是否创建成功。 ​
+复制地址到浏览器访问。 ​
+​
+okok
+唉哟不错哦~
+扩展：ubuntu版本
+docker run -d --name mysql-container -e TZ=UTC -p 30306:3306 -e MYSQL_ROOT_PASSWORD=xxxxxx ubuntu/mysql:8.0-22.04_beta https://hub.docker.com/r/ubuntu/mysql?uuid=D64B1F2A-A81A-4D2C-B66B-FCFAECE77EFE
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-11 08:35:22 +0000 UTC'>April 11, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Docker MySQL " href="http://localhost:1313/posts/docker-mysql/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Hello World Hexo
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick Start Create a new post npm install hexo-cli -g hexo init blog cd blog npm install hexo server $ hexo new &#34;My New Post&#34; More info: Writing
+Run server $ hexo server More info: Server
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-03-20 22:16:01 +0000 UTC'>March 20, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Hello World Hexo" href="http://localhost:1313/posts/hello-world-hexo/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">some code
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>now study 开发者活动 https://developer.huaweicloud.com/events
+云学堂 https://edu.huaweicloud.com/signup/a84b127961f4408bb69d560f48c5675d
+华为云认证 https://edu.huaweicloud.com/certificationindex
+开发者空间学习 https://developer.huaweicloud.com/space/devportal/knowledge
+https://linux.do/t/topic/665547/1 华为云认真攻略
+AES-256 加密算法和三重转轮混淆技术
+10个人 2m 100 20m
+瘦肚子 胯下击掌 50 单侧提膝 50 提膝下压 50 深蹲 30 4组
+something git chatbox https://github.com/Bin-Huang/chatbox Desktop Client App for AI Models/LLMs (GPT, Claude, Gemini, Ollama…)
+fofa https://fofa.info/ app=“Ollama” &amp;&amp; is_domain=false https://github.com/ollama/ollama/blob/main/docs/api.md
+dbeaver sql工具 https://github.com/dbeaver/dbeaver/releases
+sing-boxyg https://github.com/yonggekkk/sing-box-yg
+music-desktop https://github.com/lyswhut/lx-music-desktop
+RDP、VNC、SSH 远程 https://github.com/mRemoteNG/mRemoteNG
+clash linux https://github.com/Elegycloud/clash-for-linux-backup
+ssh https://github.com/cmliu/webssh https://github.com/chaos-zhu/easynode https://github.com/crazypeace/huashengdun-webssh https://github.com/huashengdun/webssh https://github.com/Jrohy/webssh
+docker run -d --name webssh --restart always -p 18888:8888 cmliu/webssh:latest v2rayN https://github.com/2dust/v2rayN/
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2023-08-03 02:12:50 +0000 UTC'>August 3, 2023</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to some code" href="http://localhost:1313/posts/some-code/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">100件小事
     </h2>
   </header>

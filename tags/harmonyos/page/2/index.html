@@ -126,6 +126,21 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">HarmonyOS Photos Column Swiper Grid
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>​
+✨️index title swiper list(grid)
+import coms from &#39;../pages/com&#39; @Entry @Component struct Index { @State message: string = &#39;Hello World1&#39; //private list = new con build() { Column() { //标题 Row(){ Text(&#39;photos&#39;) .fontSize(&#39;30fp&#39;) .fontWeight(FontWeight.Bold) } .justifyContent(FlexAlign.Start) .width(&#39;100%&#39;) .padding(&#39;12vp&#39;) //轮播 Swiper() { ForEach(coms.SWIPERLIST,(item:Resource,index?:Number)=&gt;{ Row() { Image(item) } .width(&#39;100%&#39;) .aspectRatio(1.6) }) } .autoPlay(true) .loop(true) .indicator(true) .duration(1000) .itemSpace(10) .borderRadius(&#39;12vp&#39;) .margin(&#39;12vp&#39;) .onChange((index: number) =&gt; { }) //列表 Grid(){ GridItem(){ Column(){ Image($r(&#39;app.media.icon&#39;)) .borderRadius(2) } } GridItem(){ Column(){ Image($r(&#39;app.media.icon&#39;)) .borderRadius(2) } } GridItem(){ Column(){ Image($r(&#39;app.media.icon&#39;)) .borderRadius(2) } } GridItem(){ Column(){ Image($r(&#39;app.media.44&#39;)) .borderRadius(2) } } } .columnsTemplate(&#39;1fr 1fr&#39;) .columnsGap(&#39;12vp&#39;) .rowsGap(&#39;12vp&#39;) //.padding(&#39;2vp&#39;) } .width(&#39;100%&#39;) .height(&#39;100%&#39;) } } 核心Grid的
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-16 01:26:18 +0000 UTC'>May 16, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to HarmonyOS Photos Column Swiper Grid" href="http://localhost:1313/posts/harmonyos-photos-column-swiper-grid/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">HarmonyOS Study ArkTS
     </h2>
   </header>

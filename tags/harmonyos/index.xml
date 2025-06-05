@@ -8,6 +8,7 @@ https://developer.huawei.com/consumer/cn/service/josp/agc/index.html#/
 如果没问题，就可以运行到真机了 注意：证书，云关联
 注意 性能和包体积，均不及发行模式
 鸿蒙整体处于发展初期，能用，有坑，大部分坑有规避方案。 但开发者应建议其领导、客户、质量部门降低期望，不能严格比照Android和iOS的验收标准要求鸿蒙。
+Setup APK 安装apk 传文件得到.apk.1 改名apk 桌易通传文件 识别安装
 学堂 https://developer.huawei.com/consumer/cn/training/
 社区问答 https://developer.huawei.com/consumer/cn/forum/
 flutter 当前可以通过flutter create/biuld去生成对应的ohos工程，flutter的代码通过引擎编译后会生成可运行的鸿蒙工程。 参考链接：https://gitee.com/openharmony-sig/flutter_flutter/tree/dev/ 可以直接打包,并集成到项目中。 可以通过flutter build har指令打包成har包，将har作为模块，集成到项目中。 har包使用方法参考：https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/har-package-V13?catalogVersion=V13

@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>MLOG</title><link>https://qfsyso.github.io/</link><description>Recent content on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Fri, 30 May 2025 04:13:40 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Docker Cloud Native</title><link>https://qfsyso.github.io/posts/docker-cloud-native/</link><pubDate>Fri, 30 May 2025 04:13:40 +0800</pubDate><guid>https://qfsyso.github.io/posts/docker-cloud-native/</guid><description>云原生技术实践 一、云计算技术发展历程 时间 关键技术 说明 2001 VMware虚拟化 商业虚拟化技术兴起 2010 开源IaaS/PaaS OpenStack等开源平台出现 2013 容器技术 Docker等技术开始流行 2015 云原生（Cloud Native） CNCF成立，云原生概念正式确立 现状：70%用户已采用微服务架构
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>MLOG</title><link>https://qfsyso.github.io/</link><description>Recent content on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Thu, 05 Jun 2025 20:23:33 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Docker Devops</title><link>https://qfsyso.github.io/posts/docker-devops/</link><pubDate>Thu, 05 Jun 2025 20:23:33 +0800</pubDate><guid>https://qfsyso.github.io/posts/docker-devops/</guid><description>云原生应用十二要素原则解析表 原则 核心价值 实现方法 技术案例 1. 基准代码 快速交付；合理划分边界 单一代码库+多环境部署，版本控制统一管理 Git仓库管理，Kubernetes多集群部署 2. 依赖 提升开发效率；排除意外风险 显式声明依赖+隔离环境（容器化） Docker镜像打包依赖，Helm Chart管理应用包 3. 配置 软件发布管理；环境无差别 配置与代码分离→环境变量注入 Kubernetes ConfigMap/Secret动态加载 4. 后端服务 弹性/敏捷；解耦状态管理 将慢速进程（如DB/队列）转为RESTful服务 Redis缓存服务，消息队列(Kafka)独立部署 5. 构建发布运行 持续交付；流水线自动化 CI/CD全流程自动化（构建→测试→部署） Jenkins/GitLab CI流水线，K8s Rolling Update 6. 进程 云兼容性；无状态设计 应用无状态化，会话数据外置后端服务 会话存储Redis，文件存储OSS 7. 端口绑定 自包含服务；独立暴露接口 服务直接监听端口，不依赖Web服务器转发 Spring Boot内嵌Tomcat，gRPC直连 8. 并发 自动弹性伸缩 水平扩展替代垂直扩展，依赖云平台弹性能力 Kubernetes HPA自动扩缩容 9. 易处理 快速故障恢复 断路器模式+优雅终止，进程可随时启停 Istio服务熔断，K8s Liveness探针 10. 环境等价 可靠性；开发与生产环境一致 容器化保证环境一致性，禁用环境特殊配置 Docker跨环境运行，开发环境Minikube 11. 日志 实时系统监控 日志作为事件流→集中式管理 EFK栈(Elasticsearch+Fluentd+Kibana) 12. 管理进程 运维效率；运营解耦 管理任务（如DB迁移）作为独立进程，与主应用隔离 K8s Job/CronJob执行批处理任务 特性 云原生应用 传统应用 可预测性 符合弹性框架，通过容器编排和微服务实现可预测行为 不可预测，批量发布易引发单点故障，扩展能力有限 操作系统依赖 抽象化（容器技术隔离OS依赖，实现跨平台运行） 强依赖（需特定OS环境，迁移困难） 资源调度 弹性伸缩（按需自动分配资源，利用率＞70%） 冗余静态（预留资源应对峰值，利用率＜40%） 团队协作 DevOps驱动（开发运维一体化，自动化流水线） 部门墙隔离（开发/测试/运维独立，沟通成本高） 开发模式 敏捷迭代（CI/CD支持每日多次部署） 瀑布模型（数月/年周期发布，变更困难） 服务架构 微服务（独立部署、高内聚低耦合） 单体架构（模块紧耦合，牵一发而动全身） 运维能力 自动化（K8s实现自愈、监控、扩缩容） 手动操作（人工监控、故障排查效率低） 故障恢复 秒级恢复（容器快速重启+服务网格流量调度） 小时级恢复（依赖备份还原，流程复杂） 云原生架构模式:微服务架构 云原生架构演进原则 01.</description></item><item><title>Information Recognition</title><link>https://qfsyso.github.io/posts/information-recognition/</link><pubDate>Tue, 03 Jun 2025 02:57:43 +0800</pubDate><guid>https://qfsyso.github.io/posts/information-recognition/</guid><description>智能信息过滤和图片鉴别 智能信息过滤，屏蔽网上的色情、暴力、反动等不良信息，让上网的环境更干净。
+文字信息过滤 智能策略定制，高效过滤色情、广告、涉政、暴恐等多类垃圾文字及敏感词、违禁变种。
+图像信息过滤 领先图像识别算法，精准过滤涉黄、推广、暴恐、涉政、其他个性化定义的违规图片。 函数工作流
+文字应用场景 1.有效拦截聊天中含有涉黄、暴恐等违法内容。 2.识别用户昵称、签名等违规内容。 3.识别论坛灌水、广告等垃圾内容: 4.电商评论中文字筛查
+图像应用场景 1.识别用户头像中的违规内容 2.电商评论中图片筛查
+实现智能信息过滤所需的技术 1.分布式消息服务Kafka: 创建Kafka实例，并创建对应主题，记录实例基本信息中的连接地址信息，用来后面推送消息使用。 2.函数工作流:创建函数，为函数创建触发器，通过轮询的方式，获取Kafka实例中的对应信息。 3.对象存储服务OBS:创建OBS桶用来保存程序包。 4.统一身份认证服务IAM:创建委托，给FunctionGraph函数赋权，确保函数能够访问到Kafka对应资源。
+分布式消息服务Kafka概述 分布式消息服务Kafka是一个高吞吐、高可用的消息中间件服务，，适用于构建实时数据管道、流式数据处理、第三方解耦、流量削峰去谷等场景，具有大规模、高可靠、高并发访问、可扩展且完全托管的特点，是分布式应用上云必不可少的重要组件。 Topic 生产者 消费者 节点 分区 副本
+分布式消息服务Kafka与智能信息过滤 使用分布式消息服务Kafka，提供用户发送消息的平台
+创建Kafka实例 -&amp;gt;用于信息过滤 -&amp;gt;创建Kafka主题 -&amp;gt;完成Topic创建
+函数工作流概述 函数工作流(FunctionGraph)是华为云提供的一款无服务器(Serverless)计算服务，无服务器计算是一种托管服务，服务提供商会实时为你分配充足的资源，而不需要预留专用的服务器或容量，真正按实际使用付费。
+函数工作流使用流程: 开始 创建函数 创建工作流触发器 创建工作流 生成事件触发工作流执行 查看步骤执行的详细信息 结束
+函数工作流与智能信息过滤 创建函数:提供信息处理的软件加上计算资源。 创建触发器:通过创建触发器实现添加Kafka事件源，将函数与Kafka关联函数可以获取Kafka中的对应信息。 通过对读取信息进行处理，判断信息是否敏感，是否符合发布。
+创建函数 创建触发器 事件源触发 信息处理
+对象存储服务OBS 对象存储服务(Object Storage Service，OBS)是一个基于对象的海量存储服务，为客户提供海量、安全、高可靠、低成本的数据存储能力。 对象object: 是OBS中数据存储的基本单位，用户上传至OBS的数据都以对象的形式保存在桶中。 桶Bucket: 是OBS中存储对象的容器
+块存储服务 相当于硬盘，速度快，共享性差。 文件存储 共享性快，速度慢。
+对象存储原理是创建一个哈希环，每个文件数据创建索引，通过索引快速找到。
+对象存储服务OBS与智能信息过滤 创建函数时，上传ZIP包的大小限制为不超过50M，如果超过50M，需要将程序包上传至OBS桶，从OBS桶中引用。所以需要创建OBS桶用来保存程序包。 在文字信息过滤中， OBS存储的程序包中包含触发函数运行的敏感信息Kafka的生产者发布的消息会触发函数，函数会读取信息并处理。同样的在图片鉴别中，OBS除了存储程序包，还是触发图片处理函数运行的事件源。</description></item><item><title>HM dev tips</title><link>https://qfsyso.github.io/posts/hm-dev-tips/</link><pubDate>Mon, 02 Jun 2025 00:30:27 +0800</pubDate><guid>https://qfsyso.github.io/posts/hm-dev-tips/</guid><description>红枫人像模式 【干货1：光影通透感】 打开相机→人像模式→选择「红枫原色滤镜」，搭配F1.4可变光圈（光线暗时自动开大），Live House也能拍出电影感！皮肤质感直接提升50%！ 【干货2：微距彩蛋】 长焦镜头不仅能拍远景，切换「超级微距」模式，2.5cm怼脸拍睫毛根根分明，美妆博主都直呼内行！
+光斑选「旋焦」！逆光秒变星芒氛围 👉 人像模式→点顶部「光斑」→选「旋焦」拍侧脸： ✓ 背景玻璃反光变旋转星环，发丝自带金边，原图直出不用修！ ✓ 普通虚化像贴纸，旋焦让背景有「呼吸感」，随手拍都是电影截图
+电影模式藏得深！鎏金滤镜封神 👉 左滑到「更多」→开「电影模式」选「鎏金」： 暖黄颗粒感直接拉满！拍复古小店/蛋糕摆拍，秒变90年代老电影质感，发朋友圈被问“在哪拍的微电影”～
+动态追焦拍视频！端盘子不糊片 👉 长按对焦框锁定物体： 拍vlog端蛋糕走动，镜头全程锁食物，奶油晃动细节超清晰！拍店员拉花，奶泡上的字放大都不模糊～
+懒人公式：逆光+旋焦光斑+鎏金滤镜，随手拍都是封面！ 华为Nova14Pro 拍照神器
+**打工人必薅！Nova14 Pro 5个效率神技 （封面：手机分屏显示文档+微信，桌面浮着「智慧识屏」按钮）
+长按屏幕2秒→合同转Word！ 👉 智慧识屏提取图片文字，表格/手写都能认，地铁10分钟搞定文件编辑，老板夸“反应快”～
+三指上滑分屏！开会摸鱼两不误 👉 左腾讯文档开会，右微信回消息，侧边栏拖淘宝变悬浮窗比价，摸鱼工作无缝切换（嘘～）
+备忘录扫描→纸质笔记变电子档！ 拍3页手写会议纪要，自动识别文字+排版，准确率99%，导出PDF直接发群，省掉半小时狂记时间！
+花 48mm F/2.2 1/100s &amp;amp; 200s ISO200 人 72mm F2.4 1/50s ISO320 ISO600
+相册 编辑 AI移图</description></item><item><title>Docker Cloud Native</title><link>https://qfsyso.github.io/posts/docker-cloud-native/</link><pubDate>Fri, 30 May 2025 04:13:40 +0800</pubDate><guid>https://qfsyso.github.io/posts/docker-cloud-native/</guid><description>云原生技术实践 一、云计算技术发展历程 时间 关键技术 说明 2001 VMware虚拟化 商业虚拟化技术兴起 2010 开源IaaS/PaaS OpenStack等开源平台出现 2013 容器技术 Docker等技术开始流行 2015 云原生（Cloud Native） CNCF成立，云原生概念正式确立 现状：70%用户已采用微服务架构
 云原生技术体系 核心技术要素 容器：轻量级应用封装 服务网格：微服务治理 微服务：功能解耦 不可变基础设施：通过镜像保证一致性 声明式API：简化资源配置管理 技术优势 灵活性：跨环境一致性部署 可维护性：简化系统运维 敏捷性：快速迭代能力 开源生态：以Kubernetes为中心的开放标准 三、容器技术详解 1. 容器 vs 虚拟机 特性 容器 虚拟机 资源隔离 共享OS内核 独立OS 启动速度 秒级 分钟级 密度 单机支持1000+容器 通常10-20台VM/物理机 典型场景 微服务/DevOps 传统多租户隔离 2. Docker技术栈 架构组成 Docker Client → Docker Daemon → Container Runtime
 核心组件 Docker Engine：C/S架构客户端-服务端 Docker CLI：命令行交互工具 Docker Daemon：后台服务进程 Containerd：OCI兼容运行时 3.</description></item><item><title>HarmonyOS Run</title><link>https://qfsyso.github.io/posts/harmonyos-run/</link><pubDate>Tue, 27 May 2025 00:58:49 +0800</pubDate><guid>https://qfsyso.github.io/posts/harmonyos-run/</guid><description>HarmonyOS5.0真机调试 1.开发者选线打开 类似安卓点击版本 软件版本 5次开启 重启
 2.设置-系统-开发者-USB调试 连上 DevEco对即可调试
@@ -10,6 +36,7 @@ https://developer.huawei.com/consumer/cn/service/josp/agc/index.html#/
 如果没问题，就可以运行到真机了 注意：证书，云关联
 注意 性能和包体积，均不及发行模式
 鸿蒙整体处于发展初期，能用，有坑，大部分坑有规避方案。 但开发者应建议其领导、客户、质量部门降低期望，不能严格比照Android和iOS的验收标准要求鸿蒙。
+Setup APK 安装apk 传文件得到.apk.1 改名apk 桌易通传文件 识别安装
 学堂 https://developer.huawei.com/consumer/cn/training/
 社区问答 https://developer.huawei.com/consumer/cn/forum/
 flutter 当前可以通过flutter create/biuld去生成对应的ohos工程，flutter的代码通过引擎编译后会生成可运行的鸿蒙工程。 参考链接：https://gitee.com/openharmony-sig/flutter_flutter/tree/dev/ 可以直接打包,并集成到项目中。 可以通过flutter build har指令打包成har包，将har作为模块，集成到项目中。 har包使用方法参考：https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/har-package-V13?catalogVersion=V13
@@ -1055,7 +1082,15 @@ okok
 扩展：ubuntu版本
 docker run -d --name mysql-container -e TZ=UTC -p 30306:3306 -e MYSQL_ROOT_PASSWORD=xxxxxx ubuntu/mysql:8.0-22.04_beta https://hub.docker.com/r/ubuntu/mysql?uuid=D64B1F2A-A81A-4D2C-B66B-FCFAECE77EFE</description></item><item><title>Hello World Hexo</title><link>https://qfsyso.github.io/posts/hello-world-hexo/</link><pubDate>Wed, 20 Mar 2024 22:16:01 +0000</pubDate><guid>https://qfsyso.github.io/posts/hello-world-hexo/</guid><description>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
 Quick Start Create a new post npm install hexo-cli -g hexo init blog cd blog npm install hexo server $ hexo new &amp;#34;My New Post&amp;#34; More info: Writing
-Run server $ hexo server More info: Server</description></item><item><title>some code</title><link>https://qfsyso.github.io/posts/some-code/</link><pubDate>Thu, 03 Aug 2023 02:12:50 +0000</pubDate><guid>https://qfsyso.github.io/posts/some-code/</guid><description>something git chatbox https://github.com/Bin-Huang/chatbox Desktop Client App for AI Models/LLMs (GPT, Claude, Gemini, Ollama&amp;hellip;)
+Run server $ hexo server More info: Server</description></item><item><title>some code</title><link>https://qfsyso.github.io/posts/some-code/</link><pubDate>Thu, 03 Aug 2023 02:12:50 +0000</pubDate><guid>https://qfsyso.github.io/posts/some-code/</guid><description>now study 开发者活动 https://developer.huaweicloud.com/events
+云学堂 https://edu.huaweicloud.com/signup/a84b127961f4408bb69d560f48c5675d
+华为云认证 https://edu.huaweicloud.com/certificationindex
+开发者空间学习 https://developer.huaweicloud.com/space/devportal/knowledge
+https://linux.do/t/topic/665547/1 华为云认真攻略
+AES-256 加密算法和三重转轮混淆技术
+10个人 2m 100 20m
+瘦肚子 胯下击掌 50 单侧提膝 50 提膝下压 50 深蹲 30 4组
+something git chatbox https://github.com/Bin-Huang/chatbox Desktop Client App for AI Models/LLMs (GPT, Claude, Gemini, Ollama&amp;hellip;)
 fofa https://fofa.info/ app=&amp;ldquo;Ollama&amp;rdquo; &amp;amp;&amp;amp; is_domain=false https://github.com/ollama/ollama/blob/main/docs/api.md
 dbeaver sql工具 https://github.com/dbeaver/dbeaver/releases
 sing-boxyg https://github.com/yonggekkk/sing-box-yg
@@ -1063,12 +1098,5 @@ music-desktop https://github.com/lyswhut/lx-music-desktop
 RDP、VNC、SSH 远程 https://github.com/mRemoteNG/mRemoteNG
 clash linux https://github.com/Elegycloud/clash-for-linux-backup
 ssh https://github.com/cmliu/webssh https://github.com/chaos-zhu/easynode https://github.com/crazypeace/huashengdun-webssh https://github.com/huashengdun/webssh https://github.com/Jrohy/webssh
-docker run -d --name webssh --restart always -p 18888:8888 cmliu/webssh:latest v2rayN https://github.com/2dust/v2rayN/
-ClashX.Meta https://github.com/MetaCubeX/ClashX.Meta/tree/meta
-AssetBundle工具 解压uti .bundle 文件 https://github.com/Perfare/AssetStudio/releases
-mpvplaer https://github.com/mpvnet-player/mpv.net
-h5 game https://github.com/hackycy/h5-game-collection
-win激活 https://github.com/zbezj/HEU_KMS_Activator
-twitter awe https://github.com/DennisThink/awesome_twitter_CN?tab=readme-ov-file
-pyvideotrans https://github.com/jianchang512/pyvideotrans</description></item><item><title>100件小事</title><link>https://qfsyso.github.io/posts/100%E4%BB%B6%E5%B0%8F%E4%BA%8B/</link><pubDate>Mon, 20 Feb 2023 10:27:36 +0000</pubDate><guid>https://qfsyso.github.io/posts/100%E4%BB%B6%E5%B0%8F%E4%BA%8B/</guid><description>
+docker run -d --name webssh --restart always -p 18888:8888 cmliu/webssh:latest v2rayN https://github.</description></item><item><title>100件小事</title><link>https://qfsyso.github.io/posts/100%E4%BB%B6%E5%B0%8F%E4%BA%8B/</link><pubDate>Mon, 20 Feb 2023 10:27:36 +0000</pubDate><guid>https://qfsyso.github.io/posts/100%E4%BB%B6%E5%B0%8F%E4%BA%8B/</guid><description>
 手牵手逛街 一起看海 一起看雪 喂我吃东西 一起堆雪人 一起坐摩天轮 一起恶作剧 一起坐海盗船 吃同一杯冰淇淋 一起搬东西 一起布置我们的小窝 一起看日出 一起看恐怖片 送惊喜小礼物 为我做顿饭 一起看爱情片 一起看日落 一起数星星 一起洗衣服 一起听同一首曲子 在朋友面前介绍我 把肩膀借给我靠 为我擦眼泪 唱歌给我听 为我写篇日记 在大街上背我 随叫随到 一起看球赛 比赛啃西瓜 在沙滩上画心 一起没形象的大叫 一起熬夜玩游戏 为我系鞋带 一起拉粑 一起发呆 一起过我们的纪念日 一起做陶瓷 一起许愿 一起做蛋糕 学对方说话 一起模仿搞笑的事情 为我剪指甲 吃我剩下的饭饭 把你欺负的对我没辙 一起打水仗 一起拍照片 一起骑脚踏车 戴同一条围巾 戴同一双手套 讲故事哄我睡觉 一起吃棉花糖 一起唱歌 一起淋雨 一起面对所有难堪 一起爬山 一起露营 一起跑步 一起傻笑 一起吃路边摊 一起去猫咖 穿情侣装显摆 一起打羽毛球 一起吃爱吃的东西到吐 一起踩马路到脚软 一起去旅行 一起去动物园 咬一下你的脸颊 对我说晚安 一起看电影 一起买菜 比赛石头剪刀布 一起见对方的朋友 一起做鬼脸 一起走遍世界各地 一起吃大餐，牵手进去，扶墙出来 一起扎气球赢奖品 站在马路的两侧大喊 看你打场比赛 一起看演唱会 一起沿铁轨 一起坐地铁 一起放风筝 一起看花田 趁你睡觉偷亲你一下 一起放孔明灯 一起钓鱼 一起下棋 一起在烈日下暴晒 手机屏保设置对方的照片 一起敷面膜 一起捏对方的脸 打赌各种各样的事 一起看烟火 在树下埋下我们的约定 去海边放漂流瓶 拍一次婚纱照 求婚 结婚 完成人生各项大事 白头偕老</description></item></channel></rss>

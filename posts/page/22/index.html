@@ -126,6 +126,109 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Hexo Categories Tags
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>配置categories 新建页面categories: hexo new page &#34;categories&#34; 执行命令后将新生成文件夹categories，并在该文件夹下生成index.md文件。
+编辑categories/index.md文件: vi {path}/source/categories/index.md 编辑内容：
+&#43;&#43;&#43; title: 分类 date = &#39;2017-10-25 22:00:00 type: &#34;categories&#34; &#43;&#43;&#43; 编辑主题配置文件themes/xx/_config.yml: vi {path}/themes/xx/_config.yml 将menu中的categories的注释去掉：
+menu: home: / || home #tags = [&#34; /tags/ || tags categories: /categories/ || th archives: /archives/ || archive #about: /about/ || user #schedule: /schedule/ || calendar #sitemap: /sitemap.xml || sitemap #commonweal: /404/ || heartbeat 编辑文章在Front-matter区域（即&#43;&#43;&#43;分隔的区域）指定categories即可： &#43;&#43;&#43; title: test date = &#39;2017-01-01 00:00:00 categories: - 类别名称 tags = [&#34; - 标签 &#43;&#43;&#43; categories/index.md &#43;&#43;&#43; title: 分类 date = &#39;2024-05-08 22:00:00 type: &#34;categories&#34; &#43;&#43;&#43; - [分类](/categories/) - [分类-技术](/categories/技术/) - [分类-生活](/categories/生活/) 分类具有顺序性和层次性，而标签没有顺序和层次。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-09 13:25:52 +0000 UTC'>May 9, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Hexo Categories Tags" href="http://localhost:1313/posts/hexo-categories-tags/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent"> Web uvpv busuanzi
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>WEB UVPV busuanzi 不蒜子 不蒜子是一款用于静态网站的访问计数工具，可以方便地在网页上显示访问次数。与其他统计工具如百度统计和谷歌分析不同的是，不蒜子直接将访问次数显示在网页上，而不需要用户跳转到外部平台查看。
+不蒜子的计数原理： 通过在网页中引入JavaScript脚本，将当前页面的URL或某种唯一标识注册到不蒜子的服务器上，服务器保存着URL与对应的访问计数值。当页面被访问时，通过JavaScript更新服务器上的计数值，并在页面初始化时加载并显示计数值。
+如何使用？ 在网页需要引用计数功能的地方先引入不蒜子的js
+&lt;!-- 引入不蒜子计数 --&gt; &lt;script async src=&#34;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&#34;&gt;&lt;/script&gt; 为了美观，我们再引入旋转花瓣加载特效&#34;fa fa-spinner fa-spin&#34; 总访问量计数算法：pv方式，单个用户连续点击n篇文章，记录n次访问量。 总访客数计数算法：uv方式，单个用户连续点击n篇文章，只记录1次访客数。
+&lt;center&gt; 浏览量：&lt;span id=&#34;busuanzi_value_site_pv&#34;&gt;&lt;i class=&#34;fa fa-spinner fa-spin&#34;&gt;&lt;/i&gt;&lt;/span&gt;👀 | 访客数：&lt;span id=&#34;busuanzi_value_site_uv&#34;&gt;&lt;i class=&#34;fa fa-spinner fa-spin&#34;&gt;&lt;/i&gt;&lt;/span&gt;👦 &lt;/center&gt; 注：美化及其他嵌入的改动，其实只要内层的span就可以，然后用css美化或者做嵌入
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-08 21:19:32 +0000 UTC'>May 8, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  Web uvpv busuanzi" href="http://localhost:1313/posts/web-uvpv-busuanzi/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">npm audit
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>11 packages are looking for funding run npm fund for details
+6 vulnerabilities (4 high, 2 critical)
+To address issues that do not require attention, run: npm audit fix
+To address all issues, run: npm audit fix –force
+Run npm audit for details.
+————————————————
+这个报错信息的意思是：
+依赖包已经是最新的，npm检查了xx个包，花了x秒钟。 有x个包正在寻求资金支持，运行npm fund来查看详情，也可以选择捐赠一些钱给这些包的开发者。 有x个中等程度的安全漏洞，运行npm audit fix –force来修复所有的问题，包括一些可能导致破坏性变化的问题。 运行npm audit来查看更多的细节，包括每个漏洞的类型，来源，影响等。
+解决方法
+有时候并不想修复这些安全漏洞，因为它们可能会影响我们的项目的正常运行，或者我们只是想快速地初始化一个项目，不想被这些报错信息打扰,可以使用一个简单的命令来关闭npm的audit检查： npm set audit false 这样就可以保证npm的audit不会影响初始化项目，但是这个解决办法并不建议使用在实际生产中，因为它会让我们忽略一些可能存在的安全风险。 同样的，可以将值设为true来打开npm audit检查，这样可以看到npm的报错信息，也可以选择修复它们： npm set audit true 这个操作将对全局生效，也就是说，它会影响我们所有的项目，不管是新的还是旧的。
+修复~但不是破坏性修复
+npm audit fix </p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-08 19:11:07 +0000 UTC'>May 8, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to npm audit" href="http://localhost:1313/posts/npm-audit/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET native AOT
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>前言 .NET8对于性能的优化是方方面面的，所以AOT预编译机器码也是不例外的。本篇来看下对于AOT的优化。
+概述 首先要明确一个概念，.NET里面的AOT它是原生的。什么意思呢？也就是说通过ILC编译器(AOT编译器，编译出来的代码是各个平台上可以直接运行的二进制代码。比如MacOS的二进制，Linux二进制等等。所以称之为原生。
+C#源码被ILC编译之后，生成了一个完全原生态代码的可执行文件。在执行的时候不需要JIT来编译任何东西，因为JIT已经在ILC里面被充分利用过了。实际上AOT里面也没有包含JIT。那么它如何优化呢？只能是在ILC里面调用JIT的时候了。所以它这个优化依然依靠JIT。.NET8里面优化AOT的一个典型的例子，就是ASP.NET应用程序在使用AOT的时候表现不错，同时也降低了总成本。
+创建项目 启用AOT
+打包指令 dotnet publish DemoAot.csproj -o pub\ -c Release -r win-x64 linux下 先安装SDK 安装后
+dotnet --list-sdks dotnet publish DemoAot.csproj -o $PWD/pub -c Release -r linux-x64 macos下 安装SDK后
+dotnet --list-sdks dotnet publish DemoAot.csproj -o $PWD/pub -c Release -r osx-x64 重启服务器 通过命令 cd fser 及sudo nohup /root/fser/fileserver &gt; output{当前时间}.log 2&gt;&amp;1 &amp; 和命令 cd nets4 及sudo nohup dotnet /root/nets4/IM.dll &gt; output{当前时间}.log 2&gt;&amp;1 &amp; 自动化运行
+为了自动化运行这些程序启动命令，可以编写一个 Shell 脚本并结合系统启动服务（如 systemd）来执行。 以下是具体实现步骤：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-08 13:01:11 +0000 UTC'>May 8, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET native AOT" href="http://localhost:1313/posts/.net-native-aot/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Debian nginx https
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>debian安装 nginx 在Debian系统上安装Nginx，可以按照以下步骤操作：
+如果 sudo: command not found
+apt-get install sudo 首先，更新的包索引：
+sudo apt update 接下来，安装Nginx：
+sudo apt install nginx 安装完成后，启动Nginx服务：
+sudo systemctl start nginx （可选）设置Nginx开机自启动：
+sudo systemctl enable nginx 可以通过运行以下命令来检查Nginx的状态：
+sudo systemctl status nginx 现在，可以在Web浏览器中输入服务器的IP地址或域名来访问默认的Nginx欢迎页面。如果是在本地安装的Nginx，可以通过访问 http://localhost 来查看这个页面。
+如果需要配置Nginx，可以编辑 /etc/nginx/nginx.conf 文件或者在 /etc/nginx/sites-available/ 目录下创建或编辑配置文件，并使用 sudo ln -s /etc/nginx/sites-available/your-config /etc/nginx/sites-enabled/ 命令来启用它。
+sudo whereis nginx Nginx 默认安装位置 配置文件所在目录 /etc/
+nginx配置 检测Nginx配置文件是否正确
+nginx -t 重载Nginx配置
+nginx -s reload 自定义Nginx站点配置文件存放目录 /etc/nginx/conf.d/
+nginx网站目录 /var/www/
+域名证书
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-07 19:13:24 +0000 UTC'>May 7, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Debian nginx https" href="http://localhost:1313/posts/debian-nginx-https/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent"> .NET获取内存
     </h2>
   </header>
@@ -160,122 +263,6 @@ Docs: https://hexo.io/docs/server.html server: port: 12311 # 修改这里为你�
   </div>
   <footer class="entry-footer"><span title='2024-05-03 17:02:53 +0000 UTC'>May 3, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to Debian Nodejs HEXO " href="http://localhost:1313/posts/debian-nodejs-hexo/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent"> .NET netty proto
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>DotNetty是微软的Azure团队，使用C#实现的Netty的版本发布。不但使用了C#和.Net平台的技术特点，并且保留了Netty原来绝大部分的编程接口。让我们在使用时，完全可以依照Netty官方的教程来学习和使用DotNetty应用程序。
-Netty 是一个异步事件驱动的网络应用程序框架，用于快速开发可维护的高性能协议服务器和客户端。
-优点 关注点分离——业务和网络逻辑解耦； 模块化和可复用性； 可测试性作为首要的要求 历史 阻塞Socket通信特点：
-建立连接要阻塞线程，读取数据要阻塞线程 如果要管理多个客户端，就需要为每个客户端建立不同的线程 会有大量的线程在休眠状态，等待接收数据，资源浪费 每个线程都要占用系统资源 线程的切换很耗费系统资源 非阻塞Socket（NIO）特点： 每个Socket如果需要读写操作，都通过事件通知的方式通知选择器，这样就实现了一个线程管理多个Socket的目的。 ​
-选择器甚至可以在所有的Socket空闲的时候允许线程先去干别的事情 减少了线程数量导致的资源占用，减少了线程切换导致的资源消耗
-Protobuf wakeng
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-03 02:09:32 +0000 UTC'>May 3, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to  .NET netty proto" href="http://localhost:1313/posts/.net-netty-proto/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET 检测地址/主机/域名是否正常
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>🌱PING 地址/主机名/域名
-/// &lt;summary&gt; /// PING /// &lt;/summary&gt; /// &lt;param name=&#34;ip&#34;&gt;ip&lt;/param&gt; /// &lt;returns&gt;&lt;/returns&gt; public static bool PingIp(string ip) { System.Net.NetworkInformation.Ping p = new System.Net.NetworkInformation.Ping(); System.Net.NetworkInformation.PingOptions options = new System.Net.NetworkInformation.PingOptions(); options.DontFragment = true; string data = &#34;Test Data!&#34;; byte[] buffer = Encoding.ASCII.GetBytes(data); int timeout = 2000; // Timeout System.Net.NetworkInformation.PingReply reply = p.Send(ip, timeout, buffer, options); if (reply.Status == System.Net.NetworkInformation.IPStatus.Success) { // AddToConvo(ip &#43; reply.Status); return true; } else { // AddToConvo(ip &#43; reply.Status); return false; } } 👀调用方法
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-28 19:09:40 +0000 UTC'>April 28, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET 检测地址/主机/域名是否正常" href="http://localhost:1313/posts/.net-%E6%A3%80%E6%B5%8B%E5%9C%B0%E5%9D%80/%E4%B8%BB%E6%9C%BA/%E5%9F%9F%E5%90%8D%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET Avalonia Linux 
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>环境WIN10 VS2022 debian
-👻前言 Avalonia 是一个用于创建跨平台用户界面 (UI) 的开源框架。它是一个基于 .NET 平台的框架，允许开发者使用 XAML 和 C#（F#）来构建跨平台的应用程序。Avalonia 的目标是提供与 Windows Presentation Foundation (WPF) 类似的开发体验，但能够在 Windows、macOS 和 Linux 等多个平台上运行。
-使用 Avalonia，开发者可以创建各种类型的应用程序，包括桌面应用、移动应用和嵌入式应用。一些可以通过 Avalonia 实现的功能和应用包括：
-桌面应用程序：如办公软件、IDE、游戏客户端等。
-移动应用程序：通过 Avalonia 可以构建支持多个平台的移动应用，如 Windows、macOS 和 Linux 上的移动应用。
-跨平台工具：Avalonia 可以用于构建跨平台的开发工具、实用工具等。
-游戏开发：Avalonia 也可以用于构建游戏的用户界面，适合基于 .NET 平台的游戏开发。
-Avalonia 提供了一个强大的工具集，使开发者能够创建具有各种功能和样式的跨平台应用程序。
-💻安装Avalonia 选择管理拓展，点击下载，安装
-​
-​
-📦创建项目 ​
-​
-​
-编码…
-📚在win下运行 ​
-查看linux内核
-uname -a
-​
-🔑打包发布 复制到linux
-授予权限
-📻在linux下运行 迁移Socket发布到linux ​
-​
-实现win linux web 基于socket实时聊天
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-27 00:07:15 +0000 UTC'>April 27, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET Avalonia Linux " href="http://localhost:1313/posts/.net-avalonia-linux/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Debian Gnome-Desktop GUI 
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>debian gnome-desktop
-🌞更新 sudo apt update sudo apt -y upgrade ​
-🎨安装 sudo apt -y install task-gnome-desktop 这个过程比较久
-​
-🍎分配 sudo systemctl set-default graphical.target vi /etc/pam.d/gdm-password ``` bash 注释 auth required pam_succeed_if.so user != root quiet_success ``` bash #auth required pam_succeed_if.so user != root quiet_success 🛋️重启 sudo reboot 🔑通过VNC连接 ​
-配置后
-​
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-26 23:19:27 +0000 UTC'>April 26, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian Gnome-Desktop GUI " href="http://localhost:1313/posts/debian-gnome-desktop-gui/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">HarmonyOS Study ArkTS
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>💡 环境搭建 HarmonyOS开发环境搭建
-DevEco Studio安装 https://developer.huawei.com/consumer/cn/deveco-studio/
-​
-🚀安装nodejs ​
-🤵安装ohpm ​
-🍔安装SDK ​
-​
-💥Emulator安装 ​
-Q:The graphic card OpenGL version is too old for Previewer to work..
-解决方法分两步：
-1、下载enGL库：https://github.com/pal1000/mesa-dist-win/releases/download/23.1.1/mesa3d-23.1.1-release-msvc.7z
-2、解压下载的zip文件,双击执行systemwidedeploy.cmd文件，然后按任意键，出现一个菜单，选择1，然后开始安装OpenGL驱动，出现complete 后关闭终端，重新运行程序即可生效。
-🌶️新建ArkTs项目 ​
-​
-​
-entry：HarmonyOS工程模块，编译构建生成一个HAP包。
-src &gt; main &gt; ets：用于存放ets源码。 src &gt; main &gt; ets &gt; MainAbility：应用/服务的入口。 src &gt; main &gt; ets &gt; MainAbility &gt; pages：MainAbility包含的页面。 src &gt; main &gt; ets &gt; MainAbility &gt; pages &gt; index.ets：pages列表中的第一个页面，即应用的首页入口。 src &gt; main &gt; ets &gt; MainAbility &gt; app.ets：承载Ability生命周期。 src &gt; main &gt; resources：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。 src &gt; main &gt; config.json：模块配置文件。主要包含HAP包的配置信息、应用/服务在具体设备上的配置信息以及应用/服务的全局配置信息。 build-profile.json5：当前的模块信息、编译信息配置项，包括buildOption、targets配置等。其中targets中可配置当前运行环境，默认为HarmonyOS。 hvigorfile.ts：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。 build-profile.json5：应用级配置信息，包括签名、产品配置等。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-21 13:00:43 +0000 UTC'>April 21, 2024</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to HarmonyOS Study ArkTS" href="http://localhost:1313/posts/harmonyos-study-arkts/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
