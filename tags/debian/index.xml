@@ -1,4 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Debian on MLOG</title><link>https://qfsyso.github.io/tags/debian/</link><description>Recent content in Debian on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Fri, 23 May 2025 00:21:01 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/debian/index.xml" rel="self" type="application/rss+xml"/><item><title>Caddy</title><link>https://qfsyso.github.io/posts/caddy/</link><pubDate>Fri, 23 May 2025 00:21:01 +0800</pubDate><guid>https://qfsyso.github.io/posts/caddy/</guid><description>Debian 系统部署 Caddy Web 服务器的详细指南 本文档提供了在 Debian 系统上安装和配置 Caddy Web 服务器的步骤，包括多种安装方法、服务管理、HTTPS 配置、高级功能以及注意事项。此外，还对比了 Caddy 与 Nginx 的主要优势，并介绍了 Caddy 的一些高级特性。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Debian on MLOG</title><link>https://qfsyso.github.io/tags/debian/</link><description>Recent content in Debian on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Sat, 21 Jun 2025 02:08:58 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/debian/index.xml" rel="self" type="application/rss+xml"/><item><title>Proxmox Virtual Environment Debian</title><link>https://qfsyso.github.io/posts/proxmox-virtual-environment-debian/</link><pubDate>Sat, 21 Jun 2025 02:08:58 +0800</pubDate><guid>https://qfsyso.github.io/posts/proxmox-virtual-environment-debian/</guid><description>安装 Proxmox VE（PVE）前的准备
+1. 下载 PVE 镜像 访问官网：https://www.proxmox.com/en/downloads
+下载最新版的 Proxmox VE ISO Installer（例如：proxmox-ve_8.x.iso）
+2. 制作启动U盘 使用工具制作启动盘（推荐）：
+Ventoy（推荐）：支持多镜像启动，简单拖入 ISO 即可。 官网：https://www.ventoy.net/
+或者使用 Rufus：
+打开 Rufus，插入U盘（建议 8GB 以上）
+选择 ISO 镜像
+分区类型：推荐 MBR（兼容性更好）或根据你 BIOS 设置为 UEFI/GPT
+点击“开始”制作启动盘
+安装 PVE 设置 BIOS 启动项 插入U盘，重启电脑
+在开机画面按下启动快捷键（如 F12, Esc, F2, Del，不同厂商略有不同）
+选择从 U盘启动
+安装 启动后选择 Install Proxmox VE
+阅读并接受许可协议
+选择硬盘（注意：会格式化此硬盘）
+设置地区、时区和键盘布局
+设置管理员密码与邮箱
+设置管理 IP（如默认DHCP，建议改为静态IP以方便局域网访问）
+等待安装完成
+安装完成后 安装完成后，拔掉U盘并重启
+启动后，系统会提示你使用浏览器访问管理界面：
+https://ip-address:8006 注意：此为 https，浏览器会提示不安全连接，选择“继续前往”即可
+使用建议 推荐使用 局域网静态 IP，便于访问和远程管理</description></item><item><title>Caddy</title><link>https://qfsyso.github.io/posts/caddy/</link><pubDate>Fri, 23 May 2025 00:21:01 +0800</pubDate><guid>https://qfsyso.github.io/posts/caddy/</guid><description>Debian 系统部署 Caddy Web 服务器的详细指南 本文档提供了在 Debian 系统上安装和配置 Caddy Web 服务器的步骤，包括多种安装方法、服务管理、HTTPS 配置、高级功能以及注意事项。此外，还对比了 Caddy 与 Nginx 的主要优势，并介绍了 Caddy 的一些高级特性。
 一、安装方法 APT 存储库安装（推荐） 更新系统：
 sudo apt update &amp;amp;&amp;amp; sudo apt upgrade -y 添加密钥和存储库：
 sudo apt install -y debian-archive-keyring apt-transport-https curl curl -1sLf &amp;#39;https://dl.cloudsmith.io/public/caddy/stable/gpg.key&amp;#39; | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg curl -1sLf &amp;#39;https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt&amp;#39; | sudo tee /etc/apt/sources.list.d/caddy-stable.list 安装 Caddy：

@@ -1,4 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>MLOG</title><link>https://qfsyso.github.io/</link><description>Recent content on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Fri, 06 Jun 2025 00:54:55 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Kubernetes k8s</title><link>https://qfsyso.github.io/posts/kubernetes-k8s/</link><pubDate>Fri, 06 Jun 2025 00:54:55 +0800</pubDate><guid>https://qfsyso.github.io/posts/kubernetes-k8s/</guid><description>Kubernetes k8s 描述什么是Kubernetes 描述Kubernetes的基本架构及核心概念 描述Kubernetes的应用编排方法 使用华为云CCE创建简单工作负载
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>MLOG</title><link>https://qfsyso.github.io/</link><description>Recent content on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Sat, 21 Jun 2025 02:08:58 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Proxmox Virtual Environment Debian</title><link>https://qfsyso.github.io/posts/proxmox-virtual-environment-debian/</link><pubDate>Sat, 21 Jun 2025 02:08:58 +0800</pubDate><guid>https://qfsyso.github.io/posts/proxmox-virtual-environment-debian/</guid><description>安装 Proxmox VE（PVE）前的准备
+1. 下载 PVE 镜像 访问官网：https://www.proxmox.com/en/downloads
+下载最新版的 Proxmox VE ISO Installer（例如：proxmox-ve_8.x.iso）
+2. 制作启动U盘 使用工具制作启动盘（推荐）：
+Ventoy（推荐）：支持多镜像启动，简单拖入 ISO 即可。 官网：https://www.ventoy.net/
+或者使用 Rufus：
+打开 Rufus，插入U盘（建议 8GB 以上）
+选择 ISO 镜像
+分区类型：推荐 MBR（兼容性更好）或根据你 BIOS 设置为 UEFI/GPT
+点击“开始”制作启动盘
+安装 PVE 设置 BIOS 启动项 插入U盘，重启电脑
+在开机画面按下启动快捷键（如 F12, Esc, F2, Del，不同厂商略有不同）
+选择从 U盘启动
+安装 启动后选择 Install Proxmox VE
+阅读并接受许可协议
+选择硬盘（注意：会格式化此硬盘）
+设置地区、时区和键盘布局
+设置管理员密码与邮箱
+设置管理 IP（如默认DHCP，建议改为静态IP以方便局域网访问）
+等待安装完成
+安装完成后 安装完成后，拔掉U盘并重启
+启动后，系统会提示你使用浏览器访问管理界面：
+https://ip-address:8006 注意：此为 https，浏览器会提示不安全连接，选择“继续前往”即可
+使用建议 推荐使用 局域网静态 IP，便于访问和远程管理</description></item><item><title>Kubernetes k8s</title><link>https://qfsyso.github.io/posts/kubernetes-k8s/</link><pubDate>Fri, 06 Jun 2025 00:54:55 +0800</pubDate><guid>https://qfsyso.github.io/posts/kubernetes-k8s/</guid><description>Kubernetes k8s 描述什么是Kubernetes 描述Kubernetes的基本架构及核心概念 描述Kubernetes的应用编排方法 使用华为云CCE创建简单工作负载
 容器编排技术 容器（如Docker）以及周边生态系统提供了很多工具来实现容器生命周期管理，能够满足在单台宿主机管理容器的需求。但越来越多企业开始使用容器，对容器技术的进一步发展提出了以下新的诉求： □高效的容器管理及编排。 □容器的跨主机部署及调度。 □容器的存储、网络、运维、安全等能力的拓展。 统一的容器编排管理工具
 容器编排的价值 容器编排是指自动化容器的部署、管理、扩展和联网，可为企业带来以下价值： 灵活的资源管理及调度 自动化部署及服务发现 高效的监控及运维 弹性扩展及高可用
 大规模容器集群管理工具，从Borg到Kubernetes ·Kubernetes起源于Google内部的Borg项目，它对计算资源进行了更高层次的抽象，通过将容器进行细致的组合，将最终的应用服务交给用户。它的目标是管理大规模的容器，提供基本的部署、维护以及应用伸缩等功能，其主要实现语言为Go语言。 ·Kubernetes作为容器集群管理工具，于2015年7月22日迭代到v1.0并正式对外公布。与此同时，谷歌联合Linux基金会及其他合作伙伴共同成立了CNCF基金会（CloudNativeComputingFoundation），并将Kuberentes作为首个编入CNCF管理体系的开源项目，助力容器技术生态的发展进步。
@@ -42,7 +65,8 @@ Kubernetes管理-yaml示例 ·kubernetes中的对象可以使用YAML描述（如
 三指上滑分屏！开会摸鱼两不误 👉 左腾讯文档开会，右微信回消息，侧边栏拖淘宝变悬浮窗比价，摸鱼工作无缝切换（嘘～）
 备忘录扫描→纸质笔记变电子档！ 拍3页手写会议纪要，自动识别文字+排版，准确率99%，导出PDF直接发群，省掉半小时狂记时间！
 花 48mm F/2.2 1/100s &amp;amp; 200s ISO200 人 72mm F2.4 1/50s ISO320 ISO600
-相册 编辑 AI移图</description></item><item><title>Docker Cloud Native</title><link>https://qfsyso.github.io/posts/docker-cloud-native/</link><pubDate>Fri, 30 May 2025 04:13:40 +0800</pubDate><guid>https://qfsyso.github.io/posts/docker-cloud-native/</guid><description>云原生技术实践 一、云计算技术发展历程 时间 关键技术 说明 2001 VMware虚拟化 商业虚拟化技术兴起 2010 开源IaaS/PaaS OpenStack等开源平台出现 2013 容器技术 Docker等技术开始流行 2015 云原生（Cloud Native） CNCF成立，云原生概念正式确立 现状：70%用户已采用微服务架构
+相册 编辑 AI移图
+雨 M 测光点 ISO 400 S 1/100 F AF-C AWB 白平衡调至4200K 拍雨滴：快门S：1/1000 ISO：1600 拍雨丝：快门S：1/100 ISO：100 拍雨条：快门S：1/10 ISO：50</description></item><item><title>Docker Cloud Native</title><link>https://qfsyso.github.io/posts/docker-cloud-native/</link><pubDate>Fri, 30 May 2025 04:13:40 +0800</pubDate><guid>https://qfsyso.github.io/posts/docker-cloud-native/</guid><description>云原生技术实践 一、云计算技术发展历程 时间 关键技术 说明 2001 VMware虚拟化 商业虚拟化技术兴起 2010 开源IaaS/PaaS OpenStack等开源平台出现 2013 容器技术 Docker等技术开始流行 2015 云原生（Cloud Native） CNCF成立，云原生概念正式确立 现状：70%用户已采用微服务架构
 云原生技术体系 核心技术要素 容器：轻量级应用封装 服务网格：微服务治理 微服务：功能解耦 不可变基础设施：通过镜像保证一致性 声明式API：简化资源配置管理 技术优势 灵活性：跨环境一致性部署 可维护性：简化系统运维 敏捷性：快速迭代能力 开源生态：以Kubernetes为中心的开放标准 三、容器技术详解 1. 容器 vs 虚拟机 特性 容器 虚拟机 资源隔离 共享OS内核 独立OS 启动速度 秒级 分钟级 密度 单机支持1000+容器 通常10-20台VM/物理机 典型场景 微服务/DevOps 传统多租户隔离 2. Docker技术栈 架构组成 Docker Client → Docker Daemon → Container Runtime
 核心组件 Docker Engine：C/S架构客户端-服务端 Docker CLI：命令行交互工具 Docker Daemon：后台服务进程 Containerd：OCI兼容运行时 3.</description></item><item><title>HarmonyOS Run</title><link>https://qfsyso.github.io/posts/harmonyos-run/</link><pubDate>Tue, 27 May 2025 00:58:49 +0800</pubDate><guid>https://qfsyso.github.io/posts/harmonyos-run/</guid><description>HarmonyOS5.0真机调试 1.开发者选线打开 类似安卓点击版本 软件版本 5次开启 重启
 2.设置-系统-开发者-USB调试 连上 DevEco对即可调试
@@ -75,33 +99,28 @@ pm2（推荐）：适用于 Node.</description></item><item><title>Snapdrop</tit
 一、安装方法 APT 存储库安装（推荐） 更新系统：
 sudo apt update &amp;amp;&amp;amp; sudo apt upgrade -y 添加密钥和存储库：
 sudo apt install -y debian-archive-keyring apt-transport-https curl curl -1sLf &amp;#39;https://dl.cloudsmith.io/public/caddy/stable/gpg.key&amp;#39; | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg curl -1sLf &amp;#39;https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt&amp;#39; | sudo tee /etc/apt/sources.list.d/caddy-stable.list 安装 Caddy：
-sudo apt update &amp;amp;&amp;amp; sudo apt install caddy 快速脚本安装 curl https://getcaddy.com | bash -s personal http.</description></item><item><title>ZhangZhou PlanB</title><link>https://qfsyso.github.io/posts/zhangzhou-planb/</link><pubDate>Thu, 22 May 2025 21:39:50 +0800</pubDate><guid>https://qfsyso.github.io/posts/zhangzhou-planb/</guid><description>漳州 d2 ✅ Day 1：古韵与市井美食之旅 上午｜【南山寺 &amp;amp; 南山桥风光】 南山寺：始建于唐代，是漳州最有历史韵味的寺庙之一，香火旺盛，环境清幽。
-南山桥+九龙江景观道：走在桥上可以远眺九龙江两岸，拍照打卡很出片。
-📍推荐路线：南山寺 → 南山桥散步 → 漳州碧湖生态公园边走边拍
-中午｜【府埕口·闽南古早味】 推荐美食：
-沙茶面（阿强沙茶面）
-五香卷、卤面
-烧肉粽（推荐“阿辉烧肉粽”）
-位置：中山路、南昌路一带的小吃非常集中。
-下午｜【古城文化游：府埕古街 + 漳州文庙】 府埕古街：保留完整的闽南红砖古厝，适合拍照、喝咖啡、买伴手礼。
-漳州文庙：福建保存较完整的文庙之一，有浓厚的儒学气息。
-晚上｜【夜游碧湖 + 晚餐】 碧湖夜景：灯光下的碧湖十分迷人，湖边步道凉爽舒适。
-推荐晚餐：
-阿国海鲜大排档（新浦路附近）或
-西洋坪牛排/闽南热炒
-Day 2：生态与艺文慢生活之旅 上午｜【龙文湿地公园 or 云洞岩】 龙文湿地公园：适合拍照、晨跑，园内有水杉、鸟类栖息点，绿意盎然。
-云洞岩：轻松爬山，俯瞰漳州城区，山中庙宇古迹众多。
-📝备注：两个景点都在城区10公里以内，可任选其一安排。
-中午｜【大润发美食城 or 延安北路闽南餐厅】 经济实惠选择：大润发楼下的各种小吃摊
-推荐餐厅：漳州特色的“金汤酸菜鱼”、“扁食汤”、“蚝仔煎”
-下午｜【艺术与休闲：漳州博物馆 + 艺术馆】 漳州博物馆：了解漳州的历史、陶瓷文化
-漳州市美术馆 or 漳州图书馆新馆：现代化设计，有时会有展览
-晚上｜【尾声晚餐 + 夜市】 胜利东路夜市 or 新浦东市场夜市：探访当地人气夜市
-美食推荐：
-烧烤串串 四果汤 地瓜粥 芋泥鸭
-🎁 补充推荐（如时间宽裕）： 九龙公园：适合带小孩，园内有小动物区。
-漳州东南花都（迷你版）：市区花卉市场聚集地，适合买盆栽小花。
-漳州市区 ​​d1 ​​上午：漳州古城（芗城区）​​</description></item><item><title>Eat Plan</title><link>https://qfsyso.github.io/posts/eat-plan/</link><pubDate>Wed, 21 May 2025 08:12:26 +0800</pubDate><guid>https://qfsyso.github.io/posts/eat-plan/</guid><description> 时间 餐次 食物 参数 热量（大卡） 替换建议 周一 早餐 全麦面包 + 水煮蛋 + 无糖豆浆 + 拌黄瓜 面包40g，鸡蛋50g，豆浆200ml，黄瓜100g，橄榄油5g 约300 面包可换燕麦粥（30g燕麦+150ml牛奶），黄瓜换圣女果100g 周一 午餐 杂粮饭 + 香煎鸡胸肉 + 清炒西兰花 杂粮饭80g（生重），鸡胸肉150g，西兰花200g，橄榄油8g 约500 杂粮饭换糙米饭，鸡胸肉换鲈鱼/瘦牛肉，西兰花换菠菜/油麦菜 周一 晚餐 蒸红薯 + 白灼虾 + 凉拌菠菜 红薯100g，虾80g，菠菜150g，芝麻油3g 约350 红薯换玉米半根，虾换豆腐100g，菠菜换莴笋/绿豆芽 周二 早餐 燕麦粥 + 水煮蛋 + 圣女果 燕麦30g，牛奶150ml，鸡蛋50g，圣女果100g 约280 燕麦换全麦面包2片，圣女果换黄瓜100g 周二 午餐 糙米饭 + 清蒸鲈鱼 + 清炒油麦菜 糙米饭100g（生重），鲈鱼150g，油麦菜200g，橄榄油5g 约520 鲈鱼换巴沙鱼/鸡胸肉，油麦菜换空心菜/西兰花 周二 晚餐 荞麦面 + 卤鸡腿（去皮） + 番茄冬瓜汤 荞麦面50g（干重），鸡腿100g，番茄50g，冬瓜100g，橄榄油3g 约350 荞麦面换魔芋面，鸡腿换虾仁/瘦牛肉，冬瓜汤换紫菜蛋花汤 周三 早餐 全麦三明治 + 无糖酸奶 面包40g，生菜50g，火腿50g，番茄30g，酸奶100g 约320 三明治换包子（全麦素馅80g），酸奶换豆浆200ml 周三 午餐 小米饭 + 瘦牛肉炒青椒 + 凉拌莴笋 小米饭100g（生重），牛肉120g，青椒150g，莴笋150g，橄榄油8g 约550 小米饭换藜麦饭，牛肉换鸡胸肉，青椒换胡萝卜/芹菜 周三 晚餐 蒸土豆 + 豆腐炖白菜 + 清炒绿豆芽 土豆150g，豆腐100g，白菜200g，绿豆芽100g，橄榄油6g 约330 土豆换南瓜，豆腐换鸡蛋1个（蒸蛋），绿豆芽换娃娃菜 周四 早餐 玉米 + 水煮蛋 + 黑咖啡 + 水煮西兰花 玉米100g，鸡蛋50g，西兰花50g 约250 玉米换燕麦粥（30g燕麦），西兰花换黄瓜100g 周四 午餐 意大利面 + 烤鸡胸肉 + 番茄菠菜沙拉 意面80g（干重），鸡胸肉120g，番茄100g，菠菜100g，橄榄油5g 约530 意面换荞麦面，鸡胸肉换鳕鱼，沙拉换清炒菠菜 周四 晚餐 蒸南瓜 + 清炖鲫鱼 + 清炒空心菜 南瓜150g，鲫鱼150g，空心菜200g，橄榄油3g 约380 南瓜换山药，鲫鱼换虾仁/豆腐，空心菜换油菜 周五 早餐 全麦素馅包子 + 茶叶蛋 + 凉拌海带丝 包子80g，鸡蛋50g，海带丝50g 约280 包子换燕麦饼（30g燕麦+鸡蛋1个），海带丝换莴笋100g 周五 午餐 杂粮饭（大米 + 藜麦） + 香煎巴沙鱼 + 蒜蓉西兰花 杂粮饭100g（生重），巴沙鱼150g，西兰花200g，橄榄油5g 约510 巴沙鱼换鲈鱼/鸡胸肉，西兰花换芦笋/生菜 周五 晚餐 燕麦饼 + 虾仁蒸蛋 + 清炒娃娃菜 燕麦30g，鸡蛋50g，虾仁50g，娃娃菜150g，橄榄油3g 约320 燕麦饼换全麦面包1片，虾仁换瘦牛肉，娃娃菜换豆芽 周六 早餐 全麦面包 + 牛油果 + 水煮蛋 + 黄瓜 面包20g，牛油果30g，鸡蛋50g，黄瓜100g 约260 牛油果换无糖酸奶100g，黄瓜换小番茄100g 周六 午餐 糙米饭 + 红烧瘦肉 + 清炒胡萝卜丝 糙米饭80g（生重），瘦猪肉100g，胡萝卜150g，橄榄油3g 约480 瘦肉换鸡胸肉（烤/蒸），胡萝卜换青椒/芹菜 周六 晚餐 魔芋丝结 + 卤牛肉 + 菠菜蛋花汤 魔芋丝100g，牛肉100g，菠菜50g，鸡蛋50g，橄榄油2g 约310 魔芋丝换荞麦面50g，牛肉换虾仁，蛋花汤换冬瓜汤 周日 早餐 小米粥 + 酱牛肉 + 拌莴笋 小米30g，牛肉50g，莴笋100g，橄榄油2g 约220 小米粥换玉米半根，牛肉换水煮蛋1个，莴笋换海带丝 周日 午餐 荞麦面 + 烤鸡胸肉 + 凉拌木耳 荞麦面70g（干重），鸡胸肉120g，木耳100g，橄榄油3g 约490 荞麦面换意大利面，鸡胸肉换瘦牛肉，木耳换黄瓜沙拉 周日 晚餐 蒸山药 + 清蒸虾 + 清炒油菜 山药150g，虾80g，油菜200g，橄榄油5g 约350 山药换红薯，虾换巴沙鱼，油菜换西兰花 使用说明 热量控制：每日总热量约 1500-1700 大卡，可根据体重变化调整主食或蛋白质重量（如体重下降过慢，可减少主食 10-20g / 餐）。 灵活替换：同类别食材（如主食、蛋白质、蔬菜）可按 “替换建议” 自由搭配，避免单调。 烹饪提示：食用油总量建议≤10g / 天，尽量使用橄榄油或菜籽油，避免油炸、糖醋做法。 加餐选项：可在上午 10 点 / 下午 3 点加食低脂酸奶 100g 或 10g 坚果（单独记录热量）。</description></item><item><title>Honor Of King</title><link>https://qfsyso.github.io/posts/honor-of-king/</link><pubDate>Thu, 15 May 2025 20:36:50 +0800</pubDate><guid>https://qfsyso.github.io/posts/honor-of-king/</guid><description>镜 一、技能机制解析 被动-铸镜
+sudo apt update &amp;amp;&amp;amp; sudo apt install caddy 快速脚本安装 curl https://getcaddy.com | bash -s personal http.</description></item><item><title>ZhangZhou PlanB</title><link>https://qfsyso.github.io/posts/zhangzhou-planb/</link><pubDate>Thu, 22 May 2025 21:39:50 +0800</pubDate><guid>https://qfsyso.github.io/posts/zhangzhou-planb/</guid><description>惠州 d1 惠州一日游推荐路线（经典版） d1 关键词：自然风景 + 历史文化 + 城市慢游
+早上7:00-8:00出发 高铁到达后可打车或使用共享电单车前往景区。
+行程安排： 上午：惠州西湖 + 苏东坡纪念馆 📍【惠州西湖】是国家5A级景区，素有“小西湖”之称。
+必看景点：苏堤、平湖秋月、泗洲塔、孤山
+建议可租船游湖（手划船或电动船）
+🏛【苏东坡纪念馆】：了解东坡在惠州的贬谪岁月，免费参观
+🕒 游玩时间：2-2.5小时
+中午：西湖周边午餐 推荐本地小吃：
+梅菜扣肉、东江盐焗鸡、客家酿豆腐、炒米粉
+推荐店铺：阿婆小吃馆、西湖人家、惠州食街
+下午：红花湖骑行 or 逛古街 你可根据兴趣选择以下之一：
+✅ 方案 A：红花湖生态骑行 📍红花湖风景区，环湖绿道约19公里，沿途山林清幽、湖水清澈
+可租自行车/电动车慢骑一圈
+拍照打卡 + 吹风放空都超舒服！
+✅ 方案 B：下埔古村 or 丰渚园闲逛 📍下埔古村：岭南老巷古宅，文艺风浓厚，适合拍照 + 喝咖啡
+📍丰渚园：岭南园林风格+苏式园林结合，门票便宜，人少景美
+傍晚：东江边散步 + 晚餐 可选择回到【东江公园】或【水东街】沿江走走
+看落日 + 东江夜景，特别适合情侣/亲子慢游
+晚餐推荐东江鱼、烧鹅饭、潮汕牛肉火锅
+🏨 返回建议： 可选择高铁 19:00 – 21:00 之间返程
+或者住一晚民宿，第二天去双月湾/巽寮湾（适合两日游延伸）
+💡小贴士 项目 建议 出行工具 高铁 + 滴滴/共享单车为主，方便灵活 衣着 轻便鞋子（西湖、红花湖走路较多） 拍照点 泗洲塔远景、西湖桥影、红花湖湖面</description></item><item><title>Eat Plan</title><link>https://qfsyso.github.io/posts/eat-plan/</link><pubDate>Wed, 21 May 2025 08:12:26 +0800</pubDate><guid>https://qfsyso.github.io/posts/eat-plan/</guid><description> 时间 餐次 食物 参数 热量（大卡） 替换建议 周一 早餐 全麦面包 + 水煮蛋 + 无糖豆浆 + 拌黄瓜 面包40g，鸡蛋50g，豆浆200ml，黄瓜100g，橄榄油5g 约300 面包可换燕麦粥（30g燕麦+150ml牛奶），黄瓜换圣女果100g 周一 午餐 杂粮饭 + 香煎鸡胸肉 + 清炒西兰花 杂粮饭80g（生重），鸡胸肉150g，西兰花200g，橄榄油8g 约500 杂粮饭换糙米饭，鸡胸肉换鲈鱼/瘦牛肉，西兰花换菠菜/油麦菜 周一 晚餐 蒸红薯 + 白灼虾 + 凉拌菠菜 红薯100g，虾80g，菠菜150g，芝麻油3g 约350 红薯换玉米半根，虾换豆腐100g，菠菜换莴笋/绿豆芽 周二 早餐 燕麦粥 + 水煮蛋 + 圣女果 燕麦30g，牛奶150ml，鸡蛋50g，圣女果100g 约280 燕麦换全麦面包2片，圣女果换黄瓜100g 周二 午餐 糙米饭 + 清蒸鲈鱼 + 清炒油麦菜 糙米饭100g（生重），鲈鱼150g，油麦菜200g，橄榄油5g 约520 鲈鱼换巴沙鱼/鸡胸肉，油麦菜换空心菜/西兰花 周二 晚餐 荞麦面 + 卤鸡腿（去皮） + 番茄冬瓜汤 荞麦面50g（干重），鸡腿100g，番茄50g，冬瓜100g，橄榄油3g 约350 荞麦面换魔芋面，鸡腿换虾仁/瘦牛肉，冬瓜汤换紫菜蛋花汤 周三 早餐 全麦三明治 + 无糖酸奶 面包40g，生菜50g，火腿50g，番茄30g，酸奶100g 约320 三明治换包子（全麦素馅80g），酸奶换豆浆200ml 周三 午餐 小米饭 + 瘦牛肉炒青椒 + 凉拌莴笋 小米饭100g（生重），牛肉120g，青椒150g，莴笋150g，橄榄油8g 约550 小米饭换藜麦饭，牛肉换鸡胸肉，青椒换胡萝卜/芹菜 周三 晚餐 蒸土豆 + 豆腐炖白菜 + 清炒绿豆芽 土豆150g，豆腐100g，白菜200g，绿豆芽100g，橄榄油6g 约330 土豆换南瓜，豆腐换鸡蛋1个（蒸蛋），绿豆芽换娃娃菜 周四 早餐 玉米 + 水煮蛋 + 黑咖啡 + 水煮西兰花 玉米100g，鸡蛋50g，西兰花50g 约250 玉米换燕麦粥（30g燕麦），西兰花换黄瓜100g 周四 午餐 意大利面 + 烤鸡胸肉 + 番茄菠菜沙拉 意面80g（干重），鸡胸肉120g，番茄100g，菠菜100g，橄榄油5g 约530 意面换荞麦面，鸡胸肉换鳕鱼，沙拉换清炒菠菜 周四 晚餐 蒸南瓜 + 清炖鲫鱼 + 清炒空心菜 南瓜150g，鲫鱼150g，空心菜200g，橄榄油3g 约380 南瓜换山药，鲫鱼换虾仁/豆腐，空心菜换油菜 周五 早餐 全麦素馅包子 + 茶叶蛋 + 凉拌海带丝 包子80g，鸡蛋50g，海带丝50g 约280 包子换燕麦饼（30g燕麦+鸡蛋1个），海带丝换莴笋100g 周五 午餐 杂粮饭（大米 + 藜麦） + 香煎巴沙鱼 + 蒜蓉西兰花 杂粮饭100g（生重），巴沙鱼150g，西兰花200g，橄榄油5g 约510 巴沙鱼换鲈鱼/鸡胸肉，西兰花换芦笋/生菜 周五 晚餐 燕麦饼 + 虾仁蒸蛋 + 清炒娃娃菜 燕麦30g，鸡蛋50g，虾仁50g，娃娃菜150g，橄榄油3g 约320 燕麦饼换全麦面包1片，虾仁换瘦牛肉，娃娃菜换豆芽 周六 早餐 全麦面包 + 牛油果 + 水煮蛋 + 黄瓜 面包20g，牛油果30g，鸡蛋50g，黄瓜100g 约260 牛油果换无糖酸奶100g，黄瓜换小番茄100g 周六 午餐 糙米饭 + 红烧瘦肉 + 清炒胡萝卜丝 糙米饭80g（生重），瘦猪肉100g，胡萝卜150g，橄榄油3g 约480 瘦肉换鸡胸肉（烤/蒸），胡萝卜换青椒/芹菜 周六 晚餐 魔芋丝结 + 卤牛肉 + 菠菜蛋花汤 魔芋丝100g，牛肉100g，菠菜50g，鸡蛋50g，橄榄油2g 约310 魔芋丝换荞麦面50g，牛肉换虾仁，蛋花汤换冬瓜汤 周日 早餐 小米粥 + 酱牛肉 + 拌莴笋 小米30g，牛肉50g，莴笋100g，橄榄油2g 约220 小米粥换玉米半根，牛肉换水煮蛋1个，莴笋换海带丝 周日 午餐 荞麦面 + 烤鸡胸肉 + 凉拌木耳 荞麦面70g（干重），鸡胸肉120g，木耳100g，橄榄油3g 约490 荞麦面换意大利面，鸡胸肉换瘦牛肉，木耳换黄瓜沙拉 周日 晚餐 蒸山药 + 清蒸虾 + 清炒油菜 山药150g，虾80g，油菜200g，橄榄油5g 约350 山药换红薯，虾换巴沙鱼，油菜换西兰花 使用说明 热量控制：每日总热量约 1500-1700 大卡，可根据体重变化调整主食或蛋白质重量（如体重下降过慢，可减少主食 10-20g / 餐）。 灵活替换：同类别食材（如主食、蛋白质、蔬菜）可按 “替换建议” 自由搭配，避免单调。 烹饪提示：食用油总量建议≤10g / 天，尽量使用橄榄油或菜籽油，避免油炸、糖醋做法。 加餐选项：可在上午 10 点 / 下午 3 点加食低脂酸奶 100g 或 10g 坚果（单独记录热量）。</description></item><item><title>Honor Of King</title><link>https://qfsyso.github.io/posts/honor-of-king/</link><pubDate>Thu, 15 May 2025 20:36:50 +0800</pubDate><guid>https://qfsyso.github.io/posts/honor-of-king/</guid><description>镜 一、技能机制解析 被动-铸镜
 攻击目标后触发镜像标记，再次攻击可触发额外伤害并刷新技能CD，刷野/连招时需穿插平A触发被动。 一技能-开锋
 突进并强化普攻，主要位移和起手技能，命中减少冷却时间。 二技能-裂空
 范围伤害+回血+减速，开局优先加点用于续航和快速清野。 三技能-见影
