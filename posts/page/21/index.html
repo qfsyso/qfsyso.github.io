@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Posts | MLOG</title>
 <meta name="keywords" content="">
 <meta name="description" content="Posts - MLOG">
 <meta name="author" content="dwd">
-<link rel="canonical" href="http://localhost:1313/posts/">
+<link rel="canonical" href="https://qfsyso.github.io/posts/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.6da9a63d25a9608bca2f7f907a030e887a7dd3c3f3918e4cc113129361414bda.css" integrity="sha256-bammPSWpYIvKL3&#43;QegMOiHp908PzkY5MwRMSk2FBS9o=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://qfsyso.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://qfsyso.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://qfsyso.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://qfsyso.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://qfsyso.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/posts/index.xml">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/">
+<link rel="alternate" type="application/rss+xml" href="https://qfsyso.github.io/posts/index.xml">
+<link rel="alternate" hreflang="en" href="https://qfsyso.github.io/posts/">
 <noscript>
     <style>
         #theme-toggle,
@@ -56,7 +56,31 @@
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://qfsyso.github.io/posts/">
+  <meta property="og:site_name" content="MLOG">
+  <meta property="og:title" content="Posts">
+  <meta property="og:description" content="A simple blog ">
+  <meta property="og:locale" content="zh-CN">
+  <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Posts">
+<meta name="twitter:description" content="A simple blog ">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://qfsyso.github.io/posts/"
+    }
+  ]
+}
+</script>
 </head>
 
 <body class="list" id="top">
@@ -74,7 +98,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="MLOG (Alt + H)">MLOG</a>
+            <a href="https://qfsyso.github.io/" accesskey="h" title="MLOG (Alt + H)">MLOG</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -100,17 +124,17 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/posts/" title="Archive">
+                <a href="https://qfsyso.github.io/posts/" title="Archive">
                     <span class="active">Archive</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
+                <a href="https://qfsyso.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://qfsyso.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
@@ -126,6 +150,72 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent"> .NET FileUpload
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>VS2022 .NET8
+💾基础上传示例 view
+@{ ViewData[&#34;Title&#34;] = &#34;File Upload&#34;; } &lt;h1&gt;@ViewData[&#34;Title&#34;]&lt;/h1&gt; &lt;form method=&#34;post&#34; enctype=&#34;multipart/form-data&#34; action=&#34;/Home/UploadFile&#34;&gt; &lt;div class=&#34;form-group&#34;&gt; &lt;input type=&#34;file&#34; name=&#34;file&#34; class=&#34;form-control&#34; /&gt; &lt;/div&gt; &lt;button type=&#34;submit&#34; class=&#34;btn btn-primary&#34;&gt;Upload&lt;/button&gt; &lt;/form&gt; controller
+[HttpPost] public async Task&lt;IActionResult&gt; UploadFile() { var file = Request.Form.Files[0]; if (file != null &amp;&amp; file.Length &gt; 0) { var uploads = Path.Combine(Directory.GetCurrentDirectory(), &#34;wwwroot&#34;, &#34;up&#34;); if (!Directory.Exists(uploads)) { Directory.CreateDirectory(uploads); } var filePath = Path.Combine(uploads, file.FileName); using (var fileStream = new FileStream(filePath, FileMode.Create)) { await file.CopyToAsync(fileStream); } // SAVE TO DB return RedirectToAction(&#34;Index&#34;); } return View(); } app.UseStaticFiles(); run
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-20 21:14:38 +0000 UTC'>May 20, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  .NET FileUpload" href="https://qfsyso.github.io/posts/.net-fileupload/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">c# run nodejs
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>在C#中调用Node.js时，一种常见的方法是使用进程间通信（Inter-Process Communication，IPC），例如使用子进程。 可以使用C#中的Process类来启动Node.js进程，并通过标准输入输出与其进行通信。
+C# run nodejs // n.js // 监听来自标准输入的消息 process.stdin.on(&#39;data&#39;, function (data) { // 收到消息后，在控制台输出并回复消息 console.log(&#34;Message from C#: &#34; &#43; data.toString()); process.stdout.write(&#34;Hello from Node.js!&#34;); }); ProcessStartInfo startInfo = new ProcessStartInfo(); startInfo.FileName = &#34;node&#34;; // Node.js可执行文件路径，如果已在系统路径中，则不需要提供完整路径 startInfo.Arguments = &#34;n.js&#34;; // 执行的Node.js脚本文件路径 startInfo.UseShellExecute = false; startInfo.RedirectStandardInput = true; startInfo.RedirectStandardOutput = true; Process nodeProcess = new Process(); nodeProcess.StartInfo = startInfo; // 启动进程 nodeProcess.Start(); // 与Node.js进程进行通信 using (var writer = nodeProcess.StandardInput) { if (writer.BaseStream.CanWrite) { // 向Node.js进程发送消息 writer.WriteLine(&#34;Hello from C#!&#34;); } } // 读取Node.js进程的输出 using (var reader = nodeProcess.StandardOutput) { if (reader.BaseStream.CanRead) { // 从Node.js进程读取响应 string response = reader.ReadLine(); Console.WriteLine(&#34;Response from Node.js: &#34; &#43; response); } } Console.Read(); // 等待Node.js进程结束 nodeProcess.WaitForExit(); nodeProcess.Close(); Socket server const net = require(&#39;net&#39;); // 创建一个服务器实例 const server = net.createServer((socket) =&gt; { // 连接建立时触发 console.log(&#39;Client connected.&#39;); // 监听客户端发送的数据 socket.on(&#39;data&#39;, (data) =&gt; { console.log(&#39;Received from client: &#39; &#43; data.toString()); // 向客户端发送响应数据 socket.write(&#39;Hello from Node.js!&#39; &#43; data.toString()); }); // 监听连接断开事件 socket.on(&#39;end&#39;, () =&gt; { console.log(&#39;Client disconnected.&#39;); }); }); // 监听指定端口 const port = 24520; server.listen(port, () =&gt; { console.log(&#39;Node Server listening on port &#39; &#43; port); }); // 启动 Node.js 服务器的 Node.js 脚本文件路径 string nodeScriptPath = &#34;n.js&#34;; // 启动 Node.js 进程 ProcessStartInfo startInfo = new ProcessStartInfo(); startInfo.FileName = &#34;node&#34;; // Node.js 可执行文件路径，如果已在系统路径中，则不需要提供完整路径 startInfo.Arguments = nodeScriptPath; // Node.js 脚本文件路径 startInfo.UseShellExecute = false; startInfo.RedirectStandardOutput = true; Process nodeProcess = new Process(); nodeProcess.StartInfo = startInfo; // Node.js 服务器输出的事件处理函数 nodeProcess.OutputDataReceived &#43;= (sender, e) =&gt; { Console.WriteLine(e.Data); // 输出 Node.js 服务器的输出信息 }; // 启动进程 nodeProcess.Start(); nodeProcess.BeginOutputReadLine(); // 开始异步读取 Node.js 服务器的输出 // 等待 Node.js 进程结束 nodeProcess.WaitForExit(); nodeProcess.Close(); run
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-20 21:13:27 +0000 UTC'>May 20, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to c# run nodejs" href="https://qfsyso.github.io/posts/c%23-run-nodejs/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Typescript study
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>typescript ≈ javascript plus
+🔗setup npm install typescript -g tsc -version npm install ts-node -g 🖌️hello world let str = &#34;hi&#34; console.log(str); ts-node t.ts 🖋️datatype let a1 :string =&#39;abc&#39; let a2:number = 2 let a3 :boolean =true let nu:null =null let un:undefined = undefined let a4:string|null = null let a5:1|2|3 = 2 any let a:any a= 1 a=&#34;1&#34; a=true strong type
+let a:string = &#34;123&#34; a=1 Err
+let a:unknown a= 1 a=&#34;1&#34; a=true let b :String if(typeof a ==&#34;string&#34;) { b=a } enum 枚举 enum Color { RED,BLUE,BLACK} let color = Color.BLACK; //Color[2] console.log(color); ts-node t.ts or to js
+tsc t.ts to see t.js
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-20 00:07:45 +0000 UTC'>May 20, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Typescript study" href="https://qfsyso.github.io/posts/typescript-study/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET Blazor
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Blazor 是一个使用 C#、HTML 和 CSS 构建交互式 Web UI 的开源框架，支持服务器端和客户端运行，允许开发者利用 C# 和 .NET 生态来创建 Web 应用。
+🌱Create carete Blazor Web
+Program.cs 是启动服务器以及在其中配置应用服务和中间件的应用的入口点。 在 Components 目录中:
+App.razor 为应用的根组件。 Routes.razor 配置 Blazor 路由器。 Pages 目录包含应用的一些示例网页。 BlazorApp.csproj 定义应用项目及其依赖项，且可以通过双击解决方案资源管理器中的 BlazorApp 项目节点进行查看。 Properties 目录中的 launchSettings.json 文件为本地开发环境定义不同的配置文件设置。创建项目时会自动分配端口号并将其保存在此文件上。
+🪴Run pages home.razor
+@page &#34;/&#34; &lt;PageTitle&gt;Home&lt;/PageTitle&gt; &lt;h1&gt;Hello, world m qqqqq&lt;/h1&gt; hihihi 🌴Counter counter.razor
+@page &#34;/counter&#34; @rendermode InteractiveServer &lt;PageTitle&gt;Counter&lt;/PageTitle&gt; &lt;h1&gt;Counter&lt;/h1&gt; &lt;p role=&#34;status&#34;&gt;Current count: @currentCount&lt;/p&gt; &lt;button class=&#34;btn btn-primary&#34; @onclick=&#34;IncrementCount&#34;&gt;Click me&lt;/button&gt; @code { private int currentCount = 0; private void IncrementCount() { currentCount&#43;&#43;; } } 像Vue
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-18 23:10:13 +0000 UTC'>May 18, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET Blazor" href="https://qfsyso.github.io/posts/.net-blazor/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">.NET RabbitMQ NOTE
     </h2>
   </header>
@@ -138,7 +228,7 @@ Send
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-05-18 23:05:20 +0000 UTC'>May 18, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET RabbitMQ NOTE" href="http://localhost:1313/posts/.net-rabbitmq-note/"></a>
+  <a class="entry-link" aria-label="post link to .NET RabbitMQ NOTE" href="https://qfsyso.github.io/posts/.net-rabbitmq-note/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -151,7 +241,7 @@ Send
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-05-17 21:00:03 +0000 UTC'>May 17, 2024</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Nodejs Study" href="http://localhost:1313/posts/nodejs-study/"></a>
+  <a class="entry-link" aria-label="post link to Nodejs Study" href="https://qfsyso.github.io/posts/nodejs-study/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -174,78 +264,14 @@ $ curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 💬hellowor
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-05-17 19:00:03 +0000 UTC'>May 17, 2024</span>&nbsp;·&nbsp;13 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Nodejs base" href="http://localhost:1313/posts/nodejs-base/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">HarmonyOS Photos Column Swiper Grid
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>​
-✨️index title swiper list(grid)
-import coms from &#39;../pages/com&#39; @Entry @Component struct Index { @State message: string = &#39;Hello World1&#39; //private list = new con build() { Column() { //标题 Row(){ Text(&#39;photos&#39;) .fontSize(&#39;30fp&#39;) .fontWeight(FontWeight.Bold) } .justifyContent(FlexAlign.Start) .width(&#39;100%&#39;) .padding(&#39;12vp&#39;) //轮播 Swiper() { ForEach(coms.SWIPERLIST,(item:Resource,index?:Number)=&gt;{ Row() { Image(item) } .width(&#39;100%&#39;) .aspectRatio(1.6) }) } .autoPlay(true) .loop(true) .indicator(true) .duration(1000) .itemSpace(10) .borderRadius(&#39;12vp&#39;) .margin(&#39;12vp&#39;) .onChange((index: number) =&gt; { }) //列表 Grid(){ GridItem(){ Column(){ Image($r(&#39;app.media.icon&#39;)) .borderRadius(2) } } GridItem(){ Column(){ Image($r(&#39;app.media.icon&#39;)) .borderRadius(2) } } GridItem(){ Column(){ Image($r(&#39;app.media.icon&#39;)) .borderRadius(2) } } GridItem(){ Column(){ Image($r(&#39;app.media.44&#39;)) .borderRadius(2) } } } .columnsTemplate(&#39;1fr 1fr&#39;) .columnsGap(&#39;12vp&#39;) .rowsGap(&#39;12vp&#39;) //.padding(&#39;2vp&#39;) } .width(&#39;100%&#39;) .height(&#39;100%&#39;) } } 核心Grid的
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-16 01:26:18 +0000 UTC'>May 16, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to HarmonyOS Photos Column Swiper Grid" href="http://localhost:1313/posts/harmonyos-photos-column-swiper-grid/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET AES DES
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>.NET AES DES 对称加密
-ASE 加密解密 加密方法 (Encrypt):
-创建一个 Aes 实例。 设置密钥 (Key) 和初始化向量 (IV)。 使用 CreateEncryptor 创建加密器。 通过 CryptoStream 和 StreamWriter 将明文写入内存流，然后转换为 Base64 字符串。
-解密方法 (Decrypt):
-同样创建一个 Aes 实例。 设置相同的密钥和初始化向量。 使用 CreateDecryptor 创建解密器。 通过 CryptoStream 和 StreamReader 从内存流读取密文并解密为明文。
-注意事项 密钥长度：AES 支持 128, 192, 和 256 位密钥。本例使用 256 位（32 字节）。 初始化向量 (IV)：应确保加密和解密时使用相同的 IV。本例中使用了全零的 IV，在实际应用中建议使用随机 IV，并将其与密文一起存储。
-using System; using System.IO; using System.Security.Cryptography; using System.Text; class SymmetricEncryption { // 加密方法 public static string Encrypt(string plainText, string key) { using (Aes aesAlg = Aes.Create()) { aesAlg.Key = Encoding.UTF8.GetBytes(key); aesAlg.IV = new byte[16]; // 初始化向量 (IV) 可以设为全零，也可以使用随机值 ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV); using (MemoryStream msEncrypt = new MemoryStream()) { using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write)) using (StreamWriter swEncrypt = new StreamWriter(csEncrypt)) { swEncrypt.Write(plainText); } return Convert.ToBase64String(msEncrypt.ToArray()); } } } // 解密方法 public static string Decrypt(string cipherText, string key) { using (Aes aesAlg = Aes.Create()) { aesAlg.Key = Encoding.UTF8.GetBytes(key); aesAlg.IV = new byte[16]; // 与加密时使用相同的 IV ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV); using (MemoryStream msDecrypt = new MemoryStream(Convert.FromBase64String(cipherText))) { using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read)) using (StreamReader srDecrypt = new StreamReader(csDecrypt)) { return srDecrypt.ReadToEnd(); } } } } // 示例主方法 public static void Main() { string original = &#34;Hello, World!&#34;; string key = &#34;thisisaverysecretkey1234&#34;; // 32 字节的密钥 // 加密 string encrypted = Encrypt(original, key); Console.WriteLine($&#34;Encrypted: {encrypted}&#34;); // 解密 string decrypted = Decrypt(encrypted, key); Console.WriteLine($&#34;Decrypted: {decrypted}&#34;); } } Encrypted: NEVECFUqMdlFuAPGXm30FQ== Decrypted: 115
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-15 15:01:42 +0000 UTC'>May 15, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET AES DES" href="http://localhost:1313/posts/.net-aes-des/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">IOS POD
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>IOS POD
-brew install cocoapod gem install cocoapod sudo gem install cocoapod sudo brew update ruby update rvm install 2.7 cd xx
-pod install </p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-14 10:51:59 +0000 UTC'>May 14, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to IOS POD" href="http://localhost:1313/posts/ios-pod/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET webp
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>在C#中，可以使用Image类和Bitmap类来处理图像，并且可以借助Magick.NET库来将JPG图片转换为WEBP格式。
-安装Magick.NET-Q8-AnyCPU NuGet包。
-using ImageMagick; 转换方法
-public void ConvertJpgToWebP2(string inputFilePath, string outputFilePath) { using (var image = new MagickImage(inputFilePath)) { // 设置WEBP压缩质量，范围从0（最好的质量）到100（最快速压缩） image.Quality = 80; image.Format = MagickFormat.WebP; image.Write(outputFilePath); } } 调用
-string jpgPath = &#34;E:\\net8test\\ConsoleApp1Test\\ConsoleApp1Test\\bin\\Debug\\net8.0\\55.jpg&#34;; string webpPath = &#34;E:\\net8test\\ConsoleApp1Test\\ConsoleApp1Test\\bin\\Debug\\net8.0\\55.webp&#34;; Ig ig = new Ig(); ig.ConvertJpgToWebP2(jpgPath, webpPath); </p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-10 09:28:17 +0000 UTC'>May 10, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET webp" href="http://localhost:1313/posts/.net-webp/"></a>
+  <a class="entry-link" aria-label="post link to Nodejs base" href="https://qfsyso.github.io/posts/nodejs-base/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="prev" href="http://localhost:1313/posts/page/20/">
+    <a class="prev" href="https://qfsyso.github.io/posts/page/20/">
       «&nbsp;Prev&nbsp;
     </a>
-    <a class="next" href="http://localhost:1313/posts/page/22/">Next&nbsp;&nbsp;»
+    <a class="next" href="https://qfsyso.github.io/posts/page/22/">Next&nbsp;&nbsp;»
     </a>
   </nav>
 </footer>
@@ -260,7 +286,7 @@ string jpgPath = &#34;E:\\net8test\\ConsoleApp1Test\\ConsoleApp1Test\\bin\\Debug
 
         <div  class="wtime2" style="display: none;">UTC<span id="utcTime"></span></div>
     </div>
-        <span>&copy; 2025 <a href="http://localhost:1313/">MLOG</a></span> · 
+        <span>&copy; 2025 <a href="https://qfsyso.github.io/">MLOG</a></span> · 
 
 
     <span>
