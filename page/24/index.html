@@ -123,6 +123,74 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent"> .NET netty proto
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>DotNetty是微软的Azure团队，使用C#实现的Netty的版本发布。不但使用了C#和.Net平台的技术特点，并且保留了Netty原来绝大部分的编程接口。让我们在使用时，完全可以依照Netty官方的教程来学习和使用DotNetty应用程序。
+Netty 是一个异步事件驱动的网络应用程序框架，用于快速开发可维护的高性能协议服务器和客户端。
+优点 关注点分离——业务和网络逻辑解耦； 模块化和可复用性； 可测试性作为首要的要求 历史 阻塞Socket通信特点：
+建立连接要阻塞线程，读取数据要阻塞线程 如果要管理多个客户端，就需要为每个客户端建立不同的线程 会有大量的线程在休眠状态，等待接收数据，资源浪费 每个线程都要占用系统资源 线程的切换很耗费系统资源 非阻塞Socket（NIO）特点： 每个Socket如果需要读写操作，都通过事件通知的方式通知选择器，这样就实现了一个线程管理多个Socket的目的。 ​
+选择器甚至可以在所有的Socket空闲的时候允许线程先去干别的事情 减少了线程数量导致的资源占用，减少了线程切换导致的资源消耗
+Protobuf wakeng
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-03 02:09:32 +0000 UTC'>May 3, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  .NET netty proto" href="http://localhost:1313/posts/.net-netty-proto/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET 检测地址/主机/域名是否正常
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>🌱PING 地址/主机名/域名
+/// &lt;summary&gt; /// PING /// &lt;/summary&gt; /// &lt;param name=&#34;ip&#34;&gt;ip&lt;/param&gt; /// &lt;returns&gt;&lt;/returns&gt; public static bool PingIp(string ip) { System.Net.NetworkInformation.Ping p = new System.Net.NetworkInformation.Ping(); System.Net.NetworkInformation.PingOptions options = new System.Net.NetworkInformation.PingOptions(); options.DontFragment = true; string data = &#34;Test Data!&#34;; byte[] buffer = Encoding.ASCII.GetBytes(data); int timeout = 2000; // Timeout System.Net.NetworkInformation.PingReply reply = p.Send(ip, timeout, buffer, options); if (reply.Status == System.Net.NetworkInformation.IPStatus.Success) { // AddToConvo(ip &#43; reply.Status); return true; } else { // AddToConvo(ip &#43; reply.Status); return false; } } 👀调用方法
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-28 19:09:40 +0000 UTC'>April 28, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET 检测地址/主机/域名是否正常" href="http://localhost:1313/posts/.net-%E6%A3%80%E6%B5%8B%E5%9C%B0%E5%9D%80/%E4%B8%BB%E6%9C%BA/%E5%9F%9F%E5%90%8D%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET Avalonia Linux 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>环境WIN10 VS2022 debian
+👻前言 Avalonia 是一个用于创建跨平台用户界面 (UI) 的开源框架。它是一个基于 .NET 平台的框架，允许开发者使用 XAML 和 C#（F#）来构建跨平台的应用程序。Avalonia 的目标是提供与 Windows Presentation Foundation (WPF) 类似的开发体验，但能够在 Windows、macOS 和 Linux 等多个平台上运行。
+使用 Avalonia，开发者可以创建各种类型的应用程序，包括桌面应用、移动应用和嵌入式应用。一些可以通过 Avalonia 实现的功能和应用包括：
+桌面应用程序：如办公软件、IDE、游戏客户端等。
+移动应用程序：通过 Avalonia 可以构建支持多个平台的移动应用，如 Windows、macOS 和 Linux 上的移动应用。
+跨平台工具：Avalonia 可以用于构建跨平台的开发工具、实用工具等。
+游戏开发：Avalonia 也可以用于构建游戏的用户界面，适合基于 .NET 平台的游戏开发。
+Avalonia 提供了一个强大的工具集，使开发者能够创建具有各种功能和样式的跨平台应用程序。
+💻安装Avalonia 选择管理拓展，点击下载，安装
+​
+​
+📦创建项目 ​
+​
+​
+编码…
+📚在win下运行 ​
+查看linux内核
+uname -a
+​
+🔑打包发布 复制到linux
+授予权限
+📻在linux下运行 迁移Socket发布到linux ​
+​
+实现win linux web 基于socket实时聊天
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-27 00:07:15 +0000 UTC'>April 27, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET Avalonia Linux " href="http://localhost:1313/posts/.net-avalonia-linux/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Debian Gnome-Desktop GUI 
     </h2>
   </header>
@@ -223,74 +291,6 @@ using ConsoleApp1Test; //xxx string server = &#34;smtp.qq.com&#34;; string usern
   </div>
   <footer class="entry-footer"><span title='2024-04-20 21:13:11 +0000 UTC'>April 20, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to  .NET SMTP" href="http://localhost:1313/posts/.net-smtp/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Socket to WebSocket
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>前言 针对IOS App Proxy Server无法直连WebSocket，建立 Socket中转端。
-​
-WebSocket 端：
-WebSocket 端用于实现实时通信功能。
-WebSocket 端通过 WebSocket 协议与中转端通信，中转端可以通过 WebSocket 或其他传输协议与 WebSocket 端建立连接，收发消息。
-定义 SendMessageToChatRoomIP 和 JoinChatRoom，用于处理来自客户端的消息和连接事件。
-中转端 C1 （Socket Server）：
-中转端 C1 是一个独立的应用程序，用于连接WebSocket端，建立Socket服务。
-中转端 C1 的主要功能是接收来自客户端 C2 的消息，并将其转发给 WebSocket 端，或者接收来自 WebSocket 端的消息，并转发给客户端 C2。
-客户端 C2 x N ：
-客户端 C2 ，主要与中转端连接 发送数据，接收数据。
-在客户端 C2 中，连接到中转端 C1、发送消息给中转端 C1、接收来自中转端 C1 的消息。
-调用关系为：
-客户端 C2 通过与中转端 C1 的通信，向 WebSocket 端发送消息或接收来自 WebSocket 端的消息。
-中转端 C1 接收来自客户端 C2 的消息，并将其转发给 WebSocket 端，或者接收来自 WebSocket 端的消息，并转发给客户端 C2。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-20 12:56:50 +0000 UTC'>April 20, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Socket to WebSocket" href="http://localhost:1313/posts/socket-to-websocket/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET JWT 
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>前言
-JWT (JSON Web Token) 是一种安全传输信息的开放标准，由Header、Payload和Signature三部分组成。它主要用于身份验证、信息交换和授权。JWT可验证用户身份，确保访问权限，实现单点登录，并在客户端和服务器之间安全地交换信息。因其简单、安全和便捷，JWT在现代Web应用中广泛使用。
-用JWT有多个原因：
-无状态的身份验证：JWT允许服务器无需保存用户的会话信息，因为所有必要的信息都存储在令牌本身中。这降低了服务器的存储需求，并提高了系统的可扩展性。
-跨域身份验证：由于JWT是自我包含的，并且可以被轻松传递，因此它非常适合跨域身份验证。用户可以在一个服务上验证身份，然后使用相同的令牌访问另一个服务，从而实现单点登录（SSO）。
-安全性：JWT可以通过使用强大的加密算法（如HS256, RS256等）进行签名，以确保其完整性和真实性。服务器可以使用公钥验证令牌的签名，从而确保它没有被篡改，并且确实是由受信任的颁发者签发的。
-减少数据库查询：由于用户的身份信息都存储在JWT中，服务器无需每次都去数据库中查询用户的身份信息，从而减少了数据库的压力和查询时间。
-可定制性：JWT的Payload部分可以包含自定义的信息，如用户角色、权限等，这使得JWT非常灵活，并可以根据具体需求进行定制。
-易于分发和共享：JWT可以轻松地通过网络传输，并且可以在多个服务和客户端之间共享，这使得它在微服务架构和分布式系统中非常有用。
-标准化和互操作性：JWT是一个开放标准（RFC 7519），这意味着不同的系统和语言都可以使用相同的方式生成和验证JWT，从而提高了系统的互操作性。
-环境 Win10 VS2022 .NET8
-✨ 建立项目jwttest 1.创建TestJwtController ​
-2.下载JWT ​
-3.建实体类 /// &lt;summary&gt; /// 用户信息类 /// &lt;/summary&gt; public class LoginRs { /// &lt;summary&gt; /// 用户ID /// &lt;/summary&gt; public string UserId { get; set; } /// &lt;summary&gt; /// 用户密码 /// &lt;/summary&gt; public string PasswordMD5 { get; set; } } /// &lt;summary&gt; /// 用户登录信息类 /// &lt;/summary&gt; public class LoginInfo { /// &lt;summary&gt; /// 用户信息 /// &lt;/summary&gt; public string UserId { get; set; } /// &lt;summary&gt; /// 检验时间 /// &lt;/summary&gt; public DateTime Expires { get; set; } } /// &lt;summary&gt; /// rsmodel /// &lt;/summary&gt; public class RsModel { /// &lt;summary&gt; /// 是否成功 /// &lt;/summary&gt; public bool isOk { get; set; } /// &lt;summary&gt; /// 返回值 /// &lt;/summary&gt; public int code { get; set; } /// &lt;summary&gt; /// 返回消息 /// &lt;/summary&gt; public string msg { get; set; } /// &lt;summary&gt; /// 返回数据 /// &lt;/summary&gt; public object rsData { get; set; } } 4.添加post login // POST api/&lt;ValuesController&gt; [HttpPost] public string Login([FromBody] LoginRs loginRequest) { if (loginRequest == null) return JsonConvert.SerializeObject(new RsModel() { code = 0, isOk = false, msg = &#34;登录信息为空！&#34; }); #region 判断userid pwd if (loginRequest.UserId != &#34;admin&#34; || loginRequest.PasswordMD5 != &#34;admin&#34;) { return JsonConvert.SerializeObject(new RsModel() { code = 0, isOk = false, msg = &#34;用户名和密码不正确！&#34; }); } #endregion LoginInfo Info = new LoginInfo() { UserId = loginRequest.UserId, Expires = DateTime.Now.AddDays(1) }; const string secretKey = &#34;myseckey&#34;;//口令加密秘钥 byte[] key = Encoding.UTF8.GetBytes(secretKey); IJwtAlgorithm algorithm = new HMACSHA256Algorithm();//加密方式 IJsonSerializer serializer = new JsonNetSerializer();//序列化Json IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();//base64加解密 IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);//JWT编码 var token = encoder.Encode(Info, key);//生成令牌 return JsonConvert.SerializeObject(new RsModel() { code = 1, isOk = true, rsData = token, msg = &#34;登录成功！&#34; }); } ​
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-19 01:26:35 +0000 UTC'>April 19, 2024</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET JWT " href="http://localhost:1313/posts/.net-jwt/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET spider
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>前言 爬虫可以用于外汇，期货，基金，货币，比分，电商，文章等信息的采集。通过数据分析，竞品分析，为商业决策提供数据支持。
-​ 金价暴涨，抓取下今日的金价。
-💡使用HttpClient爬取数据 try { // 创建HttpClient实例 using (var httpClient = new HttpClient()) { //模拟User-Agent httpClient.DefaultRequestHeaders.Add(&#34;User-Agent&#34;, GetUserAgent()); // 发送GET请求并获取响应 xxx.com是某网站的页面~（保护） var response = await httpClient.GetAsync(&#34;https://xxx.com&#34;); response.EnsureSuccessStatusCode(); var htmlContent = await response.Content.ReadAsStringAsync(); } } catch (HttpRequestException ex) { // 处理请求异常 ViewBag.Error = &#34;Failed to retrieve price data: &#34; &#43; ex.Message; } 🚀模拟User-Agent // 生成随机 User-Agent private string GetUserAgent() { string[] userAgents = new string[] { &#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36&#34;, &#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.190 Safari/537.36&#34;, // }; Random random = new Random(); int index = random.Next(userAgents.Length); return userAgents[index]; } 🤵使用HTML解析库 （HtmlAgilityPack）提取价格
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-18 12:59:30 +0000 UTC'>April 18, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET spider" href="http://localhost:1313/posts/.net-spider/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

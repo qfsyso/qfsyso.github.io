@@ -123,6 +123,49 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET AddWatermark
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>controller [HttpPost] public async Task&lt;IActionResult&gt; AddWatermark(IFormFile file, string watermarkText, string color, int transparency) { if (file != null &amp;&amp; file.Length &gt; 0) { // 将上传的文件保存到服务器 var uploads = Path.Combine(_environment.WebRootPath, &#34;uploads&#34;); if (!Directory.Exists(uploads)) { Directory.CreateDirectory(uploads); } var filePath = Path.Combine(uploads, file.FileName); using (var fileStream = new FileStream(filePath, FileMode.Create)) { await file.CopyToAsync(fileStream); } // 添加水印 using (Image image = Image.FromFile(filePath)) using (Graphics g = Graphics.FromImage(image)) { // 设置水印文本的字体和颜色 Font font = new Font(&#34;Arial&#34;, 20); Color colorValue = ColorTranslator.FromHtml(color); SolidBrush brush = new SolidBrush(Color.FromArgb(transparency, colorValue.R, colorValue.G, colorValue.B)); // 计算水印位置 int x = 10; int y = image.Height - 30; // 绘制水印 g.DrawString(watermarkText, font, brush, new PointF(x, y)); // 保存带水印的图片 var newFileName = &#34;watermarked_&#34; &#43; file.FileName; var newFilePath = Path.Combine(uploads, newFileName); image.Save(newFilePath, ImageFormat.Jpeg); // 返回带水印的图片路径 ViewBag.ImagePath = &#34;/uploads/&#34; &#43; newFileName; } } return View(&#34;Index&#34;); } views @{ ViewBag.Title = &#34;Home Page&#34;; } &lt;h2&gt;图片加水印&lt;/h2&gt; &lt;form action=&#34;/Home/AddWatermark&#34; method=&#34;post&#34; enctype=&#34;multipart/form-data&#34;&gt; &lt;div&gt; &lt;label for=&#34;file&#34;&gt;选择图片：&lt;/label&gt; &lt;input type=&#34;file&#34; name=&#34;file&#34; id=&#34;file&#34; /&gt; &lt;/div&gt; &lt;div&gt; &lt;label for=&#34;watermarkText&#34;&gt;水印文字：&lt;/label&gt; &lt;input type=&#34;text&#34; name=&#34;watermarkText&#34; id=&#34;watermarkText&#34; /&gt; &lt;/div&gt; &lt;div&gt; &lt;label for=&#34;color&#34;&gt;水印颜色：&lt;/label&gt; &lt;input type=&#34;color&#34; name=&#34;color&#34; id=&#34;color&#34; value=&#34;#000000&#34; /&gt; &lt;/div&gt; &lt;div&gt; &lt;label for=&#34;transparency&#34;&gt;透明度：&lt;/label&gt; &lt;input type=&#34;range&#34; name=&#34;transparency&#34; id=&#34;transparency&#34; min=&#34;0&#34; max=&#34;255&#34; value=&#34;128&#34; /&gt; &lt;/div&gt; &lt;button type=&#34;submit&#34;&gt;上传并添加水印&lt;/button&gt; &lt;/form&gt; @if (ViewBag.ImagePath != null) { &lt;h3&gt;带水印的图片：&lt;/h3&gt; &lt;img src=&#34;@ViewBag.ImagePath&#34; alt=&#34;Watermarked Image&#34; /&gt; } Uploads folder Uploads
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-06-01 19:18:12 +0000 UTC'>June 1, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET AddWatermark" href="http://localhost:1313/posts/.net-addwatermark/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent"> .NET Dockerhub
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>📚Dockerfile FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build WORKDIR /src COPY [&#34;MyMvcApp.csproj&#34;, &#34;./&#34;] RUN dotnet restore &#34;MyMvcApp.csproj&#34; COPY . . WORKDIR &#34;/src/&#34; RUN dotnet build &#34;MyMvcApp.csproj&#34; -c Release -o /app/build FROM build AS publish RUN dotnet publish &#34;MyMvcApp.csproj&#34; -c Release -o /app/publish FROM base AS final WORKDIR /app COPY --from=publish /app/publish . ENTRYPOINT [&#34;dotnet&#34;, &#34;MyMvcApp.dll&#34;] ✏️ Docker 镜像 docker build -t mymvcapp:latest . 📝在 Docker Hub 上创建仓库 登录 Docker Hub (https://hub.docker.com)。 点击 “Create Repository”。 输入仓库名称，例如 mymvcapp，然后点击 “Create”。
+💻将 Docker 镜像推送到 Docker Hub 首先，登录 Docker Hub：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-06-01 01:24:22 +0000 UTC'>June 1, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  .NET Dockerhub" href="http://localhost:1313/posts/.net-dockerhub/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET Redis 10s Rate Limiter Sliding Window Algorithm
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>在.NET中使用Redis来限制接口请求频率（每10秒只允许请求一次）
+NuGet setup StackExchange.Redis
+实现速率限制逻辑： 在你的控制器或服务层中，你需要编写一个方法来检查并更新Redis中的速率限制计数器。 设置Redis键： 为每个用户或每个IP地址（取决于你的需求）设置一个唯一的键。这个键将用于存储最后一次请求的时间戳和/或请求计数。 检查时间戳： 当请求到达时，从Redis中获取该键的值（时间戳）。如果键不存在或时间戳超过10秒，则允许请求并更新键的值（设置为当前时间戳）。 处理超过速率的请求： 如果时间戳在10秒内，则拒绝或限制该请求（返回限制状态码）。
+private static readonly Lazy&lt;ConnectionMultiplexer&gt; LazyConnection = new Lazy&lt;ConnectionMultiplexer&gt;(() =&gt; { // 配置Redis连接字符串 &#34;localhost,abortConnect=false&#34; return ConnectionMultiplexer.Connect(&#34;localhost:6379&#34;); }); private static ConnectionMultiplexer Connection =&gt; LazyConnection.Value; private static IDatabase Db =&gt; Connection.GetDatabase(); public async Task&lt;ActionResult&gt; MyAction() { IPAddress clientIpAddress = HttpContext.Connection.RemoteIpAddress; string ipAddress = clientIpAddress.ToString(); string redisKey = $&#34;rate-limit:{ipAddress}&#34;; // 构建Redis键名 // 获取当前时间戳（可以是Unix时间戳或任何你选择的格式） long currentTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds(); // 尝试从Redis获取时间戳 var redisValue = await Db.StringGetAsync(redisKey); long lastTimestamp = redisValue.HasValue ? (long)redisValue : 0; // 检查是否超过10秒 if (currentTimestamp - lastTimestamp &gt;= 10) { // 如果超过10秒，则允许请求并更新Redis键 await Db.StringSetAsync(redisKey, currentTimestamp, TimeSpan.FromSeconds(10)); // 设置键的过期时间为10秒 return Content(&#34;Request allowed.&#34;); } else { // 如果未超过10秒，则拒绝请求 HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.TooManyRequests) { ReasonPhrase = &#34;Too Many Requests&#34;, Content = new StringContent(&#34;Rate limit exceeded. Please try again later.&#34;) }; // 处理请求 return Content(&#34;Please try again later. &#34;);// throw new HttpResponseException(response); // 或者返回自定义的ActionResult } } 扩展为参数
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-31 06:24:16 +0000 UTC'>May 31, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET Redis 10s Rate Limiter Sliding Window Algorithm" href="http://localhost:1313/posts/.net-redis-10s-rate-limiter-sliding-window-algorithm/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">.NET RocketMQ
     </h2>
   </header>
@@ -190,58 +233,6 @@ i = 0 rand_list = [] while i &lt; 4: rand_num = random.randint(0, 499) if rand_n
   </div>
   <footer class="entry-footer"><span title='2024-05-26 23:02:42 +0000 UTC'>May 26, 2024</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to Python study" href="http://localhost:1313/posts/python-study/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Node socket.io
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>server
-npm install express npm install socket.io const express = require(&#39;express&#39;); const http = require(&#39;http&#39;); const socketIO = require(&#39;socket.io&#39;); const app = express(); const server = http.createServer(app); const io = socketIO(server); io.on(&#39;connection&#39;, (socket) =&gt; { console.log(&#39;User connected&#39;); socket.on(&#39;chat message&#39;, (msg) =&gt; { console.log(&#39;message: &#39; &#43; msg); io.emit(&#39;chat message&#39;, msg); // to all }); socket.on(&#39;disconnect&#39;, () =&gt; { console.log(&#39;User disconnected&#39;); }); }); server.listen(24525, () =&gt; { console.log(&#39;Node Server is running on port 24525&#39;); }); docker dockerfile
-FROM node:16-alpine WORKDIR /usr/src/app COPY package*.json ./ RUN npm ci --only=production COPY . . EXPOSE 24525 CMD [&#34;node&#34;, &#34;skio.js&#34;] docker build -t nodeskio . docker run -p 24525:24525 -d nodeskio ##login push #docker login #docker push your-image-name client
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-26 23:01:07 +0000 UTC'>May 26, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Node socket.io" href="http://localhost:1313/posts/node-socket.io/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">HarmonyOS Interface Router ArkTS ArkUI
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>🎬️create @Component export default struct TitleBar { build(){ Row(){ Text(&#39;transition&#39;) .fontSize(&#39;30fp&#39;) .fontColor(Color.White) } .width(&#39;100%&#39;) .height(&#39;8%&#39;) .backgroundColor(&#39;#4169E1&#39;) .padding({left:10}) } } 🎞️interface export interface IList{ title:string; url :string; } @State listData:IList[]=[ // @State listData:Array&lt;IList&gt;=[ { title:&#39;in&#39;, url:&#39;pages/home1&#39; }, { title:&#39;scale&#39;, url:&#39;pages/home2&#39; }, { title:&#39;small&#39;, url:&#39;pages/home3&#39; }, { title:&#39;in&#39;, url:&#39;&#39; } ] 💡foreach ForEach(this.listData,( item: IList,index?:number)=&gt;{ //listitem Button({type:ButtonType.Capsule}){ Text(item.title) .fontSize(&#39;35fp&#39;) .fontColor(Color.White) } //... }) 🔦router import router from &#39;@ohos.router&#39; 📼mainpage &#34;pages/home1&#34; 📹️onclick .onClick(()=&gt;{ //router router.pushUrl({url:item.url}) }) 📺️setInterval //home1 page1 import router from &#39;@ohos.router&#39; @Entry @Component struct Index { @State TOTAL_TIME:number = 6;//s @State FIRST_CT:number =3;//s aboutToAppear(){ //timer let timer= setInterval(()=&gt;{ this.TOTAL_TIME--; if(this.TOTAL_TIME===0){ //end router.pushUrl({ url:&#34;pages/Index&#34; }) clearInterval(timer); } },1000) } build() { Column() { Row() { if(this.TOTAL_TIME&gt;this.FIRST_CT){ //1 Image($r(&#39;app.media.t2&#39;)) .objectFit(ImageFit.Contain) }else if(this.TOTAL_TIME&lt;this.FIRST_CT) { //2 Image($r(&#39;app.media.bc&#39;)) .objectFit(ImageFit.Contain) .width(&#39;30%&#39;) Text(&#39; - m - &#39;) .fontSize(&#39;30fp&#39;) } } .width(&#39;100%&#39;) .height(&#39;100%&#39;) .justifyContent(FlexAlign.Center) // Text(&#39;in&#39;) // .fontSize(&#39;50fp&#39;) } .width(&#39;100%&#39;) } } ​
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-23 21:49:44 +0000 UTC'>May 23, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to HarmonyOS Interface Router ArkTS ArkUI" href="http://localhost:1313/posts/harmonyos-interface-router-arkts-arkui/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">DotNetty ByteBuffer
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>DotNetty是一个高性能的.NET网络通信框架，基于Netty，支持TCP、UDP、HTTP、WebSocket等协议。适用于高并发、低延迟场景，如实时通信、游戏服务器、IoT应用及大型分布式系统，通过异步I/O、零拷贝等技术提升性能，具备易用性、可扩展性。 架构上，围绕Channel、EventLoop、ChannelPipeline、ChannelHandlerContext设计，包含Transport、Codec、Handler等模块，简化网络编程，加速数据传输处理。
-ByteBuffer 用于高效处理字节数据，固定容量，通过allocate或wrap创建。涉及position和limit追踪读写位置，提供get/put等读写方法，flip切换读写模式，clear清空缓冲区，compact移动数据并准备下一轮读写，适用于高性能IO与网络通信。.
-优点 零拷贝通过复合缓冲区实现。 动态容量增长。 无需flip切换读写模式。 分离读写索引。 内置引用计数。 支持缓冲区池化。 优化网络通信中的字节处理。
-结构 readerIndex 读取，随读增。 writerIndex 写入，随写增。 capacity容量。
-ByteBuffer属性 readIndex：下一个读位 writeIndex：下一个写位置 capacity：容量 0：缓冲区开始位置
-已经读取的区域：[0,readerindex) 可读取的区域：[readerindex,writerIndex) 可写的区域: [writerIndex,capacity) 读写独立索引，操作命名区分（read/write自动进，get/set不影响索引）。 支持设定最大容量，超限写操作将抛异常，默认上限Integer.MAX_VALUE。 readerIndex writerIndex 本质为灵活高效字节容器
-堆缓冲区 最常用的 ByteBuffer 模式是将数据存储在堆空间中。这种模式被称为支撑数组（backing array），它能在没有使用池化的情况下提供快速的分配和释放。可以由 hasArray() 来判断检查 ByteBuffer是否由数组支撑。如果不是，则这是一个直接缓冲区。
-直接缓冲区 直接缓冲区是另外一种 ByteBuffer 模式。 直接缓冲区的主要缺点是，相对于基于堆的缓冲区，它们的分配和释放都较为昂贵。
-复合缓冲区 复合缓冲区 CompositeByteBuf，它为多个 ByteBuffer提供一个聚合视图。比如 HTTP 协议， 分为消息头和消息体，这两部分可能由应用程序的不同模块产生，各有各的 ByteBuffer，将会在消息被发送的时候组装为一个 ByteBuffer，此时可以将这两个 ByteBuffer聚合为一个 CompositeByteBuf，然后使用统一和通用的 ByteBuffer API 来操作。
-如何在的程序中获得 ByteBuf 的实例，并使用它呢？Netty 提供了两种方式
-ByteBufAllocator 接口 ByteBufAllocator 分配任意类型的 ByteBuffer 实例。
-buffer(): 基于堆/直接内存ByteBuffer。 heapBuffer(): 仅堆内存。 directBuffer(): 仅直接内存。 compositeBuffer(): 可组合多个缓冲区，支持堆/直接内存。 ioBuffer(): 适配I/O操作，优先直接内存(需Unsafe支持)。 ByteBufAllocator： Channel ChannelHandlerContext
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-23 21:47:10 +0000 UTC'>May 23, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to DotNetty ByteBuffer" href="http://localhost:1313/posts/dotnetty-bytebuffer/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
