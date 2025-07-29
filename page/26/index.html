@@ -123,6 +123,74 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET i18n 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>环境 WIN10 VS2022 .NET8
+👋创建项目 ​
+👀创建Resources Controllers HomeController.en.resx
+​ HomeController.fr.resx
+​ HomeController.zh.resx
+​
+🌱Program.cs添加国际化支持 // 添加国际化支持 builder.Services.AddLocalization(options =&gt; { options.ResourcesPath = &#34;Resources&#34;; }); var app = builder.Build(); // 多语言 var supportedCultures = new List&lt;CultureInfo&gt; { new CultureInfo(&#34;en&#34;), new CultureInfo(&#34;zh&#34;), new CultureInfo(&#34;fr&#34;), }; app.UseRequestLocalization(new RequestLocalizationOptions { DefaultRequestCulture = new RequestCulture(&#34;zh&#34;), SupportedCultures = supportedCultures, SupportedUICultures = supportedCultures }); ⚡注入localizer private readonly IStringLocalizer&lt;HomeController&gt; localizer; public HomeController(ILogger&lt;HomeController&gt; logger, IStringLocalizer&lt;HomeController&gt; localizer) { _logger = logger; this.localizer = localizer; } ``` # 📫编写调用方法 [HttpGet] public ActionResult&lt;string&gt; Get() { string rsstr= localizer.GetString(&#34;String1&#34;).Value;//?ui-culture=zh return rsstr; } 默认是中文 ?ui-culture=en 则取对应HomeController.en.resx 里面的String1 ​&lt;img onerror=&#34;notfound(this);&#34; src=&#34;https://cdn.jsdelivr.net/gh/qfsysw/resources/v2/2024041306.jpg&#34;&gt; ​&lt;img onerror=&#34;notfound(this);&#34; src=&#34;https://cdn.jsdelivr.net/gh/qfsysw/resources/v2/2024041307.jpg&#34;&gt; 🐟 </p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-16 01:29:17 +0000 UTC'>April 16, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET i18n " href="http://localhost:1313/posts/.net-i18n/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">MySQL Incorrect string value 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>MySQL存储IOS传过来emoji错误处理 Incorrect string value: ‘‘ for column ‘xxx‘ at row MySQL Incorrect string value: ‘\xF0\x9F\x8D\xBA‘ for column ‘xxx‘ at row
+​
+调用接口提示
+Incorrect string value: ‘\xF0\x9F\x8D\xBA’ for column ‘xxx’ at row
+😵‍💫
+需要把mysql字段排序规则
+utf8mb4_0900_ai_ci
+改成
+utf8mb4_unicode_ci
+​
+💤SQL调整 ALTER TABLE MUser CHANGE Signature Signature VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL;
+设置该列的字符集为utf8mb4。utf8mb4是MySQL中的一个字符集，它可以存储四字节的UTF-8字符，因此可以支持更多的Unicode字符，如某些表情符号。 设置该列的校对规则为utf8mb4_unicode_ci。校对规则决定了字符如何比较和排序。utf8mb4_unicode_ci是一个不区分大小写的校对规则，它基于Unicode标准。 ALTER DATABASE IDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+设置该数据库的字符集为utf8mb4。
+设置该数据库的校对规则为utf8mb4_unicode_ci。
+​
+💤服务端连接调整 ChatSet utf8mb4
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-13 09:27:51 +0000 UTC'>April 13, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to MySQL Incorrect string value " href="http://localhost:1313/posts/mysql-incorrect-string-value/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Debian Docker Redis
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Debian安装docker
+1.使用官方脚本自动安装docker 安装命令如下：
+curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh 如果安装提示
+-bash sudo command not found
+则需要
+#update sudo apt-get update sudo apt-get install sudo 再执行安装脚本1
+安装成功后可以输入 docker命令查看docker版本
+#version docker --version 能查到表明安装成功
+2.pull redis #pull redis docker pull redis:latest pull redis镜像 3.创建reids容器 docker run -itd --name redis-test -p 6379:6379 redis 4.测试redis docker exec -it redis-test /bin/bash redis-cli set test 1 get test set test 1 提示ok
+get test 一些命令
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-12 09:27:49 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Debian Docker Redis" href="http://localhost:1313/posts/debian-docker-redis/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">.NET SignalR Redis 
     </h2>
   </header>
@@ -211,52 +279,12 @@ Run server $ hexo server More info: Server
   <footer class="entry-footer"><span title='2024-03-20 22:16:01 +0000 UTC'>March 20, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to Hello World Hexo" href="http://localhost:1313/posts/hello-world-hexo/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">some code
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>now study 开发者活动 https://developer.huaweicloud.com/events
-云学堂 https://edu.huaweicloud.com/signup/a84b127961f4408bb69d560f48c5675d
-华为云认证 https://edu.huaweicloud.com/certificationindex
-开发者空间学习 https://developer.huaweicloud.com/space/devportal/knowledge
-https://linux.do/t/topic/665547/1 华为云认真攻略
-AES-256 加密算法和三重转轮混淆技术
-10个人 2m 100 20m
-瘦肚子 胯下击掌 50 单侧提膝 50 提膝下压 50 深蹲 30 4组
-something git chatbox https://github.com/Bin-Huang/chatbox Desktop Client App for AI Models/LLMs (GPT, Claude, Gemini, Ollama…)
-fofa https://fofa.info/ app=“Ollama” &amp;&amp; is_domain=false https://github.com/ollama/ollama/blob/main/docs/api.md
-dbeaver sql工具 https://github.com/dbeaver/dbeaver/releases
-sing-boxyg https://github.com/yonggekkk/sing-box-yg
-music-desktop https://github.com/lyswhut/lx-music-desktop
-RDP、VNC、SSH 远程 https://github.com/mRemoteNG/mRemoteNG
-clash linux https://github.com/Elegycloud/clash-for-linux-backup
-ssh https://github.com/cmliu/webssh https://github.com/chaos-zhu/easynode https://github.com/crazypeace/huashengdun-webssh https://github.com/huashengdun/webssh https://github.com/Jrohy/webssh
-docker run -d --name webssh --restart always -p 18888:8888 cmliu/webssh:latest v2rayN https://github.com/2dust/v2rayN/
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-08-03 02:12:50 +0000 UTC'>August 3, 2023</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to some code" href="http://localhost:1313/posts/some-code/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">100件小事
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>
-手牵手逛街 一起看海 一起看雪 喂我吃东西 一起堆雪人 一起坐摩天轮 一起恶作剧 一起坐海盗船 吃同一杯冰淇淋 一起搬东西 一起布置我们的小窝 一起看日出 一起看恐怖片 送惊喜小礼物 为我做顿饭 一起看爱情片 一起看日落 一起数星星 一起洗衣服 一起听同一首曲子 在朋友面前介绍我 把肩膀借给我靠 为我擦眼泪 唱歌给我听 为我写篇日记 在大街上背我 随叫随到 一起看球赛 比赛啃西瓜 在沙滩上画心 一起没形象的大叫 一起熬夜玩游戏 为我系鞋带 一起拉粑 一起发呆 一起过我们的纪念日 一起做陶瓷 一起许愿 一起做蛋糕 学对方说话 一起模仿搞笑的事情 为我剪指甲 吃我剩下的饭饭 把你欺负的对我没辙 一起打水仗 一起拍照片 一起骑脚踏车 戴同一条围巾 戴同一双手套 讲故事哄我睡觉 一起吃棉花糖 一起唱歌 一起淋雨 一起面对所有难堪 一起爬山 一起露营 一起跑步 一起傻笑 一起吃路边摊 一起去猫咖 穿情侣装显摆 一起打羽毛球 一起吃爱吃的东西到吐 一起踩马路到脚软 一起去旅行 一起去动物园 咬一下你的脸颊 对我说晚安 一起看电影 一起买菜 比赛石头剪刀布 一起见对方的朋友 一起做鬼脸 一起走遍世界各地 一起吃大餐，牵手进去，扶墙出来 一起扎气球赢奖品 站在马路的两侧大喊 看你打场比赛 一起看演唱会 一起沿铁轨 一起坐地铁 一起放风筝 一起看花田 趁你睡觉偷亲你一下 一起放孔明灯 一起钓鱼 一起下棋 一起在烈日下暴晒 手机屏保设置对方的照片 一起敷面膜 一起捏对方的脸 打赌各种各样的事 一起看烟火 在树下埋下我们的约定 去海边放漂流瓶 拍一次婚纱照 求婚 结婚 完成人生各项大事 白头偕老 </p>
-  </div>
-  <footer class="entry-footer"><span title='2023-02-20 10:27:36 +0000 UTC'>February 20, 2023</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to 100件小事" href="http://localhost:1313/posts/100%E4%BB%B6%E5%B0%8F%E4%BA%8B/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="http://localhost:1313/page/25/">
       «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/page/27/">Next&nbsp;&nbsp;»
     </a>
   </nav>
 </footer>

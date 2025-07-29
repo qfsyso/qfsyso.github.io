@@ -126,6 +126,71 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Debian nginx https
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>debian安装 nginx 在Debian系统上安装Nginx，可以按照以下步骤操作：
+如果 sudo: command not found
+apt-get install sudo 首先，更新的包索引：
+sudo apt update 接下来，安装Nginx：
+sudo apt install nginx 安装完成后，启动Nginx服务：
+sudo systemctl start nginx （可选）设置Nginx开机自启动：
+sudo systemctl enable nginx 可以通过运行以下命令来检查Nginx的状态：
+sudo systemctl status nginx 现在，可以在Web浏览器中输入服务器的IP地址或域名来访问默认的Nginx欢迎页面。如果是在本地安装的Nginx，可以通过访问 http://localhost 来查看这个页面。
+如果需要配置Nginx，可以编辑 /etc/nginx/nginx.conf 文件或者在 /etc/nginx/sites-available/ 目录下创建或编辑配置文件，并使用 sudo ln -s /etc/nginx/sites-available/your-config /etc/nginx/sites-enabled/ 命令来启用它。
+sudo whereis nginx Nginx 默认安装位置 配置文件所在目录 /etc/
+nginx配置 检测Nginx配置文件是否正确
+nginx -t 重载Nginx配置
+nginx -s reload 自定义Nginx站点配置文件存放目录 /etc/nginx/conf.d/
+nginx网站目录 /var/www/
+域名证书
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-07 19:13:24 +0000 UTC'>May 7, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Debian nginx https" href="http://localhost:1313/posts/debian-nginx-https/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent"> .NET获取内存
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>在.NET 控制台应用程序中，你可以使用System.Diagnostics命名空间下的Process类来获取当前进程的内存使用情况。以下是一个简单的示例代码，展示如何获取并显示当前进程的内存使用量：
+using System; using System.Diagnostics; namespace DisplayProcessMemory { class Program { static void Main(string[] args) { // 获取当前进程 Process currentProcess = Process.GetCurrentProcess(); // 使用需要的内存量 long workingSet64 = currentProcess.WorkingSet64; // 显示内存使用量 Console.WriteLine($&#34;当前进程占用内存: {workingSet64} 字节&#34;); // 单位转换为兆字节 double memoryInMB = workingSet64 / 1024.0 / 1024.0; Console.WriteLine($&#34;当前进程占用内存: {memoryInMB.ToString(&#34;F2&#34;)} MB&#34;); } } } 在.NET中，可以使用System.Diagnostics命名空间下的Process类来获取当前进程的信息，但是直接获取网络带宽使用情况不是Process类提供的功能。你可以使用System.Net.NetworkInformation命名空间下的IPGlobalProperties类来获取网络接口的信息，然后累计所有网络接口的传输数据量来估算带宽使用。
+以下是一个简单的示例代码，用于显示当前进程的网络传输数据量（发送和接收）：
+using System; using System.Diagnostics; using System.Net.NetworkInformation; class Program { static void Main() { Process currentProcess = Process.GetCurrentProcess(); Console.WriteLine($&#34;Process ID: {currentProcess.Id}&#34;); IPGlobalProperties ipProperties = IPGlobalProperties.GetIPGlobalProperties(); TcpStatistics tcpStats = ipProperties.GetTcpIPv4Statistics(); Console.WriteLine($&#34;Total bytes received: {tcpStats.BytesReceived}&#34;); Console.WriteLine($&#34;Total bytes sent: {tcpStats.BytesSent}&#34;); // 输出网络接口统计信息 NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces(); foreach (NetworkInterface networkInterface in networkInterfaces) { Console.WriteLine($&#34;Interface: {networkInterface.Name}&#34;); Console.WriteLine($&#34;Bytes received: {networkInterface.GetIPv4Statistics().BytesReceived}&#34;); Console.WriteLine($&#34;Bytes sent: {networkInterface.GetIPv4Statistics().BytesSent}&#34;); } } } 请注意，这个示例显示的是从系统启动以来累计的网络接口数据量。如果你需要监测特定时间段内的带宽使用情况，你需要定期获取数据并计算差值。另外，这个示例仅包括了IPv4的数据，如果需要IPv6或者更多细节，请相应地扩展代码。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-06 14:57:24 +0000 UTC'>May 6, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  .NET获取内存" href="http://localhost:1313/posts/.net%E8%8E%B7%E5%8F%96%E5%86%85%E5%AD%98/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Debian Nodejs HEXO 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Debian Nodejs HEXO
+安装Node.js环境 sudo apt update debian安装最新node v20.12.0 在Debian系统上安装特定版本的Node.js（例如v20.12.0），你可以使用NodeSource二进制分发。以下是安装v20.12.0的步骤：
+首先，打开终端。
+使用curl下载NodeSource的安装脚本：
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 安装Node.js：
+sudo apt-get install -y nodejs 验证Node.js是否安装成功：
+node --version 如果你想要确保安装了特定的v20.12.0版本，可以在安装完Node.js后运行以下命令来验证版本：
+node -v 如果显示的版本号是v20.12.0，则表示已经成功安装了该版本。
+安装HEXO 使用npm包管理器，直接安装hexo
+npm install hexo -g hexo init blog cd blog npm install hexo server hexo 修改端口号 _config.yml # 或者使用 vim _config.yml
+Docs: https://hexo.io/docs/server.html server: port: 12311 # 修改这里为你想要的端口号 compress: true header: true hexo s </p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-03 17:02:53 +0000 UTC'>May 3, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Debian Nodejs HEXO " href="http://localhost:1313/posts/debian-nodejs-hexo/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent"> .NET netty proto
     </h2>
   </header>
@@ -209,91 +274,6 @@ uname -a
   </div>
   <footer class="entry-footer"><span title='2024-04-26 23:19:27 +0000 UTC'>April 26, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to Debian Gnome-Desktop GUI " href="http://localhost:1313/posts/debian-gnome-desktop-gui/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">HarmonyOS Study ArkTS
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>💡 环境搭建 HarmonyOS开发环境搭建
-DevEco Studio安装 https://developer.huawei.com/consumer/cn/deveco-studio/
-​
-🚀安装nodejs ​
-🤵安装ohpm ​
-🍔安装SDK ​
-​
-💥Emulator安装 ​
-Q:The graphic card OpenGL version is too old for Previewer to work..
-解决方法分两步：
-1、下载enGL库：https://github.com/pal1000/mesa-dist-win/releases/download/23.1.1/mesa3d-23.1.1-release-msvc.7z
-2、解压下载的zip文件,双击执行systemwidedeploy.cmd文件，然后按任意键，出现一个菜单，选择1，然后开始安装OpenGL驱动，出现complete 后关闭终端，重新运行程序即可生效。
-🌶️新建ArkTs项目 ​
-​
-​
-entry：HarmonyOS工程模块，编译构建生成一个HAP包。
-src &gt; main &gt; ets：用于存放ets源码。 src &gt; main &gt; ets &gt; MainAbility：应用/服务的入口。 src &gt; main &gt; ets &gt; MainAbility &gt; pages：MainAbility包含的页面。 src &gt; main &gt; ets &gt; MainAbility &gt; pages &gt; index.ets：pages列表中的第一个页面，即应用的首页入口。 src &gt; main &gt; ets &gt; MainAbility &gt; app.ets：承载Ability生命周期。 src &gt; main &gt; resources：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。 src &gt; main &gt; config.json：模块配置文件。主要包含HAP包的配置信息、应用/服务在具体设备上的配置信息以及应用/服务的全局配置信息。 build-profile.json5：当前的模块信息、编译信息配置项，包括buildOption、targets配置等。其中targets中可配置当前运行环境，默认为HarmonyOS。 hvigorfile.ts：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。 build-profile.json5：应用级配置信息，包括签名、产品配置等。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-21 13:00:43 +0000 UTC'>April 21, 2024</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to HarmonyOS Study ArkTS" href="http://localhost:1313/posts/harmonyos-study-arkts/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent"> .NET 反编译
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>反编译是对程序进行逆向分析、研究，以推导出软件产品所使用的思路、原理、结构、算法、处理过程、运行方法等设计要素。
-反编译.NET程序需要使用专门的反编译工具
-🧿使用dotPeek进行反编译 1.下载dotPeek dotPeek：JetBrains 出品的免费 .NET 反编译器与程序集浏览器
-​
-2.File &gt; Open
-​
-3.打开需要反编译的文件方法
-​
-🧝‍♂️使用ILSpy进行反编译 下载并安装 ILSpy：https://github.com/icsharpcode/ILSpy/releases 2.文件-打开-exe
-​
-3.查看反编译内容
-找到Form1 可以看到里面反编译的内容
-​
-复制到vs里面
-替换代码添加相关引用即可
-🤖使用Reflector进行反编译 1.File &gt; Open Assembly
-​ ​
-2.点开WinTime.exe内容
-​
-3.查看反编译内容
-可以看到反编译出来的控件和方法 ​
-点开方法，可以看到方法内的内容
-注意：
-反编译的代码可能不完全等同于原始源代码，因为编译器可能会进行优化，并且某些信息可能因为混淆技术而无法恢复。
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-21 06:14:22 +0000 UTC'>April 21, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to  .NET 反编译" href="http://localhost:1313/posts/.net-%E5%8F%8D%E7%BC%96%E8%AF%91/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent"> .NET SMTP
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>SMTP（Simple Mail Transfer Protocol）是用于电子邮件传输的规则集，可以从邮件客户端向接收电子邮件服务器发送、中继或转发邮件。发件人可使用SMTP 服务器来执行发送电子邮件的过程。SMTP服务器则是按照这些规则中转电子邮件的服务器。
-IMAP可以理解为收邮件。 ​
-🐧使用QQ邮箱发邮件 首先需要设置开启邮箱的SMTP服务
-登录(https://mail.qq.com/)电脑网页版邮箱进入【设置】-&gt;【帐户】-&gt;【POP3/IMAP/SMTP服务】， 开启或关闭相应服务最后保存更改即可。 ​
-QQ邮箱 POP3 和 SMTP 服务器地址设置如下：
-邮箱	POP3服务器（端口995）	SMTP服务器（端口465或587） qq.com	pop.qq.com	smtp.qq.com SMTP服务器需要身份验证。
-以下是示例代码：
-using ConsoleApp1Test; //xxx string server = &#34;smtp.qq.com&#34;; string username = &#34;my test email&#34;; string password = &#34;xxx; string from = &#34;from@qq.com&#34;; string to = &#34;to@qq.com&#34;; string subject = &#34;Test Email&#34;; string content = &#34;This is a test email sent asynchronously.&#34;; bool isHtml = false; // 是否为 HTML 格式 try { bool success = await MailHelper. SendMailAsync(server, username, password, from, to, null, subject, content, isHtml); if (success) { Console.WriteLine(&#34;邮件发送成功！&#34;); } else { Console.WriteLine(&#34;邮件发送失败！&#34;); } } catch (Exception ex) { Console.WriteLine($&#34;邮件发送出错：{ex.Message}&#34;); } using System; using System.Collections.Generic; using System.Linq; using System.Net.Mail; using System.Text; using System.Threading.Tasks; namespace ConsoleApp1Test { internal class MailHelper { public static async Task&lt;bool&gt; SendMailAsync(string server, string username, string password, string from, string to, string cc, string subject, string content, bool isHtml) { try { using (var smtp = new SmtpClient(server)) { smtp.UseDefaultCredentials = false; smtp.Credentials = new System.Net.NetworkCredential(username, password); smtp.EnableSsl = true; // 启用加密 smtp.DeliveryMethod = SmtpDeliveryMethod.Network; using (var mail = new MailMessage()) { mail.From = new MailAddress(from); mail.To.Add(to); mail.SubjectEncoding = Encoding.UTF8; mail.Subject = subject; mail.IsBodyHtml = isHtml; mail.BodyEncoding = Encoding.UTF8; mail.Body = content; await smtp.SendMailAsync(mail); // 异步发送邮件 } return true; } } catch (Exception err) { // 发送失败时的异常处理 // 可以在此处记录日志 return false; } } } } ​ ​
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-20 21:13:11 +0000 UTC'>April 20, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to  .NET SMTP" href="http://localhost:1313/posts/.net-smtp/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

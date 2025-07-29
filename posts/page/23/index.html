@@ -126,6 +126,55 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET AES DES
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>.NET AES DES 对称加密
+ASE 加密解密 加密方法 (Encrypt):
+创建一个 Aes 实例。 设置密钥 (Key) 和初始化向量 (IV)。 使用 CreateEncryptor 创建加密器。 通过 CryptoStream 和 StreamWriter 将明文写入内存流，然后转换为 Base64 字符串。
+解密方法 (Decrypt):
+同样创建一个 Aes 实例。 设置相同的密钥和初始化向量。 使用 CreateDecryptor 创建解密器。 通过 CryptoStream 和 StreamReader 从内存流读取密文并解密为明文。
+注意事项 密钥长度：AES 支持 128, 192, 和 256 位密钥。本例使用 256 位（32 字节）。 初始化向量 (IV)：应确保加密和解密时使用相同的 IV。本例中使用了全零的 IV，在实际应用中建议使用随机 IV，并将其与密文一起存储。
+using System; using System.IO; using System.Security.Cryptography; using System.Text; class SymmetricEncryption { // 加密方法 public static string Encrypt(string plainText, string key) { using (Aes aesAlg = Aes.Create()) { aesAlg.Key = Encoding.UTF8.GetBytes(key); aesAlg.IV = new byte[16]; // 初始化向量 (IV) 可以设为全零，也可以使用随机值 ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV); using (MemoryStream msEncrypt = new MemoryStream()) { using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write)) using (StreamWriter swEncrypt = new StreamWriter(csEncrypt)) { swEncrypt.Write(plainText); } return Convert.ToBase64String(msEncrypt.ToArray()); } } } // 解密方法 public static string Decrypt(string cipherText, string key) { using (Aes aesAlg = Aes.Create()) { aesAlg.Key = Encoding.UTF8.GetBytes(key); aesAlg.IV = new byte[16]; // 与加密时使用相同的 IV ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV); using (MemoryStream msDecrypt = new MemoryStream(Convert.FromBase64String(cipherText))) { using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read)) using (StreamReader srDecrypt = new StreamReader(csDecrypt)) { return srDecrypt.ReadToEnd(); } } } } // 示例主方法 public static void Main() { string original = &#34;Hello, World!&#34;; string key = &#34;thisisaverysecretkey1234&#34;; // 32 字节的密钥 // 加密 string encrypted = Encrypt(original, key); Console.WriteLine($&#34;Encrypted: {encrypted}&#34;); // 解密 string decrypted = Decrypt(encrypted, key); Console.WriteLine($&#34;Decrypted: {decrypted}&#34;); } } Encrypted: NEVECFUqMdlFuAPGXm30FQ== Decrypted: 115
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-15 15:01:42 +0000 UTC'>May 15, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET AES DES" href="http://localhost:1313/posts/.net-aes-des/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">IOS POD
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>IOS POD
+brew install cocoapod gem install cocoapod sudo gem install cocoapod sudo brew update ruby update rvm install 2.7 cd xx
+pod install </p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-14 10:51:59 +0000 UTC'>May 14, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to IOS POD" href="http://localhost:1313/posts/ios-pod/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET webp
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>在C#中，可以使用Image类和Bitmap类来处理图像，并且可以借助Magick.NET库来将JPG图片转换为WEBP格式。
+安装Magick.NET-Q8-AnyCPU NuGet包。
+using ImageMagick; 转换方法
+public void ConvertJpgToWebP2(string inputFilePath, string outputFilePath) { using (var image = new MagickImage(inputFilePath)) { // 设置WEBP压缩质量，范围从0（最好的质量）到100（最快速压缩） image.Quality = 80; image.Format = MagickFormat.WebP; image.Write(outputFilePath); } } 调用
+string jpgPath = &#34;E:\\net8test\\ConsoleApp1Test\\ConsoleApp1Test\\bin\\Debug\\net8.0\\55.jpg&#34;; string webpPath = &#34;E:\\net8test\\ConsoleApp1Test\\ConsoleApp1Test\\bin\\Debug\\net8.0\\55.webp&#34;; Ig ig = new Ig(); ig.ConvertJpgToWebP2(jpgPath, webpPath); </p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-10 09:28:17 +0000 UTC'>May 10, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET webp" href="http://localhost:1313/posts/.net-webp/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Hexo Categories Tags
     </h2>
   </header>
@@ -198,71 +247,6 @@ dotnet --list-sdks dotnet publish DemoAot.csproj -o $PWD/pub -c Release -r osx-x
   </div>
   <footer class="entry-footer"><span title='2024-05-08 13:01:11 +0000 UTC'>May 8, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to .NET native AOT" href="http://localhost:1313/posts/.net-native-aot/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Debian nginx https
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>debian安装 nginx 在Debian系统上安装Nginx，可以按照以下步骤操作：
-如果 sudo: command not found
-apt-get install sudo 首先，更新的包索引：
-sudo apt update 接下来，安装Nginx：
-sudo apt install nginx 安装完成后，启动Nginx服务：
-sudo systemctl start nginx （可选）设置Nginx开机自启动：
-sudo systemctl enable nginx 可以通过运行以下命令来检查Nginx的状态：
-sudo systemctl status nginx 现在，可以在Web浏览器中输入服务器的IP地址或域名来访问默认的Nginx欢迎页面。如果是在本地安装的Nginx，可以通过访问 http://localhost 来查看这个页面。
-如果需要配置Nginx，可以编辑 /etc/nginx/nginx.conf 文件或者在 /etc/nginx/sites-available/ 目录下创建或编辑配置文件，并使用 sudo ln -s /etc/nginx/sites-available/your-config /etc/nginx/sites-enabled/ 命令来启用它。
-sudo whereis nginx Nginx 默认安装位置 配置文件所在目录 /etc/
-nginx配置 检测Nginx配置文件是否正确
-nginx -t 重载Nginx配置
-nginx -s reload 自定义Nginx站点配置文件存放目录 /etc/nginx/conf.d/
-nginx网站目录 /var/www/
-域名证书
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-07 19:13:24 +0000 UTC'>May 7, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian nginx https" href="http://localhost:1313/posts/debian-nginx-https/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent"> .NET获取内存
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>在.NET 控制台应用程序中，你可以使用System.Diagnostics命名空间下的Process类来获取当前进程的内存使用情况。以下是一个简单的示例代码，展示如何获取并显示当前进程的内存使用量：
-using System; using System.Diagnostics; namespace DisplayProcessMemory { class Program { static void Main(string[] args) { // 获取当前进程 Process currentProcess = Process.GetCurrentProcess(); // 使用需要的内存量 long workingSet64 = currentProcess.WorkingSet64; // 显示内存使用量 Console.WriteLine($&#34;当前进程占用内存: {workingSet64} 字节&#34;); // 单位转换为兆字节 double memoryInMB = workingSet64 / 1024.0 / 1024.0; Console.WriteLine($&#34;当前进程占用内存: {memoryInMB.ToString(&#34;F2&#34;)} MB&#34;); } } } 在.NET中，可以使用System.Diagnostics命名空间下的Process类来获取当前进程的信息，但是直接获取网络带宽使用情况不是Process类提供的功能。你可以使用System.Net.NetworkInformation命名空间下的IPGlobalProperties类来获取网络接口的信息，然后累计所有网络接口的传输数据量来估算带宽使用。
-以下是一个简单的示例代码，用于显示当前进程的网络传输数据量（发送和接收）：
-using System; using System.Diagnostics; using System.Net.NetworkInformation; class Program { static void Main() { Process currentProcess = Process.GetCurrentProcess(); Console.WriteLine($&#34;Process ID: {currentProcess.Id}&#34;); IPGlobalProperties ipProperties = IPGlobalProperties.GetIPGlobalProperties(); TcpStatistics tcpStats = ipProperties.GetTcpIPv4Statistics(); Console.WriteLine($&#34;Total bytes received: {tcpStats.BytesReceived}&#34;); Console.WriteLine($&#34;Total bytes sent: {tcpStats.BytesSent}&#34;); // 输出网络接口统计信息 NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces(); foreach (NetworkInterface networkInterface in networkInterfaces) { Console.WriteLine($&#34;Interface: {networkInterface.Name}&#34;); Console.WriteLine($&#34;Bytes received: {networkInterface.GetIPv4Statistics().BytesReceived}&#34;); Console.WriteLine($&#34;Bytes sent: {networkInterface.GetIPv4Statistics().BytesSent}&#34;); } } } 请注意，这个示例显示的是从系统启动以来累计的网络接口数据量。如果你需要监测特定时间段内的带宽使用情况，你需要定期获取数据并计算差值。另外，这个示例仅包括了IPv4的数据，如果需要IPv6或者更多细节，请相应地扩展代码。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-06 14:57:24 +0000 UTC'>May 6, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to  .NET获取内存" href="http://localhost:1313/posts/.net%E8%8E%B7%E5%8F%96%E5%86%85%E5%AD%98/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Debian Nodejs HEXO 
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Debian Nodejs HEXO
-安装Node.js环境 sudo apt update debian安装最新node v20.12.0 在Debian系统上安装特定版本的Node.js（例如v20.12.0），你可以使用NodeSource二进制分发。以下是安装v20.12.0的步骤：
-首先，打开终端。
-使用curl下载NodeSource的安装脚本：
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 安装Node.js：
-sudo apt-get install -y nodejs 验证Node.js是否安装成功：
-node --version 如果你想要确保安装了特定的v20.12.0版本，可以在安装完Node.js后运行以下命令来验证版本：
-node -v 如果显示的版本号是v20.12.0，则表示已经成功安装了该版本。
-安装HEXO 使用npm包管理器，直接安装hexo
-npm install hexo -g hexo init blog cd blog npm install hexo server hexo 修改端口号 _config.yml # 或者使用 vim _config.yml
-Docs: https://hexo.io/docs/server.html server: port: 12311 # 修改这里为你想要的端口号 compress: true header: true hexo s </p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-03 17:02:53 +0000 UTC'>May 3, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian Nodejs HEXO " href="http://localhost:1313/posts/debian-nodejs-hexo/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
