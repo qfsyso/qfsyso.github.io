@@ -11,4 +11,4 @@ docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-
 docker run -d -p 3000:8080 --gpus all --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:cuda http://localhost:3000/
 deepseek https://ollama.com/library/deepseek-coder-v2 deepseek-coder-v2 ~~ codeqwen sqlcoder
 curl -X POST http://localhost:11434/api/generate -d &amp;#39;{ &amp;#34;model&amp;#34;: &amp;#34;llama2-chinese:7b-chat-q4_0&amp;#34;, &amp;#34;prompt&amp;#34;:&amp;#34;为什么天空是蓝色的&amp;#34; }&amp;#39; https://docs.openwebui.com/
-单独部署Open WebUI Open WebUI https://docs.openwebui.com/ 安装默认配置</description></item></channel></rss>
+Open WebUI Open WebUI https://docs.openwebui.com/ 安装默认配置</description></item></channel></rss>
