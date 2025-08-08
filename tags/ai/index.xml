@@ -1,4 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>AI on MLOG</title><link>https://qfsyso.github.io/tags/ai/</link><description>Recent content in AI on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Sat, 26 Apr 2025 00:44:11 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>Gemini Flash</title><link>https://qfsyso.github.io/posts/gemini-flash/</link><pubDate>Sat, 26 Apr 2025 00:44:11 +0800</pubDate><guid>https://qfsyso.github.io/posts/gemini-flash/</guid><description>免费gemini2.5 API 感谢佬友 bohe佬
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>AI on MLOG</title><link>https://qfsyso.github.io/tags/ai/</link><description>Recent content in AI on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Sat, 09 Aug 2025 02:24:24 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>WAV STT</title><link>https://qfsyso.github.io/posts/wav-stt/</link><pubDate>Sat, 09 Aug 2025 02:24:24 +0800</pubDate><guid>https://qfsyso.github.io/posts/wav-stt/</guid><description>WAV STT Python Flask 框架
+SQLite 做存储
+支持批量上传音频文件
+后端调用开源 STT 库
+支持音频回放和文本搜索
+/app ├── app.py # Flask 后端 ├── templates/ │ └── index.html # 前端页面 ├── static/ │ └── audio/ # 上传音频存储目录（Docker 内） ├── requirements.txt # 依赖 ├── Dockerfile └── stt_utils.py # STT 相关工具函数 后端核心功能 /：首页，返回上传页面
+/upload：接受多文件上传，保存音频，调用 STT 转文本，保存结果进 SQLite
+/audio/：提供音频文件访问，前端可回放
+/search：文本搜索接口，返回匹配记录
+SQLite 数据库保存：字段 id, filename, upload_time, transcript
+Docker requirements.txt
+flask whisper openai-whisper Code app.py
+import os import sqlite3 from datetime import datetime from flask import Flask, request, render_template, send_from_directory, jsonify import whisper app = Flask(**name**) app.</description></item><item><title>Gemini Flash</title><link>https://qfsyso.github.io/posts/gemini-flash/</link><pubDate>Sat, 26 Apr 2025 00:44:11 +0800</pubDate><guid>https://qfsyso.github.io/posts/gemini-flash/</guid><description>免费gemini2.5 API 感谢佬友 bohe佬
 lobehub https://chat-preview.lobehub.com/chat
 docker lobe docker run -d -p 32100:3210 \ -e OPENAI_API_KEY=sk-GBxyVLH3pWoqFkLRC63PZhKPsVSPgLElvFtysmxPvZhZX5gi \ -e OPENAI_PROXY_URL=https://x666.me/v1 \ -e ACCESS_CODE=lobe66 \ --name lobe-chat \ lobehub/lobe-chat https://lobehub.com/zh/docs/self-hosting/platform/docker
 模型设置 openai sk-xx api地址 xxx/v1 获取模型列表 检查

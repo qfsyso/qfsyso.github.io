@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>WebAPI on MLOG</title><link>https://qfsyso.github.io/tags/webapi/</link><description>Recent content in WebAPI on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Sat, 09 Aug 2025 02:24:24 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/webapi/index.xml" rel="self" type="application/rss+xml"/><item><title>WAV STT</title><link>https://qfsyso.github.io/posts/wav-stt/</link><pubDate>Sat, 09 Aug 2025 02:24:24 +0800</pubDate><guid>https://qfsyso.github.io/posts/wav-stt/</guid><description>WAV STT Python Flask 框架
+SQLite 做存储
+支持批量上传音频文件
+后端调用开源 STT 库
+支持音频回放和文本搜索
+/app ├── app.py # Flask 后端 ├── templates/ │ └── index.html # 前端页面 ├── static/ │ └── audio/ # 上传音频存储目录（Docker 内） ├── requirements.txt # 依赖 ├── Dockerfile └── stt_utils.py # STT 相关工具函数 后端核心功能 /：首页，返回上传页面
+/upload：接受多文件上传，保存音频，调用 STT 转文本，保存结果进 SQLite
+/audio/：提供音频文件访问，前端可回放
+/search：文本搜索接口，返回匹配记录
+SQLite 数据库保存：字段 id, filename, upload_time, transcript
+Docker requirements.txt
+flask whisper openai-whisper Code app.py
+import os import sqlite3 from datetime import datetime from flask import Flask, request, render_template, send_from_directory, jsonify import whisper app = Flask(**name**) app.</description></item></channel></rss>
