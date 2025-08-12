@@ -126,6 +126,36 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent"> .NET FileUpload
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>VS2022 .NET8
+💾基础上传示例 view
+@{ ViewData[&#34;Title&#34;] = &#34;File Upload&#34;; } &lt;h1&gt;@ViewData[&#34;Title&#34;]&lt;/h1&gt; &lt;form method=&#34;post&#34; enctype=&#34;multipart/form-data&#34; action=&#34;/Home/UploadFile&#34;&gt; &lt;div class=&#34;form-group&#34;&gt; &lt;input type=&#34;file&#34; name=&#34;file&#34; class=&#34;form-control&#34; /&gt; &lt;/div&gt; &lt;button type=&#34;submit&#34; class=&#34;btn btn-primary&#34;&gt;Upload&lt;/button&gt; &lt;/form&gt; controller
+[HttpPost] public async Task&lt;IActionResult&gt; UploadFile() { var file = Request.Form.Files[0]; if (file != null &amp;&amp; file.Length &gt; 0) { var uploads = Path.Combine(Directory.GetCurrentDirectory(), &#34;wwwroot&#34;, &#34;up&#34;); if (!Directory.Exists(uploads)) { Directory.CreateDirectory(uploads); } var filePath = Path.Combine(uploads, file.FileName); using (var fileStream = new FileStream(filePath, FileMode.Create)) { await file.CopyToAsync(fileStream); } // SAVE TO DB return RedirectToAction(&#34;Index&#34;); } return View(); } app.UseStaticFiles(); run
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-20 21:14:38 +0000 UTC'>May 20, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  .NET FileUpload" href="http://localhost:1313/posts/.net-fileupload/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">c# run nodejs
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>在C#中调用Node.js时，一种常见的方法是使用进程间通信（Inter-Process Communication，IPC），例如使用子进程。 可以使用C#中的Process类来启动Node.js进程，并通过标准输入输出与其进行通信。
+C# run nodejs // n.js // 监听来自标准输入的消息 process.stdin.on(&#39;data&#39;, function (data) { // 收到消息后，在控制台输出并回复消息 console.log(&#34;Message from C#: &#34; &#43; data.toString()); process.stdout.write(&#34;Hello from Node.js!&#34;); }); ProcessStartInfo startInfo = new ProcessStartInfo(); startInfo.FileName = &#34;node&#34;; // Node.js可执行文件路径，如果已在系统路径中，则不需要提供完整路径 startInfo.Arguments = &#34;n.js&#34;; // 执行的Node.js脚本文件路径 startInfo.UseShellExecute = false; startInfo.RedirectStandardInput = true; startInfo.RedirectStandardOutput = true; Process nodeProcess = new Process(); nodeProcess.StartInfo = startInfo; // 启动进程 nodeProcess.Start(); // 与Node.js进程进行通信 using (var writer = nodeProcess.StandardInput) { if (writer.BaseStream.CanWrite) { // 向Node.js进程发送消息 writer.WriteLine(&#34;Hello from C#!&#34;); } } // 读取Node.js进程的输出 using (var reader = nodeProcess.StandardOutput) { if (reader.BaseStream.CanRead) { // 从Node.js进程读取响应 string response = reader.ReadLine(); Console.WriteLine(&#34;Response from Node.js: &#34; &#43; response); } } Console.Read(); // 等待Node.js进程结束 nodeProcess.WaitForExit(); nodeProcess.Close(); Socket server const net = require(&#39;net&#39;); // 创建一个服务器实例 const server = net.createServer((socket) =&gt; { // 连接建立时触发 console.log(&#39;Client connected.&#39;); // 监听客户端发送的数据 socket.on(&#39;data&#39;, (data) =&gt; { console.log(&#39;Received from client: &#39; &#43; data.toString()); // 向客户端发送响应数据 socket.write(&#39;Hello from Node.js!&#39; &#43; data.toString()); }); // 监听连接断开事件 socket.on(&#39;end&#39;, () =&gt; { console.log(&#39;Client disconnected.&#39;); }); }); // 监听指定端口 const port = 24520; server.listen(port, () =&gt; { console.log(&#39;Node Server listening on port &#39; &#43; port); }); // 启动 Node.js 服务器的 Node.js 脚本文件路径 string nodeScriptPath = &#34;n.js&#34;; // 启动 Node.js 进程 ProcessStartInfo startInfo = new ProcessStartInfo(); startInfo.FileName = &#34;node&#34;; // Node.js 可执行文件路径，如果已在系统路径中，则不需要提供完整路径 startInfo.Arguments = nodeScriptPath; // Node.js 脚本文件路径 startInfo.UseShellExecute = false; startInfo.RedirectStandardOutput = true; Process nodeProcess = new Process(); nodeProcess.StartInfo = startInfo; // Node.js 服务器输出的事件处理函数 nodeProcess.OutputDataReceived &#43;= (sender, e) =&gt; { Console.WriteLine(e.Data); // 输出 Node.js 服务器的输出信息 }; // 启动进程 nodeProcess.Start(); nodeProcess.BeginOutputReadLine(); // 开始异步读取 Node.js 服务器的输出 // 等待 Node.js 进程结束 nodeProcess.WaitForExit(); nodeProcess.Close(); run
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-20 21:13:27 +0000 UTC'>May 20, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to c# run nodejs" href="http://localhost:1313/posts/c%23-run-nodejs/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Typescript study
     </h2>
   </header>
@@ -211,40 +241,6 @@ $ curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 💬hellowor
   </div>
   <footer class="entry-footer"><span title='2024-05-17 19:00:03 +0000 UTC'>May 17, 2024</span>&nbsp;·&nbsp;13 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to Nodejs base" href="http://localhost:1313/posts/nodejs-base/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">HarmonyOS Photos Column Swiper Grid
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>​
-✨️index title swiper list(grid)
-import coms from &#39;../pages/com&#39; @Entry @Component struct Index { @State message: string = &#39;Hello World1&#39; //private list = new con build() { Column() { //标题 Row(){ Text(&#39;photos&#39;) .fontSize(&#39;30fp&#39;) .fontWeight(FontWeight.Bold) } .justifyContent(FlexAlign.Start) .width(&#39;100%&#39;) .padding(&#39;12vp&#39;) //轮播 Swiper() { ForEach(coms.SWIPERLIST,(item:Resource,index?:Number)=&gt;{ Row() { Image(item) } .width(&#39;100%&#39;) .aspectRatio(1.6) }) } .autoPlay(true) .loop(true) .indicator(true) .duration(1000) .itemSpace(10) .borderRadius(&#39;12vp&#39;) .margin(&#39;12vp&#39;) .onChange((index: number) =&gt; { }) //列表 Grid(){ GridItem(){ Column(){ Image($r(&#39;app.media.icon&#39;)) .borderRadius(2) } } GridItem(){ Column(){ Image($r(&#39;app.media.icon&#39;)) .borderRadius(2) } } GridItem(){ Column(){ Image($r(&#39;app.media.icon&#39;)) .borderRadius(2) } } GridItem(){ Column(){ Image($r(&#39;app.media.44&#39;)) .borderRadius(2) } } } .columnsTemplate(&#39;1fr 1fr&#39;) .columnsGap(&#39;12vp&#39;) .rowsGap(&#39;12vp&#39;) //.padding(&#39;2vp&#39;) } .width(&#39;100%&#39;) .height(&#39;100%&#39;) } } 核心Grid的
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-16 01:26:18 +0000 UTC'>May 16, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to HarmonyOS Photos Column Swiper Grid" href="http://localhost:1313/posts/harmonyos-photos-column-swiper-grid/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET AES DES
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>.NET AES DES 对称加密
-ASE 加密解密 加密方法 (Encrypt):
-创建一个 Aes 实例。 设置密钥 (Key) 和初始化向量 (IV)。 使用 CreateEncryptor 创建加密器。 通过 CryptoStream 和 StreamWriter 将明文写入内存流，然后转换为 Base64 字符串。
-解密方法 (Decrypt):
-同样创建一个 Aes 实例。 设置相同的密钥和初始化向量。 使用 CreateDecryptor 创建解密器。 通过 CryptoStream 和 StreamReader 从内存流读取密文并解密为明文。
-注意事项 密钥长度：AES 支持 128, 192, 和 256 位密钥。本例使用 256 位（32 字节）。 初始化向量 (IV)：应确保加密和解密时使用相同的 IV。本例中使用了全零的 IV，在实际应用中建议使用随机 IV，并将其与密文一起存储。
-using System; using System.IO; using System.Security.Cryptography; using System.Text; class SymmetricEncryption { // 加密方法 public static string Encrypt(string plainText, string key) { using (Aes aesAlg = Aes.Create()) { aesAlg.Key = Encoding.UTF8.GetBytes(key); aesAlg.IV = new byte[16]; // 初始化向量 (IV) 可以设为全零，也可以使用随机值 ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV); using (MemoryStream msEncrypt = new MemoryStream()) { using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write)) using (StreamWriter swEncrypt = new StreamWriter(csEncrypt)) { swEncrypt.Write(plainText); } return Convert.ToBase64String(msEncrypt.ToArray()); } } } // 解密方法 public static string Decrypt(string cipherText, string key) { using (Aes aesAlg = Aes.Create()) { aesAlg.Key = Encoding.UTF8.GetBytes(key); aesAlg.IV = new byte[16]; // 与加密时使用相同的 IV ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV); using (MemoryStream msDecrypt = new MemoryStream(Convert.FromBase64String(cipherText))) { using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read)) using (StreamReader srDecrypt = new StreamReader(csDecrypt)) { return srDecrypt.ReadToEnd(); } } } } // 示例主方法 public static void Main() { string original = &#34;Hello, World!&#34;; string key = &#34;thisisaverysecretkey1234&#34;; // 32 字节的密钥 // 加密 string encrypted = Encrypt(original, key); Console.WriteLine($&#34;Encrypted: {encrypted}&#34;); // 解密 string decrypted = Decrypt(encrypted, key); Console.WriteLine($&#34;Decrypted: {decrypted}&#34;); } } Encrypted: NEVECFUqMdlFuAPGXm30FQ== Decrypted: 115
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-15 15:01:42 +0000 UTC'>May 15, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET AES DES" href="http://localhost:1313/posts/.net-aes-des/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

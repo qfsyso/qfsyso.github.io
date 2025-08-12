@@ -123,6 +123,40 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">HarmonyOS Photos Column Swiper Grid
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>​
+✨️index title swiper list(grid)
+import coms from &#39;../pages/com&#39; @Entry @Component struct Index { @State message: string = &#39;Hello World1&#39; //private list = new con build() { Column() { //标题 Row(){ Text(&#39;photos&#39;) .fontSize(&#39;30fp&#39;) .fontWeight(FontWeight.Bold) } .justifyContent(FlexAlign.Start) .width(&#39;100%&#39;) .padding(&#39;12vp&#39;) //轮播 Swiper() { ForEach(coms.SWIPERLIST,(item:Resource,index?:Number)=&gt;{ Row() { Image(item) } .width(&#39;100%&#39;) .aspectRatio(1.6) }) } .autoPlay(true) .loop(true) .indicator(true) .duration(1000) .itemSpace(10) .borderRadius(&#39;12vp&#39;) .margin(&#39;12vp&#39;) .onChange((index: number) =&gt; { }) //列表 Grid(){ GridItem(){ Column(){ Image($r(&#39;app.media.icon&#39;)) .borderRadius(2) } } GridItem(){ Column(){ Image($r(&#39;app.media.icon&#39;)) .borderRadius(2) } } GridItem(){ Column(){ Image($r(&#39;app.media.icon&#39;)) .borderRadius(2) } } GridItem(){ Column(){ Image($r(&#39;app.media.44&#39;)) .borderRadius(2) } } } .columnsTemplate(&#39;1fr 1fr&#39;) .columnsGap(&#39;12vp&#39;) .rowsGap(&#39;12vp&#39;) //.padding(&#39;2vp&#39;) } .width(&#39;100%&#39;) .height(&#39;100%&#39;) } } 核心Grid的
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-16 01:26:18 +0000 UTC'>May 16, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to HarmonyOS Photos Column Swiper Grid" href="http://localhost:1313/posts/harmonyos-photos-column-swiper-grid/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET AES DES
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>.NET AES DES 对称加密
+ASE 加密解密 加密方法 (Encrypt):
+创建一个 Aes 实例。 设置密钥 (Key) 和初始化向量 (IV)。 使用 CreateEncryptor 创建加密器。 通过 CryptoStream 和 StreamWriter 将明文写入内存流，然后转换为 Base64 字符串。
+解密方法 (Decrypt):
+同样创建一个 Aes 实例。 设置相同的密钥和初始化向量。 使用 CreateDecryptor 创建解密器。 通过 CryptoStream 和 StreamReader 从内存流读取密文并解密为明文。
+注意事项 密钥长度：AES 支持 128, 192, 和 256 位密钥。本例使用 256 位（32 字节）。 初始化向量 (IV)：应确保加密和解密时使用相同的 IV。本例中使用了全零的 IV，在实际应用中建议使用随机 IV，并将其与密文一起存储。
+using System; using System.IO; using System.Security.Cryptography; using System.Text; class SymmetricEncryption { // 加密方法 public static string Encrypt(string plainText, string key) { using (Aes aesAlg = Aes.Create()) { aesAlg.Key = Encoding.UTF8.GetBytes(key); aesAlg.IV = new byte[16]; // 初始化向量 (IV) 可以设为全零，也可以使用随机值 ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV); using (MemoryStream msEncrypt = new MemoryStream()) { using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write)) using (StreamWriter swEncrypt = new StreamWriter(csEncrypt)) { swEncrypt.Write(plainText); } return Convert.ToBase64String(msEncrypt.ToArray()); } } } // 解密方法 public static string Decrypt(string cipherText, string key) { using (Aes aesAlg = Aes.Create()) { aesAlg.Key = Encoding.UTF8.GetBytes(key); aesAlg.IV = new byte[16]; // 与加密时使用相同的 IV ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV); using (MemoryStream msDecrypt = new MemoryStream(Convert.FromBase64String(cipherText))) { using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read)) using (StreamReader srDecrypt = new StreamReader(csDecrypt)) { return srDecrypt.ReadToEnd(); } } } } // 示例主方法 public static void Main() { string original = &#34;Hello, World!&#34;; string key = &#34;thisisaverysecretkey1234&#34;; // 32 字节的密钥 // 加密 string encrypted = Encrypt(original, key); Console.WriteLine($&#34;Encrypted: {encrypted}&#34;); // 解密 string decrypted = Decrypt(encrypted, key); Console.WriteLine($&#34;Decrypted: {decrypted}&#34;); } } Encrypted: NEVECFUqMdlFuAPGXm30FQ== Decrypted: 115
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-15 15:01:42 +0000 UTC'>May 15, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET AES DES" href="http://localhost:1313/posts/.net-aes-des/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">IOS POD
     </h2>
   </header>
@@ -205,53 +239,6 @@ npm audit fix </p>
   </div>
   <footer class="entry-footer"><span title='2024-05-08 19:11:07 +0000 UTC'>May 8, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to npm audit" href="http://localhost:1313/posts/npm-audit/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET native AOT
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>前言 .NET8对于性能的优化是方方面面的，所以AOT预编译机器码也是不例外的。本篇来看下对于AOT的优化。
-概述 首先要明确一个概念，.NET里面的AOT它是原生的。什么意思呢？也就是说通过ILC编译器(AOT编译器，编译出来的代码是各个平台上可以直接运行的二进制代码。比如MacOS的二进制，Linux二进制等等。所以称之为原生。
-C#源码被ILC编译之后，生成了一个完全原生态代码的可执行文件。在执行的时候不需要JIT来编译任何东西，因为JIT已经在ILC里面被充分利用过了。实际上AOT里面也没有包含JIT。那么它如何优化呢？只能是在ILC里面调用JIT的时候了。所以它这个优化依然依靠JIT。.NET8里面优化AOT的一个典型的例子，就是ASP.NET应用程序在使用AOT的时候表现不错，同时也降低了总成本。
-创建项目 启用AOT
-打包指令 dotnet publish DemoAot.csproj -o pub\ -c Release -r win-x64 linux下 先安装SDK 安装后
-dotnet --list-sdks dotnet publish DemoAot.csproj -o $PWD/pub -c Release -r linux-x64 macos下 安装SDK后
-dotnet --list-sdks dotnet publish DemoAot.csproj -o $PWD/pub -c Release -r osx-x64 重启服务器 通过命令 cd fser 及sudo nohup /root/fser/fileserver &gt; output{当前时间}.log 2&gt;&amp;1 &amp; 和命令 cd nets4 及sudo nohup dotnet /root/nets4/IM.dll &gt; output{当前时间}.log 2&gt;&amp;1 &amp; 自动化运行
-为了自动化运行这些程序启动命令，可以编写一个 Shell 脚本并结合系统启动服务（如 systemd）来执行。 以下是具体实现步骤：
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-08 13:01:11 +0000 UTC'>May 8, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET native AOT" href="http://localhost:1313/posts/.net-native-aot/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Debian nginx https
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>debian安装 nginx 在Debian系统上安装Nginx，可以按照以下步骤操作：
-如果 sudo: command not found
-apt-get install sudo 首先，更新的包索引：
-sudo apt update 接下来，安装Nginx：
-sudo apt install nginx 安装完成后，启动Nginx服务：
-sudo systemctl start nginx （可选）设置Nginx开机自启动：
-sudo systemctl enable nginx 可以通过运行以下命令来检查Nginx的状态：
-sudo systemctl status nginx 现在，可以在Web浏览器中输入服务器的IP地址或域名来访问默认的Nginx欢迎页面。如果是在本地安装的Nginx，可以通过访问 http://localhost 来查看这个页面。
-如果需要配置Nginx，可以编辑 /etc/nginx/nginx.conf 文件或者在 /etc/nginx/sites-available/ 目录下创建或编辑配置文件，并使用 sudo ln -s /etc/nginx/sites-available/your-config /etc/nginx/sites-enabled/ 命令来启用它。
-sudo whereis nginx Nginx 默认安装位置 配置文件所在目录 /etc/
-nginx配置 检测Nginx配置文件是否正确
-nginx -t 重载Nginx配置
-nginx -s reload 自定义Nginx站点配置文件存放目录 /etc/nginx/conf.d/
-nginx网站目录 /var/www/
-域名证书
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-07 19:13:24 +0000 UTC'>May 7, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian nginx https" href="http://localhost:1313/posts/debian-nginx-https/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

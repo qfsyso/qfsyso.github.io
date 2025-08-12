@@ -123,6 +123,53 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET native AOT
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>前言 .NET8对于性能的优化是方方面面的，所以AOT预编译机器码也是不例外的。本篇来看下对于AOT的优化。
+概述 首先要明确一个概念，.NET里面的AOT它是原生的。什么意思呢？也就是说通过ILC编译器(AOT编译器，编译出来的代码是各个平台上可以直接运行的二进制代码。比如MacOS的二进制，Linux二进制等等。所以称之为原生。
+C#源码被ILC编译之后，生成了一个完全原生态代码的可执行文件。在执行的时候不需要JIT来编译任何东西，因为JIT已经在ILC里面被充分利用过了。实际上AOT里面也没有包含JIT。那么它如何优化呢？只能是在ILC里面调用JIT的时候了。所以它这个优化依然依靠JIT。.NET8里面优化AOT的一个典型的例子，就是ASP.NET应用程序在使用AOT的时候表现不错，同时也降低了总成本。
+创建项目 启用AOT
+打包指令 dotnet publish DemoAot.csproj -o pub\ -c Release -r win-x64 linux下 先安装SDK 安装后
+dotnet --list-sdks dotnet publish DemoAot.csproj -o $PWD/pub -c Release -r linux-x64 macos下 安装SDK后
+dotnet --list-sdks dotnet publish DemoAot.csproj -o $PWD/pub -c Release -r osx-x64 重启服务器 通过命令 cd fser 及sudo nohup /root/fser/fileserver &gt; output{当前时间}.log 2&gt;&amp;1 &amp; 和命令 cd nets4 及sudo nohup dotnet /root/nets4/IM.dll &gt; output{当前时间}.log 2&gt;&amp;1 &amp; 自动化运行
+为了自动化运行这些程序启动命令，可以编写一个 Shell 脚本并结合系统启动服务（如 systemd）来执行。 以下是具体实现步骤：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-08 13:01:11 +0000 UTC'>May 8, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET native AOT" href="http://localhost:1313/posts/.net-native-aot/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Debian nginx https
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>debian安装 nginx 在Debian系统上安装Nginx，可以按照以下步骤操作：
+如果 sudo: command not found
+apt-get install sudo 首先，更新的包索引：
+sudo apt update 接下来，安装Nginx：
+sudo apt install nginx 安装完成后，启动Nginx服务：
+sudo systemctl start nginx （可选）设置Nginx开机自启动：
+sudo systemctl enable nginx 可以通过运行以下命令来检查Nginx的状态：
+sudo systemctl status nginx 现在，可以在Web浏览器中输入服务器的IP地址或域名来访问默认的Nginx欢迎页面。如果是在本地安装的Nginx，可以通过访问 http://localhost 来查看这个页面。
+如果需要配置Nginx，可以编辑 /etc/nginx/nginx.conf 文件或者在 /etc/nginx/sites-available/ 目录下创建或编辑配置文件，并使用 sudo ln -s /etc/nginx/sites-available/your-config /etc/nginx/sites-enabled/ 命令来启用它。
+sudo whereis nginx Nginx 默认安装位置 配置文件所在目录 /etc/
+nginx配置 检测Nginx配置文件是否正确
+nginx -t 重载Nginx配置
+nginx -s reload 自定义Nginx站点配置文件存放目录 /etc/nginx/conf.d/
+nginx网站目录 /var/www/
+域名证书
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-07 19:13:24 +0000 UTC'>May 7, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Debian nginx https" href="http://localhost:1313/posts/debian-nginx-https/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent"> .NET获取内存
     </h2>
   </header>
@@ -225,54 +272,6 @@ uname -a
   </div>
   <footer class="entry-footer"><span title='2024-04-27 00:07:15 +0000 UTC'>April 27, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to .NET Avalonia Linux " href="http://localhost:1313/posts/.net-avalonia-linux/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Debian Gnome-Desktop GUI 
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>debian gnome-desktop
-🌞更新 sudo apt update sudo apt -y upgrade ​
-🎨安装 sudo apt -y install task-gnome-desktop 这个过程比较久
-​
-🍎分配 sudo systemctl set-default graphical.target vi /etc/pam.d/gdm-password ``` bash 注释 auth required pam_succeed_if.so user != root quiet_success ``` bash #auth required pam_succeed_if.so user != root quiet_success 🛋️重启 sudo reboot 🔑通过VNC连接 ​
-配置后
-​
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-26 23:19:27 +0000 UTC'>April 26, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian Gnome-Desktop GUI " href="http://localhost:1313/posts/debian-gnome-desktop-gui/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">HarmonyOS Study ArkTS
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>💡 环境搭建 HarmonyOS开发环境搭建
-DevEco Studio安装 https://developer.huawei.com/consumer/cn/deveco-studio/
-​
-🚀安装nodejs ​
-🤵安装ohpm ​
-🍔安装SDK ​
-​
-💥Emulator安装 ​
-Q:The graphic card OpenGL version is too old for Previewer to work..
-解决方法分两步：
-1、下载enGL库：https://github.com/pal1000/mesa-dist-win/releases/download/23.1.1/mesa3d-23.1.1-release-msvc.7z
-2、解压下载的zip文件,双击执行systemwidedeploy.cmd文件，然后按任意键，出现一个菜单，选择1，然后开始安装OpenGL驱动，出现complete 后关闭终端，重新运行程序即可生效。
-🌶️新建ArkTs项目 ​
-​
-​
-entry：HarmonyOS工程模块，编译构建生成一个HAP包。
-src &gt; main &gt; ets：用于存放ets源码。 src &gt; main &gt; ets &gt; MainAbility：应用/服务的入口。 src &gt; main &gt; ets &gt; MainAbility &gt; pages：MainAbility包含的页面。 src &gt; main &gt; ets &gt; MainAbility &gt; pages &gt; index.ets：pages列表中的第一个页面，即应用的首页入口。 src &gt; main &gt; ets &gt; MainAbility &gt; app.ets：承载Ability生命周期。 src &gt; main &gt; resources：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。 src &gt; main &gt; config.json：模块配置文件。主要包含HAP包的配置信息、应用/服务在具体设备上的配置信息以及应用/服务的全局配置信息。 build-profile.json5：当前的模块信息、编译信息配置项，包括buildOption、targets配置等。其中targets中可配置当前运行环境，默认为HarmonyOS。 hvigorfile.ts：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。 build-profile.json5：应用级配置信息，包括签名、产品配置等。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-21 13:00:43 +0000 UTC'>April 21, 2024</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to HarmonyOS Study ArkTS" href="http://localhost:1313/posts/harmonyos-study-arkts/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

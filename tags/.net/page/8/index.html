@@ -126,6 +126,24 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET i18n 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>环境 WIN10 VS2022 .NET8
+👋创建项目 ​
+👀创建Resources Controllers HomeController.en.resx
+​ HomeController.fr.resx
+​ HomeController.zh.resx
+​
+🌱Program.cs添加国际化支持 // 添加国际化支持 builder.Services.AddLocalization(options =&gt; { options.ResourcesPath = &#34;Resources&#34;; }); var app = builder.Build(); // 多语言 var supportedCultures = new List&lt;CultureInfo&gt; { new CultureInfo(&#34;en&#34;), new CultureInfo(&#34;zh&#34;), new CultureInfo(&#34;fr&#34;), }; app.UseRequestLocalization(new RequestLocalizationOptions { DefaultRequestCulture = new RequestCulture(&#34;zh&#34;), SupportedCultures = supportedCultures, SupportedUICultures = supportedCultures }); ⚡注入localizer private readonly IStringLocalizer&lt;HomeController&gt; localizer; public HomeController(ILogger&lt;HomeController&gt; logger, IStringLocalizer&lt;HomeController&gt; localizer) { _logger = logger; this.localizer = localizer; } ``` # 📫编写调用方法 [HttpGet] public ActionResult&lt;string&gt; Get() { string rsstr= localizer.GetString(&#34;String1&#34;).Value;//?ui-culture=zh return rsstr; } 默认是中文 ?ui-culture=en 则取对应HomeController.en.resx 里面的String1 ​&lt;img onerror=&#34;notfound(this);&#34; src=&#34;https://cdn.jsdelivr.net/gh/qfsysw/resources/v2/2024041306.jpg&#34;&gt; ​&lt;img onerror=&#34;notfound(this);&#34; src=&#34;https://cdn.jsdelivr.net/gh/qfsysw/resources/v2/2024041307.jpg&#34;&gt; 🐟 </p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-16 01:29:17 +0000 UTC'>April 16, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET i18n " href="http://localhost:1313/posts/.net-i18n/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">.NET SignalR Redis 
     </h2>
   </header>

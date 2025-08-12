@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Linux | MLOG</title>
+<title>Debian | MLOG</title>
 <meta name="keywords" content="">
 <meta name="description" content="A simple blog ">
 <meta name="author" content="dwd">
-<link rel="canonical" href="http://localhost:1313/tags/linux/">
+<link rel="canonical" href="http://localhost:1313/tags/debian/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.6da9a63d25a9608bca2f7f907a030e887a7dd3c3f3918e4cc113129361414bda.css" integrity="sha256-bammPSWpYIvKL3&#43;QegMOiHp908PzkY5MwRMSk2FBS9o=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
@@ -18,8 +18,8 @@
 <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/linux/index.xml">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/tags/linux/">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/debian/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/tags/debian/">
 <noscript>
     <style>
         #theme-toggle,
@@ -120,49 +120,34 @@
 <main class="main"> 
 <header class="page-header">
   <h1>
-    Linux
+    Debian
   </h1>
 </header>
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent"> VM Linux win
+    <h2 class="entry-hint-parent">Debian Docker Redis
     </h2>
   </header>
   <div class="entry-content">
-    <p>debian12.5.0服务器安装 参考https://blog.csdn.net/Go_ahead_forever/article/details/132679793
-相关命令问题 新用户使用sudo报错 xx is not the sudoers file. 原因：book用户没有sudo的权限 解决：https://blog.csdn.net/weixin_37787043/article/details/123045557
-更新 清华-镜像源 (会快一些)： 参考文档： https://blog.csdn.net/sinat_15028281/article/details/135638596
-su root cp etc/apt/sources.list etc/apt/sources.list.backup // 备份 vi etc/apt/sources.list	// 修改镜像源 将etc/apt/sources.list文件内的内容清空，写入以下内容：
-deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware deb https://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware # deb-src https://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware 安装SSH 安装：
+    <p>Debian安装docker
+1.使用官方脚本自动安装docker 安装命令如下：
+curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh 如果安装提示
+-bash sudo command not found
+则需要
+#update sudo apt-get update sudo apt-get install sudo 再执行安装脚本1
+安装成功后可以输入 docker命令查看docker版本
+#version docker --version 能查到表明安装成功
+2.pull redis #pull redis docker pull redis:latest pull redis镜像 3.创建reids容器 docker run -itd --name redis-test -p 6379:6379 redis 4.测试redis docker exec -it redis-test /bin/bash redis-cli set test 1 get test set test 1 提示ok
+get test 一些命令
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-06-24 23:38:07 +0000 UTC'>June 24, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to  VM Linux win" href="http://localhost:1313/posts/vm-linux-win/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET native AOT
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>前言 .NET8对于性能的优化是方方面面的，所以AOT预编译机器码也是不例外的。本篇来看下对于AOT的优化。
-概述 首先要明确一个概念，.NET里面的AOT它是原生的。什么意思呢？也就是说通过ILC编译器(AOT编译器，编译出来的代码是各个平台上可以直接运行的二进制代码。比如MacOS的二进制，Linux二进制等等。所以称之为原生。
-C#源码被ILC编译之后，生成了一个完全原生态代码的可执行文件。在执行的时候不需要JIT来编译任何东西，因为JIT已经在ILC里面被充分利用过了。实际上AOT里面也没有包含JIT。那么它如何优化呢？只能是在ILC里面调用JIT的时候了。所以它这个优化依然依靠JIT。.NET8里面优化AOT的一个典型的例子，就是ASP.NET应用程序在使用AOT的时候表现不错，同时也降低了总成本。
-创建项目 启用AOT
-打包指令 dotnet publish DemoAot.csproj -o pub\ -c Release -r win-x64 linux下 先安装SDK 安装后
-dotnet --list-sdks dotnet publish DemoAot.csproj -o $PWD/pub -c Release -r linux-x64 macos下 安装SDK后
-dotnet --list-sdks dotnet publish DemoAot.csproj -o $PWD/pub -c Release -r osx-x64 重启服务器 通过命令 cd fser 及sudo nohup /root/fser/fileserver &gt; output{当前时间}.log 2&gt;&amp;1 &amp; 和命令 cd nets4 及sudo nohup dotnet /root/nets4/IM.dll &gt; output{当前时间}.log 2&gt;&amp;1 &amp; 自动化运行
-为了自动化运行这些程序启动命令，可以编写一个 Shell 脚本并结合系统启动服务（如 systemd）来执行。 以下是具体实现步骤：
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-08 13:01:11 +0000 UTC'>May 8, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET native AOT" href="http://localhost:1313/posts/.net-native-aot/"></a>
+  <footer class="entry-footer"><span title='2024-04-12 09:27:49 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Debian Docker Redis" href="http://localhost:1313/posts/debian-docker-redis/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="prev" href="http://localhost:1313/tags/linux/">
+    <a class="prev" href="http://localhost:1313/tags/debian/page/3/">
       «&nbsp;Prev&nbsp;
     </a>
   </nav>

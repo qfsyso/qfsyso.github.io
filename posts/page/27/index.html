@@ -126,6 +126,61 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Vue study
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>前言 Vue.js，这个轻量级且灵活的JavaScript框架，就像一位魔术师，用它的魔法棒将数据和视图巧妙地连接在一起。当数据发生变化时，Vue.js就像变魔术一样，让视图自动更新，为开发者带来了极大的便利。
+Vue.js的诞生，源于一位名叫尤雨溪的开发者对前端开发的热爱与追求。在Google工作期间，他受到了Angular的启发，决定开发一款更加轻量、灵活的框架。于是，Vue.js应运而生，它的名字来源于“View”的缩写，寓意着它专注于视图层的开发。Vue.js不断地完善和发展。它引入了响应式数据绑定、组件化开发等核心概念，让前端开发变得更加高效和可维护。
+👋 Vue环境搭建 首先，搭一个打代码的环境
+1.安装node.js 在使用VS Code之前，需要安装Vue的开发环境。
+安装Vue的最简单方法是使用npm包管理器，先安装Node.js和npm。
+node官网 =&gt; https://nodejs.org/en/download
+2.配置环境变量 在nodejs安装目录下新建node_cache（nodejs缓存）、node_global（全局包存放）两个文件夹，如下图所示。
+​​
+打开cmd命令提示符，配置文件路径如下：
+​​
+配置环境变量
+​​
+系统属性-&gt;高级-&gt;环境变量-&gt;新增环境变量： ​​
+系统变量 ​​
+​​
+3.VSCode配置 Visual Studio Code
+以管理员身份运行VSCode
+VSCode安装插件ESLint
+安装js打包工具
+npm install -g webpack ​​
+​​
+4.安装Vue CLI npm install -g vue-cli (vue-cli npm install @vue/cli -g --unsafe-perm) 5.在VS Code中打开Vue项目 5.1. 在VS Code中，File &gt; Open Folder… 选择“文件”&gt; “打开文件夹”。 ​​
+5.2. 找到Vue项目文件夹，选择“文件夹”并打开。 ​​
+可以根据需要，在Extensions安装VSCode的中文扩展。
+5.3也可以通过Vue UI 创建一个新的Vue项目然后打开 vue ui ​​
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-17 08:59:30 +0000 UTC'>April 17, 2024</span>&nbsp;·&nbsp;10 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Vue study" href="http://localhost:1313/posts/vue-study/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET i18n 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>环境 WIN10 VS2022 .NET8
+👋创建项目 ​
+👀创建Resources Controllers HomeController.en.resx
+​ HomeController.fr.resx
+​ HomeController.zh.resx
+​
+🌱Program.cs添加国际化支持 // 添加国际化支持 builder.Services.AddLocalization(options =&gt; { options.ResourcesPath = &#34;Resources&#34;; }); var app = builder.Build(); // 多语言 var supportedCultures = new List&lt;CultureInfo&gt; { new CultureInfo(&#34;en&#34;), new CultureInfo(&#34;zh&#34;), new CultureInfo(&#34;fr&#34;), }; app.UseRequestLocalization(new RequestLocalizationOptions { DefaultRequestCulture = new RequestCulture(&#34;zh&#34;), SupportedCultures = supportedCultures, SupportedUICultures = supportedCultures }); ⚡注入localizer private readonly IStringLocalizer&lt;HomeController&gt; localizer; public HomeController(ILogger&lt;HomeController&gt; logger, IStringLocalizer&lt;HomeController&gt; localizer) { _logger = logger; this.localizer = localizer; } ``` # 📫编写调用方法 [HttpGet] public ActionResult&lt;string&gt; Get() { string rsstr= localizer.GetString(&#34;String1&#34;).Value;//?ui-culture=zh return rsstr; } 默认是中文 ?ui-culture=en 则取对应HomeController.en.resx 里面的String1 ​&lt;img onerror=&#34;notfound(this);&#34; src=&#34;https://cdn.jsdelivr.net/gh/qfsysw/resources/v2/2024041306.jpg&#34;&gt; ​&lt;img onerror=&#34;notfound(this);&#34; src=&#34;https://cdn.jsdelivr.net/gh/qfsysw/resources/v2/2024041307.jpg&#34;&gt; 🐟 </p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-16 01:29:17 +0000 UTC'>April 16, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET i18n " href="http://localhost:1313/posts/.net-i18n/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">MySQL Incorrect string value 
     </h2>
   </header>
@@ -248,50 +303,6 @@ docker run -d --name mysql-container -e TZ=UTC -p 30306:3306 -e MYSQL_ROOT_PASSW
   </div>
   <footer class="entry-footer"><span title='2024-04-11 08:35:22 +0000 UTC'>April 11, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to Docker MySQL " href="http://localhost:1313/posts/docker-mysql/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Hello World Hexo
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick Start Create a new post npm install hexo-cli -g hexo init blog cd blog npm install hexo server $ hexo new &#34;My New Post&#34; More info: Writing
-Run server $ hexo server More info: Server
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-03-20 22:16:01 +0000 UTC'>March 20, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Hello World Hexo" href="http://localhost:1313/posts/hello-world-hexo/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">some code
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>now study 开发者活动 https://developer.huaweicloud.com/events
-云学堂 https://edu.huaweicloud.com/signup/a84b127961f4408bb69d560f48c5675d
-华为云认证 https://edu.huaweicloud.com/certificationindex
-开发者空间学习 https://developer.huaweicloud.com/space/devportal/knowledge
-https://linux.do/t/topic/665547/1 华为云认真攻略
-AES-256 加密算法和三重转轮混淆技术
-10个人 2m 100 20m
-瘦肚子 胯下击掌 50 单侧提膝 50 提膝下压 50 深蹲 30 4组
-something git chatbox https://github.com/Bin-Huang/chatbox Desktop Client App for AI Models/LLMs (GPT, Claude, Gemini, Ollama…)
-fofa https://fofa.info/ app=“Ollama” &amp;&amp; is_domain=false https://github.com/ollama/ollama/blob/main/docs/api.md
-dbeaver sql工具 https://github.com/dbeaver/dbeaver/releases
-sing-boxyg https://github.com/yonggekkk/sing-box-yg
-music-desktop https://github.com/lyswhut/lx-music-desktop
-RDP、VNC、SSH 远程 https://github.com/mRemoteNG/mRemoteNG
-clash linux https://github.com/Elegycloud/clash-for-linux-backup
-ssh https://github.com/cmliu/webssh https://github.com/chaos-zhu/easynode https://github.com/crazypeace/huashengdun-webssh https://github.com/huashengdun/webssh https://github.com/Jrohy/webssh
-docker run -d --name webssh --restart always -p 18888:8888 cmliu/webssh:latest v2rayN https://github.com/2dust/v2rayN/
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-08-03 02:12:50 +0000 UTC'>August 3, 2023</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to some code" href="http://localhost:1313/posts/some-code/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
