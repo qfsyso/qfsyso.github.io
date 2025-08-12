@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Apple on MLOG</title><link>https://qfsyso.github.io/tags/apple/</link><description>Recent content in Apple on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Mon, 11 Aug 2025 00:10:13 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/apple/index.xml" rel="self" type="application/rss+xml"/><item><title>Apple Push Notification System For CSharp</title><link>https://qfsyso.github.io/posts/apple-push-notification-system-for-csharp/</link><pubDate>Mon, 11 Aug 2025 00:10:13 +0800</pubDate><guid>https://qfsyso.github.io/posts/apple-push-notification-system-for-csharp/</guid><description>dotAPNS 通过 Apple Push Notification Service（APNs）发送推送通知的 .NET 库，采用官方推荐的 HTTP/2 API 实现方式。
+主要特性
+支持 HTTP/2 协议：符合 Apple 官方推荐的推送通知方式，适用于 iOS、macOS、watchOS 等平台。
+.NET 支持：兼容 .NET Framework 4.6、.NET Standard 2.0 和 2.1，适用于 ASP.NET Core 项目。
+简化集成：提供了 dotAPNS.AspNetCore 集成库，简化了在 ASP.NET Core 项目中的使用。
+认证方式：支持基于证书和基于令牌的认证方式，推荐使用令牌方式以避免证书转换的复杂性。
+p12 使用 .p12 证书进行推送 dotAPNS 支持使用证书认证方式（.p12 文件）连接 APNs。 以下是使用 .p12 证书发送推送通知的基本步骤：
+加载证书： var cert = new X509Certificate2(&amp;#34;path_to_certificate.p12&amp;#34;, &amp;#34;certificate_password&amp;#34;); var apnsClient = ApnsClient.CreateUsingCert(cert); 构建推送通知：
+var push = new ApplePush(ApplePushType.Alert) .AddAlert(&amp;#34;title&amp;#34;, &amp;#34;Hello, World!&amp;#34;) .AddToken(&amp;#34;device_token&amp;#34;); 发送通知：</description></item></channel></rss>

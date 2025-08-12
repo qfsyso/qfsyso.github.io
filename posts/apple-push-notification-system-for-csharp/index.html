@@ -1,0 +1,915 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Apple Push Notification System For CSharp | MLOG</title>
+<meta name=keywords content="Apple,.NET,C#"><meta name=description content='dotAPNS 通过 Apple Push Notification Service（APNs）发送推送通知的 .NET 库，采用官方推荐的 HTTP/2 API 实现方式。
+主要特性
+支持 HTTP/2 协议：符合 Apple 官方推荐的推送通知方式，适用于 iOS、macOS、watchOS 等平台。
+.NET 支持：兼容 .NET Framework 4.6、.NET Standard 2.0 和 2.1，适用于 ASP.NET Core 项目。
+简化集成：提供了 dotAPNS.AspNetCore 集成库，简化了在 ASP.NET Core 项目中的使用。
+认证方式：支持基于证书和基于令牌的认证方式，推荐使用令牌方式以避免证书转换的复杂性。
+p12 使用 .p12 证书进行推送 dotAPNS 支持使用证书认证方式（.p12 文件）连接 APNs。 以下是使用 .p12 证书发送推送通知的基本步骤：
+加载证书： var cert = new X509Certificate2("path_to_certificate.p12", "certificate_password"); var apnsClient = ApnsClient.CreateUsingCert(cert); 构建推送通知：
+var push = new ApplePush(ApplePushType.Alert) .AddAlert("title", "Hello, World!") .AddToken("device_token"); 发送通知：'><meta name=author content="dwd"><link rel=canonical href=https://qfsyso.github.io/posts/apple-push-notification-system-for-csharp/><link crossorigin=anonymous href=/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF+13Dyqob6ASlTrTye8=" rel="preload stylesheet" as=style><link rel=icon href=https://qfsyso.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://qfsyso.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://qfsyso.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://qfsyso.github.io/apple-touch-icon.png><link rel=mask-icon href=https://qfsyso.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://qfsyso.github.io/posts/apple-push-notification-system-for-csharp/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://qfsyso.github.io/posts/apple-push-notification-system-for-csharp/"><meta property="og:site_name" content="MLOG"><meta property="og:title" content="Apple Push Notification System For CSharp"><meta property="og:description" content='dotAPNS 通过 Apple Push Notification Service（APNs）发送推送通知的 .NET 库，采用官方推荐的 HTTP/2 API 实现方式。
+主要特性
+支持 HTTP/2 协议：符合 Apple 官方推荐的推送通知方式，适用于 iOS、macOS、watchOS 等平台。
+.NET 支持：兼容 .NET Framework 4.6、.NET Standard 2.0 和 2.1，适用于 ASP.NET Core 项目。
+简化集成：提供了 dotAPNS.AspNetCore 集成库，简化了在 ASP.NET Core 项目中的使用。
+认证方式：支持基于证书和基于令牌的认证方式，推荐使用令牌方式以避免证书转换的复杂性。
+p12 使用 .p12 证书进行推送 dotAPNS 支持使用证书认证方式（.p12 文件）连接 APNs。 以下是使用 .p12 证书发送推送通知的基本步骤：
+加载证书： var cert = new X509Certificate2("path_to_certificate.p12", "certificate_password"); var apnsClient = ApnsClient.CreateUsingCert(cert); 构建推送通知：
+var push = new ApplePush(ApplePushType.Alert) .AddAlert("title", "Hello, World!") .AddToken("device_token"); 发送通知：'><meta property="og:locale" content="zh-CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-08-11T00:10:13+08:00"><meta property="article:modified_time" content="2025-08-11T00:10:13+08:00"><meta property="article:tag" content="Apple"><meta property="article:tag" content=".NET"><meta property="article:tag" content="C#"><meta name=twitter:card content="summary"><meta name=twitter:title content="Apple Push Notification System For CSharp"><meta name=twitter:description content='dotAPNS 通过 Apple Push Notification Service（APNs）发送推送通知的 .NET 库，采用官方推荐的 HTTP/2 API 实现方式。
+主要特性
+支持 HTTP/2 协议：符合 Apple 官方推荐的推送通知方式，适用于 iOS、macOS、watchOS 等平台。
+.NET 支持：兼容 .NET Framework 4.6、.NET Standard 2.0 和 2.1，适用于 ASP.NET Core 项目。
+简化集成：提供了 dotAPNS.AspNetCore 集成库，简化了在 ASP.NET Core 项目中的使用。
+认证方式：支持基于证书和基于令牌的认证方式，推荐使用令牌方式以避免证书转换的复杂性。
+p12 使用 .p12 证书进行推送 dotAPNS 支持使用证书认证方式（.p12 文件）连接 APNs。 以下是使用 .p12 证书发送推送通知的基本步骤：
+加载证书： var cert = new X509Certificate2("path_to_certificate.p12", "certificate_password"); var apnsClient = ApnsClient.CreateUsingCert(cert); 构建推送通知：
+var push = new ApplePush(ApplePushType.Alert) .AddAlert("title", "Hello, World!") .AddToken("device_token"); 发送通知：'><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://qfsyso.github.io/posts/"},{"@type":"ListItem","position":2,"name":"Apple Push Notification System For CSharp","item":"https://qfsyso.github.io/posts/apple-push-notification-system-for-csharp/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Apple Push Notification System For CSharp","name":"Apple Push Notification System For CSharp","description":"dotAPNS 通过 Apple Push Notification Service（APNs）发送推送通知的 .NET 库，采用官方推荐的 HTTP/2 API 实现方式。\n主要特性\n支持 HTTP/2 协议：符合 Apple 官方推荐的推送通知方式，适用于 iOS、macOS、watchOS 等平台。\n.NET 支持：兼容 .NET Framework 4.6、.NET Standard 2.0 和 2.1，适用于 ASP.NET Core 项目。\n简化集成：提供了 dotAPNS.AspNetCore 集成库，简化了在 ASP.NET Core 项目中的使用。\n认证方式：支持基于证书和基于令牌的认证方式，推荐使用令牌方式以避免证书转换的复杂性。\np12 使用 .p12 证书进行推送 dotAPNS 支持使用证书认证方式（.p12 文件）连接 APNs。 以下是使用 .p12 证书发送推送通知的基本步骤：\n加载证书： var cert = new X509Certificate2(\u0026#34;path_to_certificate.p12\u0026#34;, \u0026#34;certificate_password\u0026#34;); var apnsClient = ApnsClient.CreateUsingCert(cert); 构建推送通知：\nvar push = new ApplePush(ApplePushType.Alert) .AddAlert(\u0026#34;title\u0026#34;, \u0026#34;Hello, World!\u0026#34;) .AddToken(\u0026#34;device_token\u0026#34;); 发送通知：","keywords":["Apple",".NET","C#"],"articleBody":"dotAPNS 通过 Apple Push Notification Service（APNs）发送推送通知的 .NET 库，采用官方推荐的 HTTP/2 API 实现方式。\n主要特性\n支持 HTTP/2 协议：符合 Apple 官方推荐的推送通知方式，适用于 iOS、macOS、watchOS 等平台。\n.NET 支持：兼容 .NET Framework 4.6、.NET Standard 2.0 和 2.1，适用于 ASP.NET Core 项目。\n简化集成：提供了 dotAPNS.AspNetCore 集成库，简化了在 ASP.NET Core 项目中的使用。\n认证方式：支持基于证书和基于令牌的认证方式，推荐使用令牌方式以避免证书转换的复杂性。\np12 使用 .p12 证书进行推送 dotAPNS 支持使用证书认证方式（.p12 文件）连接 APNs。 以下是使用 .p12 证书发送推送通知的基本步骤：\n加载证书： var cert = new X509Certificate2(\"path_to_certificate.p12\", \"certificate_password\"); var apnsClient = ApnsClient.CreateUsingCert(cert); 构建推送通知：\nvar push = new ApplePush(ApplePushType.Alert) .AddAlert(\"title\", \"Hello, World!\") .AddToken(\"device_token\"); 发送通知：\nvar response = await apnsClient.SendAsync(push); 请确保替换上述代码中的 path_to_certificate.p12、certificate_password 和 device_token 为实际的证书路径、密码和设备令牌。\n获取 .p12 证书 要使用 .p12 证书进行推送，首先需要在 Apple Developer Center 创建一个推送证书并导出为 .p12 格式。以下是获取 .p12 证书的基本步骤：\n创建证书签名请求（CSR）： 在 macOS 上，打开 Keychain Access。\n选择 Keychain Access \u003e Certificate Assistant \u003e Request a Certificate From a Certificate Authority。\n输入电子邮件地址和常用名称，选择将请求保存到磁盘。\n保存生成的 .certSigningRequest 文件。\n在 Apple Developer Center 创建推送证书： 登录到 Apple Developer Center。\n导航到 Certificates, Identifiers \u0026 Profiles。\n在左侧菜单中选择 Certificates，然后点击右上角的 + 按钮。\n选择 Apple Push Notification service SSL (Sandbox \u0026 Production)，点击 Continue。\n选择 App ID，点击 Continue。\n上传之前生成的 .certSigningRequest 文件，点击 Continue。\n下载生成的 .cer 文件。\n导出 .p12 文件： 双击下载的 .cer 文件，将其添加到 Keychain Access 中。\n在 Keychain Access 中，找到证书，右键点击并选择 Export。\n选择导出格式为 .p12，设置密码保护文件。\n保存导出的 .p12 文件。\n请注意，.p12 证书每年需要更新。如果不想手动管理证书的更新，可以考虑使用 Apple 的 .p8 推送密钥，它不需要每年更新。\ncode dotnet add package dotAPNS dotnet add package dotAPNS.AspNetCore using System; using System.Security.Cryptography.X509Certificates; using System.Threading.Tasks; using dotAPNS; class Program { static async Task Main(string[] args) { var cert = new X509Certificate2(\"path_to_certificate.p12\", \"certificate_password\"); var apnsClient = ApnsClient.CreateUsingCert(cert); var push = new ApplePush(ApplePushType.Alert) .AddAlert(\"title\", \"Hello, World!\") .AddToken(\"device_token\"); var response = await apnsClient.SendAsync(push); Console.WriteLine($\"Push notification sent. Response: {response.StatusCode}\"); } } p8 dotAPNS 是一个用于通过 Apple 推送通知服务（APNs）发送推送通知的 .NET 库，支持 HTTP/2 协议。它提供了两种主要的连接方式：证书方式和令牌方式。令牌方式更为简便，不需要进行证书转换。\n以下是一个简单的示例，展示如何使用 dotAPNS 通过令牌方式发送推送通知：\nusing System; using System.Net.Http; using System.Threading.Tasks; using dotAPNS; using dotAPNS.Model; using dotAPNS.Model.Payload; class Program { static async Task Main(string[] args) { var options = new ApnsJwtOptions { BundleId = \"com.yourapp.bundle\", // 替换为应用 Bundle ID CertContent = @\"-----BEGIN PRIVATE KEY----- MIGTA...（私钥内容） -----END PRIVATE KEY-----\", // 替换为 .p8 私钥内容 KeyId = \" Key ID\", // 替换为 Key ID TeamId = \" Team ID\" // 替换为 Team ID }; var apns = ApnsClient.CreateUsingJwt(new HttpClient(), options); var push = new ApplePush(ApplePushType.Alert) .AddAlert(\"通知标题\", \"通知内容\") .AddToken(\"设备的推送令牌\"); // 替换为目标设备的推送令牌 try { var response = await apns.Send(push); if (response.IsSuccessful) { Console.WriteLine(\"通知发送成功！\"); } else { Console.WriteLine($\"发送失败：{response.ReasonString}\"); } } catch (Exception ex) { Console.WriteLine($\"发生错误：{ex.Message}\"); } } } 注意事项：\n在使用令牌方式时，需要从 Apple 开发者账户中获取以下信息：\nBundle ID\nKey ID\nTeam ID\n.p8 格式的私钥内容\n如果使用的是 .NET Framework，请确保 HttpClient 实例支持 HTTP/2。可以通过安装 System.Net.Http.WinHttpHandler NuGet 包，并使用 WinHttpHandler 来实现：\nvar apns = ApnsClient.CreateUsingJwt(new HttpClient(new WinHttpHandler()), options); //在发送通知时，可以根据需要添加其他内容，如声音、角标等： var push = new ApplePush(ApplePushType.Alert) .AddAlert(\"通知标题\", \"通知内容\") .AddSound(\"default\") .AddBadge(1) .AddToken(\"设备的推送令牌\"); 依赖注入 配置服务 在 Startup.cs 或 Program.cs 文件中，配置 dotAPNS 服务： 使用 .p12 证书注入 IApnsClient\nusing System.Security.Cryptography.X509Certificates; using dotAPNS; var builder = WebApplication.CreateBuilder(args); // 加载 .p12 证书，替换为你实际路径和密码 var certificate = new X509Certificate2(\"path_to_certificate.p12\", \"certificate_password\"); // 注入 APNs 客户端，使用证书认证 builder.Services.AddApnsClient(options =\u003e { options.UseCertificate(certificate); }); builder.Services.AddControllers(); var app = builder.Build(); app.MapControllers(); app.Run(); // 或者使用 .p8 证书配置 APNs 客户端 // services.AddApnsClient(options =\u003e // { // options.UseToken(\"team_id\", \"key_id\", \"path_to_key.p8\"); // }); 请确保将 “path_to_certificate.p12”、“certificate_password”、“team_id”、“key_id” 和 “path_to_key.p8” 替换为实际证书路径、密码和密钥信息。\n创建推送通知控制器 在控制器中，可以使用注入的 IApnsClient 来发送推送通知：\nusing Microsoft.AspNetCore.Mvc; using dotAPNS; using System.Threading.Tasks; [Route(\"api/[controller]\")] [ApiController] public class PushNotificationController : ControllerBase { private readonly IApnsClient _apnsClient; public PushNotificationController(IApnsClient apnsClient) { _apnsClient = apnsClient; } [HttpPost(\"send\")] public async Task SendPushNotification([FromBody] PushNotificationRequest request) { var push = new ApplePush(ApplePushType.Alert) .AddAlert(\"title\", request.Title) .AddAlert(\"body\", request.Body) .AddToken(request.DeviceToken); var response = await _apnsClient.SendAsync(push); if (response.StatusCode == System.Net.HttpStatusCode.OK) { return Ok(\"Push notification sent successfully.\"); } else { return StatusCode((int)response.StatusCode, \"Failed to send push notification.\"); } } } public class PushNotificationRequest { public string DeviceToken { get; set; } public string Title { get; set; } public string Body { get; set; } } PushNotificationRequest 类用于接收客户端发送的推送通知请求。SendPushNotification 方法使用注入的 IApnsClient 发送推送通知，并根据响应返回相应的结果。\n.p12 using Microsoft.AspNetCore.Mvc; using dotAPNS; using System.Threading.Tasks; [ApiController] [Route(\"api/[controller]\")] public class PushNotificationController : ControllerBase { private readonly IApnsClient _apnsClient; public PushNotificationController(IApnsClient apnsClient) { _apnsClient = apnsClient; } [HttpPost(\"send\")] public async Task SendPush([FromBody] PushNotificationRequest request) { var push = new ApplePush(ApplePushType.Alert) .AddAlert(\"title\", request.Title) .AddAlert(\"body\", request.Body) .AddToken(request.DeviceToken); var response = await _apnsClient.SendAsync(push); if (response.StatusCode == System.Net.HttpStatusCode.OK) { return Ok(\"Push notification sent successfully.\"); } else { return StatusCode((int)response.StatusCode, $\"Failed to send push notification: {response.Reason}\"); } } } public class PushNotificationRequest { public string DeviceToken { get; set; } public string Title { get; set; } public string Body { get; set; } } .p8 .p8 证书进行推送通知，需要在 Apple Developer Center 创建一个推送密钥，并获取 Team ID 和 Key ID。\npublic void ConfigureServices(IServiceCollection services) { services.AddApnsClient(options =\u003e { options.UseToken(\"team_id\", \"key_id\", \"path_to_key.p8\"); }); services.AddControllers(); } 请确保将 \"team_id\"、\"key_id\" 和 \"path_to_key.p8\" 替换为实际信息。 ## 测试推送通知 POST /api/pushnotification/send 端点发送 JSON ： ```json { \"deviceToken\": \"device_token\", \"title\": \"Hello\", \"body\": \"This is a test push notification.\" } “device_token” 替换为实际设备令牌。\n沙盒环境 string DevelopmentEndpoint = \"https://api.sandbox.push.apple.com\"; const string ProductionEndpoint = \"https://api.push.apple.com\"; //... var cert = new X509Certificate2(\"aps_development.p12\", \"123zxcvb\"); // var apnsClient = ApnsClient.CreateUsingCert(cert); var apnsClient = ApnsClient.CreateUsingCert(cert).UseSandbox(); var push = new ApplePush(ApplePushType.Alert) .AddAlert(\"title\", \" test Hell123333!\") .AddToken(\"xxx\"); 声音 var push = new ApplePush(ApplePushType.Alert) .AddAlert(\"title\", \"test Hello, World!\") .AddSound(\"default\") // 系统默认声音 // 如果是自定义声音文件，如 \"ring.caf\"，需在 App Bundle 里有该文件 // .AddSound(\"ring.caf\") .AddToken(\"xxxToken\"); var response = await apnsClient.SendAsync(push); Console.WriteLine($\"APNs Response: {response.StatusCode} - {response.Reason}\"); 如果使用 “default”，iOS 会播放系统默认推送声音。\n如果是自定义声音文件：\n必须放在 Xcode 项目的 App bundle 里\n格式必须是 .aiff、.wav 或 .caf\nApp 必须开启推送声音权限（在 iOS 设置中启用）。\n角标 var push = new ApplePush(ApplePushType.Alert) .AddAlert(\"title\", \"测试推送标题\") .AddAlert(\"body\", \"这是推送内容，带声音和角标\") .AddSound(\"default\") // 系统默认声音 // .AddSound(\"ring.caf\") // 如果是自定义声音 .AddBadge(3) // 角标数字 .AddCustomProperty(\"type\", \"chat\") // 自定义参数 .AddCustomProperty(\"messageId\", \"msg_001\") .AddToken(\"xxxToken\"); 使用 CorePush p8 下面是一个基于 CorePush（又名 net-core-push-notifications）库的完整示例，展示如何在 .NET 中使用其发送 Apple APNs 推送通知：\n安装 CorePush 在 .NET 项目中安装 CorePush 库：\ndotnet add package CorePush 设置依赖项与配置注入（依赖注入架构推荐） 在 Startup.cs 或 Program.cs 中注册 HttpClient 与配置类：\nservices.AddHttpClient(); // 若需要发送 Android/Web 通知，再添加 FcmSender var apnSettings = configuration.GetSection(\"ApnSettings\").Get(); services.AddSingleton(apnSettings); 这里 ApnSettings 可以从配置文件（如 appsettings.json）中绑定，包含 p8 私钥、Key ID、Team ID、Bundle ID 与目标环境（开发／生产）等。\n构造 APNs 消息并发送 以下代码展示了如何创建推送消息并发送：\n// 定义通知结构 public class AppleNotification { public ApsPayload Aps { get; set; } public object Data { get; set; } // 可选：携带自定义数据 } public class ApsPayload { [JsonProperty(\"alert\")] public string AlertBody { get; set; } } // 接收配置的 ApnSettings 示例 var settingsApn = new ApnSettings { AppBundleIdentifier = \"com.mycompany.myapp\", P8PrivateKey = \" p8 私钥（无空格/换行）\", P8PrivateKeyId = \"10 位 Key ID\", TeamId = \" Apple 团队 ID\", ServerType = ApnServerType.Development // 或 Production }; // 创建 HttpClient（若不使用 DI 可直接 new HttpClient） using var httpClient = new HttpClient(); var apn = new ApnSender(settingsApn, httpClient); var notification = new AppleNotification { Aps = new ApsPayload { AlertBody = \"Hello from CorePush!\" }, Data = new { customKey = \"customValue\" } // Optional }; var deviceToken = \"目标设备的 device token\"; var response = await apn.SendAsync(notification, deviceToken); 简洁 API 接口说明 构造 ApnSender(settings, httpClient) 时会自动生成并签署 JWT，适用于 Apple HTTP/2 推送 API\n然后通过 await apn.SendAsync(notification, deviceToken) 发起请求，操作非常直观简洁\n安装库 dotnet add package CorePush 配置API 提供 p8 私钥、Key ID、Team ID、Bundle ID、ServerType 创建通知对象 包含 aps.alert 字段（与可选自定义数据） 发送 使用 ApnSender.SendAsync() 进行推送\n自定义APNS p8 dotnet add package System.IdentityModel.Tokens.Jwt dotnet add package Microsoft.IdentityModel.Tokens using System; using System.Net.Http; using System.Net.Http.Headers; using System.Security.Cryptography; using System.Text; using System.Text.Json; using System.Threading.Tasks; using Microsoft.IdentityModel.Tokens; using System.IdentityModel.Tokens.Jwt; class ApnsSender { // p8文件内容（去掉-----BEGIN PRIVATE KEY-----...等头尾） private const string PrivateKey = @\" MIGHAg....oUAmDj \"; private const string KeyId = \"YOUR_KEY_ID\"; // Key ID (from Apple Developer portal) private const string TeamId = \"YOUR_TEAM_ID\"; // Team ID (Apple Developer account) private const string BundleId = \"com.example.app\"; // App Bundle ID (apns-topic) private const string DeviceToken = \"device_token_here\"; static async Task Main() { string jwtToken = GenerateJwtToken(PrivateKey, KeyId, TeamId); var payload = new { aps = new { alert = new { title = \"Hello\", body = \"This is a test push notification.\" }, sound = \"default\" } }; string jsonPayload = JsonSerializer.Serialize(payload); using var client = new HttpClient(); var request = new HttpRequestMessage(HttpMethod.Post, $\"https://api.push.apple.com/3/device/{DeviceToken}\") { Version = new Version(2, 0), Content = new StringContent(jsonPayload, Encoding.UTF8, \"application/json\") }; // 设置 HTTP/2 头 request.Headers.Authorization = new AuthenticationHeaderValue(\"bearer\", jwtToken); request.Headers.TryAddWithoutValidation(\"apns-topic\", BundleId); request.Headers.TryAddWithoutValidation(\"apns-push-type\", \"alert\"); request.Headers.TryAddWithoutValidation(\"apns-priority\", \"10\"); try { var response = await client.SendAsync(request); string responseContent = await response.Content.ReadAsStringAsync(); Console.WriteLine($\"StatusCode: {response.StatusCode}\"); Console.WriteLine($\"Response: {responseContent}\"); } catch (Exception ex) { Console.WriteLine($\"Exception: {ex}\"); } } // 生成 JWT Token private static string GenerateJwtToken(string privateKey, string keyId, string teamId) { // 解析私钥为ECDsa using var ecdsa = ECDsa.Create(); ecdsa.ImportPkcs8PrivateKey(Convert.FromBase64String(privateKey.Trim()), out _); var securityKey = new ECDsaSecurityKey(ecdsa) { KeyId = keyId }; var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.EcdsaSha256); var header = new JwtHeader(credentials); header[\"kid\"] = keyId; var payload = new JwtPayload( issuer: teamId, audience: \"https://appleid.apple.com\", claims: null, notBefore: null, expires: DateTime.UtcNow.AddMinutes(20), issuedAt: DateTime.UtcNow); var token = new JwtSecurityToken(header, payload); return new JwtSecurityTokenHandler().WriteToken(token); } } 说明 PrivateKey要填的是 .p8 文件内纯私钥内容（PEM 格式去掉头尾和换行），你可以用文本编辑器打开 .p8 文件，去掉首尾 —–BEGIN PRIVATE KEY—– 和 —–END PRIVATE KEY—– 以及所有换行符，只留下中间的 Base64 字符串。\nKeyId：Apple Developer Portal 中创建 .p8 时生成的 Key ID。\nTeamId： Apple 开发者团队 ID。\nBundleId： App Bundle Identifier，做为 apns-topic。\n生成的 JWT 有效期一般不要超过 1 小时，示例中用了 20 分钟。\n发送请求时必须用 HTTP/2，所以 HttpRequestMessage.Version=2.0。\nAPNs 域名默认生产环境，测试可替换成 https://api.sandbox.push.apple.com。\np12 MyAPNS static async Task MyAPNS(string tk, string tt, string con1) { string p12Path = \"aps_development.p12\"; // p12文件路径 string p12Password = \"xxx\"; // p12密码 string deviceToken = tk; string apnsTopic = \"com.xxx.xxx\"; // App Bundle ID if (!File.Exists(p12Path)) Console.WriteLine(\"证书文件不存在：\" + p12Path); // 读取 p12 证书 //var cert = new X509Certificate2(p12Path, p12Password, // X509KeyStorageFlags.MachineKeySet | // X509KeyStorageFlags.PersistKeySet | // X509KeyStorageFlags.Exportable); var cert = new X509Certificate2(p12Path, p12Password); var handler = new HttpClientHandler(); handler.ClientCertificates.Add(cert); // 要求HTTP/2 handler.SslProtocols = System.Security.Authentication.SslProtocols.Tls12; using var client = new HttpClient(handler); // APNs 生产环境地址，沙箱环境用 api.sandbox.push.apple.com // https://api.push.apple.com/3/device/ 正式 var apnsUrl = $\"https://api.sandbox.push.apple.com/3/device/{deviceToken}\"; // 构造推送负载 var payload = new { aps = new { alert = new { title = tt, body = con1 }, sound = \"default\" } }; string jsonPayload = System.Text.Json.JsonSerializer.Serialize(payload); using var content = new StringContent(jsonPayload, Encoding.UTF8, \"application/json\"); // 构造 HttpRequestMessage var request = new HttpRequestMessage(HttpMethod.Post, apnsUrl) { Version = new Version(2, 0), // HTTP/2 Content = content }; // APNs 需要的头 // 这里用证书认证，不需要 authorization 头。如果用 Token 认证才用此头 // request.Headers.Authorization = new AuthenticationHeaderValue(\"bearer\", \"\"); request.Headers.TryAddWithoutValidation(\"apns-topic\", apnsTopic); request.Headers.TryAddWithoutValidation(\"apns-push-type\", \"alert\"); // alert, background等 request.Headers.TryAddWithoutValidation(\"apns-priority\", \"10\"); // 10（立即推送）或 5（节省电量） try { var response = await client.SendAsync(request); string respContent = await response.Content.ReadAsStringAsync(); Console.WriteLine($\"Status: {response.StatusCode}\"); Console.WriteLine($\"Response: {respContent}\"); } catch (Exception ex) { Console.WriteLine($\"Exception: {ex.Message}\"); } } 调用 await MyAPNS(\"xxx\", \"T1\", \"HIHIHI\"); 静态单例 实现证书加载和 HttpClient 复用，并确保支持多线程调用（多个线程/任务安全且不会卡死）。\nusing System; using System.IO; using System.Net.Http; using System.Security.Cryptography.X509Certificates; using System.Text; using System.Threading.Tasks; public class ApnsClient { private static readonly string p12Path = \"aps_development.p12\"; private static readonly string p12Password = \"xxx\"; private static readonly string apnsTopic = \"com.xxx.xxx\"; private static readonly X509Certificate2 certificate; private static readonly HttpClient httpClient; // 静态构造函数初始化证书和 HttpClient，保证只执行一次 static ApnsClient() { if (!File.Exists(p12Path)) throw new FileNotFoundException(\"证书文件不存在：\" + p12Path); certificate = new X509Certificate2(p12Path, p12Password, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.PersistKeySet | X509KeyStorageFlags.Exportable); var handler = new HttpClientHandler(); handler.ClientCertificates.Add(certificate); handler.SslProtocols = System.Security.Authentication.SslProtocols.Tls12; httpClient = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(30) // 根据需要调整超时 }; } public static async Task SendPushAsync(string deviceToken, string title, string body, bool useSandbox = true) { var apnsUrl = useSandbox ? $\"https://api.sandbox.push.apple.com/3/device/{deviceToken}\" : $\"https://api.push.apple.com/3/device/{deviceToken}\"; var payload = new { aps = new { alert = new { title, body }, sound = \"default\" } }; string jsonPayload = System.Text.Json.JsonSerializer.Serialize(payload); using var content = new StringContent(jsonPayload, Encoding.UTF8, \"application/json\"); var request = new HttpRequestMessage(HttpMethod.Post, apnsUrl) { Version = new Version(2, 0), Content = content }; request.Headers.TryAddWithoutValidation(\"apns-topic\", apnsTopic); request.Headers.TryAddWithoutValidation(\"apns-push-type\", \"alert\"); request.Headers.TryAddWithoutValidation(\"apns-priority\", \"10\"); var response = await httpClient.SendAsync(request).ConfigureAwait(false); string respContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false); Console.WriteLine($\"Status: {response.StatusCode}\"); Console.WriteLine($\"Response: {respContent}\"); } } 这样调用即可支持多线程\nasync Task TestMultiplePush() { var tasks = new Task[10]; for (int i = 0; i \u003c 10; i++) { tasks[i] = ApnsClient.SendPushAsync(\"device_token_\" + i, \"Title \" + i, \"Body \" + i); } await Task.WhenAll(tasks); } 线程限流 + 失败重试 using System; using System.Collections.Concurrent; using System.IO; using System.Linq; using System.Net.Http; using System.Security.Cryptography.X509Certificates; using System.Text; using System.Threading; using System.Threading.Tasks; public static class ApnsPushService { private static readonly string P12Path = \"aps_development.p12\"; private static readonly string P12Password = \"xxx\"; private static readonly string ApnsTopic = \"com.xxx.xxx\"; private static readonly X509Certificate2 Certificate; private static readonly HttpClient Client; // 限流参数 private static readonly int MaxPushPerSecond = 5; // 每秒最多推送 N 条 private static readonly SemaphoreSlim RateLimitLock = new SemaphoreSlim(MaxPushPerSecond, MaxPushPerSecond); private static readonly ConcurrentQueue PushTimestamps = new ConcurrentQueue(); static ApnsPushService() { if (!File.Exists(P12Path)) throw new FileNotFoundException($\"证书文件不存在: {P12Path}\"); Certificate = new X509Certificate2(P12Path, P12Password, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.PersistKeySet | X509KeyStorageFlags.Exportable); var handler = new HttpClientHandler(); handler.ClientCertificates.Add(Certificate); handler.SslProtocols = System.Security.Authentication.SslProtocols.Tls12; Client = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(15) }; } public static async Task SendPushAsync(string deviceToken, string title, string body, bool sandbox = true) { await EnforceRateLimit(); int maxRetries = 3; int delayMs = 1000; for (int attempt = 1; attempt \u003c= maxRetries; attempt++) { try { string url = sandbox ? $\"https://api.sandbox.push.apple.com/3/device/{deviceToken}\" : $\"https://api.push.apple.com/3/device/{deviceToken}\"; var payload = new { aps = new { alert = new { title, body }, sound = \"default\" } }; var json = System.Text.Json.JsonSerializer.Serialize(payload); using var content = new StringContent(json, Encoding.UTF8, \"application/json\"); var request = new HttpRequestMessage(HttpMethod.Post, url) { Version = new Version(2, 0), Content = content }; request.Headers.TryAddWithoutValidation(\"apns-topic\", ApnsTopic); request.Headers.TryAddWithoutValidation(\"apns-push-type\", \"alert\"); request.Headers.TryAddWithoutValidation(\"apns-priority\", \"10\"); var response = await Client.SendAsync(request).ConfigureAwait(false); string resp = await response.Content.ReadAsStringAsync().ConfigureAwait(false); if (response.IsSuccessStatusCode) { Console.WriteLine($\"✅ 成功 [{deviceToken}] - {title}\"); return; } else { Console.WriteLine($\"⚠️ 推送失败 [{response.StatusCode}] 尝试 {attempt}/{maxRetries} - {resp}\"); // APNs 临时性错误才重试 if (response.StatusCode == System.Net.HttpStatusCode.ServiceUnavailable || (int)response.StatusCode == 429) { await Task.Delay(delayMs); delayMs *= 2; // 退避 continue; } else { return; // 其它错误直接放弃 } } } catch (HttpRequestException ex) { Console.WriteLine($\"网络异常 [{attempt}/{maxRetries}] - {ex.Message}\"); await Task.Delay(delayMs); delayMs *= 2; } } } private static async Task EnforceRateLimit() { DateTime now = DateTime.UtcNow; // 移除超过 1 秒的时间戳 while (PushTimestamps.TryPeek(out var ts) \u0026\u0026 (now - ts).TotalSeconds \u003e= 1) { PushTimestamps.TryDequeue(out _); } // 如果已达到每秒上限，则等待 while (PushTimestamps.Count \u003e= MaxPushPerSecond) { await Task.Delay(100); now = DateTime.UtcNow; while (PushTimestamps.TryPeek(out var ts2) \u0026\u0026 (now - ts2).TotalSeconds \u003e= 1) { PushTimestamps.TryDequeue(out _); } } PushTimestamps.Enqueue(now); } } var tokens = new[] { \"token1\", \"token2\", \"token3\", \"token4\", \"token5\", \"token6\" }; var tasks = tokens.Select((tk, i) =\u003e ApnsPushService.SendPushAsync(tk, $\"Title {i}\", $\"Body {i}\") ); await Task.WhenAll(tasks); 限流 MaxPushPerSecond 控制每秒最多推送几条。 超过会等待，保证 APNs 不拒绝。\n重试 仅对临时性错误（429、503、网络错误）重试，最大重试 3 次，每次延迟翻倍。\n线程安全 HttpClient 和证书是静态单例，支持多线程并发调用。\n可扩展 你可以把 MaxPushPerSecond 改大，或者把 maxRetries、delayMs 改成配置项。\n日志持久化 using System; using System.Collections.Concurrent; using System.IO; using System.Linq; using System.Net.Http; using System.Security.Cryptography.X509Certificates; using System.Text; using System.Threading; using System.Threading.Tasks; public static class ApnsPushService { private static readonly string P12Path = \"aps_development.p12\"; private static readonly string P12Password = \"xxx\"; private static readonly string ApnsTopic = \"com.xxx.xxx\"; private static readonly X509Certificate2 Certificate; private static readonly HttpClient Client; // 限流参数 private static readonly int MaxPushPerSecond = 5; // 每秒最多推送 N 条 private static readonly ConcurrentQueue PushTimestamps = new ConcurrentQueue(); private static readonly string LogFilePath = \"apns_failures.log\"; private static readonly SemaphoreSlim LogFileLock = new SemaphoreSlim(1, 1); static ApnsPushService() { if (!File.Exists(P12Path)) throw new FileNotFoundException($\"证书文件不存在: {P12Path}\"); Certificate = new X509Certificate2(P12Path, P12Password, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.PersistKeySet | X509KeyStorageFlags.Exportable); var handler = new HttpClientHandler(); handler.ClientCertificates.Add(Certificate); handler.SslProtocols = System.Security.Authentication.SslProtocols.Tls12; Client = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(15) }; } public static async Task SendPushAsync(string deviceToken, string title, string body, bool sandbox = true) { await EnforceRateLimit(); int maxRetries = 3; int delayMs = 1000; for (int attempt = 1; attempt \u003c= maxRetries; attempt++) { try { string url = sandbox ? $\"https://api.sandbox.push.apple.com/3/device/{deviceToken}\" : $\"https://api.push.apple.com/3/device/{deviceToken}\"; var payload = new { aps = new { alert = new { title, body }, sound = \"default\" } }; var json = System.Text.Json.JsonSerializer.Serialize(payload); using var content = new StringContent(json, Encoding.UTF8, \"application/json\"); var request = new HttpRequestMessage(HttpMethod.Post, url) { Version = new Version(2, 0), Content = content }; request.Headers.TryAddWithoutValidation(\"apns-topic\", ApnsTopic); request.Headers.TryAddWithoutValidation(\"apns-push-type\", \"alert\"); request.Headers.TryAddWithoutValidation(\"apns-priority\", \"10\"); var response = await Client.SendAsync(request).ConfigureAwait(false); string resp = await response.Content.ReadAsStringAsync().ConfigureAwait(false); if (response.IsSuccessStatusCode) { Console.WriteLine($\"✅ 成功 [{deviceToken}] - {title}\"); return; } else { Console.WriteLine($\"⚠️ 推送失败 [{response.StatusCode}] 尝试 {attempt}/{maxRetries} - {resp}\"); if (response.StatusCode == System.Net.HttpStatusCode.ServiceUnavailable || (int)response.StatusCode == 429) { await Task.Delay(delayMs); delayMs *= 2; continue; } else { await LogFailureAsync(deviceToken, title, body, resp); return; } } } catch (HttpRequestException ex) { Console.WriteLine($\"网络异常 [{attempt}/{maxRetries}] - {ex.Message}\"); await Task.Delay(delayMs); delayMs *= 2; if (attempt == maxRetries) { await LogFailureAsync(deviceToken, title, body, ex.Message); } } } } private static async Task EnforceRateLimit() { DateTime now = DateTime.UtcNow; while (PushTimestamps.TryPeek(out var ts) \u0026\u0026 (now - ts).TotalSeconds \u003e= 1) { PushTimestamps.TryDequeue(out _); } while (PushTimestamps.Count \u003e= MaxPushPerSecond) { await Task.Delay(100); now = DateTime.UtcNow; while (PushTimestamps.TryPeek(out var ts2) \u0026\u0026 (now - ts2).TotalSeconds \u003e= 1) { PushTimestamps.TryDequeue(out _); } } PushTimestamps.Enqueue(now); } private static async Task LogFailureAsync(string deviceToken, string title, string body, string error) { string log = $\"{DateTime.Now:yyyy-MM-dd HH:mm:ss} | DeviceToken: {deviceToken} | Title: {title} | Body: {body} | Error: {error}{Environment.NewLine}\"; await LogFileLock.WaitAsync(); try { await File.AppendAllTextAsync(LogFilePath, log); } finally { LogFileLock.Release(); } } } LogFailureAsync 异步写文件，并用信号量锁控制并发写入，防止文件写入冲突。\n日志文件名是 apns_failures.log，你可以根据需要改路径或文件名。\n失败日志包含时间、设备token、推送标题、内容和错误信息，方便后续查阅。\n只在最终确定失败（非重试或者重试完毕仍失败）时写入日志，避免日志膨胀。\n参考 https://github.com/alexalok/dotAPNS\nhttps://dontpaniclabs.com/blog/post/2024/07/23/sending-apns-push-notifications-using-c-sharp/\n","wordCount":"2640","inLanguage":"en","datePublished":"2025-08-11T00:10:13+08:00","dateModified":"2025-08-11T00:10:13+08:00","author":{"@type":"Person","name":"dwd"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://qfsyso.github.io/posts/apple-push-notification-system-for-csharp/"},"publisher":{"@type":"Organization","name":"MLOG","logo":{"@type":"ImageObject","url":"https://qfsyso.github.io/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://qfsyso.github.io/ accesskey=h title="MLOG (Alt + H)">MLOG</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://qfsyso.github.io/posts/ title=Archive><span>Archive</span></a></li><li><a href=https://qfsyso.github.io/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://qfsyso.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">Apple Push Notification System For CSharp</h1><div class=post-meta><span title='2025-08-11 00:10:13 +0800 +0800'>August 11, 2025</span>&nbsp;·&nbsp;13 min&nbsp;·&nbsp;dwd</div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#dotapns aria-label=dotAPNS>dotAPNS</a></li><li><a href=#p12 aria-label=p12>p12</a><ul><li><a href=#%e5%8a%a0%e8%bd%bd%e8%af%81%e4%b9%a6 aria-label=加载证书：>加载证书：</a></li><li><a href=#%e8%8e%b7%e5%8f%96-p12-%e8%af%81%e4%b9%a6 aria-label="获取 .p12 证书">获取 .p12 证书</a></li><li><a href=#%e5%88%9b%e5%bb%ba%e8%af%81%e4%b9%a6%e7%ad%be%e5%90%8d%e8%af%b7%e6%b1%82csr aria-label=创建证书签名请求（CSR）：>创建证书签名请求（CSR）：</a></li><li><a href=#%e5%9c%a8-apple-developer-center-%e5%88%9b%e5%bb%ba%e6%8e%a8%e9%80%81%e8%af%81%e4%b9%a6 aria-label="在 Apple Developer Center 创建推送证书：">在 Apple Developer Center 创建推送证书：</a></li><li><a href=#%e5%af%bc%e5%87%ba-p12-%e6%96%87%e4%bb%b6 aria-label="导出 .p12 文件：">导出 .p12 文件：</a></li><li><a href=#code aria-label=code>code</a></li></ul></li><li><a href=#p8 aria-label=p8>p8</a></li><li><a href=#%e4%be%9d%e8%b5%96%e6%b3%a8%e5%85%a5 aria-label=依赖注入>依赖注入</a><ul><li><a href=#%e9%85%8d%e7%bd%ae%e6%9c%8d%e5%8a%a1 aria-label=配置服务>配置服务</a></li><li><a href=#%e5%88%9b%e5%bb%ba%e6%8e%a8%e9%80%81%e9%80%9a%e7%9f%a5%e6%8e%a7%e5%88%b6%e5%99%a8 aria-label=创建推送通知控制器>创建推送通知控制器</a></li><li><a href=#p12-1 aria-label=.p12>.p12</a></li><li><a href=#p8-1 aria-label=.p8>.p8</a></li></ul></li><li><a href=#%e6%b2%99%e7%9b%92%e7%8e%af%e5%a2%83 aria-label=沙盒环境>沙盒环境</a></li><li><a href=#%e5%a3%b0%e9%9f%b3 aria-label=声音>声音</a></li><li><a href=#%e8%a7%92%e6%a0%87 aria-label=角标>角标</a></li><li><a href=#%e4%bd%bf%e7%94%a8-corepush aria-label="使用 CorePush">使用 CorePush</a><ul><li><a href=#p8-2 aria-label=p8>p8</a><ul><li><a href=#%e5%ae%89%e8%a3%85-corepush aria-label="安装 CorePush">安装 CorePush</a></li><li><a href=#%e8%ae%be%e7%bd%ae%e4%be%9d%e8%b5%96%e9%a1%b9%e4%b8%8e%e9%85%8d%e7%bd%ae%e6%b3%a8%e5%85%a5%e4%be%9d%e8%b5%96%e6%b3%a8%e5%85%a5%e6%9e%b6%e6%9e%84%e6%8e%a8%e8%8d%90 aria-label=设置依赖项与配置注入（依赖注入架构推荐）>设置依赖项与配置注入（依赖注入架构推荐）</a></li><li><a href=#%e6%9e%84%e9%80%a0-apns-%e6%b6%88%e6%81%af%e5%b9%b6%e5%8f%91%e9%80%81 aria-label="构造 APNs 消息并发送">构造 APNs 消息并发送</a></li><li><a href=#%e7%ae%80%e6%b4%81-api-%e6%8e%a5%e5%8f%a3%e8%af%b4%e6%98%8e aria-label="简洁 API 接口说明">简洁 API 接口说明</a></li></ul></li></ul></li><li><a href=#%e8%87%aa%e5%ae%9a%e4%b9%89apns aria-label=自定义APNS>自定义APNS</a><ul><li><a href=#p8-3 aria-label=p8>p8</a></li><li><a href=#p12-myapns aria-label="p12 MyAPNS">p12 MyAPNS</a></li><li><a href=#%e8%b0%83%e7%94%a8 aria-label=调用>调用</a></li><li><a href=#%e9%9d%99%e6%80%81%e5%8d%95%e4%be%8b aria-label=静态单例>静态单例</a></li><li><a href=#%e7%ba%bf%e7%a8%8b%e9%99%90%e6%b5%81--%e5%a4%b1%e8%b4%a5%e9%87%8d%e8%af%95 aria-label="线程限流 + 失败重试">线程限流 + 失败重试</a></li></ul></li><li><a href=#%e6%97%a5%e5%bf%97%e6%8c%81%e4%b9%85%e5%8c%96 aria-label=日志持久化>日志持久化</a></li><li><a href=#%e5%8f%82%e8%80%83 aria-label=参考>参考</a></li></ul></div></details></div><div class=post-content><h1 id=dotapns>dotAPNS<a hidden class=anchor aria-hidden=true href=#dotapns>#</a></h1><p>通过 Apple Push Notification Service（APNs）发送推送通知的 .NET 库，采用官方推荐的 HTTP/2 API 实现方式。</p><p>主要特性</p><p>支持 HTTP/2 协议：符合 Apple 官方推荐的推送通知方式，适用于 iOS、macOS、watchOS 等平台。</p><p>.NET 支持：兼容 .NET Framework 4.6、.NET Standard 2.0 和 2.1，适用于 ASP.NET Core 项目。</p><p>简化集成：提供了 dotAPNS.AspNetCore 集成库，简化了在 ASP.NET Core 项目中的使用。</p><p>认证方式：支持基于证书和基于令牌的认证方式，推荐使用令牌方式以避免证书转换的复杂性。</p><h1 id=p12>p12<a hidden class=anchor aria-hidden=true href=#p12>#</a></h1><p>使用 .p12 证书进行推送
+dotAPNS 支持使用证书认证方式（.p12 文件）连接 APNs。
+以下是使用 .p12 证书发送推送通知的基本步骤：</p><h2 id=加载证书>加载证书：<a hidden class=anchor aria-hidden=true href=#加载证书>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> cert = <span style=color:#66d9ef>new</span> X509Certificate2(<span style=color:#e6db74>&#34;path_to_certificate.p12&#34;</span>, <span style=color:#e6db74>&#34;certificate_password&#34;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> apnsClient = ApnsClient.CreateUsingCert(cert);
+</span></span></code></pre></div><p>构建推送通知：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> push = <span style=color:#66d9ef>new</span> ApplePush(ApplePushType.Alert)
+</span></span><span style=display:flex><span>    .AddAlert(<span style=color:#e6db74>&#34;title&#34;</span>, <span style=color:#e6db74>&#34;Hello, World!&#34;</span>)
+</span></span><span style=display:flex><span>    .AddToken(<span style=color:#e6db74>&#34;device_token&#34;</span>);
+</span></span></code></pre></div><p>发送通知：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> response = <span style=color:#66d9ef>await</span> apnsClient.SendAsync(push);
+</span></span></code></pre></div><p>请确保替换上述代码中的 path_to_certificate.p12、certificate_password 和 device_token 为实际的证书路径、密码和设备令牌。</p><h2 id=获取-p12-证书>获取 .p12 证书<a hidden class=anchor aria-hidden=true href=#获取-p12-证书>#</a></h2><p>要使用 .p12 证书进行推送，首先需要在 Apple Developer Center 创建一个推送证书并导出为 .p12 格式。以下是获取 .p12 证书的基本步骤：</p><h2 id=创建证书签名请求csr>创建证书签名请求（CSR）：<a hidden class=anchor aria-hidden=true href=#创建证书签名请求csr>#</a></h2><p>在 macOS 上，打开 Keychain Access。</p><p>选择 Keychain Access > Certificate Assistant > Request a Certificate From a Certificate Authority。</p><p>输入电子邮件地址和常用名称，选择将请求保存到磁盘。</p><p>保存生成的 .certSigningRequest 文件。</p><h2 id=在-apple-developer-center-创建推送证书>在 Apple Developer Center 创建推送证书：<a hidden class=anchor aria-hidden=true href=#在-apple-developer-center-创建推送证书>#</a></h2><p>登录到 Apple Developer Center。</p><p>导航到 Certificates, Identifiers & Profiles。</p><p>在左侧菜单中选择 Certificates，然后点击右上角的 + 按钮。</p><p>选择 Apple Push Notification service SSL (Sandbox & Production)，点击 Continue。</p><p>选择 App ID，点击 Continue。</p><p>上传之前生成的 .certSigningRequest 文件，点击 Continue。</p><p>下载生成的 .cer 文件。</p><h2 id=导出-p12-文件>导出 .p12 文件：<a hidden class=anchor aria-hidden=true href=#导出-p12-文件>#</a></h2><p>双击下载的 .cer 文件，将其添加到 Keychain Access 中。</p><p>在 Keychain Access 中，找到证书，右键点击并选择 Export。</p><p>选择导出格式为 .p12，设置密码保护文件。</p><p>保存导出的 .p12 文件。</p><p>请注意，.p12 证书<strong>每年</strong>需要更新。如果不想手动管理证书的更新，可以考虑使用 Apple 的 .p8 推送密钥，它不需要每年更新。</p><h2 id=code>code<a hidden class=anchor aria-hidden=true href=#code>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>dotnet add package dotAPNS
+</span></span><span style=display:flex><span>dotnet add package dotAPNS.AspNetCore
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Security.Cryptography.X509Certificates;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading.Tasks;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> dotAPNS;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Program</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>async</span> Task Main(<span style=color:#66d9ef>string</span>[] args)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> cert = <span style=color:#66d9ef>new</span> X509Certificate2(<span style=color:#e6db74>&#34;path_to_certificate.p12&#34;</span>, <span style=color:#e6db74>&#34;certificate_password&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> apnsClient = ApnsClient.CreateUsingCert(cert);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> push = <span style=color:#66d9ef>new</span> ApplePush(ApplePushType.Alert)
+</span></span><span style=display:flex><span>            .AddAlert(<span style=color:#e6db74>&#34;title&#34;</span>, <span style=color:#e6db74>&#34;Hello, World!&#34;</span>)
+</span></span><span style=display:flex><span>            .AddToken(<span style=color:#e6db74>&#34;device_token&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> response = <span style=color:#66d9ef>await</span> apnsClient.SendAsync(push);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>$&#34;Push notification sent. Response: {response.StatusCode}&#34;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h1 id=p8>p8<a hidden class=anchor aria-hidden=true href=#p8>#</a></h1><p>dotAPNS 是一个用于通过 Apple 推送通知服务（APNs）发送推送通知的 .NET 库，支持 HTTP/2 协议。它提供了两种主要的连接方式：证书方式和令牌方式。令牌方式更为简便，不需要进行证书转换。</p><p>以下是一个简单的示例，展示如何使用 dotAPNS 通过令牌方式发送推送通知：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Net.Http;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading.Tasks;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> dotAPNS;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> dotAPNS.Model;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> dotAPNS.Model.Payload;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Program</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>async</span> Task Main(<span style=color:#66d9ef>string</span>[] args)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> options = <span style=color:#66d9ef>new</span> ApnsJwtOptions
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            BundleId = <span style=color:#e6db74>&#34;com.yourapp.bundle&#34;</span>, <span style=color:#75715e>// 替换为应用 Bundle ID</span>
+</span></span><span style=display:flex><span>            CertContent = <span style=color:#e6db74>@&#34;-----BEGIN PRIVATE KEY-----
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>MIGTA...（私钥内容）
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>-----END PRIVATE KEY-----&#34;</span>, <span style=color:#75715e>// 替换为 .p8 私钥内容</span>
+</span></span><span style=display:flex><span>            KeyId = <span style=color:#e6db74>&#34; Key ID&#34;</span>, <span style=color:#75715e>// 替换为 Key ID</span>
+</span></span><span style=display:flex><span>            TeamId = <span style=color:#e6db74>&#34; Team ID&#34;</span> <span style=color:#75715e>// 替换为 Team ID</span>
+</span></span><span style=display:flex><span>        };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> apns = ApnsClient.CreateUsingJwt(<span style=color:#66d9ef>new</span> HttpClient(), options);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> push = <span style=color:#66d9ef>new</span> ApplePush(ApplePushType.Alert)
+</span></span><span style=display:flex><span>            .AddAlert(<span style=color:#e6db74>&#34;通知标题&#34;</span>, <span style=color:#e6db74>&#34;通知内容&#34;</span>)
+</span></span><span style=display:flex><span>            .AddToken(<span style=color:#e6db74>&#34;设备的推送令牌&#34;</span>); <span style=color:#75715e>// 替换为目标设备的推送令牌</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>var</span> response = <span style=color:#66d9ef>await</span> apns.Send(push);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (response.IsSuccessful)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                Console.WriteLine(<span style=color:#e6db74>&#34;通知发送成功！&#34;</span>);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                Console.WriteLine(<span style=color:#e6db74>$&#34;发送失败：{response.ReasonString}&#34;</span>);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>catch</span> (Exception ex)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>$&#34;发生错误：{ex.Message}&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>注意事项：</p><p>在使用令牌方式时，需要从 Apple 开发者账户中获取以下信息：</p><p>Bundle ID</p><p>Key ID</p><p>Team ID</p><p>.p8 格式的私钥内容</p><p>如果使用的是 .NET Framework，请确保 HttpClient 实例支持 HTTP/2。可以通过安装 System.Net.Http.WinHttpHandler NuGet 包，并使用 WinHttpHandler 来实现：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>var</span> apns = ApnsClient.CreateUsingJwt(<span style=color:#66d9ef>new</span> HttpClient(<span style=color:#66d9ef>new</span> WinHttpHandler()), options);
+</span></span><span style=display:flex><span><span style=color:#75715e>//在发送通知时，可以根据需要添加其他内容，如声音、角标等：</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>var</span> push = <span style=color:#66d9ef>new</span> ApplePush(ApplePushType.Alert)
+</span></span><span style=display:flex><span>      .AddAlert(<span style=color:#e6db74>&#34;通知标题&#34;</span>, <span style=color:#e6db74>&#34;通知内容&#34;</span>)
+</span></span><span style=display:flex><span>      .AddSound(<span style=color:#e6db74>&#34;default&#34;</span>)
+</span></span><span style=display:flex><span>      .AddBadge(<span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>      .AddToken(<span style=color:#e6db74>&#34;设备的推送令牌&#34;</span>);
+</span></span></code></pre></div><h1 id=依赖注入>依赖注入<a hidden class=anchor aria-hidden=true href=#依赖注入>#</a></h1><h2 id=配置服务>配置服务<a hidden class=anchor aria-hidden=true href=#配置服务>#</a></h2><p>在 Startup.cs 或 Program.cs 文件中，配置 dotAPNS 服务：
+使用 .p12 证书注入 IApnsClient</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>using</span> System.Security.Cryptography.X509Certificates;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>using</span> dotAPNS;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> builder = WebApplication.CreateBuilder(args);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 加载 .p12 证书，替换为你实际路径和密码</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> certificate = <span style=color:#66d9ef>new</span> X509Certificate2(<span style=color:#e6db74>&#34;path_to_certificate.p12&#34;</span>, <span style=color:#e6db74>&#34;certificate_password&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 注入 APNs 客户端，使用证书认证</span>
+</span></span><span style=display:flex><span>    builder.Services.AddApnsClient(options =&gt;
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        options.UseCertificate(certificate);
+</span></span><span style=display:flex><span>    });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    builder.Services.AddControllers();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> app = builder.Build();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    app.MapControllers();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    app.Run();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 或者使用 .p8 证书配置 APNs 客户端</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// services.AddApnsClient(options =&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// {</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//     options.UseToken(&#34;team_id&#34;, &#34;key_id&#34;, &#34;path_to_key.p8&#34;);</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// });</span>
+</span></span></code></pre></div><p>请确保将 &ldquo;path_to_certificate.p12&rdquo;、&ldquo;certificate_password&rdquo;、&ldquo;team_id&rdquo;、&ldquo;key_id&rdquo; 和 &ldquo;path_to_key.p8&rdquo; 替换为实际证书路径、密码和密钥信息。</p><h2 id=创建推送通知控制器>创建推送通知控制器<a hidden class=anchor aria-hidden=true href=#创建推送通知控制器>#</a></h2><p>在控制器中，可以使用注入的 IApnsClient 来发送推送通知：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> Microsoft.AspNetCore.Mvc;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> dotAPNS;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading.Tasks;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>[Route(&#34;api/[controller]</span><span style=color:#e6db74>&#34;)]
+</span></span></span><span style=display:flex><span><span style=color:#e6db74></span><span style=color:#a6e22e>[ApiController]</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PushNotificationController</span> : ControllerBase
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> IApnsClient _apnsClient;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> PushNotificationController(IApnsClient apnsClient)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        _apnsClient = apnsClient;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span><span style=color:#a6e22e>
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>    [HttpPost(&#34;send&#34;)]</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>async</span> Task&lt;IActionResult&gt; SendPushNotification([FromBody] PushNotificationRequest request)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> push = <span style=color:#66d9ef>new</span> ApplePush(ApplePushType.Alert)
+</span></span><span style=display:flex><span>            .AddAlert(<span style=color:#e6db74>&#34;title&#34;</span>, request.Title)
+</span></span><span style=display:flex><span>            .AddAlert(<span style=color:#e6db74>&#34;body&#34;</span>, request.Body)
+</span></span><span style=display:flex><span>            .AddToken(request.DeviceToken);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> response = <span style=color:#66d9ef>await</span> _apnsClient.SendAsync(push);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (response.StatusCode == System.Net.HttpStatusCode.OK)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> Ok(<span style=color:#e6db74>&#34;Push notification sent successfully.&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> StatusCode((<span style=color:#66d9ef>int</span>)response.StatusCode, <span style=color:#e6db74>&#34;Failed to send push notification.&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PushNotificationRequest</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>string</span> DeviceToken { <span style=color:#66d9ef>get</span>; <span style=color:#66d9ef>set</span>; }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>string</span> Title { <span style=color:#66d9ef>get</span>; <span style=color:#66d9ef>set</span>; }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>string</span> Body { <span style=color:#66d9ef>get</span>; <span style=color:#66d9ef>set</span>; }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>PushNotificationRequest 类用于接收客户端发送的推送通知请求。SendPushNotification 方法使用注入的 IApnsClient 发送推送通知，并根据响应返回相应的结果。</p><h2 id=p12-1>.p12<a hidden class=anchor aria-hidden=true href=#p12-1>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> Microsoft.AspNetCore.Mvc;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> dotAPNS;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading.Tasks;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>[ApiController]</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>[Route(&#34;api/[controller]</span><span style=color:#e6db74>&#34;)]
+</span></span></span><span style=display:flex><span><span style=color:#e6db74></span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PushNotificationController</span> : ControllerBase
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> IApnsClient _apnsClient;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> PushNotificationController(IApnsClient apnsClient)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        _apnsClient = apnsClient;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span><span style=color:#a6e22e>
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>    [HttpPost(&#34;send&#34;)]</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>async</span> Task&lt;IActionResult&gt; SendPush([FromBody] PushNotificationRequest request)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> push = <span style=color:#66d9ef>new</span> ApplePush(ApplePushType.Alert)
+</span></span><span style=display:flex><span>            .AddAlert(<span style=color:#e6db74>&#34;title&#34;</span>, request.Title)
+</span></span><span style=display:flex><span>            .AddAlert(<span style=color:#e6db74>&#34;body&#34;</span>, request.Body)
+</span></span><span style=display:flex><span>            .AddToken(request.DeviceToken);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> response = <span style=color:#66d9ef>await</span> _apnsClient.SendAsync(push);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (response.StatusCode == System.Net.HttpStatusCode.OK)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> Ok(<span style=color:#e6db74>&#34;Push notification sent successfully.&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> StatusCode((<span style=color:#66d9ef>int</span>)response.StatusCode, <span style=color:#e6db74>$&#34;Failed to send push notification: {response.Reason}&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PushNotificationRequest</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>string</span> DeviceToken { <span style=color:#66d9ef>get</span>; <span style=color:#66d9ef>set</span>; }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>string</span> Title { <span style=color:#66d9ef>get</span>; <span style=color:#66d9ef>set</span>; }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>string</span> Body { <span style=color:#66d9ef>get</span>; <span style=color:#66d9ef>set</span>; }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=p8-1>.p8<a hidden class=anchor aria-hidden=true href=#p8-1>#</a></h2><p>.p8 证书进行推送通知，需要在 Apple Developer Center 创建一个推送密钥，并获取 Team ID 和 Key ID。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> ConfigureServices(IServiceCollection services)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    services.AddApnsClient(options =&gt;
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        options.UseToken(<span style=color:#e6db74>&#34;team_id&#34;</span>, <span style=color:#e6db74>&#34;key_id&#34;</span>, <span style=color:#e6db74>&#34;path_to_key.p8&#34;</span>);
+</span></span><span style=display:flex><span>    });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    services.AddControllers();
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>请确保将</span> <span style=color:#e6db74>&#34;team_id&#34;</span><span style=color:#960050;background-color:#1e0010>、</span><span style=color:#e6db74>&#34;key_id&#34;</span> <span style=color:#960050;background-color:#1e0010>和</span> <span style=color:#e6db74>&#34;path_to_key.p8&#34;</span> <span style=color:#960050;background-color:#1e0010>替换为实际信息。</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>##</span>  <span style=color:#960050;background-color:#1e0010>测试推送通知</span>
+</span></span><span style=display:flex><span>POST /api/pushnotification/send <span style=color:#960050;background-color:#1e0010>端点发送</span> JSON <span style=color:#960050;background-color:#1e0010>：</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>```</span>json
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;deviceToken&#34;</span>: <span style=color:#e6db74>&#34;device_token&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;title&#34;</span>: <span style=color:#e6db74>&#34;Hello&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;body&#34;</span>: <span style=color:#e6db74>&#34;This is a test push notification.&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>&ldquo;device_token&rdquo; 替换为实际设备令牌。</p><h1 id=沙盒环境>沙盒环境<a hidden class=anchor aria-hidden=true href=#沙盒环境>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>    <span style=color:#66d9ef>string</span> DevelopmentEndpoint = <span style=color:#e6db74>&#34;https://api.sandbox.push.apple.com&#34;</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>string</span> ProductionEndpoint = <span style=color:#e6db74>&#34;https://api.push.apple.com&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//...</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> cert = <span style=color:#66d9ef>new</span> X509Certificate2(<span style=color:#e6db74>&#34;aps_development.p12&#34;</span>, <span style=color:#e6db74>&#34;123zxcvb&#34;</span>);
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// var apnsClient = ApnsClient.CreateUsingCert(cert);</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> apnsClient = ApnsClient.CreateUsingCert(cert).UseSandbox();
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> push = <span style=color:#66d9ef>new</span> ApplePush(ApplePushType.Alert)
+</span></span><span style=display:flex><span>        .AddAlert(<span style=color:#e6db74>&#34;title&#34;</span>, <span style=color:#e6db74>&#34; test Hell123333!&#34;</span>)
+</span></span><span style=display:flex><span>        .AddToken(<span style=color:#e6db74>&#34;xxx&#34;</span>);
+</span></span></code></pre></div><h1 id=声音>声音<a hidden class=anchor aria-hidden=true href=#声音>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>    <span style=color:#66d9ef>var</span> push = <span style=color:#66d9ef>new</span> ApplePush(ApplePushType.Alert)
+</span></span><span style=display:flex><span>        .AddAlert(<span style=color:#e6db74>&#34;title&#34;</span>, <span style=color:#e6db74>&#34;test Hello, World!&#34;</span>)
+</span></span><span style=display:flex><span>        .AddSound(<span style=color:#e6db74>&#34;default&#34;</span>) <span style=color:#75715e>// 系统默认声音</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 如果是自定义声音文件，如 &#34;ring.caf&#34;，需在 App Bundle 里有该文件</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// .AddSound(&#34;ring.caf&#34;)</span>
+</span></span><span style=display:flex><span>        .AddToken(<span style=color:#e6db74>&#34;xxxToken&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> response = <span style=color:#66d9ef>await</span> apnsClient.SendAsync(push);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Console.WriteLine(<span style=color:#e6db74>$&#34;APNs Response: {response.StatusCode} - {response.Reason}&#34;</span>);
+</span></span></code></pre></div><p>如果使用 &ldquo;default&rdquo;，iOS 会播放系统默认推送声音。</p><p>如果是自定义声音文件：</p><p>必须放在 Xcode 项目的 App bundle 里</p><p>格式必须是 .aiff、.wav 或 .caf</p><p>App 必须开启推送声音权限（在 iOS 设置中启用）。</p><h1 id=角标>角标<a hidden class=anchor aria-hidden=true href=#角标>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>        <span style=color:#66d9ef>var</span> push = <span style=color:#66d9ef>new</span> ApplePush(ApplePushType.Alert)
+</span></span><span style=display:flex><span>            .AddAlert(<span style=color:#e6db74>&#34;title&#34;</span>, <span style=color:#e6db74>&#34;测试推送标题&#34;</span>)
+</span></span><span style=display:flex><span>            .AddAlert(<span style=color:#e6db74>&#34;body&#34;</span>, <span style=color:#e6db74>&#34;这是推送内容，带声音和角标&#34;</span>)
+</span></span><span style=display:flex><span>            .AddSound(<span style=color:#e6db74>&#34;default&#34;</span>) <span style=color:#75715e>// 系统默认声音</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// .AddSound(&#34;ring.caf&#34;) // 如果是自定义声音</span>
+</span></span><span style=display:flex><span>            .AddBadge(<span style=color:#ae81ff>3</span>) <span style=color:#75715e>// 角标数字</span>
+</span></span><span style=display:flex><span>            .AddCustomProperty(<span style=color:#e6db74>&#34;type&#34;</span>, <span style=color:#e6db74>&#34;chat&#34;</span>) <span style=color:#75715e>// 自定义参数</span>
+</span></span><span style=display:flex><span>            .AddCustomProperty(<span style=color:#e6db74>&#34;messageId&#34;</span>, <span style=color:#e6db74>&#34;msg_001&#34;</span>)
+</span></span><span style=display:flex><span>            .AddToken(<span style=color:#e6db74>&#34;xxxToken&#34;</span>); 
+</span></span></code></pre></div><h1 id=使用-corepush>使用 CorePush<a hidden class=anchor aria-hidden=true href=#使用-corepush>#</a></h1><h2 id=p8-2>p8<a hidden class=anchor aria-hidden=true href=#p8-2>#</a></h2><p>下面是一个基于 CorePush（又名 net-core-push-notifications）库的完整示例，展示如何在 .NET 中使用其发送 Apple APNs 推送通知：</p><h3 id=安装-corepush>安装 CorePush<a hidden class=anchor aria-hidden=true href=#安装-corepush>#</a></h3><p>在 .NET 项目中安装 CorePush 库：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>
+</span></span><span style=display:flex><span>dotnet add package CorePush
+</span></span></code></pre></div><h3 id=设置依赖项与配置注入依赖注入架构推荐>设置依赖项与配置注入（依赖注入架构推荐）<a hidden class=anchor aria-hidden=true href=#设置依赖项与配置注入依赖注入架构推荐>#</a></h3><p>在 Startup.cs 或 Program.cs 中注册 HttpClient 与配置类：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span>services.AddHttpClient&lt;ApnSender&gt;();
+</span></span><span style=display:flex><span><span style=color:#75715e>// 若需要发送 Android/Web 通知，再添加 FcmSender</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> apnSettings = configuration.GetSection(<span style=color:#e6db74>&#34;ApnSettings&#34;</span>).Get&lt;ApnSettings&gt;();
+</span></span><span style=display:flex><span>services.AddSingleton(apnSettings);
+</span></span></code></pre></div><p>这里 ApnSettings 可以从配置文件（如 appsettings.json）中绑定，包含 p8 私钥、Key ID、Team ID、Bundle ID 与目标环境（开发／生产）等。</p><h3 id=构造-apns-消息并发送>构造 APNs 消息并发送<a hidden class=anchor aria-hidden=true href=#构造-apns-消息并发送>#</a></h3><p>以下代码展示了如何创建推送消息并发送：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 定义通知结构</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppleNotification</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> ApsPayload Aps { <span style=color:#66d9ef>get</span>; <span style=color:#66d9ef>set</span>; }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>object</span> Data { <span style=color:#66d9ef>get</span>; <span style=color:#66d9ef>set</span>; }  <span style=color:#75715e>// 可选：携带自定义数据</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ApsPayload</span> {
+</span></span><span style=display:flex><span><span style=color:#a6e22e>    [JsonProperty(&#34;alert&#34;)]</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>string</span> AlertBody { <span style=color:#66d9ef>get</span>; <span style=color:#66d9ef>set</span>; }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 接收配置的 ApnSettings 示例</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> settingsApn = <span style=color:#66d9ef>new</span> ApnSettings {
+</span></span><span style=display:flex><span>    AppBundleIdentifier = <span style=color:#e6db74>&#34;com.mycompany.myapp&#34;</span>,
+</span></span><span style=display:flex><span>    P8PrivateKey = <span style=color:#e6db74>&#34;  p8 私钥（无空格/换行）&#34;</span>,
+</span></span><span style=display:flex><span>    P8PrivateKeyId = <span style=color:#e6db74>&#34;10 位 Key ID&#34;</span>,
+</span></span><span style=display:flex><span>    TeamId = <span style=color:#e6db74>&#34;  Apple 团队 ID&#34;</span>,
+</span></span><span style=display:flex><span>    ServerType = ApnServerType.Development  <span style=color:#75715e>// 或 Production</span>
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 创建 HttpClient（若不使用 DI 可直接 new HttpClient）</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> var httpClient = <span style=color:#66d9ef>new</span> HttpClient();
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> apn = <span style=color:#66d9ef>new</span> ApnSender(settingsApn, httpClient);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> notification = <span style=color:#66d9ef>new</span> AppleNotification {
+</span></span><span style=display:flex><span>    Aps = <span style=color:#66d9ef>new</span> ApsPayload { AlertBody = <span style=color:#e6db74>&#34;Hello from CorePush!&#34;</span> },
+</span></span><span style=display:flex><span>    Data = <span style=color:#66d9ef>new</span> { customKey = <span style=color:#e6db74>&#34;customValue&#34;</span> }  <span style=color:#75715e>// Optional</span>
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> deviceToken = <span style=color:#e6db74>&#34;目标设备的 device token&#34;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> response = <span style=color:#66d9ef>await</span> apn.SendAsync(notification, deviceToken);
+</span></span></code></pre></div><h3 id=简洁-api-接口说明>简洁 API 接口说明<a hidden class=anchor aria-hidden=true href=#简洁-api-接口说明>#</a></h3><p>构造 ApnSender(settings, httpClient) 时会自动生成并签署 JWT，适用于 Apple HTTP/2 推送 API</p><p>然后通过 await apn.SendAsync(notification, deviceToken) 发起请求，操作非常直观简洁</p><p><strong>安装库</strong>
+dotnet add package CorePush
+<strong>配置API</strong>
+提供 p8 私钥、Key ID、Team ID、Bundle ID、ServerType
+<strong>创建通知对象</strong>
+包含 aps.alert 字段（与可选自定义数据）
+<strong>发送</strong>
+使用 ApnSender.SendAsync() 进行推送</p><h1 id=自定义apns>自定义APNS<a hidden class=anchor aria-hidden=true href=#自定义apns>#</a></h1><h2 id=p8-3>p8<a hidden class=anchor aria-hidden=true href=#p8-3>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>dotnet add package System.IdentityModel.Tokens.Jwt
+</span></span><span style=display:flex><span>dotnet add package Microsoft.IdentityModel.Tokens
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Net.Http;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Net.Http.Headers;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Security.Cryptography;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Text;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Text.Json;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading.Tasks;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> Microsoft.IdentityModel.Tokens;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.IdentityModel.Tokens.Jwt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ApnsSender</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//  p8文件内容（去掉-----BEGIN PRIVATE KEY-----...等头尾）</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>string</span> PrivateKey = <span style=color:#e6db74>@&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>MIGHAg....oUAmDj
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>string</span> KeyId = <span style=color:#e6db74>&#34;YOUR_KEY_ID&#34;</span>;          <span style=color:#75715e>// Key ID (from Apple Developer portal)</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>string</span> TeamId = <span style=color:#e6db74>&#34;YOUR_TEAM_ID&#34;</span>;        <span style=color:#75715e>// Team ID (Apple Developer account)</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>string</span> BundleId = <span style=color:#e6db74>&#34;com.example.app&#34;</span>;   <span style=color:#75715e>// App Bundle ID (apns-topic)</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>string</span> DeviceToken = <span style=color:#e6db74>&#34;device_token_here&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>async</span> Task Main()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> jwtToken = GenerateJwtToken(PrivateKey, KeyId, TeamId);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> payload = <span style=color:#66d9ef>new</span>
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            aps = <span style=color:#66d9ef>new</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                alert = <span style=color:#66d9ef>new</span>
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    title = <span style=color:#e6db74>&#34;Hello&#34;</span>,
+</span></span><span style=display:flex><span>                    body = <span style=color:#e6db74>&#34;This is a test push notification.&#34;</span>
+</span></span><span style=display:flex><span>                },
+</span></span><span style=display:flex><span>                sound = <span style=color:#e6db74>&#34;default&#34;</span>
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> jsonPayload = JsonSerializer.Serialize(payload);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>using</span> var client = <span style=color:#66d9ef>new</span> HttpClient();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> request = <span style=color:#66d9ef>new</span> HttpRequestMessage(HttpMethod.Post, <span style=color:#e6db74>$&#34;https://api.push.apple.com/3/device/{DeviceToken}&#34;</span>)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            Version = <span style=color:#66d9ef>new</span> Version(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>0</span>),
+</span></span><span style=display:flex><span>            Content = <span style=color:#66d9ef>new</span> StringContent(jsonPayload, Encoding.UTF8, <span style=color:#e6db74>&#34;application/json&#34;</span>)
+</span></span><span style=display:flex><span>        };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 设置 HTTP/2 头</span>
+</span></span><span style=display:flex><span>        request.Headers.Authorization = <span style=color:#66d9ef>new</span> AuthenticationHeaderValue(<span style=color:#e6db74>&#34;bearer&#34;</span>, jwtToken);
+</span></span><span style=display:flex><span>        request.Headers.TryAddWithoutValidation(<span style=color:#e6db74>&#34;apns-topic&#34;</span>, BundleId);
+</span></span><span style=display:flex><span>        request.Headers.TryAddWithoutValidation(<span style=color:#e6db74>&#34;apns-push-type&#34;</span>, <span style=color:#e6db74>&#34;alert&#34;</span>);
+</span></span><span style=display:flex><span>        request.Headers.TryAddWithoutValidation(<span style=color:#e6db74>&#34;apns-priority&#34;</span>, <span style=color:#e6db74>&#34;10&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>var</span> response = <span style=color:#66d9ef>await</span> client.SendAsync(request);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>string</span> responseContent = <span style=color:#66d9ef>await</span> response.Content.ReadAsStringAsync();
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>$&#34;StatusCode: {response.StatusCode}&#34;</span>);
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>$&#34;Response: {responseContent}&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>catch</span> (Exception ex)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>$&#34;Exception: {ex}&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 生成 JWT Token</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>string</span> GenerateJwtToken(<span style=color:#66d9ef>string</span> privateKey, <span style=color:#66d9ef>string</span> keyId, <span style=color:#66d9ef>string</span> teamId)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 解析私钥为ECDsa</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>using</span> var ecdsa = ECDsa.Create();
+</span></span><span style=display:flex><span>        ecdsa.ImportPkcs8PrivateKey(Convert.FromBase64String(privateKey.Trim()), <span style=color:#66d9ef>out</span> _);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> securityKey = <span style=color:#66d9ef>new</span> ECDsaSecurityKey(ecdsa)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            KeyId = keyId
+</span></span><span style=display:flex><span>        };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> credentials = <span style=color:#66d9ef>new</span> SigningCredentials(securityKey, SecurityAlgorithms.EcdsaSha256);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> header = <span style=color:#66d9ef>new</span> JwtHeader(credentials);
+</span></span><span style=display:flex><span>        header[<span style=color:#e6db74>&#34;kid&#34;</span>] = keyId;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> payload = <span style=color:#66d9ef>new</span> JwtPayload(
+</span></span><span style=display:flex><span>            issuer: teamId,
+</span></span><span style=display:flex><span>            audience: <span style=color:#e6db74>&#34;https://appleid.apple.com&#34;</span>,
+</span></span><span style=display:flex><span>            claims: <span style=color:#66d9ef>null</span>,
+</span></span><span style=display:flex><span>            notBefore: <span style=color:#66d9ef>null</span>,
+</span></span><span style=display:flex><span>            expires: DateTime.UtcNow.AddMinutes(<span style=color:#ae81ff>20</span>),
+</span></span><span style=display:flex><span>            issuedAt: DateTime.UtcNow);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> token = <span style=color:#66d9ef>new</span> JwtSecurityToken(header, payload);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> JwtSecurityTokenHandler().WriteToken(token);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>说明
+<strong>PrivateKey</strong>要填的是 .p8 文件内纯私钥内容（PEM 格式去掉头尾和换行），你可以用文本编辑器打开 .p8 文件，去掉首尾 &mdash;&ndash;BEGIN PRIVATE KEY&mdash;&ndash; 和 &mdash;&ndash;END PRIVATE KEY&mdash;&ndash; 以及所有换行符，只留下中间的 Base64 字符串。</p><p><strong>KeyId</strong>：Apple Developer Portal 中创建 .p8 时生成的 Key ID。</p><p><strong>TeamId</strong>： Apple 开发者团队 ID。</p><p><strong>BundleId</strong>： App Bundle Identifier，做为 apns-topic。</p><p>生成的 JWT 有效期一般不要超过 1 小时，示例中用了 20 分钟。</p><p>发送请求时必须用 HTTP/2，所以 HttpRequestMessage.Version=2.0。</p><p>APNs 域名默认生产环境，测试可替换成 <a href=https://api.sandbox.push.apple.com>https://api.sandbox.push.apple.com</a>。</p><h2 id=p12-myapns>p12 MyAPNS<a hidden class=anchor aria-hidden=true href=#p12-myapns>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>async</span> Task MyAPNS(<span style=color:#66d9ef>string</span> tk, <span style=color:#66d9ef>string</span> tt, <span style=color:#66d9ef>string</span> con1)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> p12Path = <span style=color:#e6db74>&#34;aps_development.p12&#34;</span>;      <span style=color:#75715e>// p12文件路径</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> p12Password = <span style=color:#e6db74>&#34;xxx&#34;</span>;   <span style=color:#75715e>// p12密码</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> deviceToken = tk;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> apnsTopic = <span style=color:#e6db74>&#34;com.xxx.xxx&#34;</span>;  <span style=color:#75715e>// App Bundle ID</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (!File.Exists(p12Path))
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>&#34;证书文件不存在：&#34;</span> + p12Path);
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 读取 p12 证书</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//var cert = new X509Certificate2(p12Path, p12Password,</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    X509KeyStorageFlags.MachineKeySet |</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    X509KeyStorageFlags.PersistKeySet |</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//    X509KeyStorageFlags.Exportable);</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> cert = <span style=color:#66d9ef>new</span> X509Certificate2(p12Path, p12Password);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> handler = <span style=color:#66d9ef>new</span> HttpClientHandler();
+</span></span><span style=display:flex><span>        handler.ClientCertificates.Add(cert);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 要求HTTP/2</span>
+</span></span><span style=display:flex><span>        handler.SslProtocols = System.Security.Authentication.SslProtocols.Tls12;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>using</span> var client = <span style=color:#66d9ef>new</span> HttpClient(handler);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// APNs 生产环境地址，沙箱环境用 api.sandbox.push.apple.com</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// https://api.push.apple.com/3/device/ 正式</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> apnsUrl = <span style=color:#e6db74>$&#34;https://api.sandbox.push.apple.com/3/device/{deviceToken}&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 构造推送负载</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> payload = <span style=color:#66d9ef>new</span>
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            aps = <span style=color:#66d9ef>new</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                alert = <span style=color:#66d9ef>new</span>
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    title = tt,
+</span></span><span style=display:flex><span>                    body = con1
+</span></span><span style=display:flex><span>                },
+</span></span><span style=display:flex><span>                sound = <span style=color:#e6db74>&#34;default&#34;</span>
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> jsonPayload = System.Text.Json.JsonSerializer.Serialize(payload);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>using</span> var content = <span style=color:#66d9ef>new</span> StringContent(jsonPayload, Encoding.UTF8, <span style=color:#e6db74>&#34;application/json&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 构造 HttpRequestMessage</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> request = <span style=color:#66d9ef>new</span> HttpRequestMessage(HttpMethod.Post, apnsUrl)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            Version = <span style=color:#66d9ef>new</span> Version(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>0</span>), <span style=color:#75715e>// HTTP/2</span>
+</span></span><span style=display:flex><span>            Content = content
+</span></span><span style=display:flex><span>        };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// APNs 需要的头</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 这里用证书认证，不需要 authorization 头。如果用 Token 认证才用此头</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// request.Headers.Authorization = new AuthenticationHeaderValue(&#34;bearer&#34;, &#34;&lt;your_jwt_token&gt;&#34;);</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        request.Headers.TryAddWithoutValidation(<span style=color:#e6db74>&#34;apns-topic&#34;</span>, apnsTopic);
+</span></span><span style=display:flex><span>        request.Headers.TryAddWithoutValidation(<span style=color:#e6db74>&#34;apns-push-type&#34;</span>, <span style=color:#e6db74>&#34;alert&#34;</span>);  <span style=color:#75715e>// alert, background等</span>
+</span></span><span style=display:flex><span>        request.Headers.TryAddWithoutValidation(<span style=color:#e6db74>&#34;apns-priority&#34;</span>, <span style=color:#e6db74>&#34;10&#34;</span>);      <span style=color:#75715e>// 10（立即推送）或 5（节省电量）</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>var</span> response = <span style=color:#66d9ef>await</span> client.SendAsync(request);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>string</span> respContent = <span style=color:#66d9ef>await</span> response.Content.ReadAsStringAsync();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>$&#34;Status: {response.StatusCode}&#34;</span>);
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>$&#34;Response: {respContent}&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>catch</span> (Exception ex)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>$&#34;Exception: {ex.Message}&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span></code></pre></div><h2 id=调用>调用<a hidden class=anchor aria-hidden=true href=#调用>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>   <span style=color:#66d9ef>await</span> MyAPNS(<span style=color:#e6db74>&#34;xxx&#34;</span>, <span style=color:#e6db74>&#34;T1&#34;</span>, <span style=color:#e6db74>&#34;HIHIHI&#34;</span>);
+</span></span></code></pre></div><h2 id=静态单例>静态单例<a hidden class=anchor aria-hidden=true href=#静态单例>#</a></h2><p>实现证书加载和 HttpClient 复用，并确保支持多线程调用（多个线程/任务安全且不会卡死）。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.IO;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Net.Http;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Security.Cryptography.X509Certificates;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Text;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading.Tasks;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ApnsClient</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> <span style=color:#66d9ef>string</span> p12Path = <span style=color:#e6db74>&#34;aps_development.p12&#34;</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> <span style=color:#66d9ef>string</span> p12Password = <span style=color:#e6db74>&#34;xxx&#34;</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> <span style=color:#66d9ef>string</span> apnsTopic = <span style=color:#e6db74>&#34;com.xxx.xxx&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> X509Certificate2 certificate;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> HttpClient httpClient;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 静态构造函数初始化证书和 HttpClient，保证只执行一次</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> ApnsClient()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (!File.Exists(p12Path))
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> FileNotFoundException(<span style=color:#e6db74>&#34;证书文件不存在：&#34;</span> + p12Path);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        certificate = <span style=color:#66d9ef>new</span> X509Certificate2(p12Path, p12Password,
+</span></span><span style=display:flex><span>            X509KeyStorageFlags.MachineKeySet |
+</span></span><span style=display:flex><span>            X509KeyStorageFlags.PersistKeySet |
+</span></span><span style=display:flex><span>            X509KeyStorageFlags.Exportable);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> handler = <span style=color:#66d9ef>new</span> HttpClientHandler();
+</span></span><span style=display:flex><span>        handler.ClientCertificates.Add(certificate);
+</span></span><span style=display:flex><span>        handler.SslProtocols = System.Security.Authentication.SslProtocols.Tls12;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        httpClient = <span style=color:#66d9ef>new</span> HttpClient(handler)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            Timeout = TimeSpan.FromSeconds(<span style=color:#ae81ff>30</span>)  <span style=color:#75715e>// 根据需要调整超时</span>
+</span></span><span style=display:flex><span>        };
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>async</span> Task SendPushAsync(<span style=color:#66d9ef>string</span> deviceToken, <span style=color:#66d9ef>string</span> title, <span style=color:#66d9ef>string</span> body, <span style=color:#66d9ef>bool</span> useSandbox = <span style=color:#66d9ef>true</span>)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> apnsUrl = useSandbox
+</span></span><span style=display:flex><span>            ? <span style=color:#e6db74>$&#34;https://api.sandbox.push.apple.com/3/device/{deviceToken}&#34;</span>
+</span></span><span style=display:flex><span>            : <span style=color:#e6db74>$&#34;https://api.push.apple.com/3/device/{deviceToken}&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> payload = <span style=color:#66d9ef>new</span>
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            aps = <span style=color:#66d9ef>new</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                alert = <span style=color:#66d9ef>new</span>
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    title,
+</span></span><span style=display:flex><span>                    body
+</span></span><span style=display:flex><span>                },
+</span></span><span style=display:flex><span>                sound = <span style=color:#e6db74>&#34;default&#34;</span>
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> jsonPayload = System.Text.Json.JsonSerializer.Serialize(payload);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>using</span> var content = <span style=color:#66d9ef>new</span> StringContent(jsonPayload, Encoding.UTF8, <span style=color:#e6db74>&#34;application/json&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> request = <span style=color:#66d9ef>new</span> HttpRequestMessage(HttpMethod.Post, apnsUrl)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            Version = <span style=color:#66d9ef>new</span> Version(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>0</span>),
+</span></span><span style=display:flex><span>            Content = content
+</span></span><span style=display:flex><span>        };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        request.Headers.TryAddWithoutValidation(<span style=color:#e6db74>&#34;apns-topic&#34;</span>, apnsTopic);
+</span></span><span style=display:flex><span>        request.Headers.TryAddWithoutValidation(<span style=color:#e6db74>&#34;apns-push-type&#34;</span>, <span style=color:#e6db74>&#34;alert&#34;</span>);
+</span></span><span style=display:flex><span>        request.Headers.TryAddWithoutValidation(<span style=color:#e6db74>&#34;apns-priority&#34;</span>, <span style=color:#e6db74>&#34;10&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> response = <span style=color:#66d9ef>await</span> httpClient.SendAsync(request).ConfigureAwait(<span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> respContent = <span style=color:#66d9ef>await</span> response.Content.ReadAsStringAsync().ConfigureAwait(<span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>$&#34;Status: {response.StatusCode}&#34;</span>);
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>$&#34;Response: {respContent}&#34;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>这样调用即可支持多线程</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> Task TestMultiplePush()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> tasks = <span style=color:#66d9ef>new</span> Task[<span style=color:#ae81ff>10</span>];
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; <span style=color:#ae81ff>10</span>; i++)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        tasks[i] = ApnsClient.SendPushAsync(<span style=color:#e6db74>&#34;device_token_&#34;</span> + i, <span style=color:#e6db74>&#34;Title &#34;</span> + i, <span style=color:#e6db74>&#34;Body &#34;</span> + i);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>await</span> Task.WhenAll(tasks);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=线程限流--失败重试>线程限流 + 失败重试<a hidden class=anchor aria-hidden=true href=#线程限流--失败重试>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Collections.Concurrent;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.IO;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Linq;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Net.Http;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Security.Cryptography.X509Certificates;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Text;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading.Tasks;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ApnsPushService</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> <span style=color:#66d9ef>string</span> P12Path = <span style=color:#e6db74>&#34;aps_development.p12&#34;</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> <span style=color:#66d9ef>string</span> P12Password = <span style=color:#e6db74>&#34;xxx&#34;</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> <span style=color:#66d9ef>string</span> ApnsTopic = <span style=color:#e6db74>&#34;com.xxx.xxx&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> X509Certificate2 Certificate;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> HttpClient Client;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 限流参数</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> <span style=color:#66d9ef>int</span> MaxPushPerSecond = <span style=color:#ae81ff>5</span>; <span style=color:#75715e>// 每秒最多推送 N 条</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> SemaphoreSlim RateLimitLock = <span style=color:#66d9ef>new</span> SemaphoreSlim(MaxPushPerSecond, MaxPushPerSecond);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> ConcurrentQueue&lt;DateTime&gt; PushTimestamps = <span style=color:#66d9ef>new</span> ConcurrentQueue&lt;DateTime&gt;();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> ApnsPushService()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (!File.Exists(P12Path))
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> FileNotFoundException(<span style=color:#e6db74>$&#34;证书文件不存在: {P12Path}&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        Certificate = <span style=color:#66d9ef>new</span> X509Certificate2(P12Path, P12Password,
+</span></span><span style=display:flex><span>            X509KeyStorageFlags.MachineKeySet |
+</span></span><span style=display:flex><span>            X509KeyStorageFlags.PersistKeySet |
+</span></span><span style=display:flex><span>            X509KeyStorageFlags.Exportable);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> handler = <span style=color:#66d9ef>new</span> HttpClientHandler();
+</span></span><span style=display:flex><span>        handler.ClientCertificates.Add(Certificate);
+</span></span><span style=display:flex><span>        handler.SslProtocols = System.Security.Authentication.SslProtocols.Tls12;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        Client = <span style=color:#66d9ef>new</span> HttpClient(handler)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            Timeout = TimeSpan.FromSeconds(<span style=color:#ae81ff>15</span>)
+</span></span><span style=display:flex><span>        };
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>async</span> Task SendPushAsync(<span style=color:#66d9ef>string</span> deviceToken, <span style=color:#66d9ef>string</span> title, <span style=color:#66d9ef>string</span> body, <span style=color:#66d9ef>bool</span> sandbox = <span style=color:#66d9ef>true</span>)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>await</span> EnforceRateLimit();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> maxRetries = <span style=color:#ae81ff>3</span>;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> delayMs = <span style=color:#ae81ff>1000</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> attempt = <span style=color:#ae81ff>1</span>; attempt &lt;= maxRetries; attempt++)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>string</span> url = sandbox
+</span></span><span style=display:flex><span>                    ? <span style=color:#e6db74>$&#34;https://api.sandbox.push.apple.com/3/device/{deviceToken}&#34;</span>
+</span></span><span style=display:flex><span>                    : <span style=color:#e6db74>$&#34;https://api.push.apple.com/3/device/{deviceToken}&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>var</span> payload = <span style=color:#66d9ef>new</span>
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    aps = <span style=color:#66d9ef>new</span>
+</span></span><span style=display:flex><span>                    {
+</span></span><span style=display:flex><span>                        alert = <span style=color:#66d9ef>new</span> { title, body },
+</span></span><span style=display:flex><span>                        sound = <span style=color:#e6db74>&#34;default&#34;</span>
+</span></span><span style=display:flex><span>                    }
+</span></span><span style=display:flex><span>                };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>var</span> json = System.Text.Json.JsonSerializer.Serialize(payload);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>using</span> var content = <span style=color:#66d9ef>new</span> StringContent(json, Encoding.UTF8, <span style=color:#e6db74>&#34;application/json&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>var</span> request = <span style=color:#66d9ef>new</span> HttpRequestMessage(HttpMethod.Post, url)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    Version = <span style=color:#66d9ef>new</span> Version(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>0</span>),
+</span></span><span style=display:flex><span>                    Content = content
+</span></span><span style=display:flex><span>                };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                request.Headers.TryAddWithoutValidation(<span style=color:#e6db74>&#34;apns-topic&#34;</span>, ApnsTopic);
+</span></span><span style=display:flex><span>                request.Headers.TryAddWithoutValidation(<span style=color:#e6db74>&#34;apns-push-type&#34;</span>, <span style=color:#e6db74>&#34;alert&#34;</span>);
+</span></span><span style=display:flex><span>                request.Headers.TryAddWithoutValidation(<span style=color:#e6db74>&#34;apns-priority&#34;</span>, <span style=color:#e6db74>&#34;10&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>var</span> response = <span style=color:#66d9ef>await</span> Client.SendAsync(request).ConfigureAwait(<span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>string</span> resp = <span style=color:#66d9ef>await</span> response.Content.ReadAsStringAsync().ConfigureAwait(<span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (response.IsSuccessStatusCode)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    Console.WriteLine(<span style=color:#e6db74>$&#34;✅ 成功 [{deviceToken}] - {title}&#34;</span>);
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    Console.WriteLine(<span style=color:#e6db74>$&#34;⚠️ 推送失败 [{response.StatusCode}] 尝试 {attempt}/{maxRetries} - {resp}&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                    <span style=color:#75715e>// APNs 临时性错误才重试</span>
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>if</span> (response.StatusCode == System.Net.HttpStatusCode.ServiceUnavailable ||
+</span></span><span style=display:flex><span>                        (<span style=color:#66d9ef>int</span>)response.StatusCode == <span style=color:#ae81ff>429</span>)
+</span></span><span style=display:flex><span>                    {
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>await</span> Task.Delay(delayMs);
+</span></span><span style=display:flex><span>                        delayMs *= <span style=color:#ae81ff>2</span>; <span style=color:#75715e>// 退避</span>
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>continue</span>;
+</span></span><span style=display:flex><span>                    }
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>                    {
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>return</span>; <span style=color:#75715e>// 其它错误直接放弃</span>
+</span></span><span style=display:flex><span>                    }
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>catch</span> (HttpRequestException ex)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                Console.WriteLine(<span style=color:#e6db74>$&#34;网络异常 [{attempt}/{maxRetries}] - {ex.Message}&#34;</span>);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>await</span> Task.Delay(delayMs);
+</span></span><span style=display:flex><span>                delayMs *= <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>async</span> Task EnforceRateLimit()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        DateTime now = DateTime.UtcNow;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 移除超过 1 秒的时间戳</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> (PushTimestamps.TryPeek(<span style=color:#66d9ef>out</span> <span style=color:#66d9ef>var</span> ts) &amp;&amp; (now - ts).TotalSeconds &gt;= <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            PushTimestamps.TryDequeue(<span style=color:#66d9ef>out</span> _);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 如果已达到每秒上限，则等待</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> (PushTimestamps.Count &gt;= MaxPushPerSecond)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>await</span> Task.Delay(<span style=color:#ae81ff>100</span>);
+</span></span><span style=display:flex><span>            now = DateTime.UtcNow;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>while</span> (PushTimestamps.TryPeek(<span style=color:#66d9ef>out</span> <span style=color:#66d9ef>var</span> ts2) &amp;&amp; (now - ts2).TotalSeconds &gt;= <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                PushTimestamps.TryDequeue(<span style=color:#66d9ef>out</span> _);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        PushTimestamps.Enqueue(now);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>var</span> tokens = <span style=color:#66d9ef>new</span>[] { <span style=color:#e6db74>&#34;token1&#34;</span>, <span style=color:#e6db74>&#34;token2&#34;</span>, <span style=color:#e6db74>&#34;token3&#34;</span>, <span style=color:#e6db74>&#34;token4&#34;</span>, <span style=color:#e6db74>&#34;token5&#34;</span>, <span style=color:#e6db74>&#34;token6&#34;</span> };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> tasks = tokens.Select((tk, i) =&gt;
+</span></span><span style=display:flex><span>    ApnsPushService.SendPushAsync(tk, <span style=color:#e6db74>$&#34;Title {i}&#34;</span>, <span style=color:#e6db74>$&#34;Body {i}&#34;</span>)
+</span></span><span style=display:flex><span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>await</span> Task.WhenAll(tasks);
+</span></span></code></pre></div><p><strong>限流</strong>
+MaxPushPerSecond 控制每秒最多推送几条。
+超过会等待，保证 APNs 不拒绝。</p><p><strong>重试</strong>
+仅对临时性错误（429、503、网络错误）重试，最大重试 3 次，每次延迟翻倍。</p><p><strong>线程安全</strong>
+HttpClient 和证书是静态单例，支持多线程并发调用。</p><p><strong>可扩展</strong>
+你可以把 MaxPushPerSecond 改大，或者把 maxRetries、delayMs 改成配置项。</p><h1 id=日志持久化>日志持久化<a hidden class=anchor aria-hidden=true href=#日志持久化>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Collections.Concurrent;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.IO;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Linq;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Net.Http;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Security.Cryptography.X509Certificates;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Text;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading.Tasks;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ApnsPushService</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> <span style=color:#66d9ef>string</span> P12Path = <span style=color:#e6db74>&#34;aps_development.p12&#34;</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> <span style=color:#66d9ef>string</span> P12Password = <span style=color:#e6db74>&#34;xxx&#34;</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> <span style=color:#66d9ef>string</span> ApnsTopic = <span style=color:#e6db74>&#34;com.xxx.xxx&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> X509Certificate2 Certificate;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> HttpClient Client;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 限流参数</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> <span style=color:#66d9ef>int</span> MaxPushPerSecond = <span style=color:#ae81ff>5</span>; <span style=color:#75715e>// 每秒最多推送 N 条</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> ConcurrentQueue&lt;DateTime&gt; PushTimestamps = <span style=color:#66d9ef>new</span> ConcurrentQueue&lt;DateTime&gt;();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> <span style=color:#66d9ef>string</span> LogFilePath = <span style=color:#e6db74>&#34;apns_failures.log&#34;</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>readonly</span> SemaphoreSlim LogFileLock = <span style=color:#66d9ef>new</span> SemaphoreSlim(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> ApnsPushService()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (!File.Exists(P12Path))
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> FileNotFoundException(<span style=color:#e6db74>$&#34;证书文件不存在: {P12Path}&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        Certificate = <span style=color:#66d9ef>new</span> X509Certificate2(P12Path, P12Password,
+</span></span><span style=display:flex><span>            X509KeyStorageFlags.MachineKeySet |
+</span></span><span style=display:flex><span>            X509KeyStorageFlags.PersistKeySet |
+</span></span><span style=display:flex><span>            X509KeyStorageFlags.Exportable);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> handler = <span style=color:#66d9ef>new</span> HttpClientHandler();
+</span></span><span style=display:flex><span>        handler.ClientCertificates.Add(Certificate);
+</span></span><span style=display:flex><span>        handler.SslProtocols = System.Security.Authentication.SslProtocols.Tls12;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        Client = <span style=color:#66d9ef>new</span> HttpClient(handler)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            Timeout = TimeSpan.FromSeconds(<span style=color:#ae81ff>15</span>)
+</span></span><span style=display:flex><span>        };
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>async</span> Task SendPushAsync(<span style=color:#66d9ef>string</span> deviceToken, <span style=color:#66d9ef>string</span> title, <span style=color:#66d9ef>string</span> body, <span style=color:#66d9ef>bool</span> sandbox = <span style=color:#66d9ef>true</span>)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>await</span> EnforceRateLimit();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> maxRetries = <span style=color:#ae81ff>3</span>;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> delayMs = <span style=color:#ae81ff>1000</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> attempt = <span style=color:#ae81ff>1</span>; attempt &lt;= maxRetries; attempt++)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>string</span> url = sandbox
+</span></span><span style=display:flex><span>                    ? <span style=color:#e6db74>$&#34;https://api.sandbox.push.apple.com/3/device/{deviceToken}&#34;</span>
+</span></span><span style=display:flex><span>                    : <span style=color:#e6db74>$&#34;https://api.push.apple.com/3/device/{deviceToken}&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>var</span> payload = <span style=color:#66d9ef>new</span>
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    aps = <span style=color:#66d9ef>new</span>
+</span></span><span style=display:flex><span>                    {
+</span></span><span style=display:flex><span>                        alert = <span style=color:#66d9ef>new</span> { title, body },
+</span></span><span style=display:flex><span>                        sound = <span style=color:#e6db74>&#34;default&#34;</span>
+</span></span><span style=display:flex><span>                    }
+</span></span><span style=display:flex><span>                };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>var</span> json = System.Text.Json.JsonSerializer.Serialize(payload);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>using</span> var content = <span style=color:#66d9ef>new</span> StringContent(json, Encoding.UTF8, <span style=color:#e6db74>&#34;application/json&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>var</span> request = <span style=color:#66d9ef>new</span> HttpRequestMessage(HttpMethod.Post, url)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    Version = <span style=color:#66d9ef>new</span> Version(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>0</span>),
+</span></span><span style=display:flex><span>                    Content = content
+</span></span><span style=display:flex><span>                };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                request.Headers.TryAddWithoutValidation(<span style=color:#e6db74>&#34;apns-topic&#34;</span>, ApnsTopic);
+</span></span><span style=display:flex><span>                request.Headers.TryAddWithoutValidation(<span style=color:#e6db74>&#34;apns-push-type&#34;</span>, <span style=color:#e6db74>&#34;alert&#34;</span>);
+</span></span><span style=display:flex><span>                request.Headers.TryAddWithoutValidation(<span style=color:#e6db74>&#34;apns-priority&#34;</span>, <span style=color:#e6db74>&#34;10&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>var</span> response = <span style=color:#66d9ef>await</span> Client.SendAsync(request).ConfigureAwait(<span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>string</span> resp = <span style=color:#66d9ef>await</span> response.Content.ReadAsStringAsync().ConfigureAwait(<span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (response.IsSuccessStatusCode)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    Console.WriteLine(<span style=color:#e6db74>$&#34;✅ 成功 [{deviceToken}] - {title}&#34;</span>);
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    Console.WriteLine(<span style=color:#e6db74>$&#34;⚠️ 推送失败 [{response.StatusCode}] 尝试 {attempt}/{maxRetries} - {resp}&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>if</span> (response.StatusCode == System.Net.HttpStatusCode.ServiceUnavailable ||
+</span></span><span style=display:flex><span>                        (<span style=color:#66d9ef>int</span>)response.StatusCode == <span style=color:#ae81ff>429</span>)
+</span></span><span style=display:flex><span>                    {
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>await</span> Task.Delay(delayMs);
+</span></span><span style=display:flex><span>                        delayMs *= <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>continue</span>;
+</span></span><span style=display:flex><span>                    }
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>                    {
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>await</span> LogFailureAsync(deviceToken, title, body, resp);
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>                    }
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>catch</span> (HttpRequestException ex)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                Console.WriteLine(<span style=color:#e6db74>$&#34;网络异常 [{attempt}/{maxRetries}] - {ex.Message}&#34;</span>);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>await</span> Task.Delay(delayMs);
+</span></span><span style=display:flex><span>                delayMs *= <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (attempt == maxRetries)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>await</span> LogFailureAsync(deviceToken, title, body, ex.Message);
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>async</span> Task EnforceRateLimit()
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        DateTime now = DateTime.UtcNow;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> (PushTimestamps.TryPeek(<span style=color:#66d9ef>out</span> <span style=color:#66d9ef>var</span> ts) &amp;&amp; (now - ts).TotalSeconds &gt;= <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            PushTimestamps.TryDequeue(<span style=color:#66d9ef>out</span> _);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> (PushTimestamps.Count &gt;= MaxPushPerSecond)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>await</span> Task.Delay(<span style=color:#ae81ff>100</span>);
+</span></span><span style=display:flex><span>            now = DateTime.UtcNow;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>while</span> (PushTimestamps.TryPeek(<span style=color:#66d9ef>out</span> <span style=color:#66d9ef>var</span> ts2) &amp;&amp; (now - ts2).TotalSeconds &gt;= <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                PushTimestamps.TryDequeue(<span style=color:#66d9ef>out</span> _);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        PushTimestamps.Enqueue(now);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>async</span> Task LogFailureAsync(<span style=color:#66d9ef>string</span> deviceToken, <span style=color:#66d9ef>string</span> title, <span style=color:#66d9ef>string</span> body, <span style=color:#66d9ef>string</span> error)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>string</span> log = <span style=color:#e6db74>$&#34;{DateTime.Now:yyyy-MM-dd HH:mm:ss} | DeviceToken: {deviceToken} | Title: {title} | Body: {body} | Error: {error}{Environment.NewLine}&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>await</span> LogFileLock.WaitAsync();
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>await</span> File.AppendAllTextAsync(LogFilePath, log);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>finally</span>
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            LogFileLock.Release();
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>LogFailureAsync 异步写文件，并用信号量锁控制并发写入，防止文件写入冲突。</p><p>日志文件名是 apns_failures.log，你可以根据需要改路径或文件名。</p><p>失败日志包含时间、设备token、推送标题、内容和错误信息，方便后续查阅。</p><p>只在最终确定失败（非重试或者重试完毕仍失败）时写入日志，避免日志膨胀。</p><h1 id=参考>参考<a hidden class=anchor aria-hidden=true href=#参考>#</a></h1><p><a href=https://github.com/alexalok/dotAPNS>https://github.com/alexalok/dotAPNS</a></p><p><a href=https://dontpaniclabs.com/blog/post/2024/07/23/sending-apns-push-notifications-using-c-sharp/>https://dontpaniclabs.com/blog/post/2024/07/23/sending-apns-push-notifications-using-c-sharp/</a></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://qfsyso.github.io/tags/apple/>Apple</a></li><li><a href=https://qfsyso.github.io/tags/.net/>.NET</a></li><li><a href=https://qfsyso.github.io/tags/c%23/>C#</a></li></ul><nav class=paginav><a class=prev href=https://qfsyso.github.io/posts/linux-firewalls-and-analysis-of-cloud-server-prices/><span class=title>« Prev</span><br><span>Linux Firewalls and Analysis of Cloud Server Prices</span>
+</a><a class=next href=https://qfsyso.github.io/posts/wav-stt/><span class=title>Next »</span><br><span>WAV STT</span></a></nav><ul class=share-buttons><li><a target=_blank rel="noopener noreferrer" aria-label="share Apple Push Notification System For CSharp on x" href="https://x.com/intent/tweet/?text=Apple%20Push%20Notification%20System%20For%20CSharp&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2fapple-push-notification-system-for-csharp%2f&amp;hashtags=Apple%2c.NET%2cC%23"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Apple Push Notification System For CSharp on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2fapple-push-notification-system-for-csharp%2f&amp;title=Apple%20Push%20Notification%20System%20For%20CSharp&amp;summary=Apple%20Push%20Notification%20System%20For%20CSharp&amp;source=https%3a%2f%2fqfsyso.github.io%2fposts%2fapple-push-notification-system-for-csharp%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Apple Push Notification System For CSharp on reddit" href="https://reddit.com/submit?url=https%3a%2f%2fqfsyso.github.io%2fposts%2fapple-push-notification-system-for-csharp%2f&title=Apple%20Push%20Notification%20System%20For%20CSharp"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Apple Push Notification System For CSharp on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fqfsyso.github.io%2fposts%2fapple-push-notification-system-for-csharp%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Apple Push Notification System For CSharp on whatsapp" href="https://api.whatsapp.com/send?text=Apple%20Push%20Notification%20System%20For%20CSharp%20-%20https%3a%2f%2fqfsyso.github.io%2fposts%2fapple-push-notification-system-for-csharp%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Apple Push Notification System For CSharp on telegram" href="https://telegram.me/share/url?text=Apple%20Push%20Notification%20System%20For%20CSharp&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2fapple-push-notification-system-for-csharp%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentcolor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Apple Push Notification System For CSharp on ycombinator" href="https://news.ycombinator.com/submitlink?t=Apple%20Push%20Notification%20System%20For%20CSharp&u=https%3a%2f%2fqfsyso.github.io%2fposts%2fapple-push-notification-system-for-csharp%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentcolor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></li></ul></footer></article></main><footer class=footer><div class=wtime><div class=wtime2>CST<span id=beijingTime></span> GMT <span id=londonTime></span> EST <span id=newYorkTime></span> PST<span id=losAngelesTime></span></div><div class=wtime2 style=display:none>东京<span id=tokyoTime></span></div><div class=wtime2 style=display:none>欧洲-巴黎<span id=parisTime></span></div><div class=wtime2 style=display:none>UTC<span id=utcTime></span></div></div><span>&copy; 2025 <a href=https://qfsyso.github.io/>MLOG</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a>
+</span><script type=text/javascript>const timeZoneOffsets={beijing:8,tokyo:9,paris:[1,2],london:[0,1],newYork:[-5,-4],losAngeles:[-8,-7]};function padZero(e){return e<10?"0"+e:e}function formatTime(e){const t=e.getFullYear(),n=padZero(e.getMonth()+1),s=padZero(e.getDate()),o=padZero(e.getHours()),i=padZero(e.getMinutes()),a=padZero(e.getSeconds());return`${t}-${n}-${s} ${o}:${i}:${a}`}function isDaylightSavingTime(e,t){const o=e.getMonth(),n=new Date(e.getFullYear(),3,8,2,0,0),s=new Date(e.getFullYear(),10,1,2,0,0);return(t==="paris"||t==="london"||t==="newYork"||t==="losAngeles")&&e>=n&&e<s}function updateTime(){const e=new Date,t=new Date(e.getUTCFullYear(),e.getUTCMonth(),e.getUTCDate(),e.getUTCHours(),e.getUTCMinutes(),e.getUTCSeconds()),n=formatTime(t);document.getElementById("utcTime").innerHTML=n;for(const n in timeZoneOffsets){const e=timeZoneOffsets[n];let s;Array.isArray(e)?s=isDaylightSavingTime(t,n)?e[1]:e[0]:s=e;const o=new Date(t.getTime()+s*60*60*1e3);document.getElementById(n+"Time").innerHTML=formatTime(o)}setTimeout(updateTime,1e3)}window.onload=function(){updateTime()};function notfound(e){var n=e.src,t=n.split("/"),s=t[t.length-1];e.src="https://47.115.223.75:8080/group1/v2/"+s+"?timestamp="+Date.now(),e.onerror=null}</script></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
