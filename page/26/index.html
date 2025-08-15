@@ -123,6 +123,42 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET Avalonia Linux 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>环境WIN10 VS2022 debian
+👻前言 Avalonia 是一个用于创建跨平台用户界面 (UI) 的开源框架。它是一个基于 .NET 平台的框架，允许开发者使用 XAML 和 C#（F#）来构建跨平台的应用程序。Avalonia 的目标是提供与 Windows Presentation Foundation (WPF) 类似的开发体验，但能够在 Windows、macOS 和 Linux 等多个平台上运行。
+使用 Avalonia，开发者可以创建各种类型的应用程序，包括桌面应用、移动应用和嵌入式应用。一些可以通过 Avalonia 实现的功能和应用包括：
+桌面应用程序：如办公软件、IDE、游戏客户端等。
+移动应用程序：通过 Avalonia 可以构建支持多个平台的移动应用，如 Windows、macOS 和 Linux 上的移动应用。
+跨平台工具：Avalonia 可以用于构建跨平台的开发工具、实用工具等。
+游戏开发：Avalonia 也可以用于构建游戏的用户界面，适合基于 .NET 平台的游戏开发。
+Avalonia 提供了一个强大的工具集，使开发者能够创建具有各种功能和样式的跨平台应用程序。
+💻安装Avalonia 选择管理拓展，点击下载，安装
+​
+​
+📦创建项目 ​
+​
+​
+编码…
+📚在win下运行 ​
+查看linux内核
+uname -a
+​
+🔑打包发布 复制到linux
+授予权限
+📻在linux下运行 迁移Socket发布到linux ​
+​
+实现win linux web 基于socket实时聊天
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-27 00:07:15 +0000 UTC'>April 27, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET Avalonia Linux " href="http://localhost:1313/posts/.net-avalonia-linux/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Debian Gnome-Desktop GUI 
     </h2>
   </header>
@@ -276,21 +312,6 @@ JWT (JSON Web Token) 是一种安全传输信息的开放标准，由Header、Pa
   </div>
   <footer class="entry-footer"><span title='2024-04-19 01:26:35 +0000 UTC'>April 19, 2024</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to .NET JWT " href="http://localhost:1313/posts/.net-jwt/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET spider
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>前言 爬虫可以用于外汇，期货，基金，货币，比分，电商，文章等信息的采集。通过数据分析，竞品分析，为商业决策提供数据支持。
-​ 金价暴涨，抓取下今日的金价。
-💡使用HttpClient爬取数据 try { // 创建HttpClient实例 using (var httpClient = new HttpClient()) { //模拟User-Agent httpClient.DefaultRequestHeaders.Add(&#34;User-Agent&#34;, GetUserAgent()); // 发送GET请求并获取响应 xxx.com是某网站的页面~（保护） var response = await httpClient.GetAsync(&#34;https://xxx.com&#34;); response.EnsureSuccessStatusCode(); var htmlContent = await response.Content.ReadAsStringAsync(); } } catch (HttpRequestException ex) { // 处理请求异常 ViewBag.Error = &#34;Failed to retrieve price data: &#34; &#43; ex.Message; } 🚀模拟User-Agent // 生成随机 User-Agent private string GetUserAgent() { string[] userAgents = new string[] { &#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36&#34;, &#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.190 Safari/537.36&#34;, // }; Random random = new Random(); int index = random.Next(userAgents.Length); return userAgents[index]; } 🤵使用HTML解析库 （HtmlAgilityPack）提取价格
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-18 12:59:30 +0000 UTC'>April 18, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET spider" href="http://localhost:1313/posts/.net-spider/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

@@ -123,6 +123,41 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Docker MySQL 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>1.下载docker desktop https://www.docker.com/products/docker-desktop/
+创建容器 docker run 创建并启动mysql容器
+–name 容器名字
+-d 后台运行容器
+-p 映射端口
+-e 参数
+截至目前最新的mysql是mysql8.0.36 那就整这个试下。
+docker run -d --name mysql-container -e TZ=UTC -p 30306:3306 -e MYSQL_ROOT_PASSWORD=你的密码 mysql:8.0.36-debian ​
+等待一会，看到mysql已经pull下来。
+回到docker看到容器已经创建。
+​
+​
+可以输入docker images查看
+​
+3.创建mysql数据库管理软件容器
+docker run --name myadmin -d --link mysql-container:db -p 8880:80 phpmyadmin/phpmyadmin ​
+回到docker查看下容器是否创建成功。 ​
+复制地址到浏览器访问。 ​
+​
+okok
+唉哟不错哦~
+扩展：ubuntu版本
+docker run -d --name mysql-container -e TZ=UTC -p 30306:3306 -e MYSQL_ROOT_PASSWORD=xxxxxx ubuntu/mysql:8.0-22.04_beta https://hub.docker.com/r/ubuntu/mysql?uuid=D64B1F2A-A81A-4D2C-B66B-FCFAECE77EFE
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-11 08:35:22 +0000 UTC'>April 11, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Docker MySQL " href="http://localhost:1313/posts/docker-mysql/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Hello World Hexo
     </h2>
   </header>

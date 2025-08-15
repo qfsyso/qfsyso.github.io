@@ -23,20 +23,4 @@ err git@github.com: Permission denied (publickey). fatal: Could not read from re
 配置GitHub仓库 在GitHub上创建一个新的仓库，其名称应该是 用户名.github.io，其中用户名是你的GitHub用户名。 git config &amp;ndash;global user.email &amp;ldquo;xx@qq.com&amp;rdquo; git config &amp;ndash;global user.name &amp;ldquo;user&amp;rdquo;
 _config.yml deploy: type: git repo: # 替换为你的GitHub仓库url branch: master
 安装hexo-deployer-git插件： npm install hexo-deployer-git &amp;ndash;save
-部署到GitHub： hexo clean hexo g #hexo generate hexo d #hexo deploy</description></item><item><title>some code</title><link>https://qfsyso.github.io/posts/some-code/</link><pubDate>Thu, 03 Aug 2023 02:12:50 +0000</pubDate><guid>https://qfsyso.github.io/posts/some-code/</guid><description>now study 开发者活动 https://developer.huaweicloud.com/events
-云学堂 https://edu.huaweicloud.com/signup/a84b127961f4408bb69d560f48c5675d
-华为云认证 https://edu.huaweicloud.com/certificationindex
-开发者空间学习 https://developer.huaweicloud.com/space/devportal/knowledge
-https://linux.do/t/topic/665547/1 华为云认真攻略
-AES-256 加密算法和三重转轮混淆技术
-10个人 2m 100 20m
-瘦肚子 胯下击掌 50 单侧提膝 50 提膝下压 50 深蹲 30 4组
-something git chatbox https://github.com/Bin-Huang/chatbox Desktop Client App for AI Models/LLMs (GPT, Claude, Gemini, Ollama&amp;hellip;)
-fofa https://fofa.info/ app=&amp;ldquo;Ollama&amp;rdquo; &amp;amp;&amp;amp; is_domain=false https://github.com/ollama/ollama/blob/main/docs/api.md
-dbeaver sql工具 https://github.com/dbeaver/dbeaver/releases
-sing-boxyg https://github.com/yonggekkk/sing-box-yg
-music-desktop https://github.com/lyswhut/lx-music-desktop
-RDP、VNC、SSH 远程 https://github.com/mRemoteNG/mRemoteNG
-clash linux https://github.com/Elegycloud/clash-for-linux-backup
-ssh https://github.com/cmliu/webssh https://github.com/chaos-zhu/easynode https://github.com/crazypeace/huashengdun-webssh https://github.com/huashengdun/webssh https://github.com/Jrohy/webssh
-docker run -d --name webssh --restart always -p 18888:8888 cmliu/webssh:latest v2rayN https://github.</description></item></channel></rss>
+部署到GitHub： hexo clean hexo g #hexo generate hexo d #hexo deploy</description></item></channel></rss>

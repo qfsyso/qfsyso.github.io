@@ -123,6 +123,30 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">DotNetty ByteBuffer
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>DotNetty是一个高性能的.NET网络通信框架，基于Netty，支持TCP、UDP、HTTP、WebSocket等协议。适用于高并发、低延迟场景，如实时通信、游戏服务器、IoT应用及大型分布式系统，通过异步I/O、零拷贝等技术提升性能，具备易用性、可扩展性。 架构上，围绕Channel、EventLoop、ChannelPipeline、ChannelHandlerContext设计，包含Transport、Codec、Handler等模块，简化网络编程，加速数据传输处理。
+ByteBuffer 用于高效处理字节数据，固定容量，通过allocate或wrap创建。涉及position和limit追踪读写位置，提供get/put等读写方法，flip切换读写模式，clear清空缓冲区，compact移动数据并准备下一轮读写，适用于高性能IO与网络通信。.
+优点 零拷贝通过复合缓冲区实现。 动态容量增长。 无需flip切换读写模式。 分离读写索引。 内置引用计数。 支持缓冲区池化。 优化网络通信中的字节处理。
+结构 readerIndex 读取，随读增。 writerIndex 写入，随写增。 capacity容量。
+ByteBuffer属性 readIndex：下一个读位 writeIndex：下一个写位置 capacity：容量 0：缓冲区开始位置
+已经读取的区域：[0,readerindex) 可读取的区域：[readerindex,writerIndex) 可写的区域: [writerIndex,capacity) 读写独立索引，操作命名区分（read/write自动进，get/set不影响索引）。 支持设定最大容量，超限写操作将抛异常，默认上限Integer.MAX_VALUE。 readerIndex writerIndex 本质为灵活高效字节容器
+堆缓冲区 最常用的 ByteBuffer 模式是将数据存储在堆空间中。这种模式被称为支撑数组（backing array），它能在没有使用池化的情况下提供快速的分配和释放。可以由 hasArray() 来判断检查 ByteBuffer是否由数组支撑。如果不是，则这是一个直接缓冲区。
+直接缓冲区 直接缓冲区是另外一种 ByteBuffer 模式。 直接缓冲区的主要缺点是，相对于基于堆的缓冲区，它们的分配和释放都较为昂贵。
+复合缓冲区 复合缓冲区 CompositeByteBuf，它为多个 ByteBuffer提供一个聚合视图。比如 HTTP 协议， 分为消息头和消息体，这两部分可能由应用程序的不同模块产生，各有各的 ByteBuffer，将会在消息被发送的时候组装为一个 ByteBuffer，此时可以将这两个 ByteBuffer聚合为一个 CompositeByteBuf，然后使用统一和通用的 ByteBuffer API 来操作。
+如何在的程序中获得 ByteBuf 的实例，并使用它呢？Netty 提供了两种方式
+ByteBufAllocator 接口 ByteBufAllocator 分配任意类型的 ByteBuffer 实例。
+buffer(): 基于堆/直接内存ByteBuffer。 heapBuffer(): 仅堆内存。 directBuffer(): 仅直接内存。 compositeBuffer(): 可组合多个缓冲区，支持堆/直接内存。 ioBuffer(): 适配I/O操作，优先直接内存(需Unsafe支持)。 ByteBufAllocator： Channel ChannelHandlerContext
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-23 21:47:10 +0000 UTC'>May 23, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to DotNetty ByteBuffer" href="http://localhost:1313/posts/dotnetty-bytebuffer/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent"> .NET FileUpload
     </h2>
   </header>
@@ -215,29 +239,6 @@ Send
   </div>
   <footer class="entry-footer"><span title='2024-05-17 21:00:03 +0000 UTC'>May 17, 2024</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to Nodejs Study" href="http://localhost:1313/posts/nodejs-study/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Nodejs base
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>简单的说 Node.js 就是运行在服务端的 JavaScript。
-Node.js 是一个基于 Chrome JavaScript 运行时建立的一个平台。
-Node.js 是一个事件驱动 I/O 服务端 JavaScript 环境，基于 Google 的 V8 引擎，V8 引擎执行 Javascript 的速度非常快，性能非常好。
-🛠Node.js安装 Node.js安装在上一篇文章Debian Node.js HEXO 有讲到
-截至目前最新的版本是20.12.2
-#查看版本 node -v v20.12.2
-win下可以在官网下载安装 https://nodejs.org/en/download
-debian nodejs node 14版本
-$ apt-get update $ curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash - #如果提示sudo 命令没有找到，一定要下载，执行apt-get install sudo -y 即可，然后再执行上述命令
-$ apt-get install nodejs -y $ node --version //验证 当然如果需要安装node20版本，只需将上述命令替换为：
-$ curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 💬helloworld hi.js
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-17 19:00:03 +0000 UTC'>May 17, 2024</span>&nbsp;·&nbsp;13 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Nodejs base" href="http://localhost:1313/posts/nodejs-base/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

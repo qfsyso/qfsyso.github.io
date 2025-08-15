@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Debian | MLOG</title>
+<title>AI | MLOG</title>
 <meta name="keywords" content="">
 <meta name="description" content="A simple blog ">
 <meta name="author" content="dwd">
-<link rel="canonical" href="http://localhost:1313/tags/debian/">
+<link rel="canonical" href="http://localhost:1313/tags/ai/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.6da9a63d25a9608bca2f7f907a030e887a7dd3c3f3918e4cc113129361414bda.css" integrity="sha256-bammPSWpYIvKL3&#43;QegMOiHp908PzkY5MwRMSk2FBS9o=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
@@ -18,8 +18,8 @@
 <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/debian/index.xml">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/tags/debian/">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/ai/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/tags/ai/">
 <noscript>
     <style>
         #theme-toggle,
@@ -120,53 +120,32 @@
 <main class="main"> 
 <header class="page-header">
   <h1>
-    Debian
+    AI
   </h1>
 </header>
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Debian Gnome-Desktop GUI 
+    <h2 class="entry-hint-parent">ollama gpt qwen gemma2 deepseek loacl AI
     </h2>
   </header>
   <div class="entry-content">
-    <p>debian gnome-desktop
-🌞更新 sudo apt update sudo apt -y upgrade ​
-🎨安装 sudo apt -y install task-gnome-desktop 这个过程比较久
-​
-🍎分配 sudo systemctl set-default graphical.target vi /etc/pam.d/gdm-password ``` bash 注释 auth required pam_succeed_if.so user != root quiet_success ``` bash #auth required pam_succeed_if.so user != root quiet_success 🛋️重启 sudo reboot 🔑通过VNC连接 ​
-配置后
-​
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-26 23:19:27 +0000 UTC'>April 26, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian Gnome-Desktop GUI " href="http://localhost:1313/posts/debian-gnome-desktop-gui/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Debian Docker Redis
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Debian安装docker
-1.使用官方脚本自动安装docker 安装命令如下：
-curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh 如果安装提示
--bash sudo command not found
-则需要
-#update sudo apt-get update sudo apt-get install sudo 再执行安装脚本1
-安装成功后可以输入 docker命令查看docker版本
-#version docker --version 能查到表明安装成功
-2.pull redis #pull redis docker pull redis:latest pull redis镜像 3.创建reids容器 docker run -itd --name redis-test -p 6379:6379 redis 4.测试redis docker exec -it redis-test /bin/bash redis-cli set test 1 get test set test 1 提示ok
-get test 一些命令
+    <p>ollama https://ollama.com/ ollama
+https://ollama.com/library models
+ollama run qwen2 send a message ollama run gemma2 https://github.com/open-webui/open-webui webui
+docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main N卡 gpu
+docker run -d -p 3000:8080 --gpus all --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:cuda http://localhost:3000/
+deepseek https://ollama.com/library/deepseek-coder-v2 deepseek-coder-v2 ~~ codeqwen sqlcoder
+curl -X POST http://localhost:11434/api/generate -d &#39;{ &#34;model&#34;: &#34;llama2-chinese:7b-chat-q4_0&#34;, &#34;prompt&#34;:&#34;为什么天空是蓝色的&#34; }&#39; https://docs.openwebui.com/
+Open WebUI Open WebUI https://docs.openwebui.com/ 安装默认配置
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-04-12 09:27:49 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian Docker Redis" href="http://localhost:1313/posts/debian-docker-redis/"></a>
+  <footer class="entry-footer"><span title='2024-07-26 23:33:08 +0000 UTC'>July 26, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to ollama gpt qwen gemma2 deepseek loacl AI" href="http://localhost:1313/posts/ollama-gpt-qwen-gemma2-deepseek-loacl-ai/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="prev" href="http://localhost:1313/tags/debian/page/3/">
+    <a class="prev" href="http://localhost:1313/tags/ai/">
       «&nbsp;Prev&nbsp;
     </a>
   </nav>

@@ -123,6 +123,29 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Azure AI Develop Generative AI solutions
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Start https://learn.microsoft.com/en-us/credentials/applied-skills/develop-generative-ai-solutions-with-azure-openai-service/#applied-skill-take-the-assessment
+部署Azure OpenAI 服务 ​
+点击Step 1，然后点击Password右边的T ​
+鼠标双击Email ​ 对Inbox的内容进行逐个点击，其中Existing Environment包含了微软官方提供的Azure的用户名和密码，Validate proof of concept、Company chatbot、Developer tasks和Use company data分别表示的是本次考试的四大任务的具体要求
+切换到Azure登录的标签页
+​ 将邮箱中Existing Environment的用户名和密码依次复制到Azure的标签页面中，并点击Sign in完成Azure的登录
+然后在浏览器中输入URL：https://portal.azure.com/#home，点击Azure AI services
+​ 其中Resource group、Pricing tier勾选下拉列表的存在项，Name可自行填入(如azureservice)，然后点击Next ​
+网络中选择第一项：All networks，然后点击页面左下方的Next Tags可直接点击左下方的Next 然后在Review&#43;submit页面点击Create ​ 等待几十秒后，deployment完成后，点击Deployment details 点击Resource中的名称，如azureservice ​ 点击Endpoints右边的Click here to view endpoints ​ ​
+点击Key 1右侧的复制按钮，复制其到C:\files\AzureOpenAIPoc\Python.env中的AZURE_OAI_KEY变量中。 点击Endpoint右侧的复制按钮，分别复制任意一个 KEY 和 EndPoint 到C:\files\AzureOpenAIPoc\Python.env中的AZURE_OAI_KEY 和 AZURE_OAI_ENDPOINT。 然后在浏览器中输入https://portal.azure.com/#home，并点击Name下的名称 点击Go to Azure OpenAI Studio
+然后点击Create new deployment
+按照下图中的内容进行下拉选择或者填写，其中Select a model勾选为gpt-35-turbo-16k，Deployment name可自定义填写，如gpt_deploy，将Tokens per Minute Rate Limit设置为5K，Enable Dynamic Quota设置为Disabled，最后点击Create： ...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-06-06 00:18:03 +0000 UTC'>June 6, 2024</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Azure AI Develop Generative AI solutions" href="http://localhost:1313/posts/azure-ai-develop-generative-ai-solutions/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Azure OpenAI Language
     </h2>
   </header>
@@ -219,22 +242,6 @@ Azure OpenAI 服务已发布，但支持以合乎道德的方式使用该服务�
   </div>
   <footer class="entry-footer"><span title='2024-06-01 01:24:22 +0000 UTC'>June 1, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to  .NET Dockerhub" href="http://localhost:1313/posts/.net-dockerhub/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET Redis 10s Rate Limiter Sliding Window Algorithm
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>在.NET中使用Redis来限制接口请求频率（每10秒只允许请求一次）
-NuGet setup StackExchange.Redis
-实现速率限制逻辑： 在你的控制器或服务层中，你需要编写一个方法来检查并更新Redis中的速率限制计数器。 设置Redis键： 为每个用户或每个IP地址（取决于你的需求）设置一个唯一的键。这个键将用于存储最后一次请求的时间戳和/或请求计数。 检查时间戳： 当请求到达时，从Redis中获取该键的值（时间戳）。如果键不存在或时间戳超过10秒，则允许请求并更新键的值（设置为当前时间戳）。 处理超过速率的请求： 如果时间戳在10秒内，则拒绝或限制该请求（返回限制状态码）。
-private static readonly Lazy&lt;ConnectionMultiplexer&gt; LazyConnection = new Lazy&lt;ConnectionMultiplexer&gt;(() =&gt; { // 配置Redis连接字符串 &#34;localhost,abortConnect=false&#34; return ConnectionMultiplexer.Connect(&#34;localhost:6379&#34;); }); private static ConnectionMultiplexer Connection =&gt; LazyConnection.Value; private static IDatabase Db =&gt; Connection.GetDatabase(); public async Task&lt;ActionResult&gt; MyAction() { IPAddress clientIpAddress = HttpContext.Connection.RemoteIpAddress; string ipAddress = clientIpAddress.ToString(); string redisKey = $&#34;rate-limit:{ipAddress}&#34;; // 构建Redis键名 // 获取当前时间戳（可以是Unix时间戳或任何你选择的格式） long currentTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds(); // 尝试从Redis获取时间戳 var redisValue = await Db.StringGetAsync(redisKey); long lastTimestamp = redisValue.HasValue ? (long)redisValue : 0; // 检查是否超过10秒 if (currentTimestamp - lastTimestamp &gt;= 10) { // 如果超过10秒，则允许请求并更新Redis键 await Db.StringSetAsync(redisKey, currentTimestamp, TimeSpan.FromSeconds(10)); // 设置键的过期时间为10秒 return Content(&#34;Request allowed.&#34;); } else { // 如果未超过10秒，则拒绝请求 HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.TooManyRequests) { ReasonPhrase = &#34;Too Many Requests&#34;, Content = new StringContent(&#34;Rate limit exceeded. Please try again later.&#34;) }; // 处理请求 return Content(&#34;Please try again later. &#34;);// throw new HttpResponseException(response); // 或者返回自定义的ActionResult } } 扩展为参数
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-31 06:24:16 +0000 UTC'>May 31, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET Redis 10s Rate Limiter Sliding Window Algorithm" href="http://localhost:1313/posts/.net-redis-10s-rate-limiter-sliding-window-algorithm/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

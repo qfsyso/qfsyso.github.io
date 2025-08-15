@@ -126,6 +126,29 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Nodejs base
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>简单的说 Node.js 就是运行在服务端的 JavaScript。
+Node.js 是一个基于 Chrome JavaScript 运行时建立的一个平台。
+Node.js 是一个事件驱动 I/O 服务端 JavaScript 环境，基于 Google 的 V8 引擎，V8 引擎执行 Javascript 的速度非常快，性能非常好。
+🛠Node.js安装 Node.js安装在上一篇文章Debian Node.js HEXO 有讲到
+截至目前最新的版本是20.12.2
+#查看版本 node -v v20.12.2
+win下可以在官网下载安装 https://nodejs.org/en/download
+debian nodejs node 14版本
+$ apt-get update $ curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash - #如果提示sudo 命令没有找到，一定要下载，执行apt-get install sudo -y 即可，然后再执行上述命令
+$ apt-get install nodejs -y $ node --version //验证 当然如果需要安装node20版本，只需将上述命令替换为：
+$ curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 💬helloworld hi.js
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-17 19:00:03 +0000 UTC'>May 17, 2024</span>&nbsp;·&nbsp;13 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Nodejs base" href="http://localhost:1313/posts/nodejs-base/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">HarmonyOS Photos Column Swiper Grid
     </h2>
   </header>
@@ -219,29 +242,6 @@ menu: home: / || home #tags = [&#34; /tags/ || tags categories: /categories/ || 
   </div>
   <footer class="entry-footer"><span title='2024-05-08 21:19:32 +0000 UTC'>May 8, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to  Web uvpv busuanzi" href="http://localhost:1313/posts/web-uvpv-busuanzi/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">npm audit
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>11 packages are looking for funding run npm fund for details
-6 vulnerabilities (4 high, 2 critical)
-To address issues that do not require attention, run: npm audit fix
-To address all issues, run: npm audit fix –force
-Run npm audit for details.
-————————————————
-这个报错信息的意思是：
-依赖包已经是最新的，npm检查了xx个包，花了x秒钟。 有x个包正在寻求资金支持，运行npm fund来查看详情，也可以选择捐赠一些钱给这些包的开发者。 有x个中等程度的安全漏洞，运行npm audit fix –force来修复所有的问题，包括一些可能导致破坏性变化的问题。 运行npm audit来查看更多的细节，包括每个漏洞的类型，来源，影响等。
-解决方法
-有时候并不想修复这些安全漏洞，因为它们可能会影响我们的项目的正常运行，或者我们只是想快速地初始化一个项目，不想被这些报错信息打扰,可以使用一个简单的命令来关闭npm的audit检查： npm set audit false 这样就可以保证npm的audit不会影响初始化项目，但是这个解决办法并不建议使用在实际生产中，因为它会让我们忽略一些可能存在的安全风险。 同样的，可以将值设为true来打开npm audit检查，这样可以看到npm的报错信息，也可以选择修复它们： npm set audit true 这个操作将对全局生效，也就是说，它会影响我们所有的项目，不管是新的还是旧的。
-修复~但不是破坏性修复
-npm audit fix </p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-08 19:11:07 +0000 UTC'>May 8, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to npm audit" href="http://localhost:1313/posts/npm-audit/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

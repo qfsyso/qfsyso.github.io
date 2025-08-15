@@ -126,6 +126,22 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET Redis 10s Rate Limiter Sliding Window Algorithm
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>在.NET中使用Redis来限制接口请求频率（每10秒只允许请求一次）
+NuGet setup StackExchange.Redis
+实现速率限制逻辑： 在你的控制器或服务层中，你需要编写一个方法来检查并更新Redis中的速率限制计数器。 设置Redis键： 为每个用户或每个IP地址（取决于你的需求）设置一个唯一的键。这个键将用于存储最后一次请求的时间戳和/或请求计数。 检查时间戳： 当请求到达时，从Redis中获取该键的值（时间戳）。如果键不存在或时间戳超过10秒，则允许请求并更新键的值（设置为当前时间戳）。 处理超过速率的请求： 如果时间戳在10秒内，则拒绝或限制该请求（返回限制状态码）。
+private static readonly Lazy&lt;ConnectionMultiplexer&gt; LazyConnection = new Lazy&lt;ConnectionMultiplexer&gt;(() =&gt; { // 配置Redis连接字符串 &#34;localhost,abortConnect=false&#34; return ConnectionMultiplexer.Connect(&#34;localhost:6379&#34;); }); private static ConnectionMultiplexer Connection =&gt; LazyConnection.Value; private static IDatabase Db =&gt; Connection.GetDatabase(); public async Task&lt;ActionResult&gt; MyAction() { IPAddress clientIpAddress = HttpContext.Connection.RemoteIpAddress; string ipAddress = clientIpAddress.ToString(); string redisKey = $&#34;rate-limit:{ipAddress}&#34;; // 构建Redis键名 // 获取当前时间戳（可以是Unix时间戳或任何你选择的格式） long currentTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds(); // 尝试从Redis获取时间戳 var redisValue = await Db.StringGetAsync(redisKey); long lastTimestamp = redisValue.HasValue ? (long)redisValue : 0; // 检查是否超过10秒 if (currentTimestamp - lastTimestamp &gt;= 10) { // 如果超过10秒，则允许请求并更新Redis键 await Db.StringSetAsync(redisKey, currentTimestamp, TimeSpan.FromSeconds(10)); // 设置键的过期时间为10秒 return Content(&#34;Request allowed.&#34;); } else { // 如果未超过10秒，则拒绝请求 HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.TooManyRequests) { ReasonPhrase = &#34;Too Many Requests&#34;, Content = new StringContent(&#34;Rate limit exceeded. Please try again later.&#34;) }; // 处理请求 return Content(&#34;Please try again later. &#34;);// throw new HttpResponseException(response); // 或者返回自定义的ActionResult } } 扩展为参数
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-31 06:24:16 +0000 UTC'>May 31, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET Redis 10s Rate Limiter Sliding Window Algorithm" href="http://localhost:1313/posts/.net-redis-10s-rate-limiter-sliding-window-algorithm/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">.NET RocketMQ
     </h2>
   </header>
@@ -221,30 +237,6 @@ FROM node:16-alpine WORKDIR /usr/src/app COPY package*.json ./ RUN npm ci --only
   </div>
   <footer class="entry-footer"><span title='2024-05-23 21:49:44 +0000 UTC'>May 23, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
   <a class="entry-link" aria-label="post link to HarmonyOS Interface Router ArkTS ArkUI" href="http://localhost:1313/posts/harmonyos-interface-router-arkts-arkui/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">DotNetty ByteBuffer
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>DotNetty是一个高性能的.NET网络通信框架，基于Netty，支持TCP、UDP、HTTP、WebSocket等协议。适用于高并发、低延迟场景，如实时通信、游戏服务器、IoT应用及大型分布式系统，通过异步I/O、零拷贝等技术提升性能，具备易用性、可扩展性。 架构上，围绕Channel、EventLoop、ChannelPipeline、ChannelHandlerContext设计，包含Transport、Codec、Handler等模块，简化网络编程，加速数据传输处理。
-ByteBuffer 用于高效处理字节数据，固定容量，通过allocate或wrap创建。涉及position和limit追踪读写位置，提供get/put等读写方法，flip切换读写模式，clear清空缓冲区，compact移动数据并准备下一轮读写，适用于高性能IO与网络通信。.
-优点 零拷贝通过复合缓冲区实现。 动态容量增长。 无需flip切换读写模式。 分离读写索引。 内置引用计数。 支持缓冲区池化。 优化网络通信中的字节处理。
-结构 readerIndex 读取，随读增。 writerIndex 写入，随写增。 capacity容量。
-ByteBuffer属性 readIndex：下一个读位 writeIndex：下一个写位置 capacity：容量 0：缓冲区开始位置
-已经读取的区域：[0,readerindex) 可读取的区域：[readerindex,writerIndex) 可写的区域: [writerIndex,capacity) 读写独立索引，操作命名区分（read/write自动进，get/set不影响索引）。 支持设定最大容量，超限写操作将抛异常，默认上限Integer.MAX_VALUE。 readerIndex writerIndex 本质为灵活高效字节容器
-堆缓冲区 最常用的 ByteBuffer 模式是将数据存储在堆空间中。这种模式被称为支撑数组（backing array），它能在没有使用池化的情况下提供快速的分配和释放。可以由 hasArray() 来判断检查 ByteBuffer是否由数组支撑。如果不是，则这是一个直接缓冲区。
-直接缓冲区 直接缓冲区是另外一种 ByteBuffer 模式。 直接缓冲区的主要缺点是，相对于基于堆的缓冲区，它们的分配和释放都较为昂贵。
-复合缓冲区 复合缓冲区 CompositeByteBuf，它为多个 ByteBuffer提供一个聚合视图。比如 HTTP 协议， 分为消息头和消息体，这两部分可能由应用程序的不同模块产生，各有各的 ByteBuffer，将会在消息被发送的时候组装为一个 ByteBuffer，此时可以将这两个 ByteBuffer聚合为一个 CompositeByteBuf，然后使用统一和通用的 ByteBuffer API 来操作。
-如何在的程序中获得 ByteBuf 的实例，并使用它呢？Netty 提供了两种方式
-ByteBufAllocator 接口 ByteBufAllocator 分配任意类型的 ByteBuffer 实例。
-buffer(): 基于堆/直接内存ByteBuffer。 heapBuffer(): 仅堆内存。 directBuffer(): 仅直接内存。 compositeBuffer(): 可组合多个缓冲区，支持堆/直接内存。 ioBuffer(): 适配I/O操作，优先直接内存(需Unsafe支持)。 ByteBufAllocator： Channel ChannelHandlerContext
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-23 21:47:10 +0000 UTC'>May 23, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to DotNetty ByteBuffer" href="http://localhost:1313/posts/dotnetty-bytebuffer/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
