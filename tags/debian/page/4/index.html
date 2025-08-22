@@ -126,6 +126,28 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Debian Nodejs HEXO 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Debian Nodejs HEXO
+安装Node.js环境 sudo apt update debian安装最新node v20.12.0 在Debian系统上安装特定版本的Node.js（例如v20.12.0），你可以使用NodeSource二进制分发。以下是安装v20.12.0的步骤：
+首先，打开终端。
+使用curl下载NodeSource的安装脚本：
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 安装Node.js：
+sudo apt-get install -y nodejs 验证Node.js是否安装成功：
+node --version 如果你想要确保安装了特定的v20.12.0版本，可以在安装完Node.js后运行以下命令来验证版本：
+node -v 如果显示的版本号是v20.12.0，则表示已经成功安装了该版本。
+安装HEXO 使用npm包管理器，直接安装hexo
+npm install hexo -g hexo init blog cd blog npm install hexo server hexo 修改端口号 _config.yml # 或者使用 vim _config.yml
+Docs: https://hexo.io/docs/server.html server: port: 12311 # 修改这里为你想要的端口号 compress: true header: true hexo s </p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-03 17:02:53 +0000 UTC'>May 3, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Debian Nodejs HEXO " href="http://localhost:1313/posts/debian-nodejs-hexo/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Debian Gnome-Desktop GUI 
     </h2>
   </header>

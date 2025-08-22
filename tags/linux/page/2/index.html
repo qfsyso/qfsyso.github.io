@@ -126,6 +126,26 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent"> Linux CPU now
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>linux 查看正在 cpu占用 在Linux中，可以使用多种命令来查看哪个进程正在使用CPU资源。以下是几个常用的命令：
+top - 实时显示系统中各个进程的资源占用情况，包括CPU使用率。
+top htop - top的增强版，提供更直观的界面，需要单独安装。
+htop ps - 显示当前运行的进程信息，结合aux选项可以查看CPU占用率。
+ps aux --sort=-%cpu | head pidstat - 用于监视个别任务的CPU和内存使用情况，通常与时间结合使用。
+pidstat 1 这些命令会以实时或者定时的方式输出CPU占用前几的进程，帮助识别和解决CPU占用高的问题。
+查看docker docker ps docker ps -a docker start cont C# 获取Cpu win PerformanceCounter 实例，用于监控总 CPU 使用率（&#34;_Total&#34; 表示监控所有 CPU 核心的总体使用情况）。
+dotnet add package System.Diagnostics.PerformanceCounter // 创建一个用于获取 CPU 占用率的 PerformanceCounter 对象 PerformanceCounter cpuCounter = new PerformanceCounter(&#34;Processor&#34;, &#34;% Processor Time&#34;, &#34;_Total&#34;); // 先执行一次 NextValue()，因为第一次调用通常会返回 0 cpuCounter.NextValue(); Thread.Sleep(1000); // 等待 1 秒以便获取准确值 while (true) { // 获取当前的 CPU 使用率 float cpuUsage = cpuCounter.NextValue(); Console.WriteLine($&#34;当前 CPU 占用率: {cpuUsage}%&#34;); // 每隔 1 秒获取一次数据 Thread.Sleep(1000); } Linux 环境中，System.Diagnostics.PerformanceCounter 不可用，因此需要采用其他方法来获取 CPU 占用率。一个常见的方法是读取 /proc/stat 文件并解析内容，或者通过调用 Linux 的 top 或 vmstat 命令来获取 CPU 使用率。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-08-05 01:51:08 +0000 UTC'>August 5, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  Linux CPU now" href="http://localhost:1313/posts/linux-cpu-now/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent"> VM Linux win
     </h2>
   </header>

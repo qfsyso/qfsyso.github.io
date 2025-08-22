@@ -126,6 +126,42 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent"> .NET Dockerhub
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>📚Dockerfile FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build WORKDIR /src COPY [&#34;MyMvcApp.csproj&#34;, &#34;./&#34;] RUN dotnet restore &#34;MyMvcApp.csproj&#34; COPY . . WORKDIR &#34;/src/&#34; RUN dotnet build &#34;MyMvcApp.csproj&#34; -c Release -o /app/build FROM build AS publish RUN dotnet publish &#34;MyMvcApp.csproj&#34; -c Release -o /app/publish FROM base AS final WORKDIR /app COPY --from=publish /app/publish . ENTRYPOINT [&#34;dotnet&#34;, &#34;MyMvcApp.dll&#34;] ✏️ Docker 镜像 docker build -t mymvcapp:latest . 📝在 Docker Hub 上创建仓库 登录 Docker Hub (https://hub.docker.com)。 点击 “Create Repository”。 输入仓库名称，例如 mymvcapp，然后点击 “Create”。
+💻将 Docker 镜像推送到 Docker Hub 首先，登录 Docker Hub：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-06-01 01:24:22 +0000 UTC'>June 1, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  .NET Dockerhub" href="http://localhost:1313/posts/.net-dockerhub/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Debian Docker Redis
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Debian安装docker
+1.使用官方脚本自动安装docker 安装命令如下：
+curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh 如果安装提示
+-bash sudo command not found
+则需要
+#update sudo apt-get update sudo apt-get install sudo 再执行安装脚本1
+安装成功后可以输入 docker命令查看docker版本
+#version docker --version 能查到表明安装成功
+2.pull redis #pull redis docker pull redis:latest pull redis镜像 3.创建reids容器 docker run -itd --name redis-test -p 6379:6379 redis 4.测试redis docker exec -it redis-test /bin/bash redis-cli set test 1 get test set test 1 提示ok
+get test 一些命令
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-12 09:27:49 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Debian Docker Redis" href="http://localhost:1313/posts/debian-docker-redis/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Docker MySQL 
     </h2>
   </header>

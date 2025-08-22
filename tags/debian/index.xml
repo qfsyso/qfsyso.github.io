@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Debian on MLOG</title><link>https://qfsyso.github.io/tags/debian/</link><description>Recent content in Debian on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Fri, 15 Aug 2025 23:51:34 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/debian/index.xml" rel="self" type="application/rss+xml"/><item><title>Discourse</title><link>https://qfsyso.github.io/posts/discourse/</link><pubDate>Fri, 15 Aug 2025 23:51:34 +0800</pubDate><guid>https://qfsyso.github.io/posts/discourse/</guid><description>Discourse 是由Stack Overflow联合创始人Jeff Atwood开发的开源论坛平台，旨在革新传统论坛软件形态
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Debian on MLOG</title><link>https://qfsyso.github.io/tags/debian/</link><description>Recent content in Debian on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Sat, 23 Aug 2025 01:33:06 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/debian/index.xml" rel="self" type="application/rss+xml"/><item><title>Ipa Share</title><link>https://qfsyso.github.io/posts/ipa-share/</link><pubDate>Sat, 23 Aug 2025 01:33:06 +0800</pubDate><guid>https://qfsyso.github.io/posts/ipa-share/</guid><description>Debian 服务器上部署 ipashare。
+部署前准备 服务器环境要求
+操作系统：Debian12
+网络：确保服务器能正常访问 Docker 镜像仓库及 Apple App Store Connect API。
+域名建议已绑定并正确解析到该服务器，支持 HTTPS（可通过 Nginx + Certbot 实现）。
+系统依赖工具安装
+执行以下命令安装 Docker 及 Docker Compose：
+sudo apt update sudo apt install -y docker.io docker-compose sudo systemctl enable --now docker 获取 Apple API 凭证
+登录 App Store Connect 创建 API 密钥，包括：
+Issuer ID
+Key ID
+.p8 文件
+这些是项目调用 App Store Connect API 必需项。
+使用 Docker Compose 部署 官方提供 docker-compose.yml 示例，可在服务器上创建并自定义：</description></item><item><title>Discourse</title><link>https://qfsyso.github.io/posts/discourse/</link><pubDate>Fri, 15 Aug 2025 23:51:34 +0800</pubDate><guid>https://qfsyso.github.io/posts/discourse/</guid><description>Discourse 是由Stack Overflow联合创始人Jeff Atwood开发的开源论坛平台，旨在革新传统论坛软件形态
 注意：Discourse 官方建议至少 1GB 内存（2GB 更稳），必须有 域名，并且能解析到 的服务器公网 IP。
 准备环境 的服务器需要：
 系统：Ubuntu 22.04 或 Debian 11（官方推荐）
