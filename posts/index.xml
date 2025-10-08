@@ -26,7 +26,7 @@ IAM委托 Identity and Access Management 统一身份认证
 对象存储服务（OBS）** 与 函数工作流（FunctionGraph） 完成图片压缩处理。
 1. 创建 OBS 桶 注意事项：必须创建 两个不同的桶：
 源桶：保存用户上传的原始图片 目标桶：保存压缩处理后的图片 如果只使用一个桶，上传图片会再次触发函数执行，造成无限循环。
-1.1 创建源桶 登录 对象存储服务控制台，点击 创建桶。 在「创建桶」界面填写以下信息： 区域：北京四 桶名称：bucket-input-xxx 如提示名称已存在，可自定义，但需记住此桶为源桶。</description></item><item><title/><link>https://qfsyso.github.io/posts/</link><pubDate>Sun, 21 Sep 2025 23:20:30 +0800</pubDate><guid>https://qfsyso.github.io/posts/</guid><description>基于仓颉编程语言开发AI聊天机器人技术指南
+1.1 创建源桶 登录 对象存储服务控制台，点击 创建桶。 在「创建桶」界面填写以下信息： 区域：北京四 桶名称：bucket-input-xxx 如提示名称已存在，可自定义，但需记住此桶为源桶。</description></item><item><title>Cangjie AI Bot</title><link>https://qfsyso.github.io/posts/cangjie-ai-bot/</link><pubDate>Sun, 21 Sep 2025 23:20:30 +0800</pubDate><guid>https://qfsyso.github.io/posts/cangjie-ai-bot/</guid><description>基于仓颉编程语言开发AI聊天机器人
 一、仓颉环境准备 1.1 仓颉版本升级（可选） 当前案例基于仓颉1.0.0开发，需确保开发环境版本一致：
 # 查看当前版本 cjc -v ​​升级方案选择：​​
 ​​方式一：脚本升级​​（推荐） sudo wget -P /home/developer/ https://dtse-mirrors.obs.cn-north-4.myhuaweicloud.com/case/0051/cangjie1.0.0.sh \ &amp;amp;&amp;amp; sudo chmod +x /home/developer/cangjie1.0.0.sh \ &amp;amp;&amp;amp; source /home/developer/cangjie1.0.0.sh 升级后需调整IDE配置：
