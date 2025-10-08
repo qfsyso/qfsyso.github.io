@@ -126,6 +126,23 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent"> VM Linux win
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>debian12.5.0服务器安装 参考https://blog.csdn.net/Go_ahead_forever/article/details/132679793
+相关命令问题 新用户使用sudo报错 xx is not the sudoers file. 原因：book用户没有sudo的权限 解决：https://blog.csdn.net/weixin_37787043/article/details/123045557
+更新 清华-镜像源 (会快一些)： 参考文档： https://blog.csdn.net/sinat_15028281/article/details/135638596
+su root cp etc/apt/sources.list etc/apt/sources.list.backup // 备份 vi etc/apt/sources.list	// 修改镜像源 将etc/apt/sources.list文件内的内容清空，写入以下内容：
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware deb https://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware # deb-src https://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware 安装SSH 安装：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-06-24 23:38:07 +0000 UTC'>June 24, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  VM Linux win" href="http://localhost:1313/posts/vm-linux-win/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent"> .NET Dockerhub
     </h2>
   </header>

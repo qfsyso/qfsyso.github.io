@@ -1,4 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Debian on MLOG</title><link>https://qfsyso.github.io/tags/debian/</link><description>Recent content in Debian on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Sat, 23 Aug 2025 01:33:06 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/debian/index.xml" rel="self" type="application/rss+xml"/><item><title>Ipa Share</title><link>https://qfsyso.github.io/posts/ipa-share/</link><pubDate>Sat, 23 Aug 2025 01:33:06 +0800</pubDate><guid>https://qfsyso.github.io/posts/ipa-share/</guid><description>Debian 服务器上部署 ipashare。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Debian on MLOG</title><link>https://qfsyso.github.io/tags/debian/</link><description>Recent content in Debian on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Tue, 02 Sep 2025 22:59:44 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/debian/index.xml" rel="self" type="application/rss+xml"/><item><title>3XUI Clash</title><link>https://qfsyso.github.io/posts/3xui-clash/</link><pubDate>Tue, 02 Sep 2025 22:59:44 +0800</pubDate><guid>https://qfsyso.github.io/posts/3xui-clash/</guid><description>3x-ui 准备服务器
+系统推荐：Debian 11+/Ubuntu 20.04+
+确保服务器安全组已放行常用端口（80/443/自定义端口）。
+安装 3x-ui bash &amp;lt;(curl -Ls https://raw.githubusercontent.com/MHSanaei/3x-ui/master/install.sh) 安装过程中会提示：
+设置面板端口（默认 54321）
+设置登录用户名与密码
+启动与管理 # 启动 systemctl start x-ui # 停止 systemctl stop x-ui # 重启 systemctl restart x-ui # 查看状态 systemctl status x-ui 访问面板 在浏览器中打开：
+http://服务器IP:面板端口
+输入用户名和密码登录。
+HTTPS 证书配置（推荐） 3x-ui 自带 ACME，可以直接申请免费证书：
+确保域名已经解析到服务器 IP。
+在面板 → 设置 → 证书管理 → 申请证书。
+添加节点用户 登录面板后，可以添加 VLESS、VMess、Trojan 等协议的用户。
+面板会生成二维码和连接信息，方便客户端（比如 v2rayN、Clash）导入。
+常见问题 面板打不开：检查防火墙/安全组是否放行端口。
+证书申请失败：确认域名已解析，且 80/443 端口未被占用。
+更改面板端口：
+x-ui 在交互菜单里修改端口/用户密码。
+sockt5 入站列表</description></item><item><title>Ipa Share</title><link>https://qfsyso.github.io/posts/ipa-share/</link><pubDate>Sat, 23 Aug 2025 01:33:06 +0800</pubDate><guid>https://qfsyso.github.io/posts/ipa-share/</guid><description>Debian 服务器上部署 ipashare。
 部署前准备 服务器环境要求
 操作系统：Debian12
 网络：确保服务器能正常访问 Docker 镜像仓库及 Apple App Store Connect API。
@@ -59,10 +77,11 @@ scp username@remote_ip:/path/to/remote/file.txt /path/to/local/directory/ ​​
 scp -r /path/to/local/directory/ username@remote_ip:/path/to/remote/directory/ 如果目标端口 2222 scp -P 2222 /path/to/file username@ip:/path/to/destination ​2. 使用 rsync（高效同步工具）​​ ​​适用场景​​：增量同步文件或目录，适合大文件或频繁更新。
 ​​基本语法​​：
 rsync [选项] 源路径 目标路径 ​``` ​示例​​： ​​同步本地目录到远程服务器​​： ```bash rsync -avz /path/to/local/directory/ username@remote_ip:/path/to/remote/directory/ -a：归档模式（保留权限、时间戳等） -v：显示详细过程 -z：压缩传输 ​​从远程服务器同步到本地​​：
-rsync -avz username@remote_ip:/path/to/remote/directory/ /path/to/local/directory/ ​​3. 使用 sftp（SSH 文件传输协议）​​ ​​适用场景​​：交互式文件传输（类似 FTP）。</description></item><item><title>Zabbix</title><link>https://qfsyso.github.io/posts/zabbix/</link><pubDate>Mon, 17 Mar 2025 01:55:59 +0000</pubDate><guid>https://qfsyso.github.io/posts/zabbix/</guid><description>Zabbix服务器监控 Server端 apt update apache php
+rsync -avz username@remote_ip:/path/to/remote/directory/ /path/to/local/directory/ ​​3. 使用 sftp（SSH 文件传输协议）​​ ​​适用场景​​：交互式文件传输（类似 FTP）。</description></item><item><title>Zabbix</title><link>https://qfsyso.github.io/posts/zabbix/</link><pubDate>Mon, 17 Mar 2025 01:55:59 +0000</pubDate><guid>https://qfsyso.github.io/posts/zabbix/</guid><description>Zabbix ·Zabbix是一个基于WEB界面的提供分布式系统监视以及网络监视功能的企业级的开源解决方案 ·Zabbix能监视各种网络参数，保证服务器系统的安全运营;并提供灵活的通知机制以让系统管理员快速定位/解决存在的各种问题。 ·可以通过SNMP，Zabbix agent，ping，端口监视等方法提供对远程服务器/网络状态的监视、数据收集等功能，可以运行在多种平台上。
+Zabbix服务器监控 Server端 apt update apache php
 apt install apache2 php php-mysql php-mysqlnd php-ldap php-bcmath php-mbstring php-gd php-pdo php-xml libapache2-mod-php systemctl status apache2 # systemctl start apache2 # systemctl stop apache2 # systemctl restart apache2 db
 apt install mariadb-server mariadb-client systemctl status mariadb mysql_secure_installation 回车 Y 密码 YYYY
-mysql -u root -p create database zabbix character set utf8 collate utf8_bin; grant all privileges on zabbix.* to zabbix@localhost identified by ‘123123.zxcvb’; grant all privileges on zabbix.</description></item><item><title> debian mssql</title><link>https://qfsyso.github.io/posts/debian-mssql/</link><pubDate>Mon, 17 Mar 2025 01:29:20 +0000</pubDate><guid>https://qfsyso.github.io/posts/debian-mssql/</guid><description>Debian 上运行 SQL Server 在 Debian 上安装 SQL Server 2017+ for Linux 微软官方支持 SQL Server 2017 / 2019 / 2022 在 Linux 上运行，但 Debian 没有官方支持，只支持 Ubuntu 和 Red Hat 系列。
+mysql -u root -p create database zabbix character set utf8 collate utf8_bin; grant all privileges on zabbix.* to zabbix@localhost identified by ‘123123.</description></item><item><title> debian mssql</title><link>https://qfsyso.github.io/posts/debian-mssql/</link><pubDate>Mon, 17 Mar 2025 01:29:20 +0000</pubDate><guid>https://qfsyso.github.io/posts/debian-mssql/</guid><description>Debian 上运行 SQL Server 在 Debian 上安装 SQL Server 2017+ for Linux 微软官方支持 SQL Server 2017 / 2019 / 2022 在 Linux 上运行，但 Debian 没有官方支持，只支持 Ubuntu 和 Red Hat 系列。
 可以用 Debian 兼容的方式 安装 SQL Server 2017+，方法如下：
 1. 检查系统版本 确保的 Debian 版本是 Debian 10+（较新的版本兼容性更好）。
 cat /etc/os-release 如果是 Debian 9 或更早，建议升级到 Debian 10+，否则可能会遇到依赖问题。

@@ -1,419 +1,128 @@
-<!DOCTYPE html>
-<html lang="en" dir="auto">
-
-<head>
-	<meta name="generator" content="Hugo 0.145.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
-<title>MLOG</title>
-
-<meta name="description" content="A simple blog ">
-<meta name="author" content="dwd">
-<link rel="canonical" href="http://localhost:1313/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.6da9a63d25a9608bca2f7f907a030e887a7dd3c3f3918e4cc113129361414bda.css" integrity="sha256-bammPSWpYIvKL3&#43;QegMOiHp908PzkY5MwRMSk2FBS9o=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml">
-<link rel="alternate" type="application/json" href="http://localhost:1313/index.json">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
-        }
-
-    </style>
-</noscript>
-</head>
-
-<body class="list" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="MLOG (Alt + H)">MLOG</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="http://localhost:1313/posts/" title="Archive">
-                    <span>Archive</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
-                    <span>Tags</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
-                    <span>Search</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main"> 
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET MinIO
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>安装MinIO docker
-docker run --name minio -p 9000:9000 -p 9090:9090 -d -e &#34;MINIO_ROOT_USER=minio&#34; -e &#34;MINIO_ROOT_PASSWORD=minio123&#34; -v /usr/local/minio-data:/data -v /usr/local/minio-config:/root/.minio minio/minio server data --console-address &#34;:9090&#34; --address &#34;:9000&#34; 后台创建 Buckets 访问 localhost:9000 登陆后创建Buckets io617
-创建密钥 Access Keys
-add package dotnet add package Minio 配置json //... &#34;Minio&#34;: { &#34;Endpoint&#34;: &#34;192.168.80.xx:9000&#34;,//&#34;localhost:9000&#34;, //90/service-account-credentials &#34;AccessKey&#34;: &#34;EctmxSNB9FqfW6UWxxx&#34;, &#34;SecretKey&#34;: &#34;frQhYoH1k7UphMxbwK2PiG2xKadzPjxxx&#34;, &#34;BucketName&#34;: &#34;io617&#34; }, //... 服务类MinioService public class MinioService { private readonly MinioClient _minioClient; private readonly string _bucketName; public MinioService(IConfiguration configuration) { var endpoint = configuration[&#34;Minio:Endpoint&#34;]; var accessKey = configuration[&#34;Minio:AccessKey&#34;]; var secretKey = configuration[&#34;Minio:SecretKey&#34;]; _bucketName = configuration[&#34;Minio:BucketName&#34;]; //http://localhost:9090/api/v1/service-account-credentials _minioClient = (MinioClient?)new MinioClient() .WithEndpoint(endpoint) .WithCredentials(accessKey, secretKey) .Build(); } public async Task UploadFileAsync(string objectName, Stream data, long size, string contentType) { await _minioClient.PutObjectAsync(new PutObjectArgs() .WithBucket(_bucketName) .WithObject(objectName) .WithStreamData(data) .WithObjectSize(size) .WithContentType(contentType)); } public async Task&lt;Stream&gt; GetFileAsync(string objectName) { var memoryStream = new MemoryStream(); await _minioClient.GetObjectAsync(new GetObjectArgs() .WithBucket(_bucketName) .WithObject(objectName) .WithCallbackStream((stream) =&gt; { stream.CopyTo(memoryStream); })); memoryStream.Seek(0, SeekOrigin.Begin); return memoryStream; } } 注入服务 builder.Services.AddSingleton&lt;MinioService&gt;(); 使用服务 public HomeController(ILogger&lt;HomeController&gt; logger,MinioService minioService) { _minioService = minioService;// } testcode [HttpGet] public IActionResult Upload() { return View(); } [HttpPost] public async Task&lt;IActionResult&gt; Upload(IFormFile file) { if (file != null &amp;&amp; file.Length &gt; 0) { using (var stream = file.OpenReadStream()) { await _minioService.UploadFileAsync(file.FileName, stream, file.Length, file.ContentType); } ViewBag.Message = &#34;File uploaded successfully!&#34;; } return View(); } [HttpGet] public async Task&lt;IActionResult&gt; Download(string fileName) { var stream = await _minioService.GetFileAsync(fileName); return File(stream, &#34;application/octet-stream&#34;, fileName); } //use https://localhost:7118/Home/download?filename=bx.png @using (Html.BeginForm(&#34;Upload&#34;, &#34;Home&#34;, FormMethod.Post, new { enctype = &#34;multipart/form-data&#34; })) { &lt;input type=&#34;file&#34; name=&#34;file&#34; /&gt; &lt;button type=&#34;submit&#34;&gt;Upload&lt;/button&gt; } &lt;div&gt; @ViewBag.Message &lt;/div&gt; &lt;/div&gt; or console
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-06-18 23:11:40 +0000 UTC'>June 18, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET MinIO" href="http://localhost:1313/posts/.net-minio/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">HarmonyOS Next WorldTime  Whack Mole
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>HarmonyOS Next WorldTime Whack Mole
-HarmonyOS应用 鸿蒙NEXT开发 世界时应用 打地鼠
-环境 Windows 11 DevEco Studio 5.0.1 Release Version: 5.0.5.306 HarmonyOS 5.0.1(13) ArkTS ArkUI API 13
-WorldTime 世界时应用 实现思路 获取时区信息 更新时间 搜索功能
-代码 import { i18n } from &#39;@kit.LocalizationKit&#39; // 导入国际化模块，用于处理多语言 import { inputMethod } from &#39;@kit.IMEKit&#39; // 导入输入法模块 @ObservedV2 // 观察者装饰器，用于观察状态变化 class CityTimeInfo { // 定义城市时间信息类 @Trace cityName: string = &#34;&#34;; // 城市名称，初始为空字符串 @Trace currentTime: string = &#34;&#34;; // 当前时间，初始为空字符串 timeZone: i18n.TimeZone; // 时区属性 constructor(cityName: string, timeZone: i18n.TimeZone) { // 构造函数，接收城市名称和时区 this.cityName = cityName; // 设置城市名称 this.timeZone = timeZone; // 设置时区 } @Trace isVisible: boolean = true; // 是否可见，初始为true } @Entry // 入口组件装饰器 @Component // 组件装饰器 struct WorldClockApp { // 定义世界时钟应用组件 @State private searchText: string = &#39;&#39;; // 搜索文本，初始为空字符串 @State private cityTimeList: CityTimeInfo[] = []; // 城市时间信息列表，初始为空数组 private lineColor: string = &#34;#e6e6e6&#34;; // 边框颜色 private titleBackgroundColor: string = &#34;#f8f8f8&#34;; // 标题背景色 private textColor: string = &#34;#333333&#34;; // 文字颜色 private basePadding: number = 4; // 内边距 private lineWidth: number = 2; // 边框宽度 private rowHeight: number = 50; // 行高 private ratio: number[] = [1, 1]; // 列宽比例 private textSize: number = 14; // 基础字体大小 private updateIntervalId = 0; // 更新间隔ID updateAllCityTimes() { // 更新所有城市的时间 const locale = i18n.System.getSystemLocale(); // 获取系统语言环境 for (const cityTime of this.cityTimeList) { // 遍历城市时间列表 const timeZoneId: string = cityTime.timeZone.getID(); // 获取时区ID const calendar = i18n.getCalendar(locale); // 获取日历对象 calendar.setTimeZone(timeZoneId); // 设置日历的时区 // 获取当前时间的各个部分 const year = calendar.get(&#34;year&#34;).toString().padStart(4, &#39;0&#39;); // 年 const month = calendar.get(&#34;month&#34;).toString().padStart(2, &#39;0&#39;); // 月 const day = calendar.get(&#34;date&#34;).toString().padStart(2, &#39;0&#39;); // 日 const hour = calendar.get(&#34;hour_of_day&#34;).toString().padStart(2, &#39;0&#39;); // 小时 const minute = calendar.get(&#34;minute&#34;).toString().padStart(2, &#39;0&#39;); // 分钟 const second = calendar.get(&#34;second&#34;).toString().padStart(2, &#39;0&#39;); // 秒 // 更新城市的当前时间字符串 cityTime.currentTime = `${year}年${month}月${day}日 ${hour}:${minute}:${second}`; } } onPageShow(): void { // 页面显示时的处理 clearInterval(this.updateIntervalId); // 清除之前的定时器 this.updateIntervalId = setInterval(() =&gt; { // 设置新的定时器 this.updateAllCityTimes(); // 每秒更新所有城市的时间 }, 1000); } onPageHide(): void { // 页面隐藏时的处理 clearInterval(this.updateIntervalId); // 清除定时器 } private highlightSearchText(cityTime: CityTimeInfo, keyword: string) { // 高亮搜索文本 let text = cityTime.cityName // 获取城市名称 if (!keyword) { // 如果没有关键词 cityTime.isVisible = true // 设置城市可见 return [text] // 返回城市名称 } let segments: string[] = []; // 存储分段文本 let lastMatchEnd: number = 0; // 上一个匹配结束的位置 while (true) { // 循环查找关键词 const matchIndex = text.indexOf(keyword, lastMatchEnd); // 查找关键词位置 if (matchIndex === -1) { // 如果没有找到 segments.push(text.slice(lastMatchEnd)); // 添加剩余文本 break; // 退出循环 } else { segments.push(text.slice(lastMatchEnd, matchIndex)); // 添加匹配前的文本 segments.push(text.slice(matchIndex, matchIndex &#43; keyword.length)); // 添加匹配的关键词 lastMatchEnd = matchIndex &#43; keyword.length; // 更新最后匹配结束位置 } } cityTime.isVisible = (segments.indexOf(keyword) != -1) // 设置城市可见性 return segments; // 返回分段文本 } aboutToAppear() { // 组件即将出现时的处理 const timeZoneIds: Array&lt;string&gt; = i18n.TimeZone.getAvailableIDs(); // 获取可用时区ID列表 this.cityTimeList.push(new CityTimeInfo(&#39;北京 (中国)&#39;, i18n.getTimeZone())); // 添加北京的城市时间信息 //this.cityTimeList.push(new CityTimeInfo(&#39;东京 (日本)&#39;, i18n.getTimeZone())); // 添加北京的城市时间信息 //this.cityTimeList.push(new CityTimeInfo(&#39;贝伦 (巴西)&#39;, i18n.getTimeZone())); // 添加北京的城市时间信息 for (const id of timeZoneIds) { // 遍历时区ID const cityDisplayName = i18n.TimeZone.getCityDisplayName(id.split(&#39;/&#39;)[1], &#34;zh-CN&#34;); // 获取城市显示名称 if (cityDisplayName) { // 如果城市名称存在 this.cityTimeList.push(new CityTimeInfo(cityDisplayName, i18n.getTimeZone(id))); // 添加城市时间信息 } } this.updateAllCityTimes(); // 更新所有城市的时间 } build() { // 构建组件的UI Column({ space: 0 }) { // 创建一个垂直列 Search({ value: $$this.searchText })// 创建搜索框 .margin(this.basePadding)// 设置边距 .fontFeature(&#34;\&#34;ss01\&#34; on&#34;) // 设置字体特性 Column() { // 创建一个列 Row() { // 创建一行 Text(&#39;城市&#39;)// 显示“城市”文本 .height(&#39;100%&#39;)// 高度占满 .layoutWeight(this.ratio[0])// 设置布局权重 .textAlign(TextAlign.Center)// 文本居中 .fontSize(this.textSize)// 设置字体大小 .fontWeight(600)// 设置字体粗细 .fontColor(this.textColor) // 设置字体颜色 Line().height(&#39;100%&#39;).width(this.lineWidth).backgroundColor(this.lineColor) // 创建分隔线 Text(&#39;时间&#39;)// 显示“时间”文本 .height(&#39;100%&#39;)// 高度占满 .layoutWeight(this.ratio[1])// 设置布局权重 .textAlign(TextAlign.Center)// 文本居中 .fontSize(this.textSize)// 设置字体大小 .fontWeight(600)// 设置字体粗细 .fontColor(this.textColor) // 设置字体颜色 }.height(this.rowHeight).borderWidth(this.lineWidth).borderColor(this.lineColor) // 设置行高和边框 .backgroundColor(this.titleBackgroundColor) // 设置背景色 }.width(`100%`).padding({ left: this.basePadding, right: this.basePadding }) // 设置列宽和内边距 Scroll() { // 创建可滚动区域 Column() { // 创建一个列 ForEach(this.cityTimeList, (item: CityTimeInfo) =&gt; { // 遍历城市时间列表 Row() { // 创建一行 Text() { // 创建文本 ForEach(this.highlightSearchText(item, this.searchText), (segment: string, index: number) =&gt; { // 高亮搜索文本 ContainerSpan() { // 创建容器 Span(segment)// 创建文本段 .fontColor(segment === this.searchText ? Color.White : Color.Black)// 设置字体颜色 .onClick(() =&gt; { // 点击事件 console.info(`高亮文本被点击：${segment}`); // 输出点击的文本 console.info(`点击索引：${index}`); // 输出点击的索引 }); }.textBackgroundStyle({ // 设置文本背景样式 color: segment === this.searchText ? Color.Red : Color.Transparent // 根据是否匹配设置背景色 }); }); } .height(&#39;100%&#39;) // 高度占满 .layoutWeight(this.ratio[0]) // 设置布局权重 .textAlign(TextAlign.Center) // 文本居中 .fontSize(this.textSize) // 设置字体大小 .fontColor(this.textColor) // 设置字体颜色 Line().height(&#39;100%&#39;).width(this.lineWidth).backgroundColor(this.lineColor) // 创建分隔线 Text(item.currentTime)// 显示当前时间 .height(&#39;100%&#39;)// 高度占满 .layoutWeight(this.ratio[1])// 设置布局权重 .textAlign(TextAlign.Center)// 文本居中 .fontSize(this.textSize)// 设置字体大小 .fontColor(this.textColor) // 设置字体颜色 } .height(this.rowHeight) // 设置行高 .borderWidth({ left: this.lineWidth, right: this.lineWidth, bottom: this.lineWidth }) // 设置边框宽度 .borderColor(this.lineColor) // 设置边框颜色 .visibility(item.isVisible ? Visibility.Visible : Visibility.None) // 根据可见性设置显示状态 }) }.width(`100%`).padding({ left: this.basePadding, right: this.basePadding }) // 设置宽度和内边距 } .width(&#39;100%&#39;) // 设置宽度占满 .layoutWeight(1) // 设置布局权重 .align(Alignment.Top) // 对齐方式 .onScrollStart(() =&gt; { // 滚动开始事件 this.onPageHide() // 页面隐藏处理 }) .onScrollStop(() =&gt; { // 滚动停止事件 this.onPageShow() // 页面显示处理 }) .onTouch((event) =&gt; { // 触摸事件 if (event.type == TouchType.Down) { // 如果是按下事件 inputMethod.getController().stopInputSession() // 停止输入会话 } }) } } } 打地鼠 主要功能： 地鼠组件：Hamster 结构体定外观，依单元格宽调尺寸。 单元格 Cell：有地鼠显示状态及缩放选项，含 setSelectedTrueTime 设显示时间戳、checkTime 检是否超停留时间隐藏。 游戏主组件 Index：维护核心状态如动画间隔等，有 startGame 与 endGame 方法初始化与重置数据。 界面构建：Index 组件 build 方法定布局，含计时器、得分板及单元格。 时间与显示逻辑：TextTimer 组件控时，定时选单元格显地鼠，点击地鼠增分并执行动画。 用户交互：点击地鼠单元格得分，点击后地鼠隐藏且更新得分。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-06-15 23:58:57 +0000 UTC'>June 15, 2024</span>&nbsp;·&nbsp;16 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to HarmonyOS Next WorldTime  Whack Mole" href="http://localhost:1313/posts/harmonyos-next-worldtime-whack-mole/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Golang Web Base
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>setup windows环境安装 windows环境下，go安装包安装成功后，会自动将go添加到path目录下，所以不需要再向Path环境变量中添加go
-GOROOT设置：Go安装路径
-“我的电脑”=》“属性”=》“高级系统设置”=》“环境变量”=》“系统环境变量”，新增GOROOT环境变量
-web package main import ( &#34;fmt&#34; &#34;net/http&#34; ) func main() { http.HandleFunc(&#34;/&#34;, func(w http.ResponseWriter, r *http.Request) { fmt.Fprintf(w, &#34;Hello, m requested: %s\n&#34;, r.URL.Path) }) http.ListenAndServe(&#34;:24612&#34;, nil) } Http Server static
-http.HandleFunc(&#34;/&#34;, func (w http.ResponseWriter, r *http.Request) { fmt.Fprintf(w, &#34;Welcome !&#34;) }) fs := http.FileServer(http.Dir(&#34;static/&#34;)) http.Handle(&#34;/static/&#34;, http.StripPrefix(&#34;/static/&#34;, fs)) http.ListenAndServe(&#34;:24612&#34;, nil) gorilla/mux router
-go get github.com/gorilla/mux package main import ( &#34;fmt&#34; &#34;net/http&#34; &#34;github.com/gorilla/mux&#34; ) func main() { r := mux.NewRouter() r.HandleFunc(&#34;/books/{title}/page/{page}&#34;, func(w http.ResponseWriter, r *http.Request) { vars := mux.Vars(r) title := vars[&#34;title&#34;] page := vars[&#34;page&#34;] fmt.Fprintf(w, &#34; book: %s on page %s\n&#34;, title, page) }) http.ListenAndServe(&#34;:24612&#34;, r) } //http://localhost:24612/books/mybook/page/1 &lt;!&#43;&#43;&#43; https://gowebexamples.com/routes-using-gorilla-mux/ –&gt;
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-06-14 05:53:14 +0000 UTC'>June 14, 2024</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Golang Web Base" href="http://localhost:1313/posts/golang-web-base/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET JSON2MySQL
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>这是一段json
-[ { &#34;id&#34;: 1, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;101010100&#34;, &#34;city_name&#34;: &#34;北京&#34;, &#34;post_code&#34;: &#34;100000&#34;, &#34;area_code&#34;: &#34;010&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:30:06&#34; }, { &#34;id&#34;: 2, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;安徽&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 3, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;福建&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 4, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;甘肃&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 5, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;广东&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 6, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;广西&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 7, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;贵州&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 8, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;海南&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: &#34;2024-06-11 17:03:37&#34; }, { &#34;id&#34;: 9, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;河北&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: &#34;2024-06-11 17:30:06&#34; }, { &#34;id&#34;: 10, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;河南&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: &#34;2024-06-11 17:30:07&#34; }, { &#34;id&#34;: 11, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;黑龙江&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 12, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;湖北&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 13, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;湖南&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 14, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;吉林&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: &#34;2024-06-11 17:30:07&#34; }, { &#34;id&#34;: 15, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;江苏&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 16, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;江西&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 17, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;辽宁&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 18, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;内蒙古&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 19, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;宁夏&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 20, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;青海&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 21, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;山东&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 22, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;山西&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 23, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;陕西&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 24, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;101020100&#34;, &#34;city_name&#34;: &#34;上海&#34;, &#34;post_code&#34;: &#34;200000&#34;, &#34;area_code&#34;: &#34;021&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:30:08&#34; }, { &#34;id&#34;: 25, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;四川&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 26, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;101030100&#34;, &#34;city_name&#34;: &#34;天津&#34;, &#34;post_code&#34;: &#34;300000&#34;, &#34;area_code&#34;: &#34;022&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:30:08&#34; }, { &#34;id&#34;: 27, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;西藏&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 28, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;新疆&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 29, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;云南&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 30, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;浙江&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 31, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;101040100&#34;, &#34;city_name&#34;: &#34;重庆&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: &#34;023&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:30:08&#34; }, { &#34;id&#34;: 32, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;101320101&#34;, &#34;city_name&#34;: &#34;香港&#34;, &#34;post_code&#34;: &#34;999077&#34;, &#34;area_code&#34;: &#34;&#43;852&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:03:38&#34; }, { &#34;id&#34;: 33, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;101330101&#34;, &#34;city_name&#34;: &#34;澳门&#34;, &#34;post_code&#34;: &#34;999078&#34;, &#34;area_code&#34;: &#34;&#43;853&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:03:39&#34; }, { &#34;id&#34;: 34, &#34;pid&#34;: 0, &#34;city_code&#34;: &#34;&#34;, &#34;city_name&#34;: &#34;台湾&#34;, &#34;post_code&#34;: null, &#34;area_code&#34;: null, &#34;ctime&#34;: null }, { &#34;id&#34;: 35, &#34;pid&#34;: 2, &#34;city_code&#34;: &#34;101220601&#34;, &#34;city_name&#34;: &#34;安庆&#34;, &#34;post_code&#34;: &#34;246000&#34;, &#34;area_code&#34;: &#34;0556&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:30:10&#34; }, { &#34;id&#34;: 36, &#34;pid&#34;: 2, &#34;city_code&#34;: &#34;101220201&#34;, &#34;city_name&#34;: &#34;蚌埠&#34;, &#34;post_code&#34;: &#34;233000&#34;, &#34;area_code&#34;: &#34;0552&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:30:10&#34; }, { &#34;id&#34;: 37, &#34;pid&#34;: 3400, &#34;city_code&#34;: &#34;101220105&#34;, &#34;city_name&#34;: &#34;巢湖市&#34;, &#34;post_code&#34;: &#34;238000&#34;, &#34;area_code&#34;: &#34;0551&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:03:40&#34; }, { &#34;id&#34;: 38, &#34;pid&#34;: 2, &#34;city_code&#34;: &#34;101221701&#34;, &#34;city_name&#34;: &#34;池州&#34;, &#34;post_code&#34;: &#34;247100&#34;, &#34;area_code&#34;: &#34;0566&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:30:10&#34; }, { &#34;id&#34;: 39, &#34;pid&#34;: 2, &#34;city_code&#34;: &#34;101221101&#34;, &#34;city_name&#34;: &#34;滁州&#34;, &#34;post_code&#34;: &#34;239000&#34;, &#34;area_code&#34;: &#34;0550&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:30:10&#34; }, { &#34;id&#34;: 40, &#34;pid&#34;: 2, &#34;city_code&#34;: &#34;101220801&#34;, &#34;city_name&#34;: &#34;阜阳&#34;, &#34;post_code&#34;: &#34;236000&#34;, &#34;area_code&#34;: &#34;0558&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:30:10&#34; }, { &#34;id&#34;: 41, &#34;pid&#34;: 2, &#34;city_code&#34;: &#34;101221201&#34;, &#34;city_name&#34;: &#34;淮北&#34;, &#34;post_code&#34;: &#34;235000&#34;, &#34;area_code&#34;: &#34;0561&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:30:11&#34; }, { &#34;id&#34;: 42, &#34;pid&#34;: 2, &#34;city_code&#34;: &#34;101220401&#34;, &#34;city_name&#34;: &#34;淮南&#34;, &#34;post_code&#34;: &#34;232000&#34;, &#34;area_code&#34;: &#34;0554&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:30:11&#34; }, { &#34;id&#34;: 43, &#34;pid&#34;: 2, &#34;city_code&#34;: &#34;101221001&#34;, &#34;city_name&#34;: &#34;黄山市&#34;, &#34;post_code&#34;: &#34;245000&#34;, &#34;area_code&#34;: &#34;0559&#34;, &#34;ctime&#34;: &#34;2024-06-11 21:23:56&#34; }, { &#34;id&#34;: 44, &#34;pid&#34;: 2, &#34;city_code&#34;: &#34;101221501&#34;, &#34;city_name&#34;: &#34;六安&#34;, &#34;post_code&#34;: &#34;237000&#34;, &#34;area_code&#34;: &#34;0564&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:30:11&#34; }, { &#34;id&#34;: 45, &#34;pid&#34;: 2, &#34;city_code&#34;: &#34;101220501&#34;, &#34;city_name&#34;: &#34;马鞍山&#34;, &#34;post_code&#34;: &#34;243000&#34;, &#34;area_code&#34;: &#34;0555&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:30:11&#34; }, { &#34;id&#34;: 46, &#34;pid&#34;: 2, &#34;city_code&#34;: &#34;101220701&#34;, &#34;city_name&#34;: &#34;宿州&#34;, &#34;post_code&#34;: &#34;234000&#34;, &#34;area_code&#34;: &#34;0557&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:30:11&#34; }, { &#34;id&#34;: 47, &#34;pid&#34;: 2, &#34;city_code&#34;: &#34;101221301&#34;, &#34;city_name&#34;: &#34;铜陵&#34;, &#34;post_code&#34;: &#34;244000&#34;, &#34;area_code&#34;: &#34;0562&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:30:12&#34; }, { &#34;id&#34;: 48, &#34;pid&#34;: 2, &#34;city_code&#34;: &#34;101220301&#34;, &#34;city_name&#34;: &#34;芜湖市&#34;, &#34;post_code&#34;: &#34;241000&#34;, &#34;area_code&#34;: &#34;0553&#34;, &#34;ctime&#34;: &#34;2024-06-11 21:23:57&#34; }, { &#34;id&#34;: 49, &#34;pid&#34;: 2, &#34;city_code&#34;: &#34;101221401&#34;, &#34;city_name&#34;: &#34;宣城&#34;, &#34;post_code&#34;: &#34;242000&#34;, &#34;area_code&#34;: &#34;0563&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:30:12&#34; }, { &#34;id&#34;: 50, &#34;pid&#34;: 2, &#34;city_code&#34;: &#34;101220901&#34;, &#34;city_name&#34;: &#34;亳州&#34;, &#34;post_code&#34;: &#34;236800&#34;, &#34;area_code&#34;: &#34;0558&#34;, &#34;ctime&#34;: &#34;2024-06-11 17:30:12&#34; } //... ] SQL
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-06-12 22:35:33 +0000 UTC'>June 12, 2024</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET JSON2MySQL" href="http://localhost:1313/posts/.net-json2mysql/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Azure AI Document Intelligence
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>创建智能文档处理解决方案 在第二级中，这3个模块，每一个中都有不同的任务操作，这些操作包括使用 Azure 进行实际创建服务操作或者使用代码调用 Azure的服务，这些代码可以使用python或者C#，这些进行选择。所有的模块内的考试是通过一个邮件的方式进行告知。
-https://learn.microsoft.com/en-us/credentials/applied-skills/create-intelligent-document-solution-azure-ai/#applied-skill-take-the-assessment
-start
-登陆实验环境 加载成功后会出现虚拟机器登陆界面，找到右侧的 Step1 中的用户名密码。登陆 获取实验账号并登陆 Azure 进入到机器后，点击桌面的 Email 图片，打开我们的实验目标。 打开桌面的 email 后，会出现如下的界面。这里主要关注两点： 一个是左侧蓝色的部分：Inbox，这里包括环境信息以及实验目标考题。 另一个是浏览器的页签中的第二个，也就是登陆 Azure 的环境网址
-点击上图的 Azure 标签页，进入登陆页面，用email提供的账号密码登陆
-试验一： Create a prototype 点击邮件中的 Create a prototype 菜单会出现具体的内容要求。
-在第一个实验中主要是使用微软的只能存储服务，并且创建的时候要符合要求，这个服务要满足的要求是要保存所给的文件成Json文件，之后在保存到 Azure 的存储服务中。
-实验流程操作 首先到 Azure 中，搜索所给出的资源组，选择 RG1开头的资源组 进入到资源组后，点击创建按钮。 在搜索框中输入document intelligence 点击选择。 点击 文档智能服务
-进入到服务后，点击蓝色的创建按钮。 在这里直接选择默认的订阅以及资源组，Region 目前建议选择 Japan East（如果后面的步骤，在运行分析文档时，遇到权限不足问题，请在此步骤选择其他 Region ）
-在这里名字填入：from-document-xxx，如（from-document-01）价格层要选择免费层，也就是下图中的 Free F0，之后点击预览创建按钮。
-预览没有问题后，直接点击创建按钮。 创建完毕后，在页面中点击 Go to resource 按钮
-之后点击 Go to Document Intelligence Studio 按钮 ...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-06-07 23:06:10 +0000 UTC'>June 7, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Azure AI Document Intelligence" href="http://localhost:1313/posts/azure-ai-document-intelligence/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Azure OpenAI Build Natural Language
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>https://learn.microsoft.com/en-us/credentials/applied-skills/build-natural-language-solution-azure-ai/#applied-skill-take-the-assessment?ocid=reactor
-start 进入环境中，点击Step 1，然后点击Password右边的T，登录环境 双击打开桌面的Email文件 对Inbox的内容进行逐个点击，其中Existing Environment包含了微软官方提供的Azure的用户名和密码，proof of concept、Invoice validation、chatbot backend 分别表示的是本次考试的三大任务的具体要求 将邮箱中Existing Environment的用户名和密码依次复制到Azure的标签页面中，并点击Sign in完成Azure的登录
-试验一： Proof of Concept (POC) 点击邮件中的 Proof of Concept (POC) 菜单会出现具体的内容要求，如下图所示。
-在第一个实验中主要是使用微软的 language 服务，并且创建的时候要符合要求，这个服务要满足客户自定义文本标准和 NER。 在实验中另外一个要求是需要使用代码最后调用这个你创建服务。 流程操作 首先在登录主页面搜索栏 搜索RG1，并点击Resource Groups下面的RG1 进入后点击 Create 按钮 之后在首页内搜索language service 点击进入到 Language service 后，点击 Create 之后点击右下方的第二个 select 按钮 选择好之后，点击下方的按钮 continue to create your resource
-在配置页面，按照我们的题目要求，在 Region 中选择 North Europe， 其中 Name 从邮件中找，在 Proof of concept 这里 lang开头的这个名字，作为刚才创建资源的 Name 值 主要需要注意的是在 Pricing tier层里，需要选择 Free F0 的这个，这一点也是题目要求的。 下面选择 Existing storege account ，在存储账户这里，需要选择题目要求的以sa开头的这个账户。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-06-07 01:03:12 +0000 UTC'>June 7, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Azure OpenAI Build Natural Language" href="http://localhost:1313/posts/azure-openai-build-natural-language/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Azure AI Develop Generative AI solutions
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Start https://learn.microsoft.com/en-us/credentials/applied-skills/develop-generative-ai-solutions-with-azure-openai-service/#applied-skill-take-the-assessment
-部署Azure OpenAI 服务 ​
-点击Step 1，然后点击Password右边的T ​
-鼠标双击Email ​ 对Inbox的内容进行逐个点击，其中Existing Environment包含了微软官方提供的Azure的用户名和密码，Validate proof of concept、Company chatbot、Developer tasks和Use company data分别表示的是本次考试的四大任务的具体要求
-切换到Azure登录的标签页
-​ 将邮箱中Existing Environment的用户名和密码依次复制到Azure的标签页面中，并点击Sign in完成Azure的登录
-然后在浏览器中输入URL：https://portal.azure.com/#home，点击Azure AI services
-​ 其中Resource group、Pricing tier勾选下拉列表的存在项，Name可自行填入(如azureservice)，然后点击Next ​
-网络中选择第一项：All networks，然后点击页面左下方的Next Tags可直接点击左下方的Next 然后在Review&#43;submit页面点击Create ​ 等待几十秒后，deployment完成后，点击Deployment details 点击Resource中的名称，如azureservice ​ 点击Endpoints右边的Click here to view endpoints ​ ​
-点击Key 1右侧的复制按钮，复制其到C:\files\AzureOpenAIPoc\Python.env中的AZURE_OAI_KEY变量中。 点击Endpoint右侧的复制按钮，分别复制任意一个 KEY 和 EndPoint 到C:\files\AzureOpenAIPoc\Python.env中的AZURE_OAI_KEY 和 AZURE_OAI_ENDPOINT。 然后在浏览器中输入https://portal.azure.com/#home，并点击Name下的名称 点击Go to Azure OpenAI Studio
-然后点击Create new deployment
-按照下图中的内容进行下拉选择或者填写，其中Select a model勾选为gpt-35-turbo-16k，Deployment name可自定义填写，如gpt_deploy，将Tokens per Minute Rate Limit设置为5K，Enable Dynamic Quota设置为Disabled，最后点击Create： ...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-06-06 00:18:03 +0000 UTC'>June 6, 2024</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Azure AI Develop Generative AI solutions" href="http://localhost:1313/posts/azure-ai-develop-generative-ai-solutions/"></a>
-</article>
-<footer class="page-footer">
-  <nav class="pagination">
-    <a class="prev" href="http://localhost:1313/page/20/">
-      «&nbsp;Prev&nbsp;
-    </a>
-    <a class="next" href="http://localhost:1313/page/22/">Next&nbsp;&nbsp;»
-    </a>
-  </nav>
-</footer>
-    </main>
-    
-<footer class="footer">
-
-    <div class="wtime">
-        <div class="wtime2">CST<span id="beijingTime"></span> GMT <span id="londonTime"></span> EST <span id="newYorkTime"></span>  PST<span id="losAngelesTime"></span></div>
-        <div class="wtime2" style="display: none;"> 东京<span id="tokyoTime"></span></div>
-        <div class="wtime2" style="display: none;">欧洲-巴黎<span id="parisTime"></span></div>
-
-        <div  class="wtime2" style="display: none;">UTC<span id="utcTime"></span></div>
-    </div>
-        <span>&copy; 2025 <a href="http://localhost:1313/">MLOG</a></span> · 
-
-
-    <span>
- 
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-
-
-
-<script type="text/javascript">
-
-    
-    const timeZoneOffsets = {
-            'beijing': 8,  
-            'tokyo': 9,  
-            'paris': [1, 2],  
-            'london': [0, 1],  
-            'newYork': [-5, -4],  
-            'losAngeles': [-8, -7]  
-        };
-
-        function padZero(num) {
-            return num < 10? '0' + num : num;
-        }
-
-        function formatTime(date) {
-            const year = date.getFullYear();
-            const month = padZero(date.getMonth() + 1);
-            const day = padZero(date.getDate());
-            const hours = padZero(date.getHours());
-            const minutes = padZero(date.getMinutes());
-            const seconds = padZero(date.getSeconds());
-            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-        }
-
-        function isDaylightSavingTime(date, zone) {
-            const month = date.getMonth();
-            const dstStart = new Date(date.getFullYear(), 3, 8, 2, 0, 0);  
-            const dstEnd = new Date(date.getFullYear(), 10, 1, 2, 0, 0);  
-            if (zone === 'paris' || zone === 'london' || zone === 'newYork' || zone === 'losAngeles') {
-                return date >= dstStart && date < dstEnd;
-            }
-            return false;
-        }
-
-        function updateTime() {
-            const now = new Date();
-            const utcDate = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(),
-                now.getUTCMinutes(), now.getUTCSeconds());
-            const utcTime = formatTime(utcDate);
-            document.getElementById('utcTime').innerHTML = utcTime;
-
-            for (const zone in timeZoneOffsets) {
-                const offsets = timeZoneOffsets[zone];
-                let offset;
-                if (Array.isArray(offsets)) {
-                    offset = isDaylightSavingTime(utcDate, zone)? offsets[1] : offsets[0];
-                } else {
-                    offset = offsets;
-                }
-                const zoneDate = new Date(utcDate.getTime() + offset * 60 * 60 * 1000);
-                document.getElementById(zone + 'Time').innerHTML = formatTime(zoneDate);
-            }
-
-            setTimeout(updateTime, 1000);
-        }
-
-        window.onload = function () {
-            updateTime();
-        };
-    function notfound(imgElement) {  
-            var src = imgElement.src;  
-            var parts = src.split('/'); 
-            var filename = parts[parts.length - 1]; 
-            
-      
-            imgElement.src = "https://47.115.223.75:8080/group1/v2/" + filename+"?timestamp=" + Date.now();
-    
-            imgElement.onerror = null; 
-        }  
-
-    </script>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
-
-<script>
-    let menu = document.getElementById('menu')
-    if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-</body>
-
-</html>
+<!doctype html><html lang=en dir=auto><head><meta name=generator content="Hugo 0.126.3"><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>MLOG</title>
+<meta name=description content="A simple blog "><meta name=author content="dwd"><link rel=canonical href=https://qfsyso.github.io/><link crossorigin=anonymous href=/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF+13Dyqob6ASlTrTye8=" rel="preload stylesheet" as=style><link rel=icon href=https://qfsyso.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://qfsyso.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://qfsyso.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://qfsyso.github.io/apple-touch-icon.png><link rel=mask-icon href=https://qfsyso.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://qfsyso.github.io/index.xml><link rel=alternate type=application/json href=https://qfsyso.github.io/index.json><link rel=alternate hreflang=en href=https://qfsyso.github.io/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://qfsyso.github.io/"><meta property="og:site_name" content="MLOG"><meta property="og:title" content="MLOG"><meta property="og:description" content="A simple blog "><meta property="og:locale" content="zh-CN"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="MLOG"><meta name=twitter:description content="A simple blog "><script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","name":"MLOG","url":"https://qfsyso.github.io/","description":"A simple blog ","logo":"https://qfsyso.github.io/favicon.ico","sameAs":[]}</script></head><body class=list id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://qfsyso.github.io/ accesskey=h title="MLOG (Alt + H)">MLOG</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://qfsyso.github.io/posts/ title=Archive><span>Archive</span></a></li><li><a href=https://qfsyso.github.io/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://qfsyso.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li></ul></nav></header><main class=main><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Socket to WebSocket</h2></header><div class=entry-content><p>前言 针对IOS App Proxy Server无法直连WebSocket，建立 Socket中转端。
+​
+WebSocket 端：
+WebSocket 端用于实现实时通信功能。
+WebSocket 端通过 WebSocket 协议与中转端通信，中转端可以通过 WebSocket 或其他传输协议与 WebSocket 端建立连接，收发消息。
+定义 SendMessageToChatRoomIP 和 JoinChatRoom，用于处理来自客户端的消息和连接事件。
+中转端 C1 （Socket Server）：
+中转端 C1 是一个独立的应用程序，用于连接WebSocket端，建立Socket服务。
+中转端 C1 的主要功能是接收来自客户端 C2 的消息，并将其转发给 WebSocket 端，或者接收来自 WebSocket 端的消息，并转发给客户端 C2。
+客户端 C2 x N ：
+客户端 C2 ，主要与中转端连接 发送数据，接收数据。
+在客户端 C2 中，连接到中转端 C1、发送消息给中转端 C1、接收来自中转端 C1 的消息。
+调用关系为：
+客户端 C2 通过与中转端 C1 的通信，向 WebSocket 端发送消息或接收来自 WebSocket 端的消息。
+中转端 C1 接收来自客户端 C2 的消息，并将其转发给 WebSocket 端，或者接收来自 WebSocket 端的消息，并转发给客户端 C2。...</p></div><footer class=entry-footer><span title='2024-04-20 12:56:50 +0000 UTC'>April 20, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Socket to WebSocket" href=https://qfsyso.github.io/posts/socket-to-websocket/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>.NET JWT</h2></header><div class=entry-content><p>前言
+JWT (JSON Web Token) 是一种安全传输信息的开放标准，由Header、Payload和Signature三部分组成。它主要用于身份验证、信息交换和授权。JWT可验证用户身份，确保访问权限，实现单点登录，并在客户端和服务器之间安全地交换信息。因其简单、安全和便捷，JWT在现代Web应用中广泛使用。
+用JWT有多个原因：
+无状态的身份验证：JWT允许服务器无需保存用户的会话信息，因为所有必要的信息都存储在令牌本身中。这降低了服务器的存储需求，并提高了系统的可扩展性。
+跨域身份验证：由于JWT是自我包含的，并且可以被轻松传递，因此它非常适合跨域身份验证。用户可以在一个服务上验证身份，然后使用相同的令牌访问另一个服务，从而实现单点登录（SSO）。
+安全性：JWT可以通过使用强大的加密算法（如HS256, RS256等）进行签名，以确保其完整性和真实性。服务器可以使用公钥验证令牌的签名，从而确保它没有被篡改，并且确实是由受信任的颁发者签发的。
+减少数据库查询：由于用户的身份信息都存储在JWT中，服务器无需每次都去数据库中查询用户的身份信息，从而减少了数据库的压力和查询时间。
+可定制性：JWT的Payload部分可以包含自定义的信息，如用户角色、权限等，这使得JWT非常灵活，并可以根据具体需求进行定制。
+易于分发和共享：JWT可以轻松地通过网络传输，并且可以在多个服务和客户端之间共享，这使得它在微服务架构和分布式系统中非常有用。
+标准化和互操作性：JWT是一个开放标准（RFC 7519），这意味着不同的系统和语言都可以使用相同的方式生成和验证JWT，从而提高了系统的互操作性。
+环境 Win10 VS2022 .NET8
+✨ 建立项目jwttest 1.创建TestJwtController ​
+2.下载JWT ​
+3.建实体类 /// &lt;summary> /// 用户信息类 /// &lt;/summary> public class LoginRs { /// &lt;summary> /// 用户ID /// &lt;/summary> public string UserId { get; set; } /// &lt;summary> /// 用户密码 /// &lt;/summary> public string PasswordMD5 { get; set; } } /// &lt;summary> /// 用户登录信息类 /// &lt;/summary> public class LoginInfo { /// &lt;summary> /// 用户信息 /// &lt;/summary> public string UserId { get; set; } /// &lt;summary> /// 检验时间 /// &lt;/summary> public DateTime Expires { get; set; } } /// &lt;summary> /// rsmodel /// &lt;/summary> public class RsModel { /// &lt;summary> /// 是否成功 /// &lt;/summary> public bool isOk { get; set; } /// &lt;summary> /// 返回值 /// &lt;/summary> public int code { get; set; } /// &lt;summary> /// 返回消息 /// &lt;/summary> public string msg { get; set; } /// &lt;summary> /// 返回数据 /// &lt;/summary> public object rsData { get; set; } } 4....</p></div><footer class=entry-footer><span title='2024-04-19 01:26:35 +0000 UTC'>April 19, 2024</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to .NET JWT " href=https://qfsyso.github.io/posts/.net-jwt/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>.NET spider</h2></header><div class=entry-content><p>前言 爬虫可以用于外汇，期货，基金，货币，比分，电商，文章等信息的采集。通过数据分析，竞品分析，为商业决策提供数据支持。
+​ 金价暴涨，抓取下今日的金价。
+💡使用HttpClient爬取数据 try { // 创建HttpClient实例 using (var httpClient = new HttpClient()) { //模拟User-Agent httpClient.DefaultRequestHeaders.Add("User-Agent", GetUserAgent()); // 发送GET请求并获取响应 xxx.com是某网站的页面~（保护） var response = await httpClient.GetAsync("https://xxx.com"); response.EnsureSuccessStatusCode(); var htmlContent = await response.Content.ReadAsStringAsync(); } } catch (HttpRequestException ex) { // 处理请求异常 ViewBag.Error = "Failed to retrieve price data: " + ex.Message; } 🚀模拟User-Agent // 生成随机 User-Agent private string GetUserAgent() { string[] userAgents = new string[] { "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537....</p></div><footer class=entry-footer><span title='2024-04-18 12:59:30 +0000 UTC'>April 18, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to .NET spider" href=https://qfsyso.github.io/posts/.net-spider/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Vue study</h2></header><div class=entry-content><p>前言 Vue.js，这个轻量级且灵活的JavaScript框架，就像一位魔术师，用它的魔法棒将数据和视图巧妙地连接在一起。当数据发生变化时，Vue.js就像变魔术一样，让视图自动更新，为开发者带来了极大的便利。
+Vue.js的诞生，源于一位名叫尤雨溪的开发者对前端开发的热爱与追求。在Google工作期间，他受到了Angular的启发，决定开发一款更加轻量、灵活的框架。于是，Vue.js应运而生，它的名字来源于“View”的缩写，寓意着它专注于视图层的开发。Vue.js不断地完善和发展。它引入了响应式数据绑定、组件化开发等核心概念，让前端开发变得更加高效和可维护。
+👋 Vue环境搭建 首先，搭一个打代码的环境
+1.安装node.js 在使用VS Code之前，需要安装Vue的开发环境。
+安装Vue的最简单方法是使用npm包管理器，先安装Node.js和npm。
+node官网 => https://nodejs.org/en/download
+2.配置环境变量 在nodejs安装目录下新建node_cache（nodejs缓存）、node_global（全局包存放）两个文件夹，如下图所示。
+​​
+打开cmd命令提示符，配置文件路径如下：
+​​
+配置环境变量
+​​
+系统属性->高级->环境变量->新增环境变量： ​​
+系统变量 ​​
+​​
+3.VSCode配置 Visual Studio Code
+以管理员身份运行VSCode
+VSCode安装插件ESLint
+安装js打包工具
+npm install -g webpack ​​
+​​
+4.安装Vue CLI npm install -g vue-cli (vue-cli npm install @vue/cli -g --unsafe-perm) 5.在VS Code中打开Vue项目 5.1. 在VS Code中，File > Open Folder… 选择“文件”> “打开文件夹”。 ​​
+5.2. 找到Vue项目文件夹，选择“文件夹”并打开。 ​​
+可以根据需要，在Extensions安装VSCode的中文扩展。
+5.3也可以通过Vue UI 创建一个新的Vue项目然后打开 vue ui ​​...</p></div><footer class=entry-footer><span title='2024-04-17 08:59:30 +0000 UTC'>April 17, 2024</span>&nbsp;·&nbsp;10 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Vue study" href=https://qfsyso.github.io/posts/vue-study/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>.NET i18n</h2></header><div class=entry-content><p>环境 WIN10 VS2022 .NET8
+👋创建项目 ​
+👀创建Resources Controllers HomeController.en.resx
+​ HomeController.fr.resx
+​ HomeController.zh.resx
+​
+🌱Program.cs添加国际化支持 // 添加国际化支持 builder.Services.AddLocalization(options => { options.ResourcesPath = "Resources"; }); var app = builder.Build(); // 多语言 var supportedCultures = new List&lt;CultureInfo> { new CultureInfo("en"), new CultureInfo("zh"), new CultureInfo("fr"), }; app.UseRequestLocalization(new RequestLocalizationOptions { DefaultRequestCulture = new RequestCulture("zh"), SupportedCultures = supportedCultures, SupportedUICultures = supportedCultures }); ⚡注入localizer private readonly IStringLocalizer&lt;HomeController> localizer; public HomeController(ILogger&lt;HomeController> logger, IStringLocalizer&lt;HomeController> localizer) { _logger = logger; this....</p></div><footer class=entry-footer><span title='2024-04-16 01:29:17 +0000 UTC'>April 16, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to .NET i18n " href=https://qfsyso.github.io/posts/.net-i18n/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>MySQL Incorrect string value</h2></header><div class=entry-content><p>MySQL存储IOS传过来emoji错误处理 Incorrect string value: ‘‘ for column ‘xxx‘ at row MySQL Incorrect string value: ‘\xF0\x9F\x8D\xBA‘ for column ‘xxx‘ at row
+​
+调用接口提示
+Incorrect string value: ‘\xF0\x9F\x8D\xBA’ for column ‘xxx’ at row
+😵‍💫
+需要把mysql字段排序规则
+utf8mb4_0900_ai_ci
+改成
+utf8mb4_unicode_ci
+​
+💤SQL调整 ALTER TABLE MUser CHANGE Signature Signature VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL;
+设置该列的字符集为utf8mb4。utf8mb4是MySQL中的一个字符集，它可以存储四字节的UTF-8字符，因此可以支持更多的Unicode字符，如某些表情符号。 设置该列的校对规则为utf8mb4_unicode_ci。校对规则决定了字符如何比较和排序。utf8mb4_unicode_ci是一个不区分大小写的校对规则，它基于Unicode标准。 ALTER DATABASE IDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+设置该数据库的字符集为utf8mb4。
+设置该数据库的校对规则为utf8mb4_unicode_ci。
+​
+💤服务端连接调整 ChatSet utf8mb4...</p></div><footer class=entry-footer><span title='2024-04-13 09:27:51 +0000 UTC'>April 13, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to MySQL Incorrect string value " href=https://qfsyso.github.io/posts/mysql-incorrect-string-value/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Debian Docker Redis</h2></header><div class=entry-content><p>Debian安装docker
+1.使用官方脚本自动安装docker 安装命令如下：
+curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh 如果安装提示
+-bash sudo command not found
+则需要
+#update sudo apt-get update sudo apt-get install sudo 再执行安装脚本1
+安装成功后可以输入 docker命令查看docker版本
+#version docker --version 能查到表明安装成功
+2.pull redis #pull redis docker pull redis:latest pull redis镜像 3.创建reids容器 docker run -itd --name redis-test -p 6379:6379 redis 4.测试redis docker exec -it redis-test /bin/bash redis-cli set test 1 get test set test 1 提示ok
+get test 一些命令...</p></div><footer class=entry-footer><span title='2024-04-12 09:27:49 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Debian Docker Redis" href=https://qfsyso.github.io/posts/debian-docker-redis/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>.NET SignalR Redis</h2></header><div class=entry-content><p>环境 Win10 VS2022 .NET8 Docker Redis
+前言
+什么是 SignalR？ ASP.NET Core SignalR 是一个开放源代码库，可用于简化向应用添加实时 Web 功能。 实时 Web 功能使服务器端代码能够将内容推送到客户端。
+适合 SignalR 的候选项：
+需要从服务器进行高频率更新的应用。 （游戏、社交网络、投票、拍卖、地图和 GPS 应用） 仪表板和监视应用。 （公司仪表板、即时销售更新或出行警报） 协作应用。 （包括白板应用和团队会议软件） 需要通知的应用。（ 社交网络、电子邮件、聊天、游戏等） SignalR 提供用于创建服务器到客户端的远程过程调用 (RPC) API。 RPC 从服务器端 .NET Core 代码调用客户端上的函数。支持JavaScript ，.NET ，JAVA，Swift （官方没有明确支持，这是第三方库）其中每个平台都有各自的客户端 SDK。 因此，RPC 调用所调用的编程语言有所不同。
+ASP.NET Core SignalR 的一些功能：
+自动处理连接管理。 同时向所有连接的客户端发送消息。 例如聊天室。 向特定客户端或客户端组发送消息。 对其进行缩放，以处理不断增加的流量。 SignalR 中心协议 1.👋nuget引入SignalR ​​ ​
+2.👀创建SignalR Hub
+using Microsoft.AspNetCore.SignalR; using System.Threading.Tasks; namespace WebSignalR { public class ChatHub : Hub { public async Task SendMessage(string user, string message) { await Clients....</p></div><footer class=entry-footer><span title='2024-04-12 07:44:04 +0000 UTC'>April 12, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to .NET SignalR Redis " href=https://qfsyso.github.io/posts/.net-signalr-redis/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>.NET Swagger</h2></header><div class=entry-content><p>开发环境 Win10 VS2022 .NET8.0
+1.从NuGet添加Swagger ​
+在解决方案资源管理器中右键单击项目>管理 NuGet 包 将包源设置为“nuget.org” 确保启用“包括预发行”选项 在搜索框中输入“Swashbuckle.AspNetCore” 从“浏览”选项卡中选择最新的“Swashbuckle.AspNetCore”包，然后单击“安装”
+2.将 Swagger 生成器添加到以下位置的服务集合中Program.cs： builder.Services.AddControllers(); builder.Services.AddEndpointsApiExplorer(); builder.Services.AddSwaggerGen(); ​
+启用中间件 生成
+app.UseSwagger(); app.UseSwaggerUI(); app.UseSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1"); options.RoutePrefix = string.Empty; }); ​
+3.添加API控制器 创建api
+// GET api/&lt;myapi>/5 /// &lt;summary> /// getid /// &lt;/summary> /// &lt;param name="id">id参数&lt;/param> /// &lt;returns>valuestr&lt;/returns> [HttpGet("{id}")] public string Get(int id) { return "value" + id; } // POST api/&lt;myapi> [HttpPost] public string Post([FromBody] string value) { //post逻辑代码 return "myPost"; } // PUT api/&lt;myapi>/5 [HttpPut("{id}")] public string Put(int id, [FromBody] string value) { //put逻辑代码 return "myPut"; } // DELETE api/&lt;myapi>/5 [HttpDelete("{id}")] public string Delete(int id) { //delete逻辑代码 return "myDelete"; } ​...</p></div><footer class=entry-footer><span title='2024-04-11 23:27:19 +0000 UTC'>April 11, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to .NET Swagger " href=https://qfsyso.github.io/posts/.net-swagger/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Docker MySQL</h2></header><div class=entry-content><p>1.下载docker desktop https://www.docker.com/products/docker-desktop/
+创建容器 docker run 创建并启动mysql容器
+–name 容器名字
+-d 后台运行容器
+-p 映射端口
+-e 参数
+截至目前最新的mysql是mysql8.0.36 那就整这个试下。
+docker run -d --name mysql-container -e TZ=UTC -p 30306:3306 -e MYSQL_ROOT_PASSWORD=你的密码 mysql:8.0.36-debian ​
+等待一会，看到mysql已经pull下来。
+回到docker看到容器已经创建。
+​
+​
+可以输入docker images查看
+​
+3.创建mysql数据库管理软件容器
+docker run --name myadmin -d --link mysql-container:db -p 8880:80 phpmyadmin/phpmyadmin ​
+回到docker查看下容器是否创建成功。 ​
+复制地址到浏览器访问。 ​
+​
+okok
+唉哟不错哦~
+扩展：ubuntu版本
+docker run -d --name mysql-container -e TZ=UTC -p 30306:3306 -e MYSQL_ROOT_PASSWORD=xxxxxx ubuntu/mysql:8.0-22.04_beta https://hub.docker.com/r/ubuntu/mysql?uuid=D64B1F2A-A81A-4D2C-B66B-FCFAECE77EFE</p></div><footer class=entry-footer><span title='2024-04-11 08:35:22 +0000 UTC'>April 11, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Docker MySQL " href=https://qfsyso.github.io/posts/docker-mysql/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://qfsyso.github.io/page/20/>«&nbsp;Prev&nbsp;
+</a><a class=next href=https://qfsyso.github.io/page/22/>Next&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><div class=wtime><div class=wtime2>CST<span id=beijingTime></span> GMT <span id=londonTime></span> EST <span id=newYorkTime></span> PST<span id=losAngelesTime></span></div><div class=wtime2 style=display:none>东京<span id=tokyoTime></span></div><div class=wtime2 style=display:none>欧洲-巴黎<span id=parisTime></span></div><div class=wtime2 style=display:none>UTC<span id=utcTime></span></div></div><span>&copy; 2025 <a href=https://qfsyso.github.io/>MLOG</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a>
+</span><script type=text/javascript>const timeZoneOffsets={beijing:8,tokyo:9,paris:[1,2],london:[0,1],newYork:[-5,-4],losAngeles:[-8,-7]};function padZero(e){return e<10?"0"+e:e}function formatTime(e){const t=e.getFullYear(),n=padZero(e.getMonth()+1),s=padZero(e.getDate()),o=padZero(e.getHours()),i=padZero(e.getMinutes()),a=padZero(e.getSeconds());return`${t}-${n}-${s} ${o}:${i}:${a}`}function isDaylightSavingTime(e,t){const o=e.getMonth(),n=new Date(e.getFullYear(),3,8,2,0,0),s=new Date(e.getFullYear(),10,1,2,0,0);return(t==="paris"||t==="london"||t==="newYork"||t==="losAngeles")&&e>=n&&e<s}function updateTime(){const e=new Date,t=new Date(e.getUTCFullYear(),e.getUTCMonth(),e.getUTCDate(),e.getUTCHours(),e.getUTCMinutes(),e.getUTCSeconds()),n=formatTime(t);document.getElementById("utcTime").innerHTML=n;for(const n in timeZoneOffsets){const e=timeZoneOffsets[n];let s;Array.isArray(e)?s=isDaylightSavingTime(t,n)?e[1]:e[0]:s=e;const o=new Date(t.getTime()+s*60*60*1e3);document.getElementById(n+"Time").innerHTML=formatTime(o)}setTimeout(updateTime,1e3)}window.onload=function(){updateTime()};function notfound(e){var n=e.src,t=n.split("/"),s=t[t.length-1];e.src="https://47.115.223.75:8080/group1/v2/"+s+"?timestamp="+Date.now(),e.onerror=null}</script></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script></body></html>

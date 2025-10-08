@@ -1,0 +1,760 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>3XUI Clash | MLOG</title>
+<meta name=keywords content="Python,Debian"><meta name=description content="3x-ui 准备服务器
+系统推荐：Debian 11+/Ubuntu 20.04+
+确保服务器安全组已放行常用端口（80/443/自定义端口）。
+安装 3x-ui bash <(curl -Ls https://raw.githubusercontent.com/MHSanaei/3x-ui/master/install.sh) 安装过程中会提示：
+设置面板端口（默认 54321）
+设置登录用户名与密码
+启动与管理 # 启动 systemctl start x-ui # 停止 systemctl stop x-ui # 重启 systemctl restart x-ui # 查看状态 systemctl status x-ui 访问面板 在浏览器中打开：
+http://服务器IP:面板端口
+输入用户名和密码登录。
+HTTPS 证书配置（推荐） 3x-ui 自带 ACME，可以直接申请免费证书：
+确保域名已经解析到服务器 IP。
+在面板 → 设置 → 证书管理 → 申请证书。
+添加节点用户 登录面板后，可以添加 VLESS、VMess、Trojan 等协议的用户。
+面板会生成二维码和连接信息，方便客户端（比如 v2rayN、Clash）导入。
+常见问题 面板打不开：检查防火墙/安全组是否放行端口。
+证书申请失败：确认域名已解析，且 80/443 端口未被占用。
+更改面板端口：
+x-ui 在交互菜单里修改端口/用户密码。
+sockt5 入站列表"><meta name=author content="dwd"><link rel=canonical href=https://qfsyso.github.io/posts/3xui-clash/><link crossorigin=anonymous href=/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF+13Dyqob6ASlTrTye8=" rel="preload stylesheet" as=style><link rel=icon href=https://qfsyso.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://qfsyso.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://qfsyso.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://qfsyso.github.io/apple-touch-icon.png><link rel=mask-icon href=https://qfsyso.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://qfsyso.github.io/posts/3xui-clash/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://qfsyso.github.io/posts/3xui-clash/"><meta property="og:site_name" content="MLOG"><meta property="og:title" content="3XUI Clash"><meta property="og:description" content="3x-ui 准备服务器
+系统推荐：Debian 11+/Ubuntu 20.04+
+确保服务器安全组已放行常用端口（80/443/自定义端口）。
+安装 3x-ui bash <(curl -Ls https://raw.githubusercontent.com/MHSanaei/3x-ui/master/install.sh) 安装过程中会提示：
+设置面板端口（默认 54321）
+设置登录用户名与密码
+启动与管理 # 启动 systemctl start x-ui # 停止 systemctl stop x-ui # 重启 systemctl restart x-ui # 查看状态 systemctl status x-ui 访问面板 在浏览器中打开：
+http://服务器IP:面板端口
+输入用户名和密码登录。
+HTTPS 证书配置（推荐） 3x-ui 自带 ACME，可以直接申请免费证书：
+确保域名已经解析到服务器 IP。
+在面板 → 设置 → 证书管理 → 申请证书。
+添加节点用户 登录面板后，可以添加 VLESS、VMess、Trojan 等协议的用户。
+面板会生成二维码和连接信息，方便客户端（比如 v2rayN、Clash）导入。
+常见问题 面板打不开：检查防火墙/安全组是否放行端口。
+证书申请失败：确认域名已解析，且 80/443 端口未被占用。
+更改面板端口：
+x-ui 在交互菜单里修改端口/用户密码。
+sockt5 入站列表"><meta property="og:locale" content="zh-CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-09-02T22:59:44+08:00"><meta property="article:modified_time" content="2025-09-02T22:59:44+08:00"><meta property="article:tag" content="Python"><meta property="article:tag" content="Debian"><meta name=twitter:card content="summary"><meta name=twitter:title content="3XUI Clash"><meta name=twitter:description content="3x-ui 准备服务器
+系统推荐：Debian 11+/Ubuntu 20.04+
+确保服务器安全组已放行常用端口（80/443/自定义端口）。
+安装 3x-ui bash <(curl -Ls https://raw.githubusercontent.com/MHSanaei/3x-ui/master/install.sh) 安装过程中会提示：
+设置面板端口（默认 54321）
+设置登录用户名与密码
+启动与管理 # 启动 systemctl start x-ui # 停止 systemctl stop x-ui # 重启 systemctl restart x-ui # 查看状态 systemctl status x-ui 访问面板 在浏览器中打开：
+http://服务器IP:面板端口
+输入用户名和密码登录。
+HTTPS 证书配置（推荐） 3x-ui 自带 ACME，可以直接申请免费证书：
+确保域名已经解析到服务器 IP。
+在面板 → 设置 → 证书管理 → 申请证书。
+添加节点用户 登录面板后，可以添加 VLESS、VMess、Trojan 等协议的用户。
+面板会生成二维码和连接信息，方便客户端（比如 v2rayN、Clash）导入。
+常见问题 面板打不开：检查防火墙/安全组是否放行端口。
+证书申请失败：确认域名已解析，且 80/443 端口未被占用。
+更改面板端口：
+x-ui 在交互菜单里修改端口/用户密码。
+sockt5 入站列表"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://qfsyso.github.io/posts/"},{"@type":"ListItem","position":2,"name":"3XUI Clash","item":"https://qfsyso.github.io/posts/3xui-clash/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"3XUI Clash","name":"3XUI Clash","description":"3x-ui 准备服务器\n系统推荐：Debian 11+/Ubuntu 20.04+\n确保服务器安全组已放行常用端口（80/443/自定义端口）。\n安装 3x-ui bash \u0026lt;(curl -Ls https://raw.githubusercontent.com/MHSanaei/3x-ui/master/install.sh) 安装过程中会提示：\n设置面板端口（默认 54321）\n设置登录用户名与密码\n启动与管理 # 启动 systemctl start x-ui # 停止 systemctl stop x-ui # 重启 systemctl restart x-ui # 查看状态 systemctl status x-ui 访问面板 在浏览器中打开：\nhttp://服务器IP:面板端口\n输入用户名和密码登录。\nHTTPS 证书配置（推荐） 3x-ui 自带 ACME，可以直接申请免费证书：\n确保域名已经解析到服务器 IP。\n在面板 → 设置 → 证书管理 → 申请证书。\n添加节点用户 登录面板后，可以添加 VLESS、VMess、Trojan 等协议的用户。\n面板会生成二维码和连接信息，方便客户端（比如 v2rayN、Clash）导入。\n常见问题 面板打不开：检查防火墙/安全组是否放行端口。\n证书申请失败：确认域名已解析，且 80/443 端口未被占用。\n更改面板端口：\nx-ui 在交互菜单里修改端口/用户密码。\nsockt5 入站列表","keywords":["Python","Debian"],"articleBody":"3x-ui 准备服务器\n系统推荐：Debian 11+/Ubuntu 20.04+\n确保服务器安全组已放行常用端口（80/443/自定义端口）。\n安装 3x-ui bash \u003c(curl -Ls https://raw.githubusercontent.com/MHSanaei/3x-ui/master/install.sh) 安装过程中会提示：\n设置面板端口（默认 54321）\n设置登录用户名与密码\n启动与管理 # 启动 systemctl start x-ui # 停止 systemctl stop x-ui # 重启 systemctl restart x-ui # 查看状态 systemctl status x-ui 访问面板 在浏览器中打开：\nhttp://服务器IP:面板端口\n输入用户名和密码登录。\nHTTPS 证书配置（推荐） 3x-ui 自带 ACME，可以直接申请免费证书：\n确保域名已经解析到服务器 IP。\n在面板 → 设置 → 证书管理 → 申请证书。\n添加节点用户 登录面板后，可以添加 VLESS、VMess、Trojan 等协议的用户。\n面板会生成二维码和连接信息，方便客户端（比如 v2rayN、Clash）导入。\n常见问题 面板打不开：检查防火墙/安全组是否放行端口。\n证书申请失败：确认域名已解析，且 80/443 端口未被占用。\n更改面板端口：\nx-ui 在交互菜单里修改端口/用户密码。\nsockt5 入站列表\n创建代理socks5 UDP 端口 账户 密码\nClash 进入面板 打开 http://服务器IP:端口，登录管理后台。\n添加入站配置\n左侧菜单 → 入站列表 → 添加入站\n协议推荐：\nVLESS + TCP + TLS (Reality) （推荐安全）\n或 VLESS + WS + TLS（最常见，兼容性好）\n填写：\n端口（如 443、8443）\nUUID（随机生成即可）\nTLS 设置：勾选 TLS，并配置证书（可以在 3x-ui 申请证书，或上传已有证书）\nVLESS + WS + TLS 示例\nproxies: - name: \"My-VLESS-WS\" type: vless server: yourdomain.com port: 443 uuid: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx network: ws tls: true udp: true ws-opts: path: \"/vless\" headers: Host: yourdomain.com VLESS + Reality 示例\nproxies: - name: \"My-VLESS-Reality\" type: vless server: yourdomain.com port: 443 uuid: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx network: tcp reality-opts: public-key: your-reality-pubkey short-id: abc123 servername: www.lovelive-anime.jp # 伪装域名 udp: true python3 -m pip install pyyaml import urllib.parse import yaml def vless_to_clash(vless_url: str): # 解析 vless:// 链接 if not vless_url.startswith(\"vless://\"): raise ValueError(\"不是 vless:// 链接\") # 拆分 url = vless_url[8:] user_info, rest = url.split(\"@\", 1) uuid = user_info server_part, params_part = rest.split(\"?\", 1) server, port = server_part.split(\":\") # 解析参数 params = dict(urllib.parse.parse_qsl(params_part.split(\"#\")[0])) name = urllib.parse.unquote(rest.split(\"#\")[-1]) if \"#\" in rest else \"MyNode\" # 构造 Clash 节点 node = { \"name\": name, \"type\": \"vless\", \"server\": server, \"port\": int(port), \"uuid\": uuid, \"network\": params.get(\"type\", \"tcp\"), \"udp\": True } # TLS / Reality 参数 if params.get(\"security\") == \"reality\": node[\"tls\"] = True node[\"flow\"] = params.get(\"flow\") node[\"servername\"] = params.get(\"sni\") node[\"client-fingerprint\"] = params.get(\"fp\", \"chrome\") node[\"reality-opts\"] = { \"public-key\": params.get(\"pbk\", \"\"), \"short-id\": params.get(\"sid\", \"\") } elif params.get(\"security\") == \"tls\": node[\"tls\"] = True node[\"servername\"] = params.get(\"sni\") # WS 支持 if params.get(\"type\") == \"ws\": node[\"ws-opts\"] = { \"path\": params.get(\"path\", \"/\"), \"headers\": {\"Host\": params.get(\"host\", server)} } return node if __name__ == \"__main__\": # 示例 VLESS 链接 vless_link = \"vless://df513d45-d0e0-454d-b0c0-6707c5eeb295@185.242.0.1:443?type=tcp\u0026security=reality\u0026pbk=xxxxxx\u0026flow=xtls-rprx-vision\u0026sni=www.lovelive-anime.jp\u0026fp=chrome#MyNode\" node = vless_to_clash(vless_link) clash_config = { \"proxies\": [node], \"proxy-groups\": [ { \"name\": \"Proxy\", \"type\": \"select\", \"proxies\": [node[\"name\"], \"DIRECT\"] } ] } print(yaml.dump(clash_config, sort_keys=False, allow_unicode=True)) 可得到 .yaml 导入 clash 即可使用\n支持多条vless import urllib.parse import yaml def vless_to_clash(vless_url: str): \"\"\"将单条 vless:// 链接转换为 Clash 节点配置\"\"\" if not vless_url.startswith(\"vless://\"): raise ValueError(\"不是 vless:// 链接\") url = vless_url[8:] user_info, rest = url.split(\"@\", 1) uuid = user_info server_part, params_part = rest.split(\"?\", 1) server, port = server_part.split(\":\") params, name = params_part, \"MyNode\" if \"#\" in params_part: params, name = params_part.split(\"#\", 1) name = urllib.parse.unquote(name) # 解析参数 params = dict(urllib.parse.parse_qsl(params)) node = { \"name\": name, \"type\": \"vless\", \"server\": server, \"port\": int(port), \"uuid\": uuid, \"network\": params.get(\"type\", \"tcp\"), \"udp\": True } # TLS / Reality if params.get(\"security\") == \"reality\": node[\"tls\"] = True node[\"flow\"] = params.get(\"flow\") node[\"servername\"] = params.get(\"sni\") node[\"client-fingerprint\"] = params.get(\"fp\", \"chrome\") node[\"reality-opts\"] = { \"public-key\": params.get(\"pbk\", \"\"), \"short-id\": params.get(\"sid\", \"\") } elif params.get(\"security\") == \"tls\": node[\"tls\"] = True node[\"servername\"] = params.get(\"sni\") # WS 支持 if params.get(\"type\") == \"ws\": node[\"ws-opts\"] = { \"path\": params.get(\"path\", \"/\"), \"headers\": {\"Host\": params.get(\"host\", server)} } return node if __name__ == \"__main__\": print(\"请输入 VLESS 链接（支持多条，回车换行，输入空行结束）：\") links = [] while True: line = input().strip() if not line: break links.append(line) proxies = [] for link in links: try: node = vless_to_clash(link) proxies.append(node) except Exception as e: print(f\"❌ 无法解析: {link} -\u003e {e}\") if not proxies: print(\"没有生成任何节点配置！\") exit(1) # 构造完整 Clash 配置 clash_config = { \"proxies\": proxies, \"proxy-groups\": [ { \"name\": \"Proxy\", \"type\": \"select\", \"proxies\": [p[\"name\"] for p in proxies] + [\"DIRECT\"] } ] } with open(\"config.yaml\", \"w\", encoding=\"utf-8\") as f: yaml.dump(clash_config, f, sort_keys=False, allow_unicode=True) print(\"✅ 已生成 config.yaml，可以直接导入 Clash Meta 使用\") 运行脚本：\npython3 app.py 按提示输入多条 VLESS 链接，例如：\nvless://uuid1@1.1.1.1:443?type=tcp\u0026security=reality\u0026pbk=xxxx\u0026sni=example.com#Node1 vless://uuid2@2.2.2.2:8443?type=ws\u0026security=tls\u0026host=example.org\u0026path=/ws#Node2 输入完成后，直接 回车两次结束。\n脚本会生成一个 config.yaml 文件，内容里包含所有节点和一个代理组。\nSb 安装\nbash \u003c(wget -qO- -o- https://github.com/233boy/sing-box/raw/main/install.sh) 创建一个vless+vision+reality的节点\nvless://b1635293-86f6-4b90-ac6c-c56f0c9e19dd@185.1.0.1:20887?encryption=none\u0026security=reality\u0026flow=xtls-rprx-vision\u0026type=tcp\u0026sni=aws.amazon.com\u0026pbk=uiYgNR88C0mQAU9-n39rVt_pnYCB-UV0sRiE3aDKcRQ\u0026fp=chrome#233boy-reality-185.1.0.1 关注(tg): https://t.me/tg2333 文档(doc): https://233boy.com/sing-box/sing-box-script/\n在命令行中输入【sb】，启动脚本。\n选择【1）添加配置】。\n选择【12）vless+ws+tls】。 输入域名\nOR\nVLESS-REALITY vless://6b8c9df4-cae0-422f-ade1-3295a1aaeffe@185.1.0.1:110?encryption=none\u0026security=reality\u0026flow=xtls-rprx-vision\u0026type=tcp\u0026sni=www.cloudflare.com\u0026pbk=PQ-iBZxWiKx7uY5xaXHJbCKxRFH_twOU_fAEwRVT-n0\u0026fp=chrome#233boy-reality-185.1.0.1 # ========================= # Clash Meta 配置 # 基于：VLESS Reality + TCP + Vision # ========================= mixed-port: 7890 allow-lan: true mode: rule log-level: info ipv6: false external-controller: 127.0.0.1:9090 profile: store-selected: true store-fake-ip: true geodata-mode: true geodata-loader: memconservative geo-update-interval: 24 dns: enable: true listen: 0.0.0.0:1053 ipv6: false enhanced-mode: fake-ip fake-ip-range: 198.18.0.1/16 use-hosts: true nameserver: - 223.5.5.5 - 1.1.1.1 fallback: - 8.8.8.8 - 9.9.9.9 fallback-filter: geoip: true ipcidr: - 240.0.0.0/4 fake-ip-filter: - '*.lan' - localhost - '*.local' - 'time.*.com' - 'time.*.gov' - 'ntp.*.*' - 'music.163.com' - '*.msftconnecttest.com' - '*.msftncsi.com' proxies: - name: 233boy-reality-185.1.0.1 type: vless server: 185.1.0.1 port: 110 uuid: 6b8c9df4-cae0-422f-ade1-3295a1aaeffe udp: true # Reality / TLS tls: true servername: www.cloudflare.com reality-opts: public-key: PQ-iBZxWiKx7uY5xaXHJbCKxRFH_twOU_fAEwRVT-n0 short-id: \"\" # 如果服务端有 short-id，请填入 flow: xtls-rprx-vision # uTLS（指纹） client-fingerprint: chrome # 传输层：TCP network: tcp proxy-groups: - name: 🚀 节点选择 type: select proxies: - 233boy-reality-185.1.0.1 - DIRECT - name: 🌍 国外流量 type: select proxies: - 🚀 节点选择 - DIRECT - name: 🍎 Apple type: select proxies: - DIRECT - 🚀 节点选择 - name: 🎯 全球直连 type: select proxies: - DIRECT - 🚀 节点选择 rules: - DOMAIN,localhost,DIRECT - GEOIP,CN,🎯 全球直连 - MATCH,🌍 国外流量 vless2clash # vless2clash.py import re import sys import urllib.parse import yaml # 模板 base_config = { \"mixed-port\": 7890, \"allow-lan\": True, \"mode\": \"rule\", \"log-level\": \"info\", \"ipv6\": False, \"external-controller\": \"127.0.0.1:9090\", \"profile\": { \"store-selected\": True, \"store-fake-ip\": True, }, \"geodata-mode\": True, \"geodata-loader\": \"memconservative\", \"geo-update-interval\": 24, \"dns\": { \"enable\": True, \"listen\": \"0.0.0.0:1053\", \"ipv6\": False, \"enhanced-mode\": \"fake-ip\", \"fake-ip-range\": \"198.18.0.1/16\", \"use-hosts\": True, \"nameserver\": [\"223.5.5.5\", \"1.1.1.1\"], \"fallback\": [\"8.8.8.8\", \"9.9.9.9\"], \"fallback-filter\": { \"geoip\": True, \"ipcidr\": [\"240.0.0.0/4\"] }, \"fake-ip-filter\": [ \"*.lan\", \"localhost\", \"*.local\", \"time.*.com\", \"time.*.gov\", \"ntp.*.*\", \"music.163.com\", \"*.msftconnecttest.com\", \"*.msftncsi.com\" ] }, \"proxies\": [], \"proxy-groups\": [ { \"name\": \"🚀 节点选择\", \"type\": \"select\", \"proxies\": [] }, { \"name\": \"🌍 国外流量\", \"type\": \"select\", \"proxies\": [\"🚀 节点选择\", \"DIRECT\"] }, { \"name\": \"🍎 Apple\", \"type\": \"select\", \"proxies\": [\"DIRECT\", \"🚀 节点选择\"] }, { \"name\": \"🎯 全球直连\", \"type\": \"select\", \"proxies\": [\"DIRECT\", \"🚀 节点选择\"] } ], \"rules\": [ \"DOMAIN,localhost,DIRECT\", \"GEOIP,CN,🎯 全球直连\", \"MATCH,🌍 国外流量\" ] } def parse_vless(url: str): if not url.startswith(\"vless://\"): raise ValueError(\"不是 VLESS 链接\") # 去掉 vless:// raw = url[8:] # 分离 #tag if \"#\" in raw: raw, tag = raw.split(\"#\", 1) name = urllib.parse.unquote(tag) else: name = \"VLESS-Node\" # 分离 ?参数 if \"?\" in raw: raw, query = raw.split(\"?\", 1) params = dict(urllib.parse.parse_qsl(query)) else: params = {} # userinfo@host:port userinfo, serverinfo = raw.split(\"@\") uuid = userinfo server, port = serverinfo.split(\":\") # 生成 clash proxy 节点 proxy = { \"name\": name, \"type\": \"vless\", \"server\": server, \"port\": int(port), \"uuid\": uuid, \"udp\": True, \"tls\": True, \"servername\": params.get(\"sni\", \"\"), \"reality-opts\": { \"public-key\": params.get(\"pbk\", \"\"), \"short-id\": params.get(\"sid\", \"\") or \"\" }, \"client-fingerprint\": params.get(\"fp\", \"chrome\"), \"network\": params.get(\"type\", \"tcp\") } flow = params.get(\"flow\", \"\") if flow: proxy[\"flow\"] = flow # network-specific if proxy[\"network\"] == \"h2\": proxy[\"h2-opts\"] = { \"host\": [params.get(\"sni\", \"\")], \"path\": \"/\" } return proxy def vless_to_config(url: str, outfile=\"config.yaml\"): config = base_config.copy() proxy = parse_vless(url) config[\"proxies\"] = [proxy] config[\"proxy-groups\"][0][\"proxies\"] = [proxy[\"name\"], \"DIRECT\"] with open(outfile, \"w\", encoding=\"utf-8\") as f: yaml.dump(config, f, allow_unicode=True, sort_keys=False) print(f\"✅ 已生成 {outfile}\") if __name__ == \"__main__\": if len(sys.argv) \u003c 2: print(\"用法: python vless2clash.py \") else: vless_url = sys.argv[1] vless_to_config(vless_url) 安装依赖：\npip install pyyaml 运行：\npython vless2clash.py \"vless://6b8c9df4-xxxx-xxxx@srv:110?...#我的节点\" 在当前目录生成 config.yaml，直接导入 Clash Meta for Android 即可。\ntxttoyaml import sys import urllib.parse import yaml # ======================= # 基础 Clash Meta 模板 # ======================= base_config = { \"mixed-port\": 7890, \"allow-lan\": True, \"mode\": \"rule\", \"log-level\": \"info\", \"ipv6\": False, \"external-controller\": \"127.0.0.1:9090\", \"profile\": { \"store-selected\": True, \"store-fake-ip\": True, }, \"geodata-mode\": True, \"geodata-loader\": \"memconservative\", \"geo-update-interval\": 24, \"dns\": { \"enable\": True, \"listen\": \"0.0.0.0:1053\", \"ipv6\": False, \"enhanced-mode\": \"fake-ip\", \"fake-ip-range\": \"198.18.0.1/16\", \"use-hosts\": True, \"nameserver\": [\"223.5.5.5\", \"1.1.1.1\"], \"fallback\": [\"8.8.8.8\", \"9.9.9.9\"], \"fallback-filter\": { \"geoip\": True, \"ipcidr\": [\"240.0.0.0/4\"] }, \"fake-ip-filter\": [ \"*.lan\", \"localhost\", \"*.local\", \"time.*.com\", \"time.*.gov\", \"ntp.*.*\", \"music.163.com\", \"*.msftconnecttest.com\", \"*.msftncsi.com\" ] }, \"proxies\": [], \"proxy-groups\": [ { \"name\": \"🚀 节点选择\", \"type\": \"select\", \"proxies\": [] }, { \"name\": \"🌍 国外流量\", \"type\": \"select\", \"proxies\": [\"🚀 节点选择\", \"DIRECT\"] }, { \"name\": \"🍎 Apple\", \"type\": \"select\", \"proxies\": [\"DIRECT\", \"🚀 节点选择\"] }, { \"name\": \"🎯 全球直连\", \"type\": \"select\", \"proxies\": [\"DIRECT\", \"🚀 节点选择\"] } ], \"rules\": [ \"DOMAIN,localhost,DIRECT\", \"GEOIP,CN,🎯 全球直连\", \"MATCH,🌍 国外流量\" ] } def parse_vless(url: str): \"\"\"解析 vless:// 链接为 Clash Meta 节点\"\"\" if not url.startswith(\"vless://\"): raise ValueError(\"不是 VLESS 链接\") raw = url[8:] if \"#\" in raw: raw, tag = raw.split(\"#\", 1) name = urllib.parse.unquote(tag) else: name = \"VLESS-Node\" if \"?\" in raw: raw, query = raw.split(\"?\", 1) params = dict(urllib.parse.parse_qsl(query)) else: params = {} userinfo, serverinfo = raw.split(\"@\") uuid = userinfo server, port = serverinfo.split(\":\") proxy = { \"name\": name, \"type\": \"vless\", \"server\": server, \"port\": int(port), \"uuid\": uuid, \"udp\": True, \"tls\": True, \"servername\": params.get(\"sni\", \"\"), \"reality-opts\": { \"public-key\": params.get(\"pbk\", \"\"), \"short-id\": params.get(\"sid\", \"\") or \"\" }, \"client-fingerprint\": params.get(\"fp\", \"chrome\"), \"network\": params.get(\"type\", \"tcp\") } flow = params.get(\"flow\", \"\") if flow: proxy[\"flow\"] = flow if proxy[\"network\"] == \"h2\": proxy[\"h2-opts\"] = { \"host\": [params.get(\"sni\", \"\")], \"path\": \"/\" } return proxy def vless_file_to_config(infile=\"vless.txt\", outfile=\"config.yaml\"): \"\"\"从 txt 文件批量读取 vless 链接并生成 config.yaml\"\"\" config = base_config.copy() proxies = [] names = [] with open(infile, \"r\", encoding=\"utf-8\") as f: urls = [line.strip() for line in f if line.strip()] for url in urls: try: proxy = parse_vless(url) proxies.append(proxy) names.append(proxy[\"name\"]) except Exception as e: print(f\"⚠️ 跳过无效链接: {url} ({e})\") config[\"proxies\"] = proxies config[\"proxy-groups\"][0][\"proxies\"] = names + [\"DIRECT\"] with open(outfile, \"w\", encoding=\"utf-8\") as f: yaml.dump(config, f, allow_unicode=True, sort_keys=False) print(f\"✅ 已生成 {outfile}，共 {len(proxies)} 个节点\") if __name__ == \"__main__\": infile = sys.argv[1] if len(sys.argv) \u003e 1 else \"vless.txt\" vless_file_to_config(infile) 安装依赖：\npip install pyyaml 准备一个 vless.txt 文件，每行一个 VLESS 链接：\nvless://uuid1@ip1:port?...#节点1 vless://uuid2@ip2:port?...#节点2 vless://uuid3@ip3:port?...#节点3 python vless2clash_file.py vless.txt 得到 config.yaml，包含所有节点。\nping 打开：https://tcp.ping.pe/\n写上 VPS IP 跟端口；内容为 ip:端口，示例：1.1.1.1:443，然后点击 Go；或者直接回车\n如果显示 successful；证明端口能连接；如果显示 failed；那是无法连接上端口。\nsingbox ios { “dns”: { “servers”: [ { “tag”: “google”, “address”: “tls://8.8.8.8” }, { “tag”: “local”, “address”: “223.5.5.5”, “detour”: “direct” } ], “rules”: [ { “outbound”: “direct”, “server”: “local” }, { “outbound”: “proxy”, “server”: “google” } ], “strategy”: “ipv4_only” }, “inbounds”: [ { “type”: “tun”, “inet4_address”: “172.19.0.1/30”, “auto_route”: true, “stack”:“mixed”, “sniff”: true } ], “outbounds”: [ { “type”: “shadowsocks”, “tag”: “proxy”, “server”: “185.1.0.1”, “server_port”: 110, “method” :“2022-blake3-chacha20-poly1305”, “password”: “Aa123123”, “multiplex”: { “enabled”: true } }, { “type”: “block”, “tag”: “block” }, { “type”: “dns”, “tag”: “dns-out” }, { “type”: “direct”, “tag”: “direct” } ], “route”: { “rules”: [ { “protocol”: “dns”, “outbound”: “dns-out” }, { “geosite”: “cn”, “outbound”: “direct” }, { “geoip”: “cn”, “outbound”: “direct” } ], “auto_detect_interface”: true, “final”: “proxy” } }\n","wordCount":"1637","inLanguage":"en","datePublished":"2025-09-02T22:59:44+08:00","dateModified":"2025-09-02T22:59:44+08:00","author":{"@type":"Person","name":"dwd"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://qfsyso.github.io/posts/3xui-clash/"},"publisher":{"@type":"Organization","name":"MLOG","logo":{"@type":"ImageObject","url":"https://qfsyso.github.io/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://qfsyso.github.io/ accesskey=h title="MLOG (Alt + H)">MLOG</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://qfsyso.github.io/posts/ title=Archive><span>Archive</span></a></li><li><a href=https://qfsyso.github.io/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://qfsyso.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">3XUI Clash</h1><div class=post-meta><span title='2025-09-02 22:59:44 +0800 +0800'>September 2, 2025</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;dwd</div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#3x-ui aria-label=3x-ui>3x-ui</a><ul><li><a href=#%e5%ae%89%e8%a3%85-3x-ui aria-label="安装 3x-ui">安装 3x-ui</a></li><li><a href=#%e5%90%af%e5%8a%a8%e4%b8%8e%e7%ae%a1%e7%90%86 aria-label=启动与管理>启动与管理</a></li><li><a href=#https-%e8%af%81%e4%b9%a6%e9%85%8d%e7%bd%ae%e6%8e%a8%e8%8d%90 aria-label="HTTPS 证书配置（推荐）">HTTPS 证书配置（推荐）</a></li><li><a href=#%e6%b7%bb%e5%8a%a0%e8%8a%82%e7%82%b9%e7%94%a8%e6%88%b7 aria-label=添加节点用户>添加节点用户</a></li><li><a href=#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98 aria-label=常见问题>常见问题</a></li></ul></li><li><a href=#sockt5 aria-label=sockt5>sockt5</a></li><li><a href=#clash aria-label=Clash>Clash</a></li><li><a href=#%e6%94%af%e6%8c%81%e5%a4%9a%e6%9d%a1vless aria-label=支持多条vless>支持多条vless</a></li><li><a href=#sb aria-label=Sb>Sb</a></li><li><a href=#vless2clash aria-label=vless2clash>vless2clash</a></li><li><a href=#txttoyaml aria-label=txttoyaml>txttoyaml</a></li><li><a href=#ping aria-label=ping>ping</a></li><li><a href=#singbox-ios aria-label="singbox ios">singbox ios</a></li></ul></div></details></div><div class=post-content><h1 id=3x-ui>3x-ui<a hidden class=anchor aria-hidden=true href=#3x-ui>#</a></h1><p>准备服务器</p><p>系统推荐：Debian 11+/Ubuntu 20.04+</p><p>确保服务器安全组已放行常用端口（80/443/自定义端口）。</p><h2 id=安装-3x-ui>安装 3x-ui<a hidden class=anchor aria-hidden=true href=#安装-3x-ui>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>bash &lt;<span style=color:#f92672>(</span>curl -Ls https://raw.githubusercontent.com/MHSanaei/3x-ui/master/install.sh<span style=color:#f92672>)</span>
+</span></span></code></pre></div><p>安装过程中会提示：</p><p>设置面板端口（默认 54321）</p><p>设置登录用户名与密码</p><h2 id=启动与管理>启动与管理<a hidden class=anchor aria-hidden=true href=#启动与管理>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 启动</span>
+</span></span><span style=display:flex><span>systemctl start x-ui
+</span></span><span style=display:flex><span><span style=color:#75715e># 停止</span>
+</span></span><span style=display:flex><span>systemctl stop x-ui
+</span></span><span style=display:flex><span><span style=color:#75715e># 重启</span>
+</span></span><span style=display:flex><span>systemctl restart x-ui
+</span></span><span style=display:flex><span><span style=color:#75715e># 查看状态</span>
+</span></span><span style=display:flex><span>systemctl status x-ui
+</span></span></code></pre></div><p>访问面板
+在浏览器中打开：</p><p>http://服务器IP:面板端口</p><p>输入用户名和密码登录。</p><h2 id=https-证书配置推荐>HTTPS 证书配置（推荐）<a hidden class=anchor aria-hidden=true href=#https-证书配置推荐>#</a></h2><p>3x-ui 自带 ACME，可以直接申请免费证书：</p><p>确保域名已经解析到服务器 IP。</p><p>在面板 → 设置 → 证书管理 → 申请证书。</p><h2 id=添加节点用户>添加节点用户<a hidden class=anchor aria-hidden=true href=#添加节点用户>#</a></h2><p>登录面板后，可以添加 VLESS、VMess、Trojan 等协议的用户。</p><p>面板会生成二维码和连接信息，方便客户端（比如 v2rayN、Clash）导入。</p><h2 id=常见问题>常见问题<a hidden class=anchor aria-hidden=true href=#常见问题>#</a></h2><p>面板打不开：检查防火墙/安全组是否放行端口。</p><p>证书申请失败：确认域名已解析，且 80/443 端口未被占用。</p><p>更改面板端口：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>x-ui
+</span></span></code></pre></div><p>在交互菜单里修改端口/用户密码。</p><h1 id=sockt5>sockt5<a hidden class=anchor aria-hidden=true href=#sockt5>#</a></h1><p>入站列表</p><p>创建代理socks5
+UDP
+端口
+账户
+密码</p><h1 id=clash>Clash<a hidden class=anchor aria-hidden=true href=#clash>#</a></h1><p>进入面板
+打开 http://服务器IP:端口，登录管理后台。</p><p>添加入站配置</p><p>左侧菜单 → 入站列表 → 添加入站</p><p>协议推荐：</p><p>VLESS + TCP + TLS (Reality) （推荐安全）</p><p>或 VLESS + WS + TLS（最常见，兼容性好）</p><p>填写：</p><p>端口（如 443、8443）</p><p>UUID（随机生成即可）</p><p>TLS 设置：勾选 TLS，并配置证书（可以在 3x-ui 申请证书，或上传已有证书）</p><p>VLESS + WS + TLS 示例</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:#f92672>proxies</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#e6db74>&#34;My-VLESS-WS&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>type</span>: <span style=color:#ae81ff>vless</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>server</span>: <span style=color:#ae81ff>yourdomain.com</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>port</span>: <span style=color:#ae81ff>443</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>uuid</span>: <span style=color:#ae81ff>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>network</span>: <span style=color:#ae81ff>ws</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>tls</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>udp</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ws-opts</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>path</span>: <span style=color:#e6db74>&#34;/vless&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>headers</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>Host</span>: <span style=color:#ae81ff>yourdomain.com</span>
+</span></span></code></pre></div><p>VLESS + Reality 示例</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:#f92672>proxies</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#e6db74>&#34;My-VLESS-Reality&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>type</span>: <span style=color:#ae81ff>vless</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>server</span>: <span style=color:#ae81ff>yourdomain.com</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>port</span>: <span style=color:#ae81ff>443</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>uuid</span>: <span style=color:#ae81ff>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>network</span>: <span style=color:#ae81ff>tcp</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>reality-opts</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>public-key</span>: <span style=color:#ae81ff>your-reality-pubkey</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>short-id</span>: <span style=color:#ae81ff>abc123</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>servername</span>: <span style=color:#ae81ff>www.lovelive-anime.jp  </span> <span style=color:#75715e># 伪装域名</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>udp</span>: <span style=color:#66d9ef>true</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>python3 -m pip install pyyaml
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> urllib.parse
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> yaml
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>vless_to_clash</span>(vless_url: str):
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 解析 vless:// 链接</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> vless_url<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;vless://&#34;</span>):
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>raise</span> <span style=color:#a6e22e>ValueError</span>(<span style=color:#e6db74>&#34;不是 vless:// 链接&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 拆分</span>
+</span></span><span style=display:flex><span>    url <span style=color:#f92672>=</span> vless_url[<span style=color:#ae81ff>8</span>:]
+</span></span><span style=display:flex><span>    user_info, rest <span style=color:#f92672>=</span> url<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;@&#34;</span>, <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>    uuid <span style=color:#f92672>=</span> user_info
+</span></span><span style=display:flex><span>    server_part, params_part <span style=color:#f92672>=</span> rest<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;?&#34;</span>, <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>    server, port <span style=color:#f92672>=</span> server_part<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;:&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 解析参数</span>
+</span></span><span style=display:flex><span>    params <span style=color:#f92672>=</span> dict(urllib<span style=color:#f92672>.</span>parse<span style=color:#f92672>.</span>parse_qsl(params_part<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;#&#34;</span>)[<span style=color:#ae81ff>0</span>]))
+</span></span><span style=display:flex><span>    name <span style=color:#f92672>=</span> urllib<span style=color:#f92672>.</span>parse<span style=color:#f92672>.</span>unquote(rest<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;#&#34;</span>)[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]) <span style=color:#66d9ef>if</span> <span style=color:#e6db74>&#34;#&#34;</span> <span style=color:#f92672>in</span> rest <span style=color:#66d9ef>else</span> <span style=color:#e6db74>&#34;MyNode&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 构造 Clash 节点</span>
+</span></span><span style=display:flex><span>    node <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;name&#34;</span>: name,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;vless&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;server&#34;</span>: server,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;port&#34;</span>: int(port),
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;uuid&#34;</span>: uuid,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;network&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;type&#34;</span>, <span style=color:#e6db74>&#34;tcp&#34;</span>),
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;udp&#34;</span>: <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># TLS / Reality 参数</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;security&#34;</span>) <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;reality&#34;</span>:
+</span></span><span style=display:flex><span>        node[<span style=color:#e6db74>&#34;tls&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>        node[<span style=color:#e6db74>&#34;flow&#34;</span>] <span style=color:#f92672>=</span> params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;flow&#34;</span>)
+</span></span><span style=display:flex><span>        node[<span style=color:#e6db74>&#34;servername&#34;</span>] <span style=color:#f92672>=</span> params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;sni&#34;</span>)
+</span></span><span style=display:flex><span>        node[<span style=color:#e6db74>&#34;client-fingerprint&#34;</span>] <span style=color:#f92672>=</span> params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;fp&#34;</span>, <span style=color:#e6db74>&#34;chrome&#34;</span>)
+</span></span><span style=display:flex><span>        node[<span style=color:#e6db74>&#34;reality-opts&#34;</span>] <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;public-key&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;pbk&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>),
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;short-id&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;sid&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>elif</span> params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;security&#34;</span>) <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;tls&#34;</span>:
+</span></span><span style=display:flex><span>        node[<span style=color:#e6db74>&#34;tls&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>        node[<span style=color:#e6db74>&#34;servername&#34;</span>] <span style=color:#f92672>=</span> params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;sni&#34;</span>)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># WS 支持</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;type&#34;</span>) <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;ws&#34;</span>:
+</span></span><span style=display:flex><span>        node[<span style=color:#e6db74>&#34;ws-opts&#34;</span>] <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;path&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;path&#34;</span>, <span style=color:#e6db74>&#34;/&#34;</span>),
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;headers&#34;</span>: {<span style=color:#e6db74>&#34;Host&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;host&#34;</span>, server)}
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> node
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>:
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 示例 VLESS 链接</span>
+</span></span><span style=display:flex><span>    vless_link <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;vless://df513d45-d0e0-454d-b0c0-6707c5eeb295@185.242.0.1:443?type=tcp&amp;security=reality&amp;pbk=xxxxxx&amp;flow=xtls-rprx-vision&amp;sni=www.lovelive-anime.jp&amp;fp=chrome#MyNode&#34;</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    node <span style=color:#f92672>=</span> vless_to_clash(vless_link)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    clash_config <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;proxies&#34;</span>: [node],
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;proxy-groups&#34;</span>: [
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Proxy&#34;</span>,
+</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;select&#34;</span>,
+</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;proxies&#34;</span>: [node[<span style=color:#e6db74>&#34;name&#34;</span>], <span style=color:#e6db74>&#34;DIRECT&#34;</span>]
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        ]
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    print(yaml<span style=color:#f92672>.</span>dump(clash_config, sort_keys<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>, allow_unicode<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>))
+</span></span></code></pre></div><p>可得到 .yaml 导入 clash 即可使用</p><h1 id=支持多条vless>支持多条vless<a hidden class=anchor aria-hidden=true href=#支持多条vless>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> urllib.parse
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> yaml
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>vless_to_clash</span>(vless_url: str):
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;&#34;&#34;将单条 vless:// 链接转换为 Clash 节点配置&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> vless_url<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;vless://&#34;</span>):
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>raise</span> <span style=color:#a6e22e>ValueError</span>(<span style=color:#e6db74>&#34;不是 vless:// 链接&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    url <span style=color:#f92672>=</span> vless_url[<span style=color:#ae81ff>8</span>:]
+</span></span><span style=display:flex><span>    user_info, rest <span style=color:#f92672>=</span> url<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;@&#34;</span>, <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>    uuid <span style=color:#f92672>=</span> user_info
+</span></span><span style=display:flex><span>    server_part, params_part <span style=color:#f92672>=</span> rest<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;?&#34;</span>, <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>    server, port <span style=color:#f92672>=</span> server_part<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;:&#34;</span>)
+</span></span><span style=display:flex><span>    params, name <span style=color:#f92672>=</span> params_part, <span style=color:#e6db74>&#34;MyNode&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#e6db74>&#34;#&#34;</span> <span style=color:#f92672>in</span> params_part:
+</span></span><span style=display:flex><span>        params, name <span style=color:#f92672>=</span> params_part<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;#&#34;</span>, <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>        name <span style=color:#f92672>=</span> urllib<span style=color:#f92672>.</span>parse<span style=color:#f92672>.</span>unquote(name)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 解析参数</span>
+</span></span><span style=display:flex><span>    params <span style=color:#f92672>=</span> dict(urllib<span style=color:#f92672>.</span>parse<span style=color:#f92672>.</span>parse_qsl(params))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    node <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;name&#34;</span>: name,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;vless&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;server&#34;</span>: server,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;port&#34;</span>: int(port),
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;uuid&#34;</span>: uuid,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;network&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;type&#34;</span>, <span style=color:#e6db74>&#34;tcp&#34;</span>),
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;udp&#34;</span>: <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># TLS / Reality</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;security&#34;</span>) <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;reality&#34;</span>:
+</span></span><span style=display:flex><span>        node[<span style=color:#e6db74>&#34;tls&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>        node[<span style=color:#e6db74>&#34;flow&#34;</span>] <span style=color:#f92672>=</span> params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;flow&#34;</span>)
+</span></span><span style=display:flex><span>        node[<span style=color:#e6db74>&#34;servername&#34;</span>] <span style=color:#f92672>=</span> params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;sni&#34;</span>)
+</span></span><span style=display:flex><span>        node[<span style=color:#e6db74>&#34;client-fingerprint&#34;</span>] <span style=color:#f92672>=</span> params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;fp&#34;</span>, <span style=color:#e6db74>&#34;chrome&#34;</span>)
+</span></span><span style=display:flex><span>        node[<span style=color:#e6db74>&#34;reality-opts&#34;</span>] <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;public-key&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;pbk&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>),
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;short-id&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;sid&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>elif</span> params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;security&#34;</span>) <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;tls&#34;</span>:
+</span></span><span style=display:flex><span>        node[<span style=color:#e6db74>&#34;tls&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>        node[<span style=color:#e6db74>&#34;servername&#34;</span>] <span style=color:#f92672>=</span> params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;sni&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># WS 支持</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;type&#34;</span>) <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;ws&#34;</span>:
+</span></span><span style=display:flex><span>        node[<span style=color:#e6db74>&#34;ws-opts&#34;</span>] <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;path&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;path&#34;</span>, <span style=color:#e6db74>&#34;/&#34;</span>),
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;headers&#34;</span>: {<span style=color:#e6db74>&#34;Host&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;host&#34;</span>, server)}
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> node
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>:
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;请输入 VLESS 链接（支持多条，回车换行，输入空行结束）：&#34;</span>)
+</span></span><span style=display:flex><span>    links <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+</span></span><span style=display:flex><span>        line <span style=color:#f92672>=</span> input()<span style=color:#f92672>.</span>strip()
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> line:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>break</span>
+</span></span><span style=display:flex><span>        links<span style=color:#f92672>.</span>append(line)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    proxies <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> link <span style=color:#f92672>in</span> links:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>try</span>:
+</span></span><span style=display:flex><span>            node <span style=color:#f92672>=</span> vless_to_clash(link)
+</span></span><span style=display:flex><span>            proxies<span style=color:#f92672>.</span>append(node)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>Exception</span> <span style=color:#66d9ef>as</span> e:
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;❌ 无法解析: </span><span style=color:#e6db74>{</span>link<span style=color:#e6db74>}</span><span style=color:#e6db74> -&gt; </span><span style=color:#e6db74>{</span>e<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> proxies:
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;没有生成任何节点配置！&#34;</span>)
+</span></span><span style=display:flex><span>        exit(<span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 构造完整 Clash 配置</span>
+</span></span><span style=display:flex><span>    clash_config <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;proxies&#34;</span>: proxies,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;proxy-groups&#34;</span>: [
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Proxy&#34;</span>,
+</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;select&#34;</span>,
+</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;proxies&#34;</span>: [p[<span style=color:#e6db74>&#34;name&#34;</span>] <span style=color:#66d9ef>for</span> p <span style=color:#f92672>in</span> proxies] <span style=color:#f92672>+</span> [<span style=color:#e6db74>&#34;DIRECT&#34;</span>]
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        ]
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>with</span> open(<span style=color:#e6db74>&#34;config.yaml&#34;</span>, <span style=color:#e6db74>&#34;w&#34;</span>, encoding<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;utf-8&#34;</span>) <span style=color:#66d9ef>as</span> f:
+</span></span><span style=display:flex><span>        yaml<span style=color:#f92672>.</span>dump(clash_config, f, sort_keys<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>, allow_unicode<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;✅ 已生成 config.yaml，可以直接导入 Clash Meta 使用&#34;</span>)
+</span></span></code></pre></div><p>运行脚本：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>python3 app.py
+</span></span></code></pre></div><p>按提示输入多条 VLESS 链接，例如：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>vless://uuid1@1.1.1.1:443?type<span style=color:#f92672>=</span>tcp&amp;security<span style=color:#f92672>=</span>reality&amp;pbk<span style=color:#f92672>=</span>xxxx&amp;sni<span style=color:#f92672>=</span>example.com#Node1
+</span></span><span style=display:flex><span>vless://uuid2@2.2.2.2:8443?type<span style=color:#f92672>=</span>ws&amp;security<span style=color:#f92672>=</span>tls&amp;host<span style=color:#f92672>=</span>example.org&amp;path<span style=color:#f92672>=</span>/ws#Node2
+</span></span></code></pre></div><p>输入完成后，直接 回车两次结束。</p><p>脚本会生成一个 config.yaml 文件，内容里包含所有节点和一个代理组。</p><h1 id=sb>Sb<a hidden class=anchor aria-hidden=true href=#sb>#</a></h1><p>安装</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>bash &lt;<span style=color:#f92672>(</span>wget -qO- -o- https://github.com/233boy/sing-box/raw/main/install.sh<span style=color:#f92672>)</span>
+</span></span></code></pre></div><p>创建一个vless+vision+reality的节点</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>vless://b1635293-86f6-4b90-ac6c-c56f0c9e19dd@185.1.0.1:20887?encryption<span style=color:#f92672>=</span>none&amp;security<span style=color:#f92672>=</span>reality&amp;flow<span style=color:#f92672>=</span>xtls-rprx-vision&amp;type<span style=color:#f92672>=</span>tcp&amp;sni<span style=color:#f92672>=</span>aws.amazon.com&amp;pbk<span style=color:#f92672>=</span>uiYgNR88C0mQAU9-n39rVt_pnYCB-UV0sRiE3aDKcRQ&amp;fp<span style=color:#f92672>=</span>chrome#233boy-reality-185.1.0.1
+</span></span></code></pre></div><p>关注(tg): <a href=https://t.me/tg2333>https://t.me/tg2333</a>
+文档(doc): <a href=https://233boy.com/sing-box/sing-box-script/>https://233boy.com/sing-box/sing-box-script/</a></p><p>在命令行中输入【sb】，启动脚本。</p><p>选择【1）添加配置】。</p><p>选择【12）vless+ws+tls】。
+输入域名</p><p>OR</p><ol start=18><li>VLESS-REALITY</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>vless://6b8c9df4-cae0-422f-ade1-3295a1aaeffe@185.1.0.1:110?encryption<span style=color:#f92672>=</span>none&amp;security<span style=color:#f92672>=</span>reality&amp;flow<span style=color:#f92672>=</span>xtls-rprx-vision&amp;type<span style=color:#f92672>=</span>tcp&amp;sni<span style=color:#f92672>=</span>www.cloudflare.com&amp;pbk<span style=color:#f92672>=</span>PQ-iBZxWiKx7uY5xaXHJbCKxRFH_twOU_fAEwRVT-n0&amp;fp<span style=color:#f92672>=</span>chrome#233boy-reality-185.1.0.1
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># =========================</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Clash Meta  配置</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 基于：VLESS Reality + TCP + Vision</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># =========================</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>mixed-port</span>: <span style=color:#ae81ff>7890</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>allow-lan</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>mode</span>: <span style=color:#ae81ff>rule</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>log-level</span>: <span style=color:#ae81ff>info</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>ipv6</span>: <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>external-controller</span>: <span style=color:#ae81ff>127.0.0.1</span>:<span style=color:#ae81ff>9090</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>profile</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>store-selected</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>store-fake-ip</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>geodata-mode</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>geodata-loader</span>: <span style=color:#ae81ff>memconservative</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>geo-update-interval</span>: <span style=color:#ae81ff>24</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>dns</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>enable</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>listen</span>: <span style=color:#ae81ff>0.0.0.0</span>:<span style=color:#ae81ff>1053</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>ipv6</span>: <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>enhanced-mode</span>: <span style=color:#ae81ff>fake-ip</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>fake-ip-range</span>: <span style=color:#ae81ff>198.18.0.1</span><span style=color:#ae81ff>/16</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>use-hosts</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>nameserver</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>223.5.5.5</span>
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>1.1.1.1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>fallback</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>8.8.8.8</span>
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>9.9.9.9</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>fallback-filter</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>geoip</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ipcidr</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>240.0.0.0</span><span style=color:#ae81ff>/4</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>fake-ip-filter</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#e6db74>&#39;*.lan&#39;</span>
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>localhost</span>
+</span></span><span style=display:flex><span>    - <span style=color:#e6db74>&#39;*.local&#39;</span>
+</span></span><span style=display:flex><span>    - <span style=color:#e6db74>&#39;time.*.com&#39;</span>
+</span></span><span style=display:flex><span>    - <span style=color:#e6db74>&#39;time.*.gov&#39;</span>
+</span></span><span style=display:flex><span>    - <span style=color:#e6db74>&#39;ntp.*.*&#39;</span>
+</span></span><span style=display:flex><span>    - <span style=color:#e6db74>&#39;music.163.com&#39;</span>
+</span></span><span style=display:flex><span>    - <span style=color:#e6db74>&#39;*.msftconnecttest.com&#39;</span>
+</span></span><span style=display:flex><span>    - <span style=color:#e6db74>&#39;*.msftncsi.com&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>proxies</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>233boy-reality-185.1.0.1</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>type</span>: <span style=color:#ae81ff>vless</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>server</span>: <span style=color:#ae81ff>185.1.0.1</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>port</span>: <span style=color:#ae81ff>110</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>uuid</span>: <span style=color:#ae81ff>6b8c9df4-cae0-422f-ade1-3295a1aaeffe</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>udp</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Reality / TLS</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>tls</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>servername</span>: <span style=color:#ae81ff>www.cloudflare.com</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>reality-opts</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>public-key</span>: <span style=color:#ae81ff>PQ-iBZxWiKx7uY5xaXHJbCKxRFH_twOU_fAEwRVT-n0</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>short-id</span>: <span style=color:#e6db74>&#34;&#34;</span>   <span style=color:#75715e># 如果服务端有 short-id，请填入</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>flow</span>: <span style=color:#ae81ff>xtls-rprx-vision</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># uTLS（指纹）</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>client-fingerprint</span>: <span style=color:#ae81ff>chrome</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 传输层：TCP</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>network</span>: <span style=color:#ae81ff>tcp</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>proxy-groups</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>🚀 节点选择</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>type</span>: <span style=color:#ae81ff>select</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>proxies</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>233boy-reality-185.1.0.1</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DIRECT</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>🌍 国外流量</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>type</span>: <span style=color:#ae81ff>select</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>proxies</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>🚀 节点选择</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DIRECT</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>🍎 Apple</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>type</span>: <span style=color:#ae81ff>select</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>proxies</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DIRECT</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>🚀 节点选择</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>🎯 全球直连</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>type</span>: <span style=color:#ae81ff>select</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>proxies</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DIRECT</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>🚀 节点选择</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>rules</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>DOMAIN,localhost,DIRECT</span>
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>GEOIP,CN,🎯 全球直连</span>
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>MATCH,🌍 国外流量</span>
+</span></span></code></pre></div><h1 id=vless2clash>vless2clash<a hidden class=anchor aria-hidden=true href=#vless2clash>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=display:flex><span><span style=color:#75715e># vless2clash.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> re
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> sys
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> urllib.parse
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> yaml
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 模板</span>
+</span></span><span style=display:flex><span>base_config <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;mixed-port&#34;</span>: <span style=color:#ae81ff>7890</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;allow-lan&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;mode&#34;</span>: <span style=color:#e6db74>&#34;rule&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;log-level&#34;</span>: <span style=color:#e6db74>&#34;info&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;ipv6&#34;</span>: <span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;external-controller&#34;</span>: <span style=color:#e6db74>&#34;127.0.0.1:9090&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;profile&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;store-selected&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;store-fake-ip&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;geodata-mode&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;geodata-loader&#34;</span>: <span style=color:#e6db74>&#34;memconservative&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;geo-update-interval&#34;</span>: <span style=color:#ae81ff>24</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;dns&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;enable&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;listen&#34;</span>: <span style=color:#e6db74>&#34;0.0.0.0:1053&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;ipv6&#34;</span>: <span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;enhanced-mode&#34;</span>: <span style=color:#e6db74>&#34;fake-ip&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;fake-ip-range&#34;</span>: <span style=color:#e6db74>&#34;198.18.0.1/16&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;use-hosts&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;nameserver&#34;</span>: [<span style=color:#e6db74>&#34;223.5.5.5&#34;</span>, <span style=color:#e6db74>&#34;1.1.1.1&#34;</span>],
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;fallback&#34;</span>: [<span style=color:#e6db74>&#34;8.8.8.8&#34;</span>, <span style=color:#e6db74>&#34;9.9.9.9&#34;</span>],
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;fallback-filter&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;geoip&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;ipcidr&#34;</span>: [<span style=color:#e6db74>&#34;240.0.0.0/4&#34;</span>]
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;fake-ip-filter&#34;</span>: [
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;*.lan&#34;</span>, <span style=color:#e6db74>&#34;localhost&#34;</span>, <span style=color:#e6db74>&#34;*.local&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;time.*.com&#34;</span>, <span style=color:#e6db74>&#34;time.*.gov&#34;</span>, <span style=color:#e6db74>&#34;ntp.*.*&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;music.163.com&#34;</span>, <span style=color:#e6db74>&#34;*.msftconnecttest.com&#34;</span>, <span style=color:#e6db74>&#34;*.msftncsi.com&#34;</span>
+</span></span><span style=display:flex><span>        ]
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;proxies&#34;</span>: [],
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;proxy-groups&#34;</span>: [
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;🚀 节点选择&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;select&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;proxies&#34;</span>: []
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;🌍 国外流量&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;select&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;proxies&#34;</span>: [<span style=color:#e6db74>&#34;🚀 节点选择&#34;</span>, <span style=color:#e6db74>&#34;DIRECT&#34;</span>]
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;🍎 Apple&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;select&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;proxies&#34;</span>: [<span style=color:#e6db74>&#34;DIRECT&#34;</span>, <span style=color:#e6db74>&#34;🚀 节点选择&#34;</span>]
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;🎯 全球直连&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;select&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;proxies&#34;</span>: [<span style=color:#e6db74>&#34;DIRECT&#34;</span>, <span style=color:#e6db74>&#34;🚀 节点选择&#34;</span>]
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;rules&#34;</span>: [
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;DOMAIN,localhost,DIRECT&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;GEOIP,CN,🎯 全球直连&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;MATCH,🌍 国外流量&#34;</span>
+</span></span><span style=display:flex><span>    ]
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>parse_vless</span>(url: str):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> url<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;vless://&#34;</span>):
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>raise</span> <span style=color:#a6e22e>ValueError</span>(<span style=color:#e6db74>&#34;不是 VLESS 链接&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 去掉 vless://</span>
+</span></span><span style=display:flex><span>    raw <span style=color:#f92672>=</span> url[<span style=color:#ae81ff>8</span>:]
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 分离 #tag</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#e6db74>&#34;#&#34;</span> <span style=color:#f92672>in</span> raw:
+</span></span><span style=display:flex><span>        raw, tag <span style=color:#f92672>=</span> raw<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;#&#34;</span>, <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>        name <span style=color:#f92672>=</span> urllib<span style=color:#f92672>.</span>parse<span style=color:#f92672>.</span>unquote(tag)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>        name <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;VLESS-Node&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 分离 ?参数</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#e6db74>&#34;?&#34;</span> <span style=color:#f92672>in</span> raw:
+</span></span><span style=display:flex><span>        raw, query <span style=color:#f92672>=</span> raw<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;?&#34;</span>, <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>        params <span style=color:#f92672>=</span> dict(urllib<span style=color:#f92672>.</span>parse<span style=color:#f92672>.</span>parse_qsl(query))
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>        params <span style=color:#f92672>=</span> {}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># userinfo@host:port</span>
+</span></span><span style=display:flex><span>    userinfo, serverinfo <span style=color:#f92672>=</span> raw<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;@&#34;</span>)
+</span></span><span style=display:flex><span>    uuid <span style=color:#f92672>=</span> userinfo
+</span></span><span style=display:flex><span>    server, port <span style=color:#f92672>=</span> serverinfo<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;:&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 生成 clash proxy 节点</span>
+</span></span><span style=display:flex><span>    proxy <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;name&#34;</span>: name,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;vless&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;server&#34;</span>: server,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;port&#34;</span>: int(port),
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;uuid&#34;</span>: uuid,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;udp&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;tls&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;servername&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;sni&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>),
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;reality-opts&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;public-key&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;pbk&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>),
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;short-id&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;sid&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>) <span style=color:#f92672>or</span> <span style=color:#e6db74>&#34;&#34;</span>
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;client-fingerprint&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;fp&#34;</span>, <span style=color:#e6db74>&#34;chrome&#34;</span>),
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;network&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;type&#34;</span>, <span style=color:#e6db74>&#34;tcp&#34;</span>)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    flow <span style=color:#f92672>=</span> params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;flow&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> flow:
+</span></span><span style=display:flex><span>        proxy[<span style=color:#e6db74>&#34;flow&#34;</span>] <span style=color:#f92672>=</span> flow
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># network-specific</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> proxy[<span style=color:#e6db74>&#34;network&#34;</span>] <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;h2&#34;</span>:
+</span></span><span style=display:flex><span>        proxy[<span style=color:#e6db74>&#34;h2-opts&#34;</span>] <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;host&#34;</span>: [params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;sni&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)],
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;path&#34;</span>: <span style=color:#e6db74>&#34;/&#34;</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> proxy
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>vless_to_config</span>(url: str, outfile<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;config.yaml&#34;</span>):
+</span></span><span style=display:flex><span>    config <span style=color:#f92672>=</span> base_config<span style=color:#f92672>.</span>copy()
+</span></span><span style=display:flex><span>    proxy <span style=color:#f92672>=</span> parse_vless(url)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    config[<span style=color:#e6db74>&#34;proxies&#34;</span>] <span style=color:#f92672>=</span> [proxy]
+</span></span><span style=display:flex><span>    config[<span style=color:#e6db74>&#34;proxy-groups&#34;</span>][<span style=color:#ae81ff>0</span>][<span style=color:#e6db74>&#34;proxies&#34;</span>] <span style=color:#f92672>=</span> [proxy[<span style=color:#e6db74>&#34;name&#34;</span>], <span style=color:#e6db74>&#34;DIRECT&#34;</span>]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>with</span> open(outfile, <span style=color:#e6db74>&#34;w&#34;</span>, encoding<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;utf-8&#34;</span>) <span style=color:#66d9ef>as</span> f:
+</span></span><span style=display:flex><span>        yaml<span style=color:#f92672>.</span>dump(config, f, allow_unicode<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, sort_keys<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;✅ 已生成 </span><span style=color:#e6db74>{</span>outfile<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> len(sys<span style=color:#f92672>.</span>argv) <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>2</span>:
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;用法: python vless2clash.py &lt;vless链接&gt;&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>        vless_url <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>argv[<span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span>        vless_to_config(vless_url)
+</span></span></code></pre></div><p>安装依赖：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>pip install pyyaml
+</span></span></code></pre></div><p>运行：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>python vless2clash.py <span style=color:#e6db74>&#34;vless://6b8c9df4-xxxx-xxxx@srv:110?...#我的节点&#34;</span>
+</span></span></code></pre></div><p>在当前目录生成 config.yaml，直接导入 Clash Meta for Android 即可。</p><h1 id=txttoyaml>txttoyaml<a hidden class=anchor aria-hidden=true href=#txttoyaml>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=display:flex><span><span style=color:#f92672>import</span> sys
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> urllib.parse
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> yaml
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># =======================</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 基础 Clash Meta 模板</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># =======================</span>
+</span></span><span style=display:flex><span>base_config <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;mixed-port&#34;</span>: <span style=color:#ae81ff>7890</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;allow-lan&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;mode&#34;</span>: <span style=color:#e6db74>&#34;rule&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;log-level&#34;</span>: <span style=color:#e6db74>&#34;info&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;ipv6&#34;</span>: <span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;external-controller&#34;</span>: <span style=color:#e6db74>&#34;127.0.0.1:9090&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;profile&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;store-selected&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;store-fake-ip&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;geodata-mode&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;geodata-loader&#34;</span>: <span style=color:#e6db74>&#34;memconservative&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;geo-update-interval&#34;</span>: <span style=color:#ae81ff>24</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;dns&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;enable&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;listen&#34;</span>: <span style=color:#e6db74>&#34;0.0.0.0:1053&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;ipv6&#34;</span>: <span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;enhanced-mode&#34;</span>: <span style=color:#e6db74>&#34;fake-ip&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;fake-ip-range&#34;</span>: <span style=color:#e6db74>&#34;198.18.0.1/16&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;use-hosts&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;nameserver&#34;</span>: [<span style=color:#e6db74>&#34;223.5.5.5&#34;</span>, <span style=color:#e6db74>&#34;1.1.1.1&#34;</span>],
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;fallback&#34;</span>: [<span style=color:#e6db74>&#34;8.8.8.8&#34;</span>, <span style=color:#e6db74>&#34;9.9.9.9&#34;</span>],
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;fallback-filter&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;geoip&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;ipcidr&#34;</span>: [<span style=color:#e6db74>&#34;240.0.0.0/4&#34;</span>]
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;fake-ip-filter&#34;</span>: [
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;*.lan&#34;</span>, <span style=color:#e6db74>&#34;localhost&#34;</span>, <span style=color:#e6db74>&#34;*.local&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;time.*.com&#34;</span>, <span style=color:#e6db74>&#34;time.*.gov&#34;</span>, <span style=color:#e6db74>&#34;ntp.*.*&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;music.163.com&#34;</span>, <span style=color:#e6db74>&#34;*.msftconnecttest.com&#34;</span>, <span style=color:#e6db74>&#34;*.msftncsi.com&#34;</span>
+</span></span><span style=display:flex><span>        ]
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;proxies&#34;</span>: [],
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;proxy-groups&#34;</span>: [
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;🚀 节点选择&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;select&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;proxies&#34;</span>: []
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;🌍 国外流量&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;select&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;proxies&#34;</span>: [<span style=color:#e6db74>&#34;🚀 节点选择&#34;</span>, <span style=color:#e6db74>&#34;DIRECT&#34;</span>]
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;🍎 Apple&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;select&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;proxies&#34;</span>: [<span style=color:#e6db74>&#34;DIRECT&#34;</span>, <span style=color:#e6db74>&#34;🚀 节点选择&#34;</span>]
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;🎯 全球直连&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;select&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;proxies&#34;</span>: [<span style=color:#e6db74>&#34;DIRECT&#34;</span>, <span style=color:#e6db74>&#34;🚀 节点选择&#34;</span>]
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;rules&#34;</span>: [
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;DOMAIN,localhost,DIRECT&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;GEOIP,CN,🎯 全球直连&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;MATCH,🌍 国外流量&#34;</span>
+</span></span><span style=display:flex><span>    ]
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>parse_vless</span>(url: str):
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;&#34;&#34;解析 vless:// 链接为 Clash Meta 节点&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> url<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;vless://&#34;</span>):
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>raise</span> <span style=color:#a6e22e>ValueError</span>(<span style=color:#e6db74>&#34;不是 VLESS 链接&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    raw <span style=color:#f92672>=</span> url[<span style=color:#ae81ff>8</span>:]
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#e6db74>&#34;#&#34;</span> <span style=color:#f92672>in</span> raw:
+</span></span><span style=display:flex><span>        raw, tag <span style=color:#f92672>=</span> raw<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;#&#34;</span>, <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>        name <span style=color:#f92672>=</span> urllib<span style=color:#f92672>.</span>parse<span style=color:#f92672>.</span>unquote(tag)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>        name <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;VLESS-Node&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#e6db74>&#34;?&#34;</span> <span style=color:#f92672>in</span> raw:
+</span></span><span style=display:flex><span>        raw, query <span style=color:#f92672>=</span> raw<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;?&#34;</span>, <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>        params <span style=color:#f92672>=</span> dict(urllib<span style=color:#f92672>.</span>parse<span style=color:#f92672>.</span>parse_qsl(query))
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>        params <span style=color:#f92672>=</span> {}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    userinfo, serverinfo <span style=color:#f92672>=</span> raw<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;@&#34;</span>)
+</span></span><span style=display:flex><span>    uuid <span style=color:#f92672>=</span> userinfo
+</span></span><span style=display:flex><span>    server, port <span style=color:#f92672>=</span> serverinfo<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;:&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    proxy <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;name&#34;</span>: name,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;vless&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;server&#34;</span>: server,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;port&#34;</span>: int(port),
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;uuid&#34;</span>: uuid,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;udp&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;tls&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;servername&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;sni&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>),
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;reality-opts&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;public-key&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;pbk&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>),
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;short-id&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;sid&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>) <span style=color:#f92672>or</span> <span style=color:#e6db74>&#34;&#34;</span>
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;client-fingerprint&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;fp&#34;</span>, <span style=color:#e6db74>&#34;chrome&#34;</span>),
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;network&#34;</span>: params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;type&#34;</span>, <span style=color:#e6db74>&#34;tcp&#34;</span>)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    flow <span style=color:#f92672>=</span> params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;flow&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> flow:
+</span></span><span style=display:flex><span>        proxy[<span style=color:#e6db74>&#34;flow&#34;</span>] <span style=color:#f92672>=</span> flow
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> proxy[<span style=color:#e6db74>&#34;network&#34;</span>] <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;h2&#34;</span>:
+</span></span><span style=display:flex><span>        proxy[<span style=color:#e6db74>&#34;h2-opts&#34;</span>] <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;host&#34;</span>: [params<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;sni&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)],
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;path&#34;</span>: <span style=color:#e6db74>&#34;/&#34;</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> proxy
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>vless_file_to_config</span>(infile<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;vless.txt&#34;</span>, outfile<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;config.yaml&#34;</span>):
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;&#34;&#34;从 txt 文件批量读取 vless 链接并生成 config.yaml&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    config <span style=color:#f92672>=</span> base_config<span style=color:#f92672>.</span>copy()
+</span></span><span style=display:flex><span>    proxies <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span>    names <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>with</span> open(infile, <span style=color:#e6db74>&#34;r&#34;</span>, encoding<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;utf-8&#34;</span>) <span style=color:#66d9ef>as</span> f:
+</span></span><span style=display:flex><span>        urls <span style=color:#f92672>=</span> [line<span style=color:#f92672>.</span>strip() <span style=color:#66d9ef>for</span> line <span style=color:#f92672>in</span> f <span style=color:#66d9ef>if</span> line<span style=color:#f92672>.</span>strip()]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> url <span style=color:#f92672>in</span> urls:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>try</span>:
+</span></span><span style=display:flex><span>            proxy <span style=color:#f92672>=</span> parse_vless(url)
+</span></span><span style=display:flex><span>            proxies<span style=color:#f92672>.</span>append(proxy)
+</span></span><span style=display:flex><span>            names<span style=color:#f92672>.</span>append(proxy[<span style=color:#e6db74>&#34;name&#34;</span>])
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>Exception</span> <span style=color:#66d9ef>as</span> e:
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;⚠️ 跳过无效链接: </span><span style=color:#e6db74>{</span>url<span style=color:#e6db74>}</span><span style=color:#e6db74> (</span><span style=color:#e6db74>{</span>e<span style=color:#e6db74>}</span><span style=color:#e6db74>)&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    config[<span style=color:#e6db74>&#34;proxies&#34;</span>] <span style=color:#f92672>=</span> proxies
+</span></span><span style=display:flex><span>    config[<span style=color:#e6db74>&#34;proxy-groups&#34;</span>][<span style=color:#ae81ff>0</span>][<span style=color:#e6db74>&#34;proxies&#34;</span>] <span style=color:#f92672>=</span> names <span style=color:#f92672>+</span> [<span style=color:#e6db74>&#34;DIRECT&#34;</span>]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>with</span> open(outfile, <span style=color:#e6db74>&#34;w&#34;</span>, encoding<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;utf-8&#34;</span>) <span style=color:#66d9ef>as</span> f:
+</span></span><span style=display:flex><span>        yaml<span style=color:#f92672>.</span>dump(config, f, allow_unicode<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, sort_keys<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;✅ 已生成 </span><span style=color:#e6db74>{</span>outfile<span style=color:#e6db74>}</span><span style=color:#e6db74>，共 </span><span style=color:#e6db74>{</span>len(proxies)<span style=color:#e6db74>}</span><span style=color:#e6db74> 个节点&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>:
+</span></span><span style=display:flex><span>    infile <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>argv[<span style=color:#ae81ff>1</span>] <span style=color:#66d9ef>if</span> len(sys<span style=color:#f92672>.</span>argv) <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>1</span> <span style=color:#66d9ef>else</span> <span style=color:#e6db74>&#34;vless.txt&#34;</span>
+</span></span><span style=display:flex><span>    vless_file_to_config(infile)
+</span></span></code></pre></div><p>安装依赖：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>pip install pyyaml
+</span></span></code></pre></div><p>准备一个 vless.txt 文件，每行一个 VLESS 链接：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>vless://uuid1@ip1:port?...#节点1
+</span></span><span style=display:flex><span>vless://uuid2@ip2:port?...#节点2
+</span></span><span style=display:flex><span>vless://uuid3@ip3:port?...#节点3
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>python vless2clash_file.py vless.txt
+</span></span></code></pre></div><p>得到 config.yaml，包含所有节点。</p><h1 id=ping>ping<a hidden class=anchor aria-hidden=true href=#ping>#</a></h1><p>打开：https://tcp.ping.pe/</p><p>写上 VPS IP 跟端口；内容为 ip:端口，示例：1.1.1.1:443，然后点击 Go；或者直接回车</p><p>如果显示 successful；证明端口能连接；如果显示 failed；那是无法连接上端口。</p><h1 id=singbox-ios>singbox ios<a hidden class=anchor aria-hidden=true href=#singbox-ios>#</a></h1><p>{
+&ldquo;dns&rdquo;: {
+&ldquo;servers&rdquo;: [
+{
+&ldquo;tag&rdquo;: &ldquo;google&rdquo;,
+&ldquo;address&rdquo;: &ldquo;tls://8.8.8.8&rdquo;
+},
+{
+&ldquo;tag&rdquo;: &ldquo;local&rdquo;,
+&ldquo;address&rdquo;: &ldquo;223.5.5.5&rdquo;,
+&ldquo;detour&rdquo;: &ldquo;direct&rdquo;
+}
+],
+&ldquo;rules&rdquo;: [
+{
+&ldquo;outbound&rdquo;: &ldquo;direct&rdquo;,
+&ldquo;server&rdquo;: &ldquo;local&rdquo;
+},
+{
+&ldquo;outbound&rdquo;: &ldquo;proxy&rdquo;,
+&ldquo;server&rdquo;: &ldquo;google&rdquo;
+}
+],
+&ldquo;strategy&rdquo;: &ldquo;ipv4_only&rdquo;
+},
+&ldquo;inbounds&rdquo;: [
+{
+&ldquo;type&rdquo;: &ldquo;tun&rdquo;,
+&ldquo;inet4_address&rdquo;: &ldquo;172.19.0.1/30&rdquo;,
+&ldquo;auto_route&rdquo;: true,
+&ldquo;stack&rdquo;:&ldquo;mixed&rdquo;,
+&ldquo;sniff&rdquo;: true
+}
+],
+&ldquo;outbounds&rdquo;: [
+{
+&ldquo;type&rdquo;: &ldquo;shadowsocks&rdquo;,
+&ldquo;tag&rdquo;: &ldquo;proxy&rdquo;,
+&ldquo;server&rdquo;: &ldquo;185.1.0.1&rdquo;,
+&ldquo;server_port&rdquo;: 110,
+&ldquo;method&rdquo; :&ldquo;2022-blake3-chacha20-poly1305&rdquo;,
+&ldquo;password&rdquo;: &ldquo;Aa123123&rdquo;,
+&ldquo;multiplex&rdquo;: {
+&ldquo;enabled&rdquo;: true
+}
+},
+{
+&ldquo;type&rdquo;: &ldquo;block&rdquo;,
+&ldquo;tag&rdquo;: &ldquo;block&rdquo;
+},
+{
+&ldquo;type&rdquo;: &ldquo;dns&rdquo;,
+&ldquo;tag&rdquo;: &ldquo;dns-out&rdquo;
+},
+{
+&ldquo;type&rdquo;: &ldquo;direct&rdquo;,
+&ldquo;tag&rdquo;: &ldquo;direct&rdquo;
+}
+],
+&ldquo;route&rdquo;: {
+&ldquo;rules&rdquo;: [
+{
+&ldquo;protocol&rdquo;: &ldquo;dns&rdquo;,
+&ldquo;outbound&rdquo;: &ldquo;dns-out&rdquo;
+},
+{
+&ldquo;geosite&rdquo;: &ldquo;cn&rdquo;,
+&ldquo;outbound&rdquo;: &ldquo;direct&rdquo;
+},
+{
+&ldquo;geoip&rdquo;: &ldquo;cn&rdquo;,
+&ldquo;outbound&rdquo;: &ldquo;direct&rdquo;
+}
+],
+&ldquo;auto_detect_interface&rdquo;: true,
+&ldquo;final&rdquo;: &ldquo;proxy&rdquo;
+}
+}</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://qfsyso.github.io/tags/python/>Python</a></li><li><a href=https://qfsyso.github.io/tags/debian/>Debian</a></li></ul><nav class=paginav><a class=prev href=https://qfsyso.github.io/posts/harmonyos-sdk17-timer/><span class=title>« Prev</span><br><span>HarmonyOS SDK17 Timer</span>
+</a><a class=next href=https://qfsyso.github.io/posts/docker-bakup/><span class=title>Next »</span><br><span>Docker Bakup</span></a></nav><ul class=share-buttons><li><a target=_blank rel="noopener noreferrer" aria-label="share 3XUI Clash on x" href="https://x.com/intent/tweet/?text=3XUI%20Clash&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2f3xui-clash%2f&amp;hashtags=Python%2cDebian"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 3XUI Clash on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2f3xui-clash%2f&amp;title=3XUI%20Clash&amp;summary=3XUI%20Clash&amp;source=https%3a%2f%2fqfsyso.github.io%2fposts%2f3xui-clash%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 3XUI Clash on reddit" href="https://reddit.com/submit?url=https%3a%2f%2fqfsyso.github.io%2fposts%2f3xui-clash%2f&title=3XUI%20Clash"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 3XUI Clash on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fqfsyso.github.io%2fposts%2f3xui-clash%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 3XUI Clash on whatsapp" href="https://api.whatsapp.com/send?text=3XUI%20Clash%20-%20https%3a%2f%2fqfsyso.github.io%2fposts%2f3xui-clash%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 3XUI Clash on telegram" href="https://telegram.me/share/url?text=3XUI%20Clash&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2f3xui-clash%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentcolor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 3XUI Clash on ycombinator" href="https://news.ycombinator.com/submitlink?t=3XUI%20Clash&u=https%3a%2f%2fqfsyso.github.io%2fposts%2f3xui-clash%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentcolor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></li></ul></footer></article></main><footer class=footer><div class=wtime><div class=wtime2>CST<span id=beijingTime></span> GMT <span id=londonTime></span> EST <span id=newYorkTime></span> PST<span id=losAngelesTime></span></div><div class=wtime2 style=display:none>东京<span id=tokyoTime></span></div><div class=wtime2 style=display:none>欧洲-巴黎<span id=parisTime></span></div><div class=wtime2 style=display:none>UTC<span id=utcTime></span></div></div><span>&copy; 2025 <a href=https://qfsyso.github.io/>MLOG</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a>
+</span><script type=text/javascript>const timeZoneOffsets={beijing:8,tokyo:9,paris:[1,2],london:[0,1],newYork:[-5,-4],losAngeles:[-8,-7]};function padZero(e){return e<10?"0"+e:e}function formatTime(e){const t=e.getFullYear(),n=padZero(e.getMonth()+1),s=padZero(e.getDate()),o=padZero(e.getHours()),i=padZero(e.getMinutes()),a=padZero(e.getSeconds());return`${t}-${n}-${s} ${o}:${i}:${a}`}function isDaylightSavingTime(e,t){const o=e.getMonth(),n=new Date(e.getFullYear(),3,8,2,0,0),s=new Date(e.getFullYear(),10,1,2,0,0);return(t==="paris"||t==="london"||t==="newYork"||t==="losAngeles")&&e>=n&&e<s}function updateTime(){const e=new Date,t=new Date(e.getUTCFullYear(),e.getUTCMonth(),e.getUTCDate(),e.getUTCHours(),e.getUTCMinutes(),e.getUTCSeconds()),n=formatTime(t);document.getElementById("utcTime").innerHTML=n;for(const n in timeZoneOffsets){const e=timeZoneOffsets[n];let s;Array.isArray(e)?s=isDaylightSavingTime(t,n)?e[1]:e[0]:s=e;const o=new Date(t.getTime()+s*60*60*1e3);document.getElementById(n+"Time").innerHTML=formatTime(o)}setTimeout(updateTime,1e3)}window.onload=function(){updateTime()};function notfound(e){var n=e.src,t=n.split("/"),s=t[t.length-1];e.src="https://47.115.223.75:8080/group1/v2/"+s+"?timestamp="+Date.now(),e.onerror=null}</script></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

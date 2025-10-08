@@ -4,7 +4,11 @@
 AccessKey AccessKey 添加 Vhost 添加 Exchange 添加 Queue
 Exchange绑定queue
 导入项目到ideaIU amqp-java-demo > src > main > java，双击Config.java文件，将代码中HOSTNAME、USERNAME、PASSWORD三个参数值替换为阿里云RabbitMQ实例的公网接入点、静态用户名和静态密码。
-ProducerTest.java 持续发送消息。 看到控制台 [SendResult] Message with msgId: ba42ffcb-ff05-422e-9e9f-37cdd8f2c9b0 has been ack-ed, deliveryTag: 1, multiple: false</p></div><footer class=entry-footer><span title='2024-08-18 12:48:20 +0000 UTC'>August 18, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to aliyun RabbitMQ" href=https://qfsyso.github.io/posts/aliyun-rabbitmq/></a></article></main><footer class=footer><div class=wtime><div class=wtime2>CST<span id=beijingTime></span> GMT <span id=londonTime></span> EST <span id=newYorkTime></span> PST<span id=losAngelesTime></span></div><div class=wtime2 style=display:none>东京<span id=tokyoTime></span></div><div class=wtime2 style=display:none>欧洲-巴黎<span id=parisTime></span></div><div class=wtime2 style=display:none>UTC<span id=utcTime></span></div></div><span>&copy; 2025 <a href=https://qfsyso.github.io/>MLOG</a></span> ·
+ProducerTest.java 持续发送消息。 看到控制台 [SendResult] Message with msgId: ba42ffcb-ff05-422e-9e9f-37cdd8f2c9b0 has been ack-ed, deliveryTag: 1, multiple: false
+ConsumerTest.java 持续接收消息。
+观察IntelliJ IDEA控制台打印的消息收发记录。 [ReceiveResult] Message Received successfully, messageId: fad269f2-a09d-441b-b74c-426c15fbbb17, consumerTag: yunQi-consumerTag, message: 消息Body-29
+查看Dashboard的实例指标变化 可以查看指定Queue的详细指标变化趋势，用于定位问题。
+消息轨迹 轨迹详情，查询对应消息的生产和投递轨迹详情。</p></div><footer class=entry-footer><span title='2024-08-18 12:48:20 +0000 UTC'>August 18, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to aliyun RabbitMQ" href=https://qfsyso.github.io/posts/aliyun-rabbitmq/></a></article></main><footer class=footer><div class=wtime><div class=wtime2>CST<span id=beijingTime></span> GMT <span id=londonTime></span> EST <span id=newYorkTime></span> PST<span id=losAngelesTime></span></div><div class=wtime2 style=display:none>东京<span id=tokyoTime></span></div><div class=wtime2 style=display:none>欧洲-巴黎<span id=parisTime></span></div><div class=wtime2 style=display:none>UTC<span id=utcTime></span></div></div><span>&copy; 2025 <a href=https://qfsyso.github.io/>MLOG</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
         <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a>

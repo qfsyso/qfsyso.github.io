@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Serverless on MLOG</title><link>https://qfsyso.github.io/tags/serverless/</link><description>Recent content in Serverless on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Fri, 26 Sep 2025 02:34:18 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/serverless/index.xml" rel="self" type="application/rss+xml"/><item><title>FuncGraph</title><link>https://qfsyso.github.io/posts/funcgraph/</link><pubDate>Fri, 26 Sep 2025 02:34:18 +0800</pubDate><guid>https://qfsyso.github.io/posts/funcgraph/</guid><description>图片压缩/水印添加 Serverless 无服务器计算服务 FunctionGraph 实现图片压缩
+函数/工作流 函数运行时 Node Python Java Go C#
+对象存储服务(OBS，Object Storage Service) 桶 Bucket 对象 Object 构成 key/data/metadata
+对象存储服务+函数触发器 源桶-触发器-函数-环境变量-目标桶 并行处理
+IAM委托 Identity and Access Management 统一身份认证
+流程 创建服务 创建OBS桶 委托 桶名称：全局唯一 OBS桶不能使用同一个 默认不跨域
+构建程序 创建程序包 函数 添加事件源
+注:图片压缩函数默认实现原图长宽缩减2/1的压缩功能可以根据需要进行压缩比例，或者尺寸的修改。
+注:水印添加程序包中watermark.png为水印图片，可自定义修改，watermark.py中为水印在原图上的大小位置等信息，可自定义修改。
+支持批量处理，如果某一个图片处理失败，继续处理后续图片
+验证结果 上传源图片 下载查看
+使用FG实现图片压缩 使用 FunctionGraph 实现图片压缩
+对象存储服务（OBS）** 与 函数工作流（FunctionGraph） 完成图片压缩处理。
+1. 创建 OBS 桶 注意事项：必须创建 两个不同的桶：
+源桶：保存用户上传的原始图片 目标桶：保存压缩处理后的图片 如果只使用一个桶，上传图片会再次触发函数执行，造成无限循环。
+1.1 创建源桶 登录 对象存储服务控制台，点击 创建桶。 在「创建桶」界面填写以下信息： 区域：北京四 桶名称：bucket-input-xxx 如提示名称已存在，可自定义，但需记住此桶为源桶。</description></item></channel></rss>

@@ -1,0 +1,909 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>TCP Color Calibration | MLOG</title>
+<meta name=keywords content="C#"><meta name=description content='初始化数据 Newtonsoft.Json
+//config.json { "Lu1Items": [ { "ID": 1, "Name": "1路" }, { "ID": 2, "Name": "2路" }, { "ID": 3, "Name": "3路" }, { "ID": 4, "Name": "4路" }, { "ID": 5, "Name": "5路" }, { "ID": 6, "Name": "6路" }, { "ID": 7, "Name": "7路" }, { "ID": 8, "Name": "8路" } ], "Value1Items": [ { "ID": 0, "Name": "0V" }, { "ID": 5, "Name": "5V" }, { "ID": 10, "Name": "10V" } ] } 数据处理 using System; using System.'><meta name=author content="dwd"><link rel=canonical href=https://qfsyso.github.io/posts/tcp-color-calibration/><link crossorigin=anonymous href=/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF+13Dyqob6ASlTrTye8=" rel="preload stylesheet" as=style><link rel=icon href=https://qfsyso.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://qfsyso.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://qfsyso.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://qfsyso.github.io/apple-touch-icon.png><link rel=mask-icon href=https://qfsyso.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://qfsyso.github.io/posts/tcp-color-calibration/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://qfsyso.github.io/posts/tcp-color-calibration/"><meta property="og:site_name" content="MLOG"><meta property="og:title" content="TCP Color Calibration"><meta property="og:description" content='初始化数据 Newtonsoft.Json
+//config.json { "Lu1Items": [ { "ID": 1, "Name": "1路" }, { "ID": 2, "Name": "2路" }, { "ID": 3, "Name": "3路" }, { "ID": 4, "Name": "4路" }, { "ID": 5, "Name": "5路" }, { "ID": 6, "Name": "6路" }, { "ID": 7, "Name": "7路" }, { "ID": 8, "Name": "8路" } ], "Value1Items": [ { "ID": 0, "Name": "0V" }, { "ID": 5, "Name": "5V" }, { "ID": 10, "Name": "10V" } ] } 数据处理 using System; using System.'><meta property="og:locale" content="zh-CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-10-08T21:59:42+08:00"><meta property="article:modified_time" content="2025-10-08T21:59:42+08:00"><meta property="article:tag" content="C#"><meta name=twitter:card content="summary"><meta name=twitter:title content="TCP Color Calibration"><meta name=twitter:description content='初始化数据 Newtonsoft.Json
+//config.json { "Lu1Items": [ { "ID": 1, "Name": "1路" }, { "ID": 2, "Name": "2路" }, { "ID": 3, "Name": "3路" }, { "ID": 4, "Name": "4路" }, { "ID": 5, "Name": "5路" }, { "ID": 6, "Name": "6路" }, { "ID": 7, "Name": "7路" }, { "ID": 8, "Name": "8路" } ], "Value1Items": [ { "ID": 0, "Name": "0V" }, { "ID": 5, "Name": "5V" }, { "ID": 10, "Name": "10V" } ] } 数据处理 using System; using System.'><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://qfsyso.github.io/posts/"},{"@type":"ListItem","position":2,"name":"TCP Color Calibration","item":"https://qfsyso.github.io/posts/tcp-color-calibration/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"TCP Color Calibration","name":"TCP Color Calibration","description":"初始化数据 Newtonsoft.Json\n//config.json { \u0026#34;Lu1Items\u0026#34;: [ { \u0026#34;ID\u0026#34;: 1, \u0026#34;Name\u0026#34;: \u0026#34;1路\u0026#34; }, { \u0026#34;ID\u0026#34;: 2, \u0026#34;Name\u0026#34;: \u0026#34;2路\u0026#34; }, { \u0026#34;ID\u0026#34;: 3, \u0026#34;Name\u0026#34;: \u0026#34;3路\u0026#34; }, { \u0026#34;ID\u0026#34;: 4, \u0026#34;Name\u0026#34;: \u0026#34;4路\u0026#34; }, { \u0026#34;ID\u0026#34;: 5, \u0026#34;Name\u0026#34;: \u0026#34;5路\u0026#34; }, { \u0026#34;ID\u0026#34;: 6, \u0026#34;Name\u0026#34;: \u0026#34;6路\u0026#34; }, { \u0026#34;ID\u0026#34;: 7, \u0026#34;Name\u0026#34;: \u0026#34;7路\u0026#34; }, { \u0026#34;ID\u0026#34;: 8, \u0026#34;Name\u0026#34;: \u0026#34;8路\u0026#34; } ], \u0026#34;Value1Items\u0026#34;: [ { \u0026#34;ID\u0026#34;: 0, \u0026#34;Name\u0026#34;: \u0026#34;0V\u0026#34; }, { \u0026#34;ID\u0026#34;: 5, \u0026#34;Name\u0026#34;: \u0026#34;5V\u0026#34; }, { \u0026#34;ID\u0026#34;: 10, \u0026#34;Name\u0026#34;: \u0026#34;10V\u0026#34; } ] } 数据处理 using System; using System.","keywords":["C#"],"articleBody":"初始化数据 Newtonsoft.Json\n//config.json { \"Lu1Items\": [ { \"ID\": 1, \"Name\": \"1路\" }, { \"ID\": 2, \"Name\": \"2路\" }, { \"ID\": 3, \"Name\": \"3路\" }, { \"ID\": 4, \"Name\": \"4路\" }, { \"ID\": 5, \"Name\": \"5路\" }, { \"ID\": 6, \"Name\": \"6路\" }, { \"ID\": 7, \"Name\": \"7路\" }, { \"ID\": 8, \"Name\": \"8路\" } ], \"Value1Items\": [ { \"ID\": 0, \"Name\": \"0V\" }, { \"ID\": 5, \"Name\": \"5V\" }, { \"ID\": 10, \"Name\": \"10V\" } ] } 数据处理 using System; using System.Collections.Generic; using System.IO; using System.Windows.Forms; using Newtonsoft.Json; namespace ComboBoxJsonLoader { /// /// 带ID的下拉列表项模型 /// public class ComboBoxItem { [JsonProperty(\"ID\")] public int ID { get; set; } [JsonProperty(\"Name\")] public string Name { get; set; } /// /// 重写ToString方法，使ComboBox显示Name属性 /// /// public override string ToString() { return Name; } } /// /// 包含两个下拉列表数据的模型 /// public class ComboBoxData { [JsonProperty(\"Level1Items\")] public List Level1Items { get; set; } [JsonProperty(\"Value1Items\")] public List Value1Items { get; set; } } /// /// JSON数据加载器，负责从文件读取数据并填充到ComboBox /// public class JsonDataLoader { /// /// 从JSON文件加载带ID的数据并填充到ComboBox /// /// JSON文件路径 /// 第一个ComboBox控件 /// 第二个ComboBox控件 public void LoadDataToComboBoxes(string jsonFilePath, ComboBox comboBoxL1, ComboBox comboBoxV1) { try { // 检查文件是否存在 if (!File.Exists(jsonFilePath)) { MessageBox.Show($\"文件不存在: {jsonFilePath}\", \"错误\", MessageBoxButtons.OK, MessageBoxIcon.Error); return; } // 读取JSON文件内容 string jsonContent = File.ReadAllText(jsonFilePath); // 反序列化为对象 ComboBoxData data = JsonConvert.DeserializeObject(jsonContent); // 检查反序列化结果 if (data == null) { MessageBox.Show(\"无法解析JSON数据\", \"错误\", MessageBoxButtons.OK, MessageBoxIcon.Error); return; } // 填充第一个ComboBox if (data.Level1Items != null \u0026\u0026 data.Level1Items.Count \u003e 0) { comboBoxL1.DataSource = data.Level1Items; comboBoxL1.DisplayMember = \"Name\"; comboBoxL1.ValueMember = \"ID\"; } else { MessageBox.Show(\"Level1Items数据为空或不存在\", \"警告\", MessageBoxButtons.OK, MessageBoxIcon.Warning); } // 填充第二个ComboBox if (data.Value1Items != null \u0026\u0026 data.Value1Items.Count \u003e 0) { comboBoxV1.DataSource = data.Value1Items; comboBoxV1.DisplayMember = \"Name\"; comboBoxV1.ValueMember = \"ID\"; } else { MessageBox.Show(\"Value1Items数据为空或不存在\", \"警告\", MessageBoxButtons.OK, MessageBoxIcon.Warning); } } catch (Exception ex) { MessageBox.Show($\"加载数据时出错: {ex.Message}\", \"错误\", MessageBoxButtons.OK, MessageBoxIcon.Error); } } } } //Designer.cs namespace ColorCWinFormsApp1 { partial class Form1 { /// /// 必需的设计器变量。 /// private System.ComponentModel.IContainer components = null; /// /// 清理所有正在使用的资源。 /// /// 如果应释放托管资源，为 true；否则为 false。 protected override void Dispose(bool disposing) { if (disposing \u0026\u0026 (components != null)) { components.Dispose(); } base.Dispose(disposing); } #region Windows 窗体设计器生成的代码 /// /// 设计器支持所需的方法 - 不要修改 /// 使用代码编辑器修改此方法的内容。 /// private void InitializeComponent() { comboBoxL1 = new ComboBox(); comboBoxV1 = new ComboBox(); label1 = new Label(); label2 = new Label(); statusStrip1 = new StatusStrip(); toolStripStatusLabel1 = new ToolStripStatusLabel(); toolStripStatusLabel2 = new ToolStripStatusLabel(); toolStrip1 = new ToolStrip(); toolStripButtonRefresh = new ToolStripButton(); statusStrip1.SuspendLayout(); toolStrip1.SuspendLayout(); SuspendLayout(); // // comboBoxL1 // comboBoxL1.DropDownStyle = ComboBoxStyle.DropDownList; comboBoxL1.FormattingEnabled = true; comboBoxL1.Location = new Point(12, 43); comboBoxL1.Name = \"comboBoxL1\"; comboBoxL1.Size = new Size(250, 25); comboBoxL1.TabIndex = 0; // // comboBoxV1 // comboBoxV1.DropDownStyle = ComboBoxStyle.DropDownList; comboBoxV1.FormattingEnabled = true; comboBoxV1.Location = new Point(12, 111); comboBoxV1.Name = \"comboBoxV1\"; comboBoxV1.Size = new Size(250, 25); comboBoxV1.TabIndex = 1; // // label1 // label1.AutoSize = true; label1.Location = new Point(12, 23); label1.Name = \"label1\"; label1.Size = new Size(39, 17); label1.TabIndex = 2; label1.Text = \"路数 :\"; // // label2 // label2.AutoSize = true; label2.Location = new Point(12, 91); label2.Name = \"label2\"; label2.Size = new Size(39, 17); label2.TabIndex = 3; label2.Text = \"电压 :\"; // // statusStrip1 // statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 }); statusStrip1.Location = new Point(0, 438); statusStrip1.Name = \"statusStrip1\"; statusStrip1.Size = new Size(606, 22); statusStrip1.TabIndex = 4; statusStrip1.Text = \"statusStrip1\"; // // toolStripStatusLabel1 // toolStripStatusLabel1.Name = \"toolStripStatusLabel1\"; toolStripStatusLabel1.Size = new Size(131, 17); toolStripStatusLabel1.Text = \"toolStripStatusLabel1\"; // // toolStripStatusLabel2 // toolStripStatusLabel2.Name = \"toolStripStatusLabel2\"; toolStripStatusLabel2.Size = new Size(131, 17); toolStripStatusLabel2.Text = \"toolStripStatusLabel2\"; // // toolStrip1 // toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButtonRefresh }); toolStrip1.Location = new Point(0, 0); toolStrip1.Name = \"toolStrip1\"; toolStrip1.Size = new Size(606, 25); toolStrip1.TabIndex = 5; toolStrip1.Text = \"toolStrip1\"; // // toolStripButtonRefresh // toolStripButtonRefresh.DisplayStyle = ToolStripItemDisplayStyle.Text; toolStripButtonRefresh.ImageTransparentColor = Color.Magenta; toolStripButtonRefresh.Name = \"toolStripButtonRefresh\"; toolStripButtonRefresh.Size = new Size(36, 22); toolStripButtonRefresh.Text = \"刷新\"; toolStripButtonRefresh.Click += toolStripButtonRefresh_Click; // // Form1 // AutoScaleDimensions = new SizeF(7F, 17F); AutoScaleMode = AutoScaleMode.Font; ClientSize = new Size(606, 460); Controls.Add(toolStrip1); Controls.Add(statusStrip1); Controls.Add(label2); Controls.Add(label1); Controls.Add(comboBoxV1); Controls.Add(comboBoxL1); Name = \"Form1\"; Text = \"Color\"; statusStrip1.ResumeLayout(false); statusStrip1.PerformLayout(); toolStrip1.ResumeLayout(false); toolStrip1.PerformLayout(); ResumeLayout(false); PerformLayout(); } #endregion private System.Windows.Forms.ComboBox comboBoxL1; private System.Windows.Forms.ComboBox comboBoxV1; private System.Windows.Forms.Label label1; private System.Windows.Forms.Label label2; private System.Windows.Forms.StatusStrip statusStrip1; private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1; private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2; private System.Windows.Forms.ToolStrip toolStrip1; private System.Windows.Forms.ToolStripButton toolStripButtonRefresh; } } //Form1.cs namespace ColorCWinFormsApp1 { public partial class Form1 : Form { // 数据加载器实例 private readonly JsonDataLoader _dataLoader; // JSON文件路径 private const string JsonFilePath = \"ColorConifg.json\"; public Form1() { InitializeComponent(); _dataLoader = new JsonDataLoader(); // 注册事件 Load += Form1_Load; comboBoxL1.SelectedIndexChanged += ComboBoxL1_SelectedIndexChanged; comboBoxV1.SelectedIndexChanged += ComboBoxV1_SelectedIndexChanged; } private void Form1_Load(object sender, EventArgs e) { // 加载数据到ComboBox LoadComboBoxData(); } /// /// 从JSON文件加载数据到ComboBox /// private void LoadComboBoxData() { try { _dataLoader.LoadDataToComboBoxes(JsonFilePath, comboBoxL1, comboBoxV1); // 如果有数据，默认选中第一项 if (comboBoxL1.Items.Count \u003e 0) comboBoxL1.SelectedIndex = 0; if (comboBoxV1.Items.Count \u003e 0) comboBoxV1.SelectedIndex = 0; } catch (Exception ex) { MessageBox.Show($\"加载数据失败: {ex.Message}\", \"错误\", MessageBoxButtons.OK, MessageBoxIcon.Error); } } /// /// 第一个ComboBox选中项变化事件 /// private void ComboBoxL1_SelectedIndexChanged(object sender, EventArgs e) { if (comboBoxL1.SelectedItem is ComboBoxItem selectedItem) { // 显示选中项的信息 toolStripStatusLabel1.Text = $\"选中的路数: {selectedItem.Name} (ID: {selectedItem.ID})\"; } } /// /// 第二个ComboBox选中项变化事件 /// private void ComboBoxV1_SelectedIndexChanged(object sender, EventArgs e) { if (comboBoxV1.SelectedItem is ComboBoxItem selectedItem) { // 显示选中项的信息 toolStripStatusLabel2.Text = $\"选中的电压: {selectedItem.Name} (ID: {selectedItem.ID})\"; } } } 可以通过comboBoxL1.SelectedValue直接获取选中项的 ID 可以通过comboBoxL1.SelectedItem获取完整的选项对象\nTCP服务器测试 - 可选 using System; using System.Net; using System.Net.Sockets; using System.Text; using System.Threading.Tasks; using System.Windows.Forms; namespace TcpServerExample { public partial class MainForm : Form { private TcpListener server; private bool isServerRunning = false; public MainForm() { InitializeComponent(); // 初始化UI InitializeUI(); } private void InitializeUI() { // 设置窗体标题 this.Text = \"TCP服务器\"; this.Size = new System.Drawing.Size(600, 400); // 创建日志文本框 txtLog = new TextBox(); txtLog.Multiline = true; txtLog.ScrollBars = ScrollBars.Vertical; txtLog.Dock = DockStyle.Fill; txtLog.ReadOnly = true; // 创建按钮 buttonTestSer = new Button(); buttonTestSer.Text = \"启动TCP服务器\"; buttonTestSer.Dock = DockStyle.Top; buttonTestSer.Height = 40; buttonTestSer.Click += buttonTestSer_Click; // 创建端口输入框 txtPort = new TextBox(); txtPort.Dock = DockStyle.Top; txtPort.Text = \"8888\"; txtPort.Height = 30; txtPort.PlaceholderText = \"输入端口号\"; // 添加控件到窗体 this.Controls.Add(txtLog); this.Controls.Add(buttonTestSer); this.Controls.Add(txtPort); // 注册窗体关闭事件 this.FormClosing += MainForm_FormClosing; } private void buttonTestSer_Click(object sender, EventArgs e) { if (!isServerRunning) { // 启动服务器 if (int.TryParse(txtPort.Text, out int port) \u0026\u0026 port \u003e 0 \u0026\u0026 port \u003c= 65535) { Task.Run(() =\u003e StartTcpServer(port)); buttonTestSer.Text = \"停止TCP服务器\"; } else { MessageBox.Show(\"请输入有效的端口号（1-65535）\", \"输入错误\", MessageBoxButtons.OK, MessageBoxIcon.Error); } } else { // 停止服务器 StopTcpServer(); buttonTestSer.Text = \"启动TCP服务器\"; } } private void StartTcpServer(int port) { try { // 初始化TCP监听器 server = new TcpListener(IPAddress.Any, port); server.Start(); isServerRunning = true; UpdateStatus($\"服务器已启动，监听端口: {port}\"); // 循环接受客户端连接 while (isServerRunning) { // 等待客户端连接 TcpClient client = server.AcceptTcpClient(); UpdateStatus(\"客户端已连接\"); // 处理客户端通信（使用新线程避免阻塞接受其他连接） Task.Run(() =\u003e HandleClient(client)); } } catch (Exception ex) { if (isServerRunning) // 只有在服务器应该运行时才显示错误 { UpdateStatus($\"服务器错误: {ex.Message}\"); } } } private void StopTcpServer() { isServerRunning = false; server?.Stop(); UpdateStatus(\"服务器已停止\"); } private void HandleClient(TcpClient client) { try { // 获取网络流 using (NetworkStream stream = client.GetStream()) { byte[] buffer = new byte[1024]; int bytesRead; // 读取客户端发送的数据 while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0) { // 转换为字符串 string clientMessage = Encoding.UTF8.GetString(buffer, 0, bytesRead); UpdateStatus($\"收到消息: {clientMessage}\"); // 追加OK并转换为字节数组 string response = $\"{clientMessage}OK\"; byte[] responseBytes = Encoding.UTF8.GetBytes(response); // 发送回复 stream.Write(responseBytes, 0, responseBytes.Length); UpdateStatus($\"已回复: {response}\"); } } UpdateStatus(\"客户端已断开连接\"); } catch (Exception ex) { UpdateStatus($\"客户端处理错误: {ex.Message}\"); } finally { // 关闭客户端连接 client.Close(); } } // 更新状态显示（跨线程安全） private void UpdateStatus(string message) { if (InvokeRequired) { Invoke(new Action\u003cstring\u003e(UpdateStatus), message); return; } // 显示日志信息 txtLog.AppendText($\"{DateTime.Now:HH:mm:ss} {message}\\r\\n\"); txtLog.ScrollToCaret(); } // 窗体关闭时停止服务器 private void MainForm_FormClosing(object sender, FormClosingEventArgs e) { StopTcpServer(); } #region 自动生成的控件定义 private TextBox txtLog; private Button buttonTestSer; private TextBox txtPort; #endregion } } 运行\nXX:52:09 服务器已启动，监听端口: 8881\n连接串口服务器 private async void buttonCon1_Click(object sender, EventArgs e) { string ip1 = textBoxIP1.Text; string port1 = textBoxPort1.Text; //MessageBox.Show(ip1 + \":\"+port1); // 验证输入 if (string.IsNullOrWhiteSpace(ip1) || string.IsNullOrWhiteSpace(port1)) { MessageBox.Show(\"请输入IP地址和端口号\", \"输入错误\", MessageBoxButtons.OK, MessageBoxIcon.Error); return; } if (!int.TryParse(port1, out int port) || port \u003c 1 || port \u003e 65535) { MessageBox.Show(\"请输入有效的端口号(1-65535)\", \"输入错误\", MessageBoxButtons.OK, MessageBoxIcon.Error); return; } try { // 创建TCP客户端并连接服务器 using (TcpClient client = new TcpClient()) { // 异步连接，避免UI卡顿 await client.ConnectAsync(ip1, port); MessageBox.Show($\"已成功连接到 {ip1}:{port}\", \"连接成功\", MessageBoxButtons.OK, MessageBoxIcon.Information); // 准备要发送的消息 string message = \"Hello from client!\"; byte[] data = System.Text.Encoding.UTF8.GetBytes(message); // 获取网络流并发送数据 using (NetworkStream stream = client.GetStream()) { await stream.WriteAsync(data, 0, data.Length); MessageBox.Show($\"已发送消息: {message}\", \"发送成功\", MessageBoxButtons.OK, MessageBoxIcon.Information); } // 发送完成后关闭连接 client.Close(); } } catch (Exception ex) { MessageBox.Show($\"连接或发送失败: {ex.Message}\", \"错误\", MessageBoxButtons.OK, MessageBoxIcon.Error); } } 优化 发送消息与线程安全 private TcpClient client; private NetworkStream stream; private async void buttonCon1_Click(object sender, EventArgs e) { string ip1 = textBoxIP1.Text; string port1 = textBoxPort1.Text; //MessageBox.Show(ip1 + \":\"+port1); // 验证输入 if (string.IsNullOrWhiteSpace(ip1) || string.IsNullOrWhiteSpace(port1)) { MessageBox.Show(\"请输入IP地址和端口号\", \"输入错误\", MessageBoxButtons.OK, MessageBoxIcon.Error); return; } if (!int.TryParse(port1, out int port) || port \u003c 1 || port \u003e 65535) { MessageBox.Show(\"请输入有效的端口号(1-65535)\", \"输入错误\", MessageBoxButtons.OK, MessageBoxIcon.Error); return; } try { client = new TcpClient(); // 异步连接，避免UI卡顿 await client.ConnectAsync(ip1, port); MessageBox.Show($\"已成功连接到 {ip1}:{port}\", \"连接成功\", MessageBoxButtons.OK, MessageBoxIcon.Information); } catch (Exception ex) { MessageBox.Show($\"连接或发送失败: {ex.Message}\", \"错误\", MessageBoxButtons.OK, MessageBoxIcon.Error); } } public async void SendMsg1(string str) { if (client == null || !client.Connected) { UpdateStatus(\"未连接到服务器，请先建立连接\"); return; } string message = str; try { // 不要使用 using，保持流的持续打开 if (stream == null) stream = client.GetStream(); // 发送消息 byte[] sendData = System.Text.Encoding.UTF8.GetBytes(message); await stream.WriteAsync(sendData, 0, sendData.Length); UpdateStatus($\"已发送: {message}\"); // 接收服务器响应 byte[] receiveBuffer = new byte[1024]; int bytesRead = await stream.ReadAsync(receiveBuffer, 0, receiveBuffer.Length); string response = System.Text.Encoding.UTF8.GetString(receiveBuffer, 0, bytesRead); UpdateStatus($\"收到响应: {response}\"); } catch (Exception ex) { UpdateStatus($\"发送失败: {ex.Message}\"); } } // 建议添加一个专门的关闭连接方法 private void CloseConnection() { if (stream != null) { stream.Dispose(); stream = null; } if (client != null) { client.Close(); client = null; UpdateStatus(\"连接已关闭\"); } } // 更新状态显示（跨线程安全） public async void UpdateStatus(string message) { if (InvokeRequired) { Invoke(new Action\u003cstring\u003e(UpdateStatus), message); return; } // 显示日志信息 textBoxLog.AppendText($\"{DateTime.Now:HH:mm:ss} {message}\\r\\n\"); textBoxLog.ScrollToCaret(); } CRC-16-MODBUS计算 public static string CalculateModbusCRC16(string hexString) { // 去除字符串中的空格 hexString = hexString.Replace(\" \", \"\"); // 验证输入的16进制字符串是否合法 if (hexString.Length % 2 != 0) { throw new ArgumentException(\"Invalid hex string length\"); } // 将16进制字符串转换为字节数组 byte[] byteArray = new byte[hexString.Length / 2]; for (int i = 0; i \u003c hexString.Length; i += 2) { byteArray[i / 2] = Convert.ToByte(hexString.Substring(i, 2), 16); } // 初始化CRC值 ushort crc = 0xFFFF; // CRC初始值为0xFFFF // CRC16算法 foreach (byte b in byteArray) { crc ^= b; // 对当前字节和CRC值进行异或操作 for (int j = 0; j \u003c 8; j++) // 遍历每一个比特位 { if ((crc \u0026 0x0001) != 0) // 检查最低位是否为1 { crc = (ushort)((crc \u003e\u003e 1) ^ 0xA001); // 如果是1，右移并进行多项式异或 } else { crc \u003e\u003e= 1; // 如果不是1，只右移 } } } // 返回CRC值，低字节和高字节(小端字节序) byte lowByte = (byte)(crc \u0026 0xFF); byte highByte = (byte)((crc \u003e\u003e 8) \u0026 0xFF); return $\"{lowByte:X2}{highByte:X2}\"; } // 使用示例 string crc = CalculateModbusCRC16(\"0106000B2710\"); Console.WriteLine(crc); CRC16(hexString) { // 去除字符串中的空格 hexString = hexString.replace(/\\s+/g, ''); // 验证输入的16进制字符串是否合法 if (hexString.length % 2 !== 0) { throw new Error(\"Invalid hex string length\"); } // 将16进制字符串转换为字节数组 const byteArray = []; for (let i = 0; i \u003c hexString.length; i += 2) { const byte = parseInt(hexString.substr(i, 2), 16); byteArray.push(byte); } // 初始化CRC值 let crc = 0xFFFF; // CRC初始值为0xFFFF // CRC16算法 for (let i = 0; i \u003c byteArray.length; i++) { crc ^= byteArray[i]; // 对当前字节和CRC值进行异或操作 for (let j = 0; j \u003c 8; j++) { // 遍历每一个比特位 if (crc \u0026 0x0001) { // 检查最低位是否为1 crc = (crc \u003e\u003e 1) ^ 0xA001; // 如果是1，右移并进行多项式异或 } else { crc \u003e\u003e= 1; // 如果不是1，只右移 } } } // 返回CRC值 //return ((crc \u003e\u003e 8) \u0026 0xFF).toString(16).padStart(2, '0') + (crc \u0026 0xFF).toString(16).padStart(2, '0'); // 返回CRC值，低字节和高字节(小端字节序) return (crc \u0026 0xFF).toString(16).padStart(2, '0').toUpperCase() + ((crc \u003e\u003e 8) \u0026 0xFF).toString(16).padStart(2, '0').toUpperCase(); } // 获取输入的16进制字符串（假设msg.payload是输入的16进制字符串） let hexString = msg.payload; // 计算CRC let crc = calculateModbusCRC16(hexString); msg.payload = msg.payload.replace(/\\s+/g, '') + crc; // 返回计算后的消息 return msg; //01 10 00 0A 00 02 04 13 88 13 88 0110000A00020413881388 16进制处理 public static string ToCustomHex(int number) { int result = number + 9; return result.ToString(\"X4\"); // 转为4位十六进制，不足补0 } 参数算法 int nv1 = Convert.ToInt32(sv1); int nl1 = Convert.ToInt32(sl1); string slu1 = ColorCHelper.ToCustomHex(nl1); string svv1 = \"\";// ColorCHelper.ToCustomHex(nv1); if (nv1 == 0) { svv1 = \"0000\"; } else if (nv1 == 5) { svv1 = \"1388\"; } else if (nv1 == 10) { svv1 = \"2710\"; } List\u003cstring \u003e strlist = new List\u003cstring\u003e(); string stemp11 = \"\"; for (int i = 1; i \u003c=nl1; i++) { //f4 string stemp = \"0106\";//设备 string inti1 = ColorCHelper.ToCustomHex(i); stemp = stemp + inti1 + svv1;//4+4+4 string s1 = ColorCHelper.CalculateModbusCRC16(stemp); string srs1 = stemp + s1; strlist.Add(srs1); stemp11 += srs1+\",\"; } CRC CheckBox // 清空旧的内容 panelZ.Controls.Clear(); int startY = 10; // 起始 Y 坐标 int spacing = 30; // 每个 CheckBox 的间距 for (int i = 0; i \u003c items.Count; i++) { CheckBox chk = new CheckBox(); chk.Text = items[i]; chk.AutoSize = true; chk.Location = new Point(10, startY + i * spacing); chk.Tag = items[i]; // 可选：存储原始值 // 绑定事件（如果需要） chk.CheckedChanged += (sender, e) =\u003e { var c = sender as CheckBox; Console.WriteLine($\"[{c.Text}] 状态: {c.Checked}\"); }; // 添加到 panelZ panelZ.Controls.Add(chk); } Next Send\n","wordCount":"2066","inLanguage":"en","datePublished":"2025-10-08T21:59:42+08:00","dateModified":"2025-10-08T21:59:42+08:00","author":{"@type":"Person","name":"dwd"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://qfsyso.github.io/posts/tcp-color-calibration/"},"publisher":{"@type":"Organization","name":"MLOG","logo":{"@type":"ImageObject","url":"https://qfsyso.github.io/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://qfsyso.github.io/ accesskey=h title="MLOG (Alt + H)">MLOG</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://qfsyso.github.io/posts/ title=Archive><span>Archive</span></a></li><li><a href=https://qfsyso.github.io/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://qfsyso.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">TCP Color Calibration</h1><div class=post-meta><span title='2025-10-08 21:59:42 +0800 +0800'>October 8, 2025</span>&nbsp;·&nbsp;10 min&nbsp;·&nbsp;dwd</div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e5%88%9d%e5%a7%8b%e5%8c%96%e6%95%b0%e6%8d%ae aria-label=初始化数据>初始化数据</a></li><li><a href=#%e6%95%b0%e6%8d%ae%e5%a4%84%e7%90%86 aria-label=数据处理>数据处理</a></li><li><a href=#tcp%e6%9c%8d%e5%8a%a1%e5%99%a8%e6%b5%8b%e8%af%95---%e5%8f%af%e9%80%89 aria-label="TCP服务器测试 - 可选">TCP服务器测试 - 可选</a></li><li><a href=#%e8%bf%9e%e6%8e%a5%e4%b8%b2%e5%8f%a3%e6%9c%8d%e5%8a%a1%e5%99%a8 aria-label=连接串口服务器>连接串口服务器</a></li><li><a href=#%e4%bc%98%e5%8c%96-%e5%8f%91%e9%80%81%e6%b6%88%e6%81%af%e4%b8%8e%e7%ba%bf%e7%a8%8b%e5%ae%89%e5%85%a8 aria-label="优化 发送消息与线程安全">优化 发送消息与线程安全</a></li><li><a href=#crc-16-modbus%e8%ae%a1%e7%ae%97 aria-label=CRC-16-MODBUS计算>CRC-16-MODBUS计算</a></li><li><a href=#16%e8%bf%9b%e5%88%b6%e5%a4%84%e7%90%86 aria-label=16进制处理>16进制处理</a></li><li><a href=#%e5%8f%82%e6%95%b0%e7%ae%97%e6%b3%95 aria-label=参数算法>参数算法</a></li><li><a href=#crc-checkbox aria-label="CRC CheckBox">CRC CheckBox</a></li><li><a href=#next aria-label=Next>Next</a></li></ul></div></details></div><div class=post-content><h1 id=初始化数据>初始化数据<a hidden class=anchor aria-hidden=true href=#初始化数据>#</a></h1><p>Newtonsoft.Json</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>//config.json
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span> <span style=color:#e6db74>&#34;Lu1Items&#34;</span><span style=color:#f92672>:</span> [
+</span></span><span style=display:flex><span>   {
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;ID&#34;</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;Name&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;1路&#34;</span>
+</span></span><span style=display:flex><span>   },
+</span></span><span style=display:flex><span>   {
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;ID&#34;</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>2</span>,
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;Name&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;2路&#34;</span>
+</span></span><span style=display:flex><span>   },
+</span></span><span style=display:flex><span>   {
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;ID&#34;</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>3</span>,
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;Name&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;3路&#34;</span>
+</span></span><span style=display:flex><span>   },
+</span></span><span style=display:flex><span>   {
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;ID&#34;</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>4</span>,
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;Name&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;4路&#34;</span>
+</span></span><span style=display:flex><span>   },
+</span></span><span style=display:flex><span>   {
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;ID&#34;</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>5</span>,
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;Name&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;5路&#34;</span>
+</span></span><span style=display:flex><span>   },
+</span></span><span style=display:flex><span>   {
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;ID&#34;</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>6</span>,
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;Name&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;6路&#34;</span>
+</span></span><span style=display:flex><span>   },
+</span></span><span style=display:flex><span>   {
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;ID&#34;</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>7</span>,
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;Name&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;7路&#34;</span>
+</span></span><span style=display:flex><span>   },
+</span></span><span style=display:flex><span>   {
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;ID&#34;</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>8</span>,
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;Name&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;8路&#34;</span>
+</span></span><span style=display:flex><span>   }
+</span></span><span style=display:flex><span> ],
+</span></span><span style=display:flex><span> <span style=color:#e6db74>&#34;Value1Items&#34;</span><span style=color:#f92672>:</span> [
+</span></span><span style=display:flex><span>   {
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;ID&#34;</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>0</span>,
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;Name&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;0V&#34;</span>
+</span></span><span style=display:flex><span>   },
+</span></span><span style=display:flex><span>   {
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;ID&#34;</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>5</span>,
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;Name&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;5V&#34;</span>
+</span></span><span style=display:flex><span>   },
+</span></span><span style=display:flex><span>   {
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;ID&#34;</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>10</span>,
+</span></span><span style=display:flex><span>     <span style=color:#e6db74>&#34;Name&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;10V&#34;</span>
+</span></span><span style=display:flex><span>   }
+</span></span><span style=display:flex><span> ]
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h1 id=数据处理>数据处理<a hidden class=anchor aria-hidden=true href=#数据处理>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Collections.Generic;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.IO;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Windows.Forms;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> Newtonsoft.Json;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>namespace</span> ComboBoxJsonLoader
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 带ID的下拉列表项模型</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ComboBoxItem</span>
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span><span style=color:#a6e22e>        [JsonProperty(&#34;ID&#34;)]</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> ID { <span style=color:#66d9ef>get</span>; <span style=color:#66d9ef>set</span>; }
+</span></span><span style=display:flex><span><span style=color:#a6e22e>        
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>        [JsonProperty(&#34;Name&#34;)]</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>string</span> Name { <span style=color:#66d9ef>get</span>; <span style=color:#66d9ef>set</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 重写ToString方法，使ComboBox显示Name属性</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>override</span> <span style=color:#66d9ef>string</span> ToString()
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> Name;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 包含两个下拉列表数据的模型</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ComboBoxData</span>
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span><span style=color:#a6e22e>        [JsonProperty(&#34;Level1Items&#34;)]</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> List&lt;ComboBoxItem&gt; Level1Items { <span style=color:#66d9ef>get</span>; <span style=color:#66d9ef>set</span>; }
+</span></span><span style=display:flex><span><span style=color:#a6e22e>        
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>        [JsonProperty(&#34;Value1Items&#34;)]</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> List&lt;ComboBoxItem&gt; Value1Items { <span style=color:#66d9ef>get</span>; <span style=color:#66d9ef>set</span>; }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// JSON数据加载器，负责从文件读取数据并填充到ComboBox</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>JsonDataLoader</span>
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 从JSON文件加载带ID的数据并填充到ComboBox</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;param name=&#34;jsonFilePath&#34;&gt;JSON文件路径&lt;/param&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;param name=&#34;comboBoxL1&#34;&gt;第一个ComboBox控件&lt;/param&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;param name=&#34;comboBoxV1&#34;&gt;第二个ComboBox控件&lt;/param&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> LoadDataToComboBoxes(<span style=color:#66d9ef>string</span> jsonFilePath, ComboBox comboBoxL1, ComboBox comboBoxV1)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 检查文件是否存在</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (!File.Exists(jsonFilePath))
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    MessageBox.Show(<span style=color:#e6db74>$&#34;文件不存在: {jsonFilePath}&#34;</span>, <span style=color:#e6db74>&#34;错误&#34;</span>, 
+</span></span><span style=display:flex><span>                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 读取JSON文件内容</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>string</span> jsonContent = File.ReadAllText(jsonFilePath);
+</span></span><span style=display:flex><span>                
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 反序列化为对象</span>
+</span></span><span style=display:flex><span>                ComboBoxData data = JsonConvert.DeserializeObject&lt;ComboBoxData&gt;(jsonContent);
+</span></span><span style=display:flex><span>                
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 检查反序列化结果</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (data == <span style=color:#66d9ef>null</span>)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    MessageBox.Show(<span style=color:#e6db74>&#34;无法解析JSON数据&#34;</span>, <span style=color:#e6db74>&#34;错误&#34;</span>, 
+</span></span><span style=display:flex><span>                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 填充第一个ComboBox</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (data.Level1Items != <span style=color:#66d9ef>null</span> &amp;&amp; data.Level1Items.Count &gt; <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    comboBoxL1.DataSource = data.Level1Items;
+</span></span><span style=display:flex><span>                    comboBoxL1.DisplayMember = <span style=color:#e6db74>&#34;Name&#34;</span>;
+</span></span><span style=display:flex><span>                    comboBoxL1.ValueMember = <span style=color:#e6db74>&#34;ID&#34;</span>;
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    MessageBox.Show(<span style=color:#e6db74>&#34;Level1Items数据为空或不存在&#34;</span>, <span style=color:#e6db74>&#34;警告&#34;</span>, 
+</span></span><span style=display:flex><span>                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 填充第二个ComboBox</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (data.Value1Items != <span style=color:#66d9ef>null</span> &amp;&amp; data.Value1Items.Count &gt; <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    comboBoxV1.DataSource = data.Value1Items;
+</span></span><span style=display:flex><span>                    comboBoxV1.DisplayMember = <span style=color:#e6db74>&#34;Name&#34;</span>;
+</span></span><span style=display:flex><span>                    comboBoxV1.ValueMember = <span style=color:#e6db74>&#34;ID&#34;</span>;
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    MessageBox.Show(<span style=color:#e6db74>&#34;Value1Items数据为空或不存在&#34;</span>, <span style=color:#e6db74>&#34;警告&#34;</span>, 
+</span></span><span style=display:flex><span>                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>catch</span> (Exception ex)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                MessageBox.Show(<span style=color:#e6db74>$&#34;加载数据时出错: {ex.Message}&#34;</span>, <span style=color:#e6db74>&#34;错误&#34;</span>, 
+</span></span><span style=display:flex><span>                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#75715e>//Designer.cs</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>namespace</span> ColorCWinFormsApp1
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>partial</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Form1</span>
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// 必需的设计器变量。</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>private</span> System.ComponentModel.IContainer components = <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// 清理所有正在使用的资源。</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// &lt;param name=&#34;disposing&#34;&gt;如果应释放托管资源，为 true；否则为 false。&lt;/param&gt;</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>protected</span> <span style=color:#66d9ef>override</span> <span style=color:#66d9ef>void</span> Dispose(<span style=color:#66d9ef>bool</span> disposing)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (disposing &amp;&amp; (components != <span style=color:#66d9ef>null</span>))
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    components.Dispose();
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>base</span>.Dispose(disposing);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#region</span> Windows <span style=color:#960050;background-color:#1e0010>窗体设计器生成的代码</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 设计器支持所需的方法 - 不要修改</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// 使用代码编辑器修改此方法的内容。</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> InitializeComponent()
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            comboBoxL1 = <span style=color:#66d9ef>new</span> ComboBox();
+</span></span><span style=display:flex><span>            comboBoxV1 = <span style=color:#66d9ef>new</span> ComboBox();
+</span></span><span style=display:flex><span>            label1 = <span style=color:#66d9ef>new</span> Label();
+</span></span><span style=display:flex><span>            label2 = <span style=color:#66d9ef>new</span> Label();
+</span></span><span style=display:flex><span>            statusStrip1 = <span style=color:#66d9ef>new</span> StatusStrip();
+</span></span><span style=display:flex><span>            toolStripStatusLabel1 = <span style=color:#66d9ef>new</span> ToolStripStatusLabel();
+</span></span><span style=display:flex><span>            toolStripStatusLabel2 = <span style=color:#66d9ef>new</span> ToolStripStatusLabel();
+</span></span><span style=display:flex><span>            toolStrip1 = <span style=color:#66d9ef>new</span> ToolStrip();
+</span></span><span style=display:flex><span>            toolStripButtonRefresh = <span style=color:#66d9ef>new</span> ToolStripButton();
+</span></span><span style=display:flex><span>            statusStrip1.SuspendLayout();
+</span></span><span style=display:flex><span>            toolStrip1.SuspendLayout();
+</span></span><span style=display:flex><span>            SuspendLayout();
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// comboBoxL1</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            comboBoxL1.DropDownStyle = ComboBoxStyle.DropDownList;
+</span></span><span style=display:flex><span>            comboBoxL1.FormattingEnabled = <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>            comboBoxL1.Location = <span style=color:#66d9ef>new</span> Point(<span style=color:#ae81ff>12</span>, <span style=color:#ae81ff>43</span>);
+</span></span><span style=display:flex><span>            comboBoxL1.Name = <span style=color:#e6db74>&#34;comboBoxL1&#34;</span>;
+</span></span><span style=display:flex><span>            comboBoxL1.Size = <span style=color:#66d9ef>new</span> Size(<span style=color:#ae81ff>250</span>, <span style=color:#ae81ff>25</span>);
+</span></span><span style=display:flex><span>            comboBoxL1.TabIndex = <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// comboBoxV1</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            comboBoxV1.DropDownStyle = ComboBoxStyle.DropDownList;
+</span></span><span style=display:flex><span>            comboBoxV1.FormattingEnabled = <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>            comboBoxV1.Location = <span style=color:#66d9ef>new</span> Point(<span style=color:#ae81ff>12</span>, <span style=color:#ae81ff>111</span>);
+</span></span><span style=display:flex><span>            comboBoxV1.Name = <span style=color:#e6db74>&#34;comboBoxV1&#34;</span>;
+</span></span><span style=display:flex><span>            comboBoxV1.Size = <span style=color:#66d9ef>new</span> Size(<span style=color:#ae81ff>250</span>, <span style=color:#ae81ff>25</span>);
+</span></span><span style=display:flex><span>            comboBoxV1.TabIndex = <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// label1</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            label1.AutoSize = <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>            label1.Location = <span style=color:#66d9ef>new</span> Point(<span style=color:#ae81ff>12</span>, <span style=color:#ae81ff>23</span>);
+</span></span><span style=display:flex><span>            label1.Name = <span style=color:#e6db74>&#34;label1&#34;</span>;
+</span></span><span style=display:flex><span>            label1.Size = <span style=color:#66d9ef>new</span> Size(<span style=color:#ae81ff>39</span>, <span style=color:#ae81ff>17</span>);
+</span></span><span style=display:flex><span>            label1.TabIndex = <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>            label1.Text = <span style=color:#e6db74>&#34;路数 :&#34;</span>;
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// label2</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            label2.AutoSize = <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>            label2.Location = <span style=color:#66d9ef>new</span> Point(<span style=color:#ae81ff>12</span>, <span style=color:#ae81ff>91</span>);
+</span></span><span style=display:flex><span>            label2.Name = <span style=color:#e6db74>&#34;label2&#34;</span>;
+</span></span><span style=display:flex><span>            label2.Size = <span style=color:#66d9ef>new</span> Size(<span style=color:#ae81ff>39</span>, <span style=color:#ae81ff>17</span>);
+</span></span><span style=display:flex><span>            label2.TabIndex = <span style=color:#ae81ff>3</span>;
+</span></span><span style=display:flex><span>            label2.Text = <span style=color:#e6db74>&#34;电压 :&#34;</span>;
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// statusStrip1</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            statusStrip1.Items.AddRange(<span style=color:#66d9ef>new</span> ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
+</span></span><span style=display:flex><span>            statusStrip1.Location = <span style=color:#66d9ef>new</span> Point(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>438</span>);
+</span></span><span style=display:flex><span>            statusStrip1.Name = <span style=color:#e6db74>&#34;statusStrip1&#34;</span>;
+</span></span><span style=display:flex><span>            statusStrip1.Size = <span style=color:#66d9ef>new</span> Size(<span style=color:#ae81ff>606</span>, <span style=color:#ae81ff>22</span>);
+</span></span><span style=display:flex><span>            statusStrip1.TabIndex = <span style=color:#ae81ff>4</span>;
+</span></span><span style=display:flex><span>            statusStrip1.Text = <span style=color:#e6db74>&#34;statusStrip1&#34;</span>;
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// toolStripStatusLabel1</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            toolStripStatusLabel1.Name = <span style=color:#e6db74>&#34;toolStripStatusLabel1&#34;</span>;
+</span></span><span style=display:flex><span>            toolStripStatusLabel1.Size = <span style=color:#66d9ef>new</span> Size(<span style=color:#ae81ff>131</span>, <span style=color:#ae81ff>17</span>);
+</span></span><span style=display:flex><span>            toolStripStatusLabel1.Text = <span style=color:#e6db74>&#34;toolStripStatusLabel1&#34;</span>;
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// toolStripStatusLabel2</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            toolStripStatusLabel2.Name = <span style=color:#e6db74>&#34;toolStripStatusLabel2&#34;</span>;
+</span></span><span style=display:flex><span>            toolStripStatusLabel2.Size = <span style=color:#66d9ef>new</span> Size(<span style=color:#ae81ff>131</span>, <span style=color:#ae81ff>17</span>);
+</span></span><span style=display:flex><span>            toolStripStatusLabel2.Text = <span style=color:#e6db74>&#34;toolStripStatusLabel2&#34;</span>;
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// toolStrip1</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            toolStrip1.Items.AddRange(<span style=color:#66d9ef>new</span> ToolStripItem[] { toolStripButtonRefresh });
+</span></span><span style=display:flex><span>            toolStrip1.Location = <span style=color:#66d9ef>new</span> Point(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>            toolStrip1.Name = <span style=color:#e6db74>&#34;toolStrip1&#34;</span>;
+</span></span><span style=display:flex><span>            toolStrip1.Size = <span style=color:#66d9ef>new</span> Size(<span style=color:#ae81ff>606</span>, <span style=color:#ae81ff>25</span>);
+</span></span><span style=display:flex><span>            toolStrip1.TabIndex = <span style=color:#ae81ff>5</span>;
+</span></span><span style=display:flex><span>            toolStrip1.Text = <span style=color:#e6db74>&#34;toolStrip1&#34;</span>;
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// toolStripButtonRefresh</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            toolStripButtonRefresh.DisplayStyle = ToolStripItemDisplayStyle.Text;
+</span></span><span style=display:flex><span>            toolStripButtonRefresh.ImageTransparentColor = Color.Magenta;
+</span></span><span style=display:flex><span>            toolStripButtonRefresh.Name = <span style=color:#e6db74>&#34;toolStripButtonRefresh&#34;</span>;
+</span></span><span style=display:flex><span>            toolStripButtonRefresh.Size = <span style=color:#66d9ef>new</span> Size(<span style=color:#ae81ff>36</span>, <span style=color:#ae81ff>22</span>);
+</span></span><span style=display:flex><span>            toolStripButtonRefresh.Text = <span style=color:#e6db74>&#34;刷新&#34;</span>;
+</span></span><span style=display:flex><span>            toolStripButtonRefresh.Click += toolStripButtonRefresh_Click;
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// Form1</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// </span>
+</span></span><span style=display:flex><span>            AutoScaleDimensions = <span style=color:#66d9ef>new</span> SizeF(<span style=color:#ae81ff>7F</span>, <span style=color:#ae81ff>17F</span>);
+</span></span><span style=display:flex><span>            AutoScaleMode = AutoScaleMode.Font;
+</span></span><span style=display:flex><span>            ClientSize = <span style=color:#66d9ef>new</span> Size(<span style=color:#ae81ff>606</span>, <span style=color:#ae81ff>460</span>);
+</span></span><span style=display:flex><span>            Controls.Add(toolStrip1);
+</span></span><span style=display:flex><span>            Controls.Add(statusStrip1);
+</span></span><span style=display:flex><span>            Controls.Add(label2);
+</span></span><span style=display:flex><span>            Controls.Add(label1);
+</span></span><span style=display:flex><span>            Controls.Add(comboBoxV1);
+</span></span><span style=display:flex><span>            Controls.Add(comboBoxL1);
+</span></span><span style=display:flex><span>            Name = <span style=color:#e6db74>&#34;Form1&#34;</span>;
+</span></span><span style=display:flex><span>            Text = <span style=color:#e6db74>&#34;Color&#34;</span>;
+</span></span><span style=display:flex><span>            statusStrip1.ResumeLayout(<span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span>            statusStrip1.PerformLayout();
+</span></span><span style=display:flex><span>            toolStrip1.ResumeLayout(<span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span>            toolStrip1.PerformLayout();
+</span></span><span style=display:flex><span>            ResumeLayout(<span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span>            PerformLayout();
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#endregion</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> System.Windows.Forms.ComboBox comboBoxL1;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>private</span> System.Windows.Forms.ComboBox comboBoxV1;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>private</span> System.Windows.Forms.Label label1;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>private</span> System.Windows.Forms.Label label2;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>private</span> System.Windows.Forms.StatusStrip statusStrip1;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>private</span> System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>private</span> System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>private</span> System.Windows.Forms.ToolStrip toolStrip1;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>private</span> System.Windows.Forms.ToolStripButton toolStripButtonRefresh;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>   
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#75715e>//Form1.cs</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>namespace</span> ColorCWinFormsApp1
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>partial</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Form1</span> : Form
+</span></span><span style=display:flex><span>    { <span style=color:#75715e>// 数据加载器实例</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> JsonDataLoader _dataLoader;
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>     <span style=color:#75715e>// JSON文件路径</span>
+</span></span><span style=display:flex><span>     <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>string</span> JsonFilePath = <span style=color:#e6db74>&#34;ColorConifg.json&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>     <span style=color:#66d9ef>public</span> Form1()
+</span></span><span style=display:flex><span>     {
+</span></span><span style=display:flex><span>         InitializeComponent();
+</span></span><span style=display:flex><span>         _dataLoader = <span style=color:#66d9ef>new</span> JsonDataLoader();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>         <span style=color:#75715e>// 注册事件</span>
+</span></span><span style=display:flex><span>         Load += Form1_Load;
+</span></span><span style=display:flex><span>         comboBoxL1.SelectedIndexChanged += ComboBoxL1_SelectedIndexChanged;
+</span></span><span style=display:flex><span>         comboBoxV1.SelectedIndexChanged += ComboBoxV1_SelectedIndexChanged;
+</span></span><span style=display:flex><span>     }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>     <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> Form1_Load(<span style=color:#66d9ef>object</span> sender, EventArgs e)
+</span></span><span style=display:flex><span>     {
+</span></span><span style=display:flex><span>         <span style=color:#75715e>// 加载数据到ComboBox</span>
+</span></span><span style=display:flex><span>         LoadComboBoxData();
+</span></span><span style=display:flex><span>     }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>     <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>     <span style=color:#75715e>/// 从JSON文件加载数据到ComboBox</span>
+</span></span><span style=display:flex><span>     <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>     <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> LoadComboBoxData()
+</span></span><span style=display:flex><span>     {
+</span></span><span style=display:flex><span>         <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>         {
+</span></span><span style=display:flex><span>             _dataLoader.LoadDataToComboBoxes(JsonFilePath, comboBoxL1, comboBoxV1);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>             <span style=color:#75715e>// 如果有数据，默认选中第一项</span>
+</span></span><span style=display:flex><span>             <span style=color:#66d9ef>if</span> (comboBoxL1.Items.Count &gt; <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>                 comboBoxL1.SelectedIndex = <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>             <span style=color:#66d9ef>if</span> (comboBoxV1.Items.Count &gt; <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>                 comboBoxV1.SelectedIndex = <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>         }
+</span></span><span style=display:flex><span>         <span style=color:#66d9ef>catch</span> (Exception ex)
+</span></span><span style=display:flex><span>         {
+</span></span><span style=display:flex><span>             MessageBox.Show(<span style=color:#e6db74>$&#34;加载数据失败: {ex.Message}&#34;</span>, <span style=color:#e6db74>&#34;错误&#34;</span>,
+</span></span><span style=display:flex><span>                             MessageBoxButtons.OK, MessageBoxIcon.Error);
+</span></span><span style=display:flex><span>         }
+</span></span><span style=display:flex><span>     }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>     <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>     <span style=color:#75715e>/// 第一个ComboBox选中项变化事件</span>
+</span></span><span style=display:flex><span>     <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>     <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> ComboBoxL1_SelectedIndexChanged(<span style=color:#66d9ef>object</span> sender, EventArgs e)
+</span></span><span style=display:flex><span>     {
+</span></span><span style=display:flex><span>         <span style=color:#66d9ef>if</span> (comboBoxL1.SelectedItem <span style=color:#66d9ef>is</span> ComboBoxItem selectedItem)
+</span></span><span style=display:flex><span>         {
+</span></span><span style=display:flex><span>             <span style=color:#75715e>// 显示选中项的信息 </span>
+</span></span><span style=display:flex><span>             toolStripStatusLabel1.Text =
+</span></span><span style=display:flex><span>                 <span style=color:#e6db74>$&#34;选中的路数: {selectedItem.Name} (ID: {selectedItem.ID})&#34;</span>;
+</span></span><span style=display:flex><span>         }
+</span></span><span style=display:flex><span>     }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>     <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>     <span style=color:#75715e>/// 第二个ComboBox选中项变化事件</span>
+</span></span><span style=display:flex><span>     <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>     <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> ComboBoxV1_SelectedIndexChanged(<span style=color:#66d9ef>object</span> sender, EventArgs e)
+</span></span><span style=display:flex><span>     {
+</span></span><span style=display:flex><span>         <span style=color:#66d9ef>if</span> (comboBoxV1.SelectedItem <span style=color:#66d9ef>is</span> ComboBoxItem selectedItem)
+</span></span><span style=display:flex><span>         {
+</span></span><span style=display:flex><span>             <span style=color:#75715e>// 显示选中项的信息 </span>
+</span></span><span style=display:flex><span>             toolStripStatusLabel2.Text =
+</span></span><span style=display:flex><span>                 <span style=color:#e6db74>$&#34;选中的电压: {selectedItem.Name} (ID: {selectedItem.ID})&#34;</span>;
+</span></span><span style=display:flex><span>         }
+</span></span><span style=display:flex><span>     }    
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>可以通过comboBoxL1.SelectedValue直接获取选中项的 ID
+可以通过comboBoxL1.SelectedItem获取完整的选项对象</p><h1 id=tcp服务器测试---可选>TCP服务器测试 - 可选<a hidden class=anchor aria-hidden=true href=#tcp服务器测试---可选>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Net;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Net.Sockets;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Text;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Threading.Tasks;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Windows.Forms;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>namespace</span> TcpServerExample
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>partial</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MainForm</span> : Form
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> TcpListener server;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>bool</span> isServerRunning = <span style=color:#66d9ef>false</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> MainForm()
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            InitializeComponent();
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 初始化UI</span>
+</span></span><span style=display:flex><span>            InitializeUI();
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> InitializeUI()
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 设置窗体标题</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>this</span>.Text = <span style=color:#e6db74>&#34;TCP服务器&#34;</span>;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>this</span>.Size = <span style=color:#66d9ef>new</span> System.Drawing.Size(<span style=color:#ae81ff>600</span>, <span style=color:#ae81ff>400</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 创建日志文本框</span>
+</span></span><span style=display:flex><span>            txtLog = <span style=color:#66d9ef>new</span> TextBox();
+</span></span><span style=display:flex><span>            txtLog.Multiline = <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>            txtLog.ScrollBars = ScrollBars.Vertical;
+</span></span><span style=display:flex><span>            txtLog.Dock = DockStyle.Fill;
+</span></span><span style=display:flex><span>            txtLog.ReadOnly = <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 创建按钮</span>
+</span></span><span style=display:flex><span>            buttonTestSer = <span style=color:#66d9ef>new</span> Button();
+</span></span><span style=display:flex><span>            buttonTestSer.Text = <span style=color:#e6db74>&#34;启动TCP服务器&#34;</span>;
+</span></span><span style=display:flex><span>            buttonTestSer.Dock = DockStyle.Top;
+</span></span><span style=display:flex><span>            buttonTestSer.Height = <span style=color:#ae81ff>40</span>;
+</span></span><span style=display:flex><span>            buttonTestSer.Click += buttonTestSer_Click;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 创建端口输入框</span>
+</span></span><span style=display:flex><span>            txtPort = <span style=color:#66d9ef>new</span> TextBox();
+</span></span><span style=display:flex><span>            txtPort.Dock = DockStyle.Top;
+</span></span><span style=display:flex><span>            txtPort.Text = <span style=color:#e6db74>&#34;8888&#34;</span>;
+</span></span><span style=display:flex><span>            txtPort.Height = <span style=color:#ae81ff>30</span>;
+</span></span><span style=display:flex><span>            txtPort.PlaceholderText = <span style=color:#e6db74>&#34;输入端口号&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 添加控件到窗体</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>this</span>.Controls.Add(txtLog);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>this</span>.Controls.Add(buttonTestSer);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>this</span>.Controls.Add(txtPort);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 注册窗体关闭事件</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>this</span>.FormClosing += MainForm_FormClosing;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> buttonTestSer_Click(<span style=color:#66d9ef>object</span> sender, EventArgs e)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (!isServerRunning)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 启动服务器</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>int</span>.TryParse(txtPort.Text, <span style=color:#66d9ef>out</span> <span style=color:#66d9ef>int</span> port) &amp;&amp; port &gt; <span style=color:#ae81ff>0</span> &amp;&amp; port &lt;= <span style=color:#ae81ff>65535</span>)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    Task.Run(() =&gt; StartTcpServer(port));
+</span></span><span style=display:flex><span>                    buttonTestSer.Text = <span style=color:#e6db74>&#34;停止TCP服务器&#34;</span>;
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    MessageBox.Show(<span style=color:#e6db74>&#34;请输入有效的端口号（1-65535）&#34;</span>, <span style=color:#e6db74>&#34;输入错误&#34;</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 停止服务器</span>
+</span></span><span style=display:flex><span>                StopTcpServer();
+</span></span><span style=display:flex><span>                buttonTestSer.Text = <span style=color:#e6db74>&#34;启动TCP服务器&#34;</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> StartTcpServer(<span style=color:#66d9ef>int</span> port)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 初始化TCP监听器</span>
+</span></span><span style=display:flex><span>                server = <span style=color:#66d9ef>new</span> TcpListener(IPAddress.Any, port);
+</span></span><span style=display:flex><span>                server.Start();
+</span></span><span style=display:flex><span>                
+</span></span><span style=display:flex><span>                isServerRunning = <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>                UpdateStatus(<span style=color:#e6db74>$&#34;服务器已启动，监听端口: {port}&#34;</span>);
+</span></span><span style=display:flex><span>                
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 循环接受客户端连接</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>while</span> (isServerRunning)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    <span style=color:#75715e>// 等待客户端连接</span>
+</span></span><span style=display:flex><span>                    TcpClient client = server.AcceptTcpClient();
+</span></span><span style=display:flex><span>                    UpdateStatus(<span style=color:#e6db74>&#34;客户端已连接&#34;</span>);
+</span></span><span style=display:flex><span>                    
+</span></span><span style=display:flex><span>                    <span style=color:#75715e>// 处理客户端通信（使用新线程避免阻塞接受其他连接）</span>
+</span></span><span style=display:flex><span>                    Task.Run(() =&gt; HandleClient(client));
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>catch</span> (Exception ex)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (isServerRunning) <span style=color:#75715e>// 只有在服务器应该运行时才显示错误</span>
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    UpdateStatus(<span style=color:#e6db74>$&#34;服务器错误: {ex.Message}&#34;</span>);
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> StopTcpServer()
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            isServerRunning = <span style=color:#66d9ef>false</span>;
+</span></span><span style=display:flex><span>            server?.Stop();
+</span></span><span style=display:flex><span>            UpdateStatus(<span style=color:#e6db74>&#34;服务器已停止&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> HandleClient(TcpClient client)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 获取网络流</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>using</span> (NetworkStream stream = client.GetStream())
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>byte</span>[] buffer = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[<span style=color:#ae81ff>1024</span>];
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>int</span> bytesRead;
+</span></span><span style=display:flex><span>                    
+</span></span><span style=display:flex><span>                    <span style=color:#75715e>// 读取客户端发送的数据</span>
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>while</span> ((bytesRead = stream.Read(buffer, <span style=color:#ae81ff>0</span>, buffer.Length)) != <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>                    {
+</span></span><span style=display:flex><span>                        <span style=color:#75715e>// 转换为字符串</span>
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>string</span> clientMessage = Encoding.UTF8.GetString(buffer, <span style=color:#ae81ff>0</span>, bytesRead);
+</span></span><span style=display:flex><span>                        UpdateStatus(<span style=color:#e6db74>$&#34;收到消息: {clientMessage}&#34;</span>);
+</span></span><span style=display:flex><span>                        
+</span></span><span style=display:flex><span>                        <span style=color:#75715e>// 追加OK并转换为字节数组</span>
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>string</span> response = <span style=color:#e6db74>$&#34;{clientMessage}OK&#34;</span>;
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>byte</span>[] responseBytes = Encoding.UTF8.GetBytes(response);
+</span></span><span style=display:flex><span>                        
+</span></span><span style=display:flex><span>                        <span style=color:#75715e>// 发送回复</span>
+</span></span><span style=display:flex><span>                        stream.Write(responseBytes, <span style=color:#ae81ff>0</span>, responseBytes.Length);
+</span></span><span style=display:flex><span>                        UpdateStatus(<span style=color:#e6db74>$&#34;已回复: {response}&#34;</span>);
+</span></span><span style=display:flex><span>                    }
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>                
+</span></span><span style=display:flex><span>                UpdateStatus(<span style=color:#e6db74>&#34;客户端已断开连接&#34;</span>);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>catch</span> (Exception ex)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                UpdateStatus(<span style=color:#e6db74>$&#34;客户端处理错误: {ex.Message}&#34;</span>);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>finally</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 关闭客户端连接</span>
+</span></span><span style=display:flex><span>                client.Close();
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 更新状态显示（跨线程安全）</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> UpdateStatus(<span style=color:#66d9ef>string</span> message)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (InvokeRequired)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                Invoke(<span style=color:#66d9ef>new</span> Action&lt;<span style=color:#66d9ef>string</span>&gt;(UpdateStatus), message);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 显示日志信息</span>
+</span></span><span style=display:flex><span>            txtLog.AppendText(<span style=color:#e6db74>$&#34;{DateTime.Now:HH:mm:ss} {message}\r\n&#34;</span>);
+</span></span><span style=display:flex><span>            txtLog.ScrollToCaret();
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 窗体关闭时停止服务器</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> MainForm_FormClosing(<span style=color:#66d9ef>object</span> sender, FormClosingEventArgs e)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            StopTcpServer();
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#region</span> <span style=color:#960050;background-color:#1e0010>自动生成的控件定义</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> TextBox txtLog;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> Button buttonTestSer;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> TextBox txtPort;
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#endregion</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>    
+</span></span></code></pre></div><p>运行</p><p>XX:52:09 服务器已启动，监听端口: 8881</p><h1 id=连接串口服务器>连接串口服务器<a hidden class=anchor aria-hidden=true href=#连接串口服务器>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>void</span> buttonCon1_Click(<span style=color:#66d9ef>object</span> sender, EventArgs e)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>string</span> ip1 = textBoxIP1.Text;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>string</span> port1 = textBoxPort1.Text;
+</span></span><span style=display:flex><span>            <span style=color:#75715e>//MessageBox.Show(ip1 + &#34;:&#34;+port1);</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 验证输入</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>string</span>.IsNullOrWhiteSpace(ip1) || <span style=color:#66d9ef>string</span>.IsNullOrWhiteSpace(port1))
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                MessageBox.Show(<span style=color:#e6db74>&#34;请输入IP地址和端口号&#34;</span>, <span style=color:#e6db74>&#34;输入错误&#34;</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (!<span style=color:#66d9ef>int</span>.TryParse(port1, <span style=color:#66d9ef>out</span> <span style=color:#66d9ef>int</span> port) || port &lt; <span style=color:#ae81ff>1</span> || port &gt; <span style=color:#ae81ff>65535</span>)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                MessageBox.Show(<span style=color:#e6db74>&#34;请输入有效的端口号(1-65535)&#34;</span>, <span style=color:#e6db74>&#34;输入错误&#34;</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 创建TCP客户端并连接服务器</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>using</span> (TcpClient client = <span style=color:#66d9ef>new</span> TcpClient())
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    <span style=color:#75715e>// 异步连接，避免UI卡顿</span>
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>await</span> client.ConnectAsync(ip1, port);
+</span></span><span style=display:flex><span>                    MessageBox.Show(<span style=color:#e6db74>$&#34;已成功连接到 {ip1}:{port}&#34;</span>, <span style=color:#e6db74>&#34;连接成功&#34;</span>, MessageBoxButtons.OK, MessageBoxIcon.Information);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                    <span style=color:#75715e>// 准备要发送的消息</span>
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>string</span> message = <span style=color:#e6db74>&#34;Hello from client!&#34;</span>;
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>byte</span>[] data = System.Text.Encoding.UTF8.GetBytes(message);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                    <span style=color:#75715e>// 获取网络流并发送数据</span>
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>using</span> (NetworkStream stream = client.GetStream())
+</span></span><span style=display:flex><span>                    {
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>await</span> stream.WriteAsync(data, <span style=color:#ae81ff>0</span>, data.Length);
+</span></span><span style=display:flex><span>                        MessageBox.Show(<span style=color:#e6db74>$&#34;已发送消息: {message}&#34;</span>, <span style=color:#e6db74>&#34;发送成功&#34;</span>, MessageBoxButtons.OK, MessageBoxIcon.Information);
+</span></span><span style=display:flex><span>                    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                    <span style=color:#75715e>// 发送完成后关闭连接</span>
+</span></span><span style=display:flex><span>                    client.Close();
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>catch</span> (Exception ex)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                MessageBox.Show(<span style=color:#e6db74>$&#34;连接或发送失败: {ex.Message}&#34;</span>, <span style=color:#e6db74>&#34;错误&#34;</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span></code></pre></div><h1 id=优化-发送消息与线程安全>优化 发送消息与线程安全<a hidden class=anchor aria-hidden=true href=#优化-发送消息与线程安全>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>    <span style=color:#66d9ef>private</span> TcpClient client;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> NetworkStream stream;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>void</span> buttonCon1_Click(<span style=color:#66d9ef>object</span> sender, EventArgs e)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>string</span> ip1 = textBoxIP1.Text;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>string</span> port1 = textBoxPort1.Text;
+</span></span><span style=display:flex><span>            <span style=color:#75715e>//MessageBox.Show(ip1 + &#34;:&#34;+port1);</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 验证输入</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>string</span>.IsNullOrWhiteSpace(ip1) || <span style=color:#66d9ef>string</span>.IsNullOrWhiteSpace(port1))
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                MessageBox.Show(<span style=color:#e6db74>&#34;请输入IP地址和端口号&#34;</span>, <span style=color:#e6db74>&#34;输入错误&#34;</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (!<span style=color:#66d9ef>int</span>.TryParse(port1, <span style=color:#66d9ef>out</span> <span style=color:#66d9ef>int</span> port) || port &lt; <span style=color:#ae81ff>1</span> || port &gt; <span style=color:#ae81ff>65535</span>)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                MessageBox.Show(<span style=color:#e6db74>&#34;请输入有效的端口号(1-65535)&#34;</span>, <span style=color:#e6db74>&#34;输入错误&#34;</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                client = <span style=color:#66d9ef>new</span> TcpClient();
+</span></span><span style=display:flex><span>                    <span style=color:#75715e>// 异步连接，避免UI卡顿</span>
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>await</span> client.ConnectAsync(ip1, port);
+</span></span><span style=display:flex><span>                    MessageBox.Show(<span style=color:#e6db74>$&#34;已成功连接到 {ip1}:{port}&#34;</span>, <span style=color:#e6db74>&#34;连接成功&#34;</span>, MessageBoxButtons.OK, MessageBoxIcon.Information);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>catch</span> (Exception ex)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                MessageBox.Show(<span style=color:#e6db74>$&#34;连接或发送失败: {ex.Message}&#34;</span>, <span style=color:#e6db74>&#34;错误&#34;</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>void</span> SendMsg1(<span style=color:#66d9ef>string</span> str)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (client == <span style=color:#66d9ef>null</span> || !client.Connected)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                UpdateStatus(<span style=color:#e6db74>&#34;未连接到服务器，请先建立连接&#34;</span>);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>string</span> message = str;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 不要使用 using，保持流的持续打开</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (stream == <span style=color:#66d9ef>null</span>)
+</span></span><span style=display:flex><span>                    stream = client.GetStream();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 发送消息</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>byte</span>[] sendData = System.Text.Encoding.UTF8.GetBytes(message);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>await</span> stream.WriteAsync(sendData, <span style=color:#ae81ff>0</span>, sendData.Length);
+</span></span><span style=display:flex><span>                UpdateStatus(<span style=color:#e6db74>$&#34;已发送: {message}&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// 接收服务器响应</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>byte</span>[] receiveBuffer = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[<span style=color:#ae81ff>1024</span>];
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> bytesRead = <span style=color:#66d9ef>await</span> stream.ReadAsync(receiveBuffer, <span style=color:#ae81ff>0</span>, receiveBuffer.Length);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>string</span> response = System.Text.Encoding.UTF8.GetString(receiveBuffer, <span style=color:#ae81ff>0</span>, bytesRead);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                UpdateStatus(<span style=color:#e6db74>$&#34;收到响应: {response}&#34;</span>);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>catch</span> (Exception ex)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                UpdateStatus(<span style=color:#e6db74>$&#34;发送失败: {ex.Message}&#34;</span>);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 建议添加一个专门的关闭连接方法</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> CloseConnection()
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (stream != <span style=color:#66d9ef>null</span>)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                stream.Dispose();
+</span></span><span style=display:flex><span>                stream = <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (client != <span style=color:#66d9ef>null</span>)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                client.Close();
+</span></span><span style=display:flex><span>                client = <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>                UpdateStatus(<span style=color:#e6db74>&#34;连接已关闭&#34;</span>);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 更新状态显示（跨线程安全）</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>void</span> UpdateStatus(<span style=color:#66d9ef>string</span> message)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (InvokeRequired)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                Invoke(<span style=color:#66d9ef>new</span> Action&lt;<span style=color:#66d9ef>string</span>&gt;(UpdateStatus), message);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 显示日志信息</span>
+</span></span><span style=display:flex><span>            textBoxLog.AppendText(<span style=color:#e6db74>$&#34;{DateTime.Now:HH:mm:ss} {message}\r\n&#34;</span>);
+</span></span><span style=display:flex><span>            textBoxLog.ScrollToCaret();
+</span></span><span style=display:flex><span>        }
+</span></span></code></pre></div><h1 id=crc-16-modbus计算>CRC-16-MODBUS计算<a hidden class=anchor aria-hidden=true href=#crc-16-modbus计算>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>string</span> CalculateModbusCRC16(<span style=color:#66d9ef>string</span> hexString)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 去除字符串中的空格</span>
+</span></span><span style=display:flex><span>            hexString = hexString.Replace(<span style=color:#e6db74>&#34; &#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 验证输入的16进制字符串是否合法</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (hexString.Length % <span style=color:#ae81ff>2</span> != <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> ArgumentException(<span style=color:#e6db74>&#34;Invalid hex string length&#34;</span>);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 将16进制字符串转换为字节数组</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>byte</span>[] byteArray = <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span>[hexString.Length / <span style=color:#ae81ff>2</span>];
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; hexString.Length; i += <span style=color:#ae81ff>2</span>)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                byteArray[i / <span style=color:#ae81ff>2</span>] = Convert.ToByte(hexString.Substring(i, <span style=color:#ae81ff>2</span>), <span style=color:#ae81ff>16</span>);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 初始化CRC值</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>ushort</span> crc = <span style=color:#ae81ff>0xFFFF</span>;  <span style=color:#75715e>// CRC初始值为0xFFFF</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// CRC16算法</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>foreach</span> (<span style=color:#66d9ef>byte</span> b <span style=color:#66d9ef>in</span> byteArray)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                crc ^= b;  <span style=color:#75715e>// 对当前字节和CRC值进行异或操作</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j = <span style=color:#ae81ff>0</span>; j &lt; <span style=color:#ae81ff>8</span>; j++)  <span style=color:#75715e>// 遍历每一个比特位</span>
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>if</span> ((crc &amp; <span style=color:#ae81ff>0x0001</span>) != <span style=color:#ae81ff>0</span>)  <span style=color:#75715e>// 检查最低位是否为1</span>
+</span></span><span style=display:flex><span>                    {
+</span></span><span style=display:flex><span>                        crc = (<span style=color:#66d9ef>ushort</span>)((crc &gt;&gt; <span style=color:#ae81ff>1</span>) ^ <span style=color:#ae81ff>0xA001</span>);  <span style=color:#75715e>// 如果是1，右移并进行多项式异或</span>
+</span></span><span style=display:flex><span>                    }
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>                    {
+</span></span><span style=display:flex><span>                        crc &gt;&gt;= <span style=color:#ae81ff>1</span>;  <span style=color:#75715e>// 如果不是1，只右移</span>
+</span></span><span style=display:flex><span>                    }
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 返回CRC值，低字节和高字节(小端字节序)</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>byte</span> lowByte = (<span style=color:#66d9ef>byte</span>)(crc &amp; <span style=color:#ae81ff>0xFF</span>);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>byte</span> highByte = (<span style=color:#66d9ef>byte</span>)((crc &gt;&gt; <span style=color:#ae81ff>8</span>) &amp; <span style=color:#ae81ff>0xFF</span>);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#e6db74>$&#34;{lowByte:X2}{highByte:X2}&#34;</span>;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>           <span style=color:#75715e>// 使用示例</span>
+</span></span><span style=display:flex><span>           <span style=color:#66d9ef>string</span> crc = CalculateModbusCRC16(<span style=color:#e6db74>&#34;0106000B2710&#34;</span>);
+</span></span><span style=display:flex><span>           Console.WriteLine(crc);
+</span></span><span style=display:flex><span>           
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>CRC16</span>(<span style=color:#a6e22e>hexString</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 去除字符串中的空格
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>hexString</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>hexString</span>.<span style=color:#a6e22e>replace</span>(<span style=color:#e6db74>/\s+/g</span>, <span style=color:#e6db74>&#39;&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 验证输入的16进制字符串是否合法
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>hexString</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>!==</span> <span style=color:#ae81ff>0</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> Error(<span style=color:#e6db74>&#34;Invalid hex string length&#34;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 将16进制字符串转换为字节数组
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>byteArray</span> <span style=color:#f92672>=</span> [];
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>hexString</span>.<span style=color:#a6e22e>length</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>+=</span> <span style=color:#ae81ff>2</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>byte</span> <span style=color:#f92672>=</span> parseInt(<span style=color:#a6e22e>hexString</span>.<span style=color:#a6e22e>substr</span>(<span style=color:#a6e22e>i</span>, <span style=color:#ae81ff>2</span>), <span style=color:#ae81ff>16</span>);
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>byteArray</span>.<span style=color:#a6e22e>push</span>(<span style=color:#66d9ef>byte</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 初始化CRC值
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>crc</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0xFFFF</span>;  <span style=color:#75715e>// CRC初始值为0xFFFF
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// CRC16算法
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>byteArray</span>.<span style=color:#a6e22e>length</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>crc</span> <span style=color:#f92672>^=</span> <span style=color:#a6e22e>byteArray</span>[<span style=color:#a6e22e>i</span>];  <span style=color:#75715e>// 对当前字节和CRC值进行异或操作
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>j</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>j</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>8</span>; <span style=color:#a6e22e>j</span><span style=color:#f92672>++</span>) {  <span style=color:#75715e>// 遍历每一个比特位
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>            <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>crc</span> <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0x0001</span>) {  <span style=color:#75715e>// 检查最低位是否为1
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>                <span style=color:#a6e22e>crc</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>crc</span> <span style=color:#f92672>&gt;&gt;</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>^</span> <span style=color:#ae81ff>0xA001</span>;  <span style=color:#75715e>// 如果是1，右移并进行多项式异或
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>            } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>crc</span> <span style=color:#f92672>&gt;&gt;=</span> <span style=color:#ae81ff>1</span>;  <span style=color:#75715e>// 如果不是1，只右移
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 返回CRC值
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>//return ((crc &gt;&gt; 8) &amp; 0xFF).toString(16).padStart(2, &#39;0&#39;) + (crc &amp; 0xFF).toString(16).padStart(2, &#39;0&#39;);
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 返回CRC值，低字节和高字节(小端字节序)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>return</span> (<span style=color:#a6e22e>crc</span> <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0xFF</span>).<span style=color:#a6e22e>toString</span>(<span style=color:#ae81ff>16</span>).<span style=color:#a6e22e>padStart</span>(<span style=color:#ae81ff>2</span>, <span style=color:#e6db74>&#39;0&#39;</span>).<span style=color:#a6e22e>toUpperCase</span>() <span style=color:#f92672>+</span> ((<span style=color:#a6e22e>crc</span> <span style=color:#f92672>&gt;&gt;</span> <span style=color:#ae81ff>8</span>) <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0xFF</span>).<span style=color:#a6e22e>toString</span>(<span style=color:#ae81ff>16</span>).<span style=color:#a6e22e>padStart</span>(<span style=color:#ae81ff>2</span>, <span style=color:#e6db74>&#39;0&#39;</span>).<span style=color:#a6e22e>toUpperCase</span>();
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 获取输入的16进制字符串（假设msg.payload是输入的16进制字符串）
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>hexString</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>msg</span>.<span style=color:#a6e22e>payload</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 计算CRC
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>crc</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>calculateModbusCRC16</span>(<span style=color:#a6e22e>hexString</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>msg</span>.<span style=color:#a6e22e>payload</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>msg</span>.<span style=color:#a6e22e>payload</span>.<span style=color:#a6e22e>replace</span>(<span style=color:#e6db74>/\s+/g</span>, <span style=color:#e6db74>&#39;&#39;</span>) <span style=color:#f92672>+</span> <span style=color:#a6e22e>crc</span>; 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 返回计算后的消息
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>return</span> <span style=color:#a6e22e>msg</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//01 10 00 0A 00 02 04 13 88 13 88   0110000A00020413881388
+</span></span></span></code></pre></div><h1 id=16进制处理>16进制处理<a hidden class=anchor aria-hidden=true href=#16进制处理>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>         <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>string</span> ToCustomHex(<span style=color:#66d9ef>int</span> number)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span> result = number + <span style=color:#ae81ff>9</span>;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> result.ToString(<span style=color:#e6db74>&#34;X4&#34;</span>); <span style=color:#75715e>// 转为4位十六进制，不足补0</span>
+</span></span><span style=display:flex><span>	}
+</span></span></code></pre></div><h1 id=参数算法>参数算法<a hidden class=anchor aria-hidden=true href=#参数算法>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span>            <span style=color:#66d9ef>int</span> nv1 = Convert.ToInt32(sv1);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span> nl1 = Convert.ToInt32(sl1);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>string</span> slu1 = ColorCHelper.ToCustomHex(nl1);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>string</span> svv1 = <span style=color:#e6db74>&#34;&#34;</span>;<span style=color:#75715e>// ColorCHelper.ToCustomHex(nv1);</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (nv1 == <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                svv1 = <span style=color:#e6db74>&#34;0000&#34;</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (nv1 == <span style=color:#ae81ff>5</span>)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                svv1 = <span style=color:#e6db74>&#34;1388&#34;</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (nv1 == <span style=color:#ae81ff>10</span>)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                svv1 = <span style=color:#e6db74>&#34;2710&#34;</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            List&lt;<span style=color:#66d9ef>string</span> &gt; strlist = <span style=color:#66d9ef>new</span> List&lt;<span style=color:#66d9ef>string</span>&gt;();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>string</span> stemp11 = <span style=color:#e6db74>&#34;&#34;</span>;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>1</span>; i &lt;=nl1; i++)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#75715e>//f4</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>string</span> stemp = <span style=color:#e6db74>&#34;0106&#34;</span>;<span style=color:#75715e>//设备</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>string</span> inti1 = ColorCHelper.ToCustomHex(i);
+</span></span><span style=display:flex><span>                
+</span></span><span style=display:flex><span>                stemp = stemp + inti1 + svv1;<span style=color:#75715e>//4+4+4</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>string</span> s1 = ColorCHelper.CalculateModbusCRC16(stemp);
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>string</span> srs1 = stemp + s1;
+</span></span><span style=display:flex><span>                strlist.Add(srs1);
+</span></span><span style=display:flex><span>                stemp11 +=  srs1+<span style=color:#e6db74>&#34;,&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            }
+</span></span></code></pre></div><h1 id=crc-checkbox>CRC CheckBox<a hidden class=anchor aria-hidden=true href=#crc-checkbox>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span> <span style=color:#75715e>// 清空旧的内容</span>
+</span></span><span style=display:flex><span>    panelZ.Controls.Clear();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> startY = <span style=color:#ae81ff>10</span>;      <span style=color:#75715e>// 起始 Y 坐标</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> spacing = <span style=color:#ae81ff>30</span>;     <span style=color:#75715e>// 每个 CheckBox 的间距</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i = <span style=color:#ae81ff>0</span>; i &lt; items.Count; i++)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        CheckBox chk = <span style=color:#66d9ef>new</span> CheckBox();
+</span></span><span style=display:flex><span>        chk.Text = items[i];
+</span></span><span style=display:flex><span>        chk.AutoSize = <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>        chk.Location = <span style=color:#66d9ef>new</span> Point(<span style=color:#ae81ff>10</span>, startY + i * spacing);
+</span></span><span style=display:flex><span>        chk.Tag = items[i]; <span style=color:#75715e>// 可选：存储原始值</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 绑定事件（如果需要）</span>
+</span></span><span style=display:flex><span>        chk.CheckedChanged += (sender, e) =&gt;
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>var</span> c = sender <span style=color:#66d9ef>as</span> CheckBox;
+</span></span><span style=display:flex><span>            Console.WriteLine(<span style=color:#e6db74>$&#34;[{c.Text}] 状态: {c.Checked}&#34;</span>);
+</span></span><span style=display:flex><span>        };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 添加到 panelZ</span>
+</span></span><span style=display:flex><span>        panelZ.Controls.Add(chk);
+</span></span><span style=display:flex><span>    }
+</span></span></code></pre></div><h1 id=next>Next<a hidden class=anchor aria-hidden=true href=#next>#</a></h1><p>Send</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://qfsyso.github.io/tags/c%23/>C#</a></li></ul><nav class=paginav><a class=next href=https://qfsyso.github.io/posts/rxsg2/><span class=title>Next »</span><br><span>RXSG2</span></a></nav><ul class=share-buttons><li><a target=_blank rel="noopener noreferrer" aria-label="share TCP Color Calibration on x" href="https://x.com/intent/tweet/?text=TCP%20Color%20Calibration&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2ftcp-color-calibration%2f&amp;hashtags=C%23"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share TCP Color Calibration on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2ftcp-color-calibration%2f&amp;title=TCP%20Color%20Calibration&amp;summary=TCP%20Color%20Calibration&amp;source=https%3a%2f%2fqfsyso.github.io%2fposts%2ftcp-color-calibration%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share TCP Color Calibration on reddit" href="https://reddit.com/submit?url=https%3a%2f%2fqfsyso.github.io%2fposts%2ftcp-color-calibration%2f&title=TCP%20Color%20Calibration"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share TCP Color Calibration on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fqfsyso.github.io%2fposts%2ftcp-color-calibration%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share TCP Color Calibration on whatsapp" href="https://api.whatsapp.com/send?text=TCP%20Color%20Calibration%20-%20https%3a%2f%2fqfsyso.github.io%2fposts%2ftcp-color-calibration%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share TCP Color Calibration on telegram" href="https://telegram.me/share/url?text=TCP%20Color%20Calibration&amp;url=https%3a%2f%2fqfsyso.github.io%2fposts%2ftcp-color-calibration%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentcolor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share TCP Color Calibration on ycombinator" href="https://news.ycombinator.com/submitlink?t=TCP%20Color%20Calibration&u=https%3a%2f%2fqfsyso.github.io%2fposts%2ftcp-color-calibration%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentcolor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></li></ul></footer></article></main><footer class=footer><div class=wtime><div class=wtime2>CST<span id=beijingTime></span> GMT <span id=londonTime></span> EST <span id=newYorkTime></span> PST<span id=losAngelesTime></span></div><div class=wtime2 style=display:none>东京<span id=tokyoTime></span></div><div class=wtime2 style=display:none>欧洲-巴黎<span id=parisTime></span></div><div class=wtime2 style=display:none>UTC<span id=utcTime></span></div></div><span>&copy; 2025 <a href=https://qfsyso.github.io/>MLOG</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a>
+</span><script type=text/javascript>const timeZoneOffsets={beijing:8,tokyo:9,paris:[1,2],london:[0,1],newYork:[-5,-4],losAngeles:[-8,-7]};function padZero(e){return e<10?"0"+e:e}function formatTime(e){const t=e.getFullYear(),n=padZero(e.getMonth()+1),s=padZero(e.getDate()),o=padZero(e.getHours()),i=padZero(e.getMinutes()),a=padZero(e.getSeconds());return`${t}-${n}-${s} ${o}:${i}:${a}`}function isDaylightSavingTime(e,t){const o=e.getMonth(),n=new Date(e.getFullYear(),3,8,2,0,0),s=new Date(e.getFullYear(),10,1,2,0,0);return(t==="paris"||t==="london"||t==="newYork"||t==="losAngeles")&&e>=n&&e<s}function updateTime(){const e=new Date,t=new Date(e.getUTCFullYear(),e.getUTCMonth(),e.getUTCDate(),e.getUTCHours(),e.getUTCMinutes(),e.getUTCSeconds()),n=formatTime(t);document.getElementById("utcTime").innerHTML=n;for(const n in timeZoneOffsets){const e=timeZoneOffsets[n];let s;Array.isArray(e)?s=isDaylightSavingTime(t,n)?e[1]:e[0]:s=e;const o=new Date(t.getTime()+s*60*60*1e3);document.getElementById(n+"Time").innerHTML=formatTime(o)}setTimeout(updateTime,1e3)}window.onload=function(){updateTime()};function notfound(e){var n=e.src,t=n.split("/"),s=t[t.length-1];e.src="https://47.115.223.75:8080/group1/v2/"+s+"?timestamp="+Date.now(),e.onerror=null}</script></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

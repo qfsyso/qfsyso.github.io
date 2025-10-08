@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>AI on MLOG</title><link>https://qfsyso.github.io/tags/ai/</link><description>Recent content in AI on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Sat, 09 Aug 2025 02:24:24 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>WAV STT</title><link>https://qfsyso.github.io/posts/wav-stt/</link><pubDate>Sat, 09 Aug 2025 02:24:24 +0800</pubDate><guid>https://qfsyso.github.io/posts/wav-stt/</guid><description>WAV STT Python Flask 框架
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>AI on MLOG</title><link>https://qfsyso.github.io/tags/ai/</link><description>Recent content in AI on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Sun, 21 Sep 2025 23:20:30 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/ai/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://qfsyso.github.io/posts/</link><pubDate>Sun, 21 Sep 2025 23:20:30 +0800</pubDate><guid>https://qfsyso.github.io/posts/</guid><description>基于仓颉编程语言开发AI聊天机器人技术指南
+一、仓颉环境准备 1.1 仓颉版本升级（可选） 当前案例基于仓颉1.0.0开发，需确保开发环境版本一致：
+# 查看当前版本 cjc -v ​​升级方案选择：​​
+​​方式一：脚本升级​​（推荐） sudo wget -P /home/developer/ https://dtse-mirrors.obs.cn-north-4.myhuaweicloud.com/case/0051/cangjie1.0.0.sh \ &amp;amp;&amp;amp; sudo chmod +x /home/developer/cangjie1.0.0.sh \ &amp;amp;&amp;amp; source /home/developer/cangjie1.0.0.sh 升级后需调整IDE配置：
+删除已打开的IDE终端
+设置路径：CangjieSdkPath.CJNativeBackend→ /home/developer/cangjie
+新建工程时SDK路径同步修改
+​​方式二：云主机重置​​ 选择西南-贵阳一区域的最新镜像重置云主机（注意备份数据）
+1.2 CodeArts IDE for Cangjie特性 ​​核心功能​​：语法高亮/错误诊断/自动补全/反向调试
+​​跨平台支持​​：预置云主机环境，支持Windows x64本地安装
+​​调试模式​​：
+​​Launch模式​​：启动调试器同时加载程序
+​​Attach模式​​：附加到运行中的进程
+​​反向调试​​：基于记录重放查看历史调试信息
+二、智能聊天助手开发流程 2.1 创建仓颉项目 打开IDE → 新建工程 → 选择executable产物类型
+修改main.cj基础代码：
+package demo func println_add(a: Int64, b:Int64): Int64 { let number: Int64 = a+b println(number) return number } main(): Int64 { println(&amp;#34;hello world&amp;#34;) println_add(3,4) println(&amp;#34;hello Cangjie&amp;#34;) return 0 } 2.</description></item><item><title>Dify AI</title><link>https://qfsyso.github.io/posts/dify-ai/</link><pubDate>Fri, 19 Sep 2025 21:29:52 +0800</pubDate><guid>https://qfsyso.github.io/posts/dify-ai/</guid><description>基于 DeepSeek+Dify 构建财务报表分析模型 一、案例介绍 本案例通过实操，助力开发者深入了解如何运用 Dify 和 DeepSeek 构建财务报表分析模型，切实体验 Dify 在 AI 应用开发过程中的便捷性。
+二、案例内容 （一）概述 Dify：一款面向开发者与企业的 AI 应用开发平台，致力于降低 AI 技术的使用门槛。借助可视化工作流编排以及低代码开发模式，用户无需具备深厚技术背景，就能快速完成 AI 驱动智能应用的构建、部署与管理工作。
+###（二）获取模型服务
+1. 领取模型 本案例中，需使用华为开发者空间登录 ModelArts Studio（MaaS）平台以获取模型服务。MaaS 平台是华为云推出的大模型即服务平台，能够一站式对业界主流开源大模型进行部署托管，同时开放大模型 API 服务，可结合业界主流 Agent 开发框架，轻松构建 AI Agent 应用。具体操作步骤如下： 在开发者空间的 Firefox 浏览器中，输入华为云网址：https://www.huaweicloud.com/，进入华为云首页。 在华为云首页右上方点击 “登录”，在弹出的对话框中输入用户名和密码完成登录。 登录成功后，在华为云首页依次选择 “产品”&amp;gt;“人工智能”&amp;gt;“AI 基础平台”&amp;gt;“ModelArts Studio 大模型及服务平台”，进入 ModelArts Studio 页面。 进入 ModelArts Studio 页面后，点击进入控制台。 进入 ModelArts Studio 控制台后，首先在左上角地域选择 “西南 - 贵阳一”，随后点击 “在线推理”&amp;gt;“免费服务”。 点击 “领取额度”，额度领取成功后需等待 2-3 分钟生效，之后点击 “调用说明”，获取模型名称以及 API 地址，本案例选择领取 DeepSeek-R1-32K。 点击 “调用说明” 后，即可获取到模型名称、API 地址。</description></item><item><title>WAV STT</title><link>https://qfsyso.github.io/posts/wav-stt/</link><pubDate>Sat, 09 Aug 2025 02:24:24 +0800</pubDate><guid>https://qfsyso.github.io/posts/wav-stt/</guid><description>WAV STT Python Flask 框架
 SQLite 做存储
 支持批量上传音频文件
 后端调用开源 STT 库

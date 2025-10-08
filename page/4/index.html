@@ -1,100 +1,93 @@
 <!doctype html><html lang=en dir=auto><head><meta name=generator content="Hugo 0.126.3"><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>MLOG</title>
-<meta name=description content="A simple blog "><meta name=author content="dwd"><link rel=canonical href=https://qfsyso.github.io/><link crossorigin=anonymous href=/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF+13Dyqob6ASlTrTye8=" rel="preload stylesheet" as=style><link rel=icon href=https://qfsyso.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://qfsyso.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://qfsyso.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://qfsyso.github.io/apple-touch-icon.png><link rel=mask-icon href=https://qfsyso.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://qfsyso.github.io/index.xml><link rel=alternate type=application/json href=https://qfsyso.github.io/index.json><link rel=alternate hreflang=en href=https://qfsyso.github.io/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://qfsyso.github.io/"><meta property="og:site_name" content="MLOG"><meta property="og:title" content="MLOG"><meta property="og:description" content="A simple blog "><meta property="og:locale" content="zh-CN"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="MLOG"><meta name=twitter:description content="A simple blog "><script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","name":"MLOG","url":"https://qfsyso.github.io/","description":"A simple blog ","logo":"https://qfsyso.github.io/favicon.ico","sameAs":[]}</script></head><body class=list id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://qfsyso.github.io/ accesskey=h title="MLOG (Alt + H)">MLOG</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://qfsyso.github.io/posts/ title=Archive><span>Archive</span></a></li><li><a href=https://qfsyso.github.io/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://qfsyso.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li></ul></nav></header><main class=main><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>NodeRed Test YTB Change NetWrok</h2></header><div class=entry-content><p>Setup Node-RED 一、前提条件：安装 Node.js Node-RED 需要 Node.js 环境，需先安装 Node.js。
-打开 Node.js 官网：https://nodejs.org/ 下载并安装 LTS（长期支持）版本 安装完成后打开终端（Win + X → 终端），输入以下命令检查是否安装成功： node -v npm -v 二、全局安装 Node-RED 在命令行中执行以下命令安装 Node-RED：
-npm install -g --unsafe-perm node-red 说明：
--g：表示全局安装 --unsafe-perm：解决某些系统中权限问题 三、启动 Node-RED 安装完成后，在终端中运行：
-node-red 输出类似以下内容：
-Server now running at http://127.0.0.1:1880/ 四、访问 Node-RED 编辑器 打开浏览器访问：
-http://localhost:1880 即可进入图形化流程编辑界面。
-🛠️ 五、可选：创建桌面快捷方式（.bat 启动脚本） 创建一个文本文件，内容如下：
-@echo off title Node-RED node-red pause 保存为 node-red.bat
-双击即可启动 Node-RED
-六、（可选）将 Node-RED 作为后台服务运行 你可以使用如下工具实现后台服务：
-pm2（推荐）：适用于 Node....</p></div><footer class=entry-footer><span title='2025-05-25 13:07:23 +0800 +0800'>May 25, 2025</span>&nbsp;·&nbsp;16 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to NodeRed Test YTB Change NetWrok" href=https://qfsyso.github.io/posts/nodered-test-ytb-change-netwrok/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Snapdrop</h2></header><div class=entry-content><p>Snapdrop：开源浏览器版 AirDrop 文件传输工具 Snapdrop 是一个纯浏览器实现的开源局域网文件传输工具，基于 WebRTC 和 WebSocket 技术，提供类似 Apple AirDrop 的跨平台即时文件共享体验。
-🚀 Snapdrop 的优势 设备自动发现：同一局域网内自动识别设备，无需手动连接或配对。 无平台限制：只要能打开浏览器（Chrome / Safari / Edge / Firefox 等）即可使用。 匿名上传与下载：无需登录，匿名操作保障隐私。 端到端加密：基于 WebRTC 的 DTLS 和 SDES 协议，确保传输安全。 PWA 支持：可添加到手机主屏，像 App 一样快捷打开。 ⚙️ 快速使用方式 在线使用 直接访问 https://snapdrop.net 确保设备处于同一 Wi-Fi 或局域网 浏览器打开 Snapdrop 网页 选择设备 → 上传文件 → 对方点击下载即可 自托管部署（增强隐私） 方式一：手动部署 git clone https://github.com/Snapdrop/Snapdrop.git cd Snapdrop npm install npm start 访问：http://localhost:3000
-方式二：使用 Docker 一键部署 docker run -d --name=snapdrop -p 80:80 -p 443:443 \ -v /path/to/config:/config \ lscr....</p></div><footer class=entry-footer><span title='2025-05-23 00:31:40 +0800 +0800'>May 23, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Snapdrop" href=https://qfsyso.github.io/posts/snapdrop/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Caddy</h2></header><div class=entry-content><p>Debian 系统部署 Caddy Web 服务器的详细指南 本文档提供了在 Debian 系统上安装和配置 Caddy Web 服务器的步骤，包括多种安装方法、服务管理、HTTPS 配置、高级功能以及注意事项。此外，还对比了 Caddy 与 Nginx 的主要优势，并介绍了 Caddy 的一些高级特性。
-一、安装方法 APT 存储库安装（推荐） 更新系统：
-sudo apt update && sudo apt upgrade -y 添加密钥和存储库：
-sudo apt install -y debian-archive-keyring apt-transport-https curl curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list 安装 Caddy：
-sudo apt update && sudo apt install caddy 快速脚本安装 curl https://getcaddy.com | bash -s personal http....</p></div><footer class=entry-footer><span title='2025-05-23 00:21:01 +0800 +0800'>May 23, 2025</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Caddy" href=https://qfsyso.github.io/posts/caddy/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>ZhangZhou PlanB</h2></header><div class=entry-content><p>惠州 d1 惠州一日游推荐路线（经典版） d1 关键词：自然风景 + 历史文化 + 城市慢游
-早上7:00-8:00出发 高铁到达后可打车或使用共享电单车前往景区。
-行程安排： 上午：惠州西湖 + 苏东坡纪念馆 📍【惠州西湖】是国家5A级景区，素有“小西湖”之称。
-必看景点：苏堤、平湖秋月、泗洲塔、孤山
-建议可租船游湖（手划船或电动船）
-🏛【苏东坡纪念馆】：了解东坡在惠州的贬谪岁月，免费参观
-🕒 游玩时间：2-2.5小时
-中午：西湖周边午餐 推荐本地小吃：
-梅菜扣肉、东江盐焗鸡、客家酿豆腐、炒米粉
-推荐店铺：阿婆小吃馆、西湖人家、惠州食街
-下午：红花湖骑行 or 逛古街 你可根据兴趣选择以下之一：
-✅ 方案 A：红花湖生态骑行 📍红花湖风景区，环湖绿道约19公里，沿途山林清幽、湖水清澈
-可租自行车/电动车慢骑一圈
-拍照打卡 + 吹风放空都超舒服！
-✅ 方案 B：下埔古村 or 丰渚园闲逛 📍下埔古村：岭南老巷古宅，文艺风浓厚，适合拍照 + 喝咖啡
-📍丰渚园：岭南园林风格+苏式园林结合，门票便宜，人少景美
-傍晚：东江边散步 + 晚餐 可选择回到【东江公园】或【水东街】沿江走走
-看落日 + 东江夜景，特别适合情侣/亲子慢游
-晚餐推荐东江鱼、烧鹅饭、潮汕牛肉火锅
-🏨 返回建议： 可选择高铁 19:00 – 21:00 之间返程
-或者住一晚民宿，第二天去双月湾/巽寮湾（适合两日游延伸）
-💡小贴士 项目 建议 出行工具 高铁 + 滴滴/共享单车为主，方便灵活 衣着 轻便鞋子（西湖、红花湖走路较多） 拍照点 泗洲塔远景、西湖桥影、红花湖湖面...</p></div><footer class=entry-footer><span title='2025-05-22 21:39:50 +0800 +0800'>May 22, 2025</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to ZhangZhou PlanB" href=https://qfsyso.github.io/posts/zhangzhou-planb/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Eat Plan</h2></header><div class=entry-content><p>时间 餐次 食物 参数 热量（大卡） 替换建议 周一 早餐 全麦面包 + 水煮蛋 + 无糖豆浆 + 拌黄瓜 面包40g，鸡蛋50g，豆浆200ml，黄瓜100g，橄榄油5g 约300 面包可换燕麦粥（30g燕麦+150ml牛奶），黄瓜换圣女果100g 周一 午餐 杂粮饭 + 香煎鸡胸肉 + 清炒西兰花 杂粮饭80g（生重），鸡胸肉150g，西兰花200g，橄榄油8g 约500 杂粮饭换糙米饭，鸡胸肉换鲈鱼/瘦牛肉，西兰花换菠菜/油麦菜 周一 晚餐 蒸红薯 + 白灼虾 + 凉拌菠菜 红薯100g，虾80g，菠菜150g，芝麻油3g 约350 红薯换玉米半根，虾换豆腐100g，菠菜换莴笋/绿豆芽 周二 早餐 燕麦粥 + 水煮蛋 + 圣女果 燕麦30g，牛奶150ml，鸡蛋50g，圣女果100g 约280 燕麦换全麦面包2片，圣女果换黄瓜100g 周二 午餐 糙米饭 + 清蒸鲈鱼 + 清炒油麦菜 糙米饭100g（生重），鲈鱼150g，油麦菜200g，橄榄油5g 约520 鲈鱼换巴沙鱼/鸡胸肉，油麦菜换空心菜/西兰花 周二 晚餐 荞麦面 + 卤鸡腿（去皮） + 番茄冬瓜汤 荞麦面50g（干重），鸡腿100g，番茄50g，冬瓜100g，橄榄油3g 约350 荞麦面换魔芋面，鸡腿换虾仁/瘦牛肉，冬瓜汤换紫菜蛋花汤 周三 早餐 全麦三明治 + 无糖酸奶 面包40g，生菜50g，火腿50g，番茄30g，酸奶100g 约320 三明治换包子（全麦素馅80g），酸奶换豆浆200ml 周三 午餐 小米饭 + 瘦牛肉炒青椒 + 凉拌莴笋 小米饭100g（生重），牛肉120g，青椒150g，莴笋150g，橄榄油8g 约550 小米饭换藜麦饭，牛肉换鸡胸肉，青椒换胡萝卜/芹菜 周三 晚餐 蒸土豆 + 豆腐炖白菜 + 清炒绿豆芽 土豆150g，豆腐100g，白菜200g，绿豆芽100g，橄榄油6g 约330 土豆换南瓜，豆腐换鸡蛋1个（蒸蛋），绿豆芽换娃娃菜 周四 早餐 玉米 + 水煮蛋 + 黑咖啡 + 水煮西兰花 玉米100g，鸡蛋50g，西兰花50g 约250 玉米换燕麦粥（30g燕麦），西兰花换黄瓜100g 周四 午餐 意大利面 + 烤鸡胸肉 + 番茄菠菜沙拉 意面80g（干重），鸡胸肉120g，番茄100g，菠菜100g，橄榄油5g 约530 意面换荞麦面，鸡胸肉换鳕鱼，沙拉换清炒菠菜 周四 晚餐 蒸南瓜 + 清炖鲫鱼 + 清炒空心菜 南瓜150g，鲫鱼150g，空心菜200g，橄榄油3g 约380 南瓜换山药，鲫鱼换虾仁/豆腐，空心菜换油菜 周五 早餐 全麦素馅包子 + 茶叶蛋 + 凉拌海带丝 包子80g，鸡蛋50g，海带丝50g 约280 包子换燕麦饼（30g燕麦+鸡蛋1个），海带丝换莴笋100g 周五 午餐 杂粮饭（大米 + 藜麦） + 香煎巴沙鱼 + 蒜蓉西兰花 杂粮饭100g（生重），巴沙鱼150g，西兰花200g，橄榄油5g 约510 巴沙鱼换鲈鱼/鸡胸肉，西兰花换芦笋/生菜 周五 晚餐 燕麦饼 + 虾仁蒸蛋 + 清炒娃娃菜 燕麦30g，鸡蛋50g，虾仁50g，娃娃菜150g，橄榄油3g 约320 燕麦饼换全麦面包1片，虾仁换瘦牛肉，娃娃菜换豆芽 周六 早餐 全麦面包 + 牛油果 + 水煮蛋 + 黄瓜 面包20g，牛油果30g，鸡蛋50g，黄瓜100g 约260 牛油果换无糖酸奶100g，黄瓜换小番茄100g 周六 午餐 糙米饭 + 红烧瘦肉 + 清炒胡萝卜丝 糙米饭80g（生重），瘦猪肉100g，胡萝卜150g，橄榄油3g 约480 瘦肉换鸡胸肉（烤/蒸），胡萝卜换青椒/芹菜 周六 晚餐 魔芋丝结 + 卤牛肉 + 菠菜蛋花汤 魔芋丝100g，牛肉100g，菠菜50g，鸡蛋50g，橄榄油2g 约310 魔芋丝换荞麦面50g，牛肉换虾仁，蛋花汤换冬瓜汤 周日 早餐 小米粥 + 酱牛肉 + 拌莴笋 小米30g，牛肉50g，莴笋100g，橄榄油2g 约220 小米粥换玉米半根，牛肉换水煮蛋1个，莴笋换海带丝 周日 午餐 荞麦面 + 烤鸡胸肉 + 凉拌木耳 荞麦面70g（干重），鸡胸肉120g，木耳100g，橄榄油3g 约490 荞麦面换意大利面，鸡胸肉换瘦牛肉，木耳换黄瓜沙拉 周日 晚餐 蒸山药 + 清蒸虾 + 清炒油菜 山药150g，虾80g，油菜200g，橄榄油5g 约350 山药换红薯，虾换巴沙鱼，油菜换西兰花 使用说明 热量控制：每日总热量约 1500-1700 大卡，可根据体重变化调整主食或蛋白质重量（如体重下降过慢，可减少主食 10-20g / 餐）。 灵活替换：同类别食材（如主食、蛋白质、蔬菜）可按 “替换建议” 自由搭配，避免单调。 烹饪提示：食用油总量建议≤10g / 天，尽量使用橄榄油或菜籽油，避免油炸、糖醋做法。 加餐选项：可在上午 10 点 / 下午 3 点加食低脂酸奶 100g 或 10g 坚果（单独记录热量）。</p></div><footer class=entry-footer><span title='2025-05-21 08:12:26 +0800 +0800'>May 21, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Eat Plan" href=https://qfsyso.github.io/posts/eat-plan/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Honor Of King</h2></header><div class=entry-content><p>镜 一、技能机制解析 被动-铸镜
-攻击目标后触发镜像标记，再次攻击可触发额外伤害并刷新技能CD，刷野/连招时需穿插平A触发被动。 一技能-开锋
-突进并强化普攻，主要位移和起手技能，命中减少冷却时间。 二技能-裂空
-范围伤害+回血+减速，开局优先加点用于续航和快速清野。 三技能-见影
-定身敌人并展开镜像场，本体与镜像协同攻击，核心连招与换位收割技能。 二、出装与铭文推荐 出装方案 核心装备：
-红色打野刀 → 抵抗之靴 → 暗影战斧 → 宗师之力 → 破军 → 碎星锤/名刀 高爆发流：破军+碎星锤瞬秒脆皮 生存调整：敌方控制多时换魔女斗篷，物理爆发高换反伤刺甲 铭文搭配 通用暴击流：
-10隐匿（移速/攻击） + 10鹰眼（穿透） + 2红月8异变（穿透+暴击） 极致爆发流：
-10祸源（暴击率） + 10隐匿 + 10鹰眼 三、连招技巧 基础连招：
-1A2A1A（3级前清野/消耗） 突进收割：
-31A21A（大招起手定身，接技能穿插平A） 飞雷神连招：
-31A2A1A3（镜像场内反复换位，持续刷新技能） 四、打野节奏思路 前期（1-4级） 开局红BUFF：
-点二技能快速清野，利用被动刷新CD提升效率 抢河道之灵：
-1分钟时抵达中路，配合惩戒争夺经济。 反野策略：
-针对敌方弱势打野（如李白、阿轲）入侵蓝区，压制发育。 中期（4-10级） 抓人优先级：
-优先抓发育路，利用大招越塔强杀脆皮。 控龙时机：
-击杀敌方打野后立即开暴君/主宰，扩大团队优势。 后期（10级后） 带线牵制：
-利用镜像快速清兵推塔，迫使敌方回防。 绕后切C：
-团战第二时间进场，直切射手/法师，连招秒杀后撤离。 五、团战与细节技巧 进场时机：
-等待敌方交关键控制技能（如张良大招）后再切入。 镜像场运用：
-横放大招可封锁路径，竖放便于换位追击残血。 探草技巧：...</p></div><footer class=entry-footer><span title='2025-05-15 20:36:50 +0800 +0800'>May 15, 2025</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Honor Of King" href=https://qfsyso.github.io/posts/honor-of-king/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Debian Ng Ssl</h2></header><div class=entry-content><p>在 Debian 服务器上为部署在 Nginx 上的网站申请 SSL 证书， 一般使用 Let’s Encrypt 提供的免费证书最为方便、主流。推荐通过 Certbot 工具来自动申请和配置。 下面是详细步骤：
-🛠️ 步骤一：安装 Certbot 和 Nginx 插件 sudo apt update sudo apt install certbot python3-certbot-nginx -y 🖥️ 步骤二：确保你的 Nginx 配置正确 确保网站已经通过 HTTP 能正常访问。
-Nginx 配置中必须有一个 server_name 指向你的域名，例如：
-server { listen 80; server_name yourdomain.com www.yourdomain.com; root /var/www/yourdomain; index index.html index.htm; location / { try_files $uri $uri/ =404; } } 🌐 步骤三：申请 SSL 证书并自动配置 Nginx sudo certbot --nginx 然后按提示输入：...</p></div><footer class=entry-footer><span title='2025-05-15 00:14:46 +0800 +0800'>May 15, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Debian Ng Ssl" href=https://qfsyso.github.io/posts/debian-ng-ssl/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Nanao PlanB</h2></header><div class=entry-content><p>🌟 ​​南澳岛后宅镇两天一夜深度攻略​​ ​​住宿推荐​​：优先选择后宅镇海景民宿
-夜游后宅镇 ​​🌙 夜晚到达（18:00-21:00）​​
-​​后宅夜市漫游​​ 从南澳大桥进岛后直奔海滨路夜市，重点体验： ✅ ​​文婶甘草水果​​：甘梅粉+青芒是绝配，本地人最爱的解腻神器 ✅ ​​成伯反沙店​​：必点反沙咸蛋黄（比芋头更惊艳），糖霜裹得均匀不粘牙 ✅ ​​南澳岛打卡果汁冰​​：认准青澳湾铂雅酒店分店，推荐加脆波波
-📍贴士：夜市集中在龙滨路与港畔路交叉口，20:00后最热闹 ​
-​Day1：经典环岛线​​ ​⛅ 上午行程（8:00-12:00）​​ ​长山尾灯塔​​ 拍摄技巧：用广角镜头将灯塔与南澳大桥同框，清晨7:00前到达可避开旅行团 交通：601路公交直达（后宅镇中心出发约20分钟），自驾停车费10元/小时
-​田仔地质公园​​ 隐藏玩法：退潮时在礁石区赶海（需自备夹子/水桶），常见小螃蟹/贝类 安全提醒：浪大时勿靠近黑色礁石区（青苔易滑）
-​前江湾沙滩​​ 网红墙打卡：避开正午强光，侧光拍摄「我❤南澳」字样更出片 渔民体验：9:00-10:00可围观渔船卸货，直接向渔民购买新鲜鱼获（需砍价）
-🍜 午餐推荐（12:30-14:00）​​ ​​黄记海鲜沙筛面​​[本地推荐]：鲍鱼+鲜虾沙筛汤面，汤底用鱼骨熬制 ​​浩利食店​​：紫菜炒饭配苦瓜汤，人均30元饱腹感十足 避坑指南：慎选沙滩边流动摊贩，易出现海鲜不新鲜或价格虚高
-🌞 下午行程（14:30-18:30）​​ ​后宅三庙文化巡礼​​
-武帝庙： 重点看屋脊嵌瓷工艺（西游记人物场景栩栩如生）
-天后宫： 若逢初一/十五，可参与渔民祈福仪式（常集中在16:00左右） ​​山顶村深度体验​​ 海鲜采购：山顶市场下午15:00上新，推荐宅鱿（60元/斤）和鱼露（认准「金龙牌」） 手作体验：村内「阿嫲粿品坊」可预约红桃粿制作（需提前2小时联系）
-​白鹭生态公园​​ 最佳观鸟点：西侧芦苇丛（17:00后白鹭归巢） 摄影建议：携带长焦镜头捕捉白鹭捕食瞬间
-🌄 傍晚备选​​ ​​钱澳湾灯塔​​：白色塔身+薄荷绿玻璃窗，适合拍摄日系风写真（距离后宅镇6公里，打车约15分钟）
-🍲 晚餐推荐​​ ​​裕福记海鲜鸡炉​​[攻略推荐]：石橄榄汤底+现杀走地鸡，搭配南澳紫菜涮煮 ​​鲜宴·海鲜私厨​​[攻略推荐]：芝士焗小青龙128元/只，性价比高于大排档
-​Day2：人文探索 & 周边延伸​​ 🌅 上午行程（8:30-12:00）​​ ​后花园生态村​​ 必玩项目：海阔天空观景台（俯瞰360°海天全景） 特色体验：25元/人含茶座的「农家乐」，品凤凰单丛赏茶田风光
-​​风车山探秘​​ 自驾路线：导航「蛴仔澎」（注意45-46号风机机位最佳） 非自驾方案：包三轮车上下山（约80元/车），山路陡峭慎选电动车
-🦞 午餐推荐​​ ​​金龙潮汕私房菜​​：卤水鹅肝拼盘+砂锅粥，人均70元吃撑 ​​胖哥有炸​​[攻略推荐]：炸九肚鱼外酥里嫩，配薄荷酱解腻
-🌿 下午行程（14:00-17:00）​​ ​​总兵府​​ 历史迷必看：明代海防地图/郑成功练兵遗址，蹭导游讲解更生动...</p></div><footer class=entry-footer><span title='2025-05-14 23:00:12 +0800 +0800'>May 14, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Nanao PlanB" href=https://qfsyso.github.io/posts/nanao-planb/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>For oo</h2></header><div class=entry-content><p>购买前 量力而行，心意到了就行了。 这南墙也不一定非要撞过去。
-购买渠道： 某东 （隔天就到了） 淘天喵（便宜一点） 拼夕夕百亿补贴 （便宜亿点）
-护肤类 洁面产品： 用于清洁面部皮肤，去除污垢、油脂和杂质，为后续化妆步骤打下良好的基础。
-化妆水 / 爽肤水： 帮助收缩毛孔，补水保湿，使肌肤更加水润，为上妆做好准备。
-乳液 / 面霜： 滋润肌肤，锁住水分，防止皮肤干燥，使底妆更加服帖。
-注意 ​​敏感肌​​：优先无酒精、无香精的氨基酸洁面+修护型水乳。 ​​油痘肌​​：含酸类或控油成分的洁面+平衡水油的水乳）。 ​​干皮​​：保湿抗氧化洁面+抗衰提亮水乳。 性价比党/​​​​学生党：经典国货套装珀莱雅/自然堂闭眼入。
-洁面产品： 油皮：可以选择清洁力较强的非 “皂性” 洁面产品，如含有水杨酸、皂基等成分的洗面奶，能有效去除皮肤表面多余的油脂和污垢。 干皮和敏感皮：应选用温和、保湿的洁面产品，如氨基酸洗面奶，其 pH 值接近皮肤的 pH 值，能在清洁的同时保护皮肤的屏障功能。
-化妆水 / 爽肤水： 油皮：适合使用清爽型的化妆水，含有金缕梅、薄荷等成分，具有控油、收缩毛孔的作用。 干皮：可选择滋润型的化妆水，含有透明质酸、甘油等保湿成分，能为肌肤补充水分。 敏感皮：则适合具有舒缓、修复功能的爽肤水，含有马齿苋、洋甘菊等成分，可减轻皮肤的敏感症状。
-精华液： 美白：想要美白的人群可选择含有烟酰胺、维生素 C、传明酸等成分的精华液，能抑制黑色素的生成，提亮肤色。 抗皱：有抗皱需求的人群可以使用含有视黄醇、胜肽、玻色因等成分的精华液，能促进胶原蛋白的生成，减少皱纹。 保湿：干性皮肤可使用含有玻尿酸、角鲨烷等成分的保湿精华液，为肌肤深层补水保湿。
-乳液 / 面霜： 油皮：选择质地轻薄、不油腻的乳液，含有茶树精油、薰衣草等成分，具有控油、消炎的作用。 干皮：适合质地浓稠、滋润度高的面霜，含有羊毛脂、凡士林等成分，能在皮肤表面形成一层保护膜，防止水分流失。 混合皮：T 区使用清爽的乳液，两颊使用滋润的面霜。
-眼霜： 黑眼圈：针对黑眼圈问题，可选择含有咖啡因、维生素 K 等成分的眼霜，能促进眼部血液循环，减轻黑眼圈。 眼部细纹：有眼部细纹的人群可以使用含有胶原蛋白、辅酶 Q10 等成分的眼霜，能增强眼部肌肤的弹性。
-buybuybuy 可复美 柔肤水 500ml 65 补水保湿，质地清爽不粘腻，易于吸收。可用于日常补水、湿敷等。 珀莱雅红宝石面霜 50g 165 保湿滋养，淡纹紧致，饱满肌肤 珀莱雅水动力护肤套装 [100g洁面 135ml水乳] 79 plus版本 面+水+乳+霜 119 改善面部毛孔粗大、暗沉粗糙等问题，帮助肌肤锁水保湿，调节水油平衡，令肌肤细腻通透。 优时颜 [水150ml+乳100g] 140...</p></div><footer class=entry-footer><span title='2025-05-14 22:49:11 +0800 +0800'>May 14, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to For oo" href=https://qfsyso.github.io/posts/for-oo/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>MSSQL 2 MySQL</h2></header><div class=entry-content><p>DBeaver https://github.com/dbeaver/dbeaver/releases 简介：一款开源的多数据库管理工具，支持多种数据库系统，包括SQL Server和MySQL。利用DBeaver，可以轻松地在不同数据库系统之间进行数据迁移。 操作步骤：
-安装DBeaver： 从官网下载并安装DBeaver到计算机上。
-连接到SQL Server： 在DBeaver中，点击“Database” > “New Database Connection”，选择“SQL Server”并填写连接信息。
-连接到MySQL： 同样的步骤，点击“Database” > “New Database Connection”，选择“MySQL”并填写连接信息。
-导出SQL Server数据： 在成功连接SQL Server后，选择需要迁移的表，然后右键点击并选择“Export Data”，在弹出的窗口中，选择“MySQL”作为目标。
-导入到MySQL： 在导出设置中，配置好MySQL连接的信息，并选择目标数据库，点击“Start”开始导入过程。
-主键 自增处理 -- 修改现有列为自增主键 ALTER TABLE ZX.Lies MODIFY COLUMN ID INT AUTO_INCREMENT PRIMARY KEY; ALTER TABLE your_table_name MODIFY Content VARCHAR(1000); ALTER TABLE zx.Lies MODIFY Content6 VARCHAR(1000); DROP TABLE zx.ZhongjieProducts MySQL Workbench Migration Wizard ​​步骤：​
-安装依赖​​： 安装 MySQL Workbench。 https://dev.mysql.com/downloads/workbench/ 安装 ODBC Driver for SQL Server。 https://learn....</p></div><footer class=entry-footer><span title='2025-05-01 14:53:42 +0800 +0800'>May 1, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to MSSQL 2 MySQL" href=https://qfsyso.github.io/posts/mssql-2-mysql/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://qfsyso.github.io/page/3/>«&nbsp;Prev&nbsp;
+<meta name=description content="A simple blog "><meta name=author content="dwd"><link rel=canonical href=https://qfsyso.github.io/><link crossorigin=anonymous href=/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF+13Dyqob6ASlTrTye8=" rel="preload stylesheet" as=style><link rel=icon href=https://qfsyso.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://qfsyso.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://qfsyso.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://qfsyso.github.io/apple-touch-icon.png><link rel=mask-icon href=https://qfsyso.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://qfsyso.github.io/index.xml><link rel=alternate type=application/json href=https://qfsyso.github.io/index.json><link rel=alternate hreflang=en href=https://qfsyso.github.io/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://qfsyso.github.io/"><meta property="og:site_name" content="MLOG"><meta property="og:title" content="MLOG"><meta property="og:description" content="A simple blog "><meta property="og:locale" content="zh-CN"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="MLOG"><meta name=twitter:description content="A simple blog "><script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","name":"MLOG","url":"https://qfsyso.github.io/","description":"A simple blog ","logo":"https://qfsyso.github.io/favicon.ico","sameAs":[]}</script></head><body class=list id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://qfsyso.github.io/ accesskey=h title="MLOG (Alt + H)">MLOG</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://qfsyso.github.io/posts/ title=Archive><span>Archive</span></a></li><li><a href=https://qfsyso.github.io/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://qfsyso.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li></ul></nav></header><main class=main><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Clipboard</h2></header><div class=entry-content><p>共享粘贴板 可以在一个设备输入文字，生成一个链接，其他设备在同一局域网内用链接访问可获取文字
+用 Python (Flask) + 对称加密 (Fernet) 来实现
+📂 项目结构 lan-clipboard/
+├── app.py
+├── requirements.txt
+└── Dockerfile
+requirements.txt flask cryptography app.py from flask import Flask, request, redirect, url_for, render_template_string, abort from cryptography.fernet import Fernet import os app = Flask(__name__) # 生成或从环境变量读取密钥 FERNET_KEY = os.environ.get("FERNET_KEY") or Fernet.generate_key().decode() fernet = Fernet(FERNET_KEY.encode()) # 简单内存存储 (可替换为文件或数据库) storage = {} # 简单页面模板 FORM_HTML = """ &lt;!doctype html> &lt;title>LAN Clipboard&lt;/title> &lt;h1>LAN Clipboard&lt;/h1> &lt;form action="/share" method="post"> &lt;textarea name="text" rows="10" cols="50" placeholder="输入文字....</p></div><footer class=entry-footer><span title='2025-07-26 20:48:31 +0800 +0800'>July 26, 2025</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Clipboard" href=https://qfsyso.github.io/posts/clipboard/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Owntone TTS To AirPlay</h2></header><div class=entry-content><p>Owntone Owntone（以前叫 forked-daapd）是一个自建音乐服务器，支持：
+音乐库管理（本地音乐）， AirPlay / Chromecast / Roon / MPD 等协议， 播放列表 / 电台 / 播放控制， 通过 REST API 控制。
+TTS（文本转语音） 用外部TTS 如 Google TTS ， Edge TTS， OpenAI TTS生成.wav .mp3， 放入媒体库文件夹 ，通过API刷新 添加 播放。
+Owntone创建 # 确保有写权限： sudo chown -R 1000:1000 /var/cache/owntone sudo chmod -R 755 /var/cache/owntone docker run -d \ --name=OwnTone1 \ --network=host \ -e UID=1000 \ -e GID=1000 \ -v /etc/owntone:/etc/owntone \ -v /mnt/media:/srv/media \ -v /var/cache/owntone:/var/cache/owntone \ --restart unless-stopped \ owntone/owntone:latest # 停止删除 docker stop OwnTone1 && docker rm OwnTone1 # 精简版 docker run -d \ --name=OwnTone1 \ --network=host \ -v /root/owntone/config:/etc/owntone \ -v /root/owntone/media:/srv/media/ \ -v /root/owntone/cache:/var/cache/owntone \ --restart unless-stopped \ docker....</p></div><footer class=entry-footer><span title='2025-07-25 21:46:09 +0800 +0800'>July 25, 2025</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Owntone TTS To AirPlay" href=https://qfsyso.github.io/posts/owntone-tts-to-airplay/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Chrome Extensions</h2></header><div class=entry-content><p>Chrome Extensions目录结构。 📁 L-ToDo/
+├─ 📄 manifest.json
+├─ 📄 popup.html
+├─ 📄 popup.js
+├─ 📄 background.js
+├─ 📄 content.css
+├─ 📄 icons/
+│ ├─ 16.png
+│ ├─ 48.png
+│ └─ 128.png
+└─ 📁 _metadata (Chrome生成)
+一、manifest.json { "manifest_version": 3, "name": " L-ToDo", "description": "Minimal new-tab with quick links & to-do list", "version": "1.0", "icons": { "16": "icons/16.png", "48": "icons/48.png", "128": "icons/128.png" }, "chrome_url_overrides": { "newtab": "popup.html" }, "permissions": ["storage"], "background": { "service_worker": "background....</p></div><footer class=entry-footer><span title='2025-07-24 00:32:26 +0800 +0800'>July 24, 2025</span>&nbsp;·&nbsp;10 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Chrome Extensions" href=https://qfsyso.github.io/posts/chrome-extensions/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>ICloud Download TG Bot Sync</h2></header><div class=entry-content><p>iCloudPD iCloudPD官方镜像仓库地址：https://hub.docker.com/r/icloudpd/icloudpd
+iCloudPD官方仓库地址：https://github.com/icloud-photos-downloader/icloud_photos_downloader/
+一、环境准备 1.1 目录结构 /root/
+├── config # 存放配置文件
+├── iCloud # 同步照片存储目录
+1.2 关键配置说明 TZ 时区设置 Asia/Shanghai
+authentication_type 认证类型 MFA(国际) 2FA(国内)
+icloud_china 是否使用国内服务器 true
+auth_china 是否生成国内Cookie true
+二、Docker部署 2.1 国际 docker run -d \ --name icloudpd \ --restart always \ -v /root/config:/config \ -v /root/iCloud:/iCloud \ -e TZ=Asia/Shanghai \ -e apple_id=dxxr@outlook.com \ -e authentication_type='MFA' \ -e icloud_china=true \ -e auth_china=true \ -e download_path=/iCloud \ boredazfcuk/icloudpd 2.2 国内 docker run -d \ --name x2_icloudpd \ --restart always \ -v /root/config:/config \ -v /root/photos:/photos \ -e TZ=Asia/Shanghai \ -e apple_id=dxxr@outlook....</p></div><footer class=entry-footer><span title='2025-07-24 00:28:01 +0800 +0800'>July 24, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to ICloud Download TG Bot Sync" href=https://qfsyso.github.io/posts/icloud-download-tg-bot-sync/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Immich</h2></header><div class=entry-content><p>Immich Immich是一个自托管的照片和视频备份解决方案，允许用户在私有服务器上存储、管理和分享他们的媒体文件。这个项目旨在提供一个类似于Google照片或iCloud照片库的体验，但是用户可以完全控制自己的数据。通过自托管，用户不需要依赖第三方云服务提供商来存储私人照片和视频，这增加了隐私保护和数据所有权。
+以下是使用 Docker 安装 Immich 的步骤（基于官方推荐方法）： 安装 Docker 和 Docker Compose（若未安装） 。
+创建项目目录： mkdir ./immich-app && cd ./immich-app 下载必要文件： docker-compose.yml：
+wget https://github.com/immich-app/immich/releases/latest/download/docker-compose.yml .env 文件（从 example.env 改名）：
+wget -O .env https://github.com/immich-app/immich/releases/latest/download/example.env 修改 .env 文件（可选，如设置 UPLOAD_LOCATION、DB_DATA_LOCATION、TZ 等） 。
+启动容器： docker compose up -d （若需升级，可运行 docker compose pull && docker compose up -d） 。
+访问 Immich： 浏览器打开 http://IP地址:2283
+（默认端口，可在 docker-compose.yml 中修改） 。
+参考 https://immich.app/docs/install/docker-compose/ https://apps.apple.com/us/app/immich/id1613945652 https://github.com/immich-app/immich
+nextcloud 网盘 https://github.com/nextcloud/server https://github.com/nextcloud/android https://apps.apple.com/us/app/nextcloud/id1125420102</p></div><footer class=entry-footer><span title='2025-07-21 23:34:25 +0800 +0800'>July 21, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Immich" href=https://qfsyso.github.io/posts/immich/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Vosk STT</h2></header><div class=entry-content><p>Vosk STT 一、准备环境（Debian） sudo apt update sudo apt install -y python3 python3-pip ffmpeg pip3 install --user vosk 二、下载微型中文模型（≈ 40 MB） wget https://alphacephei.com/vosk/models/vosk-model-small-cn-0.22.zip unzip vosk-model-small-cn-0.22.zip 三、保存以下脚本为 listen.py #!/usr/bin/env python3 import sys, json, os from vosk import Model, KaldiRecognizer import wave MAP = { "空调": 1, "电视": 2, "风扇": 3, "卧室灯": 4, "客厅灯": 5 } def wav2text(path): wf = wave.open(path, "rb") if wf.getnchannels() != 1 or wf.getsampwidth() != 2 or wf.getframerate() != 16000: raise ValueError("音频必须是 16 kHz 16-bit 单声道 WAV") model = Model("vosk-model-small-cn-0....</p></div><footer class=entry-footer><span title='2025-07-17 21:36:01 +0800 +0800'>July 17, 2025</span>&nbsp;·&nbsp;44 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Vosk STT" href=https://qfsyso.github.io/posts/vosk-stt/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>API Signature</h2></header><div class=entry-content><p>接口签名核心知识点总结 1. ​​核心原理：验证完整性与身份​​ 接口签名（API Signature）是一种通过加密机制确保API请求的​​数据完整性​​和​​来源合法性​​的技术。客户端使用密钥（Secret Key）对请求内容生成签名，服务端用相同密钥和算法重新计算签名并比对，匹配则通过验证。
+2. ​​签名生成的关键步骤​​ ​​参数排序​​：按参数名的ASCII码升序排列（如 a=1&amp;b=2&amp;c=3），确保顺序一致性。 ​​拼接字符串​​：将排序后的参数拼接为待签名字符串（如 key1=value1&amp;key2=value2）。 ​​添加密钥​​：在字符串末尾附加密钥（如 待签名字符串&amp;key=API_SECRET）。 ​​加密生成签名​​：使用算法（如HMAC-SHA256、MD5）生成签名，并附加到请求中。
+3. ​​核心参数设计​​ ​​appid​​：应用标识，与密钥配对使用。 ​​timestamp​​：请求时间戳（推荐UTC时间），服务端验证是否在有效窗口内（如±5分钟）。 ​​nonce​​：唯一随机数，防止重放攻击（需服务端缓存校验）。 ​​signature​​：加密生成的签名值。
+4. ​​常见问题与解决方案​​ ​​签名不一致​​： 原因：参数顺序/编码不一致、密钥错误、时间戳不同步。 解决：统一序列化规则（禁用JSON缩进）、同步UTC时间、校验密钥。 ​​重放攻击​​： 原因：nonce重复使用。 解决：服务端用缓存（如内存缓存）记录已使用的nonce。 ​​时区导致时间戳失效​​： 解决：客户端同步服务端时间（如NTP校准），或服务端放宽时间窗口。
+5. ​​四大安全价值​​ ​​防伪装​​：验证请求来源（依赖密钥保密性）。 ​​防篡改​​：签名变化即提示数据被篡改。 ​​防重放​​：通过nonce和timestamp拦截重复请求。 ​​防泄露​​：敏感参数可加密传输（如结合RSA）。
+6. ​​最佳实践​​ ​​算法选择​​：优先HMAC-SHA256（比MD5更安全）。 ​​密钥管理​​：避免硬编码，使用环境变量或密钥管理系统。 ​​调试工具​​： 客户端/服务端打印签名字符串对比差异。 使用在线工具（如HMAC生成器）交叉验证。
+实战 实现一个API接口， 对客户端请求进行签名验证。
+在C#服务端： 创建一个API控制器（如SignController），包含一个处理请求的Action（如Post）。 在Action中，按照以下步骤进行验证： a. 检查时间戳是否在有效期内（例如5分钟内）。 b. 检查nonce是否在内存缓存中存在，如果存在则拒绝（重放攻击），否则将nonce存入缓存（设置过期时间，例如5分钟）。 c. 验证配置版本号，如果和服务器最新版本一致，则返回304（NotModified）。 d. 重新计算签名，并与请求中的sign比对，如果不一致则返回401。 使用HMAC-SHA256算法计算签名，注意签名生成规则：对请求参数（除sign外）按照键名字典序排序，然后序列化为规范的JSON字符串（确保键的顺序一致），然后使用密钥进行HMAC-SHA256计算。
+具体代码实现如下： C#服务端代码（.NET Core） 创建SignController 使用MemoryCache来存储nonce Node.js测试客户端代码 使用axios发送请求 使用crypto模块计算HMAC-SHA256签名 我们假设服务端的最新配置版本为"1.0.3"（为了测试，可以硬编码，实际中可能从配置文件中读取）。
+错误码： 时间戳过期：401 nonce重复（重放攻击）：403 配置版本一致：304 签名不匹配：401 成功：200...</p></div><footer class=entry-footer><span title='2025-06-28 21:24:17 +0800 +0800'>June 28, 2025</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to API Signature" href=https://qfsyso.github.io/posts/api-signature/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Proxmox Virtual Environment Debian</h2></header><div class=entry-content><p>安装 Proxmox VE（PVE）前的准备
+1. 下载 PVE 镜像 访问官网：https://www.proxmox.com/en/downloads
+下载最新版的 Proxmox VE ISO Installer（例如：proxmox-ve_8.x.iso）
+2. 制作启动U盘 使用工具制作启动盘（推荐）：
+Ventoy（推荐）：支持多镜像启动，简单拖入 ISO 即可。 官网：https://www.ventoy.net/
+或者使用 Rufus：
+打开 Rufus，插入U盘（建议 8GB 以上）
+选择 ISO 镜像
+分区类型：推荐 MBR（兼容性更好）或根据你 BIOS 设置为 UEFI/GPT
+点击“开始”制作启动盘
+安装 PVE 设置 BIOS 启动项 插入U盘，重启电脑
+在开机画面按下启动快捷键（如 F12, Esc, F2, Del，不同厂商略有不同）
+选择从 U盘启动
+安装 启动后选择 Install Proxmox VE
+阅读并接受许可协议
+选择硬盘（注意：会格式化此硬盘）
+设置地区、时区和键盘布局
+设置管理员密码与邮箱
+设置管理 IP（如默认DHCP，建议改为静态IP以方便局域网访问）
+等待安装完成
+安装完成后 安装完成后，拔掉U盘并重启
+启动后，系统会提示你使用浏览器访问管理界面：
+https://ip-address:8006 注意：此为 https，浏览器会提示不安全连接，选择“继续前往”即可
+使用建议 推荐使用 局域网静态 IP，便于访问和远程管理...</p></div><footer class=entry-footer><span title='2025-06-21 02:08:58 +0800 +0800'>June 21, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Proxmox Virtual Environment Debian" href=https://qfsyso.github.io/posts/proxmox-virtual-environment-debian/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Kubernetes k8s</h2></header><div class=entry-content><p>Kubernetes k8s 描述什么是Kubernetes 描述Kubernetes的基本架构及核心概念 描述Kubernetes的应用编排方法 使用华为云CCE创建简单工作负载
+容器编排技术 容器（如Docker）以及周边生态系统提供了很多工具来实现容器生命周期管理，能够满足在单台宿主机管理容器的需求。但越来越多企业开始使用容器，对容器技术的进一步发展提出了以下新的诉求： □高效的容器管理及编排。 □容器的跨主机部署及调度。 □容器的存储、网络、运维、安全等能力的拓展。 统一的容器编排管理工具
+容器编排的价值 容器编排是指自动化容器的部署、管理、扩展和联网，可为企业带来以下价值： 灵活的资源管理及调度 自动化部署及服务发现 高效的监控及运维 弹性扩展及高可用
+大规模容器集群管理工具，从Borg到Kubernetes ·Kubernetes起源于Google内部的Borg项目，它对计算资源进行了更高层次的抽象，通过将容器进行细致的组合，将最终的应用服务交给用户。它的目标是管理大规模的容器，提供基本的部署、维护以及应用伸缩等功能，其主要实现语言为Go语言。 ·Kubernetes作为容器集群管理工具，于2015年7月22日迭代到v1.0并正式对外公布。与此同时，谷歌联合Linux基金会及其他合作伙伴共同成立了CNCF基金会（CloudNativeComputingFoundation），并将Kuberentes作为首个编入CNCF管理体系的开源项目，助力容器技术生态的发展进步。
+Kubernetes架构 ·一个基础的Kubernetes集群（Cluster）通常包含一个Master节点和多个Node节点。每个节点可以是一台物理机，也可以是一台虚拟机。
+pod最小容器（container）
+Kubernetes核心概念-Pod Pod是Kubernetes中最重要最基本的概念，Pod是Kubernetes最小工作单元。每一个Pod包含一个或多个相关容器，Kubernetes将Pod看做一个整体进行调度。 引入Pod的目的： 将联系紧密的容器封装在一个Pod单元内，以Pod整体进行调度、扩展和实现生命周期管理。 Pod内所有容器使用相同的网络Namespace和共享存储。即Pod内容器拥有相同IP地址和Port空间，容器间直接使用localhost通信。当挂载volume到Pod，即可实现将volume挂载到Pod中的每个容器。
+Kubernetes核心概念-Controller ·工作负载是在Pod之上的一层抽象，我们可以通过控制器（controller）实现一系列基于Pod的高级特性，比如节点故障时Pod的自动迁移，Pod多副本横向扩展，应用滚动升级等。我们通常使用controller来做应用的真正的管理，而Pod是组成工作负载最小的单元
+Kubernetes核心概念-Label ·当资源变得非常多的时候，如何分类管理就非常重要了，Kubernetes提供了一种机制来为资源分类，那就是Label（标签）。Label非常简单，但是却很强大，Kubernetes中几乎所有资源都可以用Label来组织。Label的具体形式是key-value的标记对，可以在创建资源的时候设置，也可以在后期添加和修改。
+Kubernetes核心概念-Namespace ·命名空间（Namespace）是对一组资源和对象的抽象整合。在同一个集群内可创建不同的命名空间，不同命名空间中的数据彼此隔离。使得它们既可以共享同一个集群的服务，也能够互不干扰。 kube-public kube-system kube-node-lease default
+Kubernetes核心概念-Service ·在Kubernetes中，Pod副本发生迁移或者伸缩的时候会发生变化，IP也是变化的。Kubernetes中的Service是一种抽象概念，它定义了一个Pod逻辑集合以及访问它们的策略。Service定义了外界访问一组特定Pod的方式。Service有自己的IP和端口，Service为Pod提供了负载均衡。
+Kubernetes核心概念-Volume ·Volume用来管理Kubernetes存储，是用来声明在Pod中的容器可以访问的文件目录，含义如下： 声明在Pod中的容器可以访问的文件目录。 可以被挂载在Pod中一个或多个容器的指定路径下。 支持多种后端存储（本地存储、分布式存储、云存储等）。
+Kubernetes管理-Kubectl ·Kubectl是Kubernetes的命令行工具。通过kubectl，用户能对集群进行管理，并在集群上进行容器化应用的安装部署。
+Kubectl支持以下对象管理方式： 指令式：通过kubectl内置的驱动命令，如:kubectl +create/scale/delete/..+参数的形式， 直接快速创建、更新和删除Kubernetes对象。
+声明式：使用kubectlapply创建指定目录中配置文件所定义的所有对象。通常，此配置文件 采用yaml进行描述。
+Kubernetes管理-命令行语法 在Kubernetes中的很多操作都是用kubectl来完成，通过其命令可以管理Deployment、Replicaset、ReplicationController、Pod等，进行操作、扩容、删除等全生命周期操作，同时可以对管理对象进行查看或者监控资源使用情况。
+kubectl的语法
+kubectl [command] [TYPElNAME] [flags] Command：指定你希望进行的操作，如create，get，describe，delete等。 TYPE：指定操作对象的类型，如deployment，pod，service等。 hiPnNAME：指定对象的名字。hidhwyun flags:可选的标志位。
+Kubernetes管理-yaml示例 ·kubernetes中的对象可以使用YAML描述（如果您对YAML格式不了解，可以参考YAML语法少，也可以使用JSON。其内容可以分为如下四个部分： typeMeta：对象类型的元信息，声明对象使用哪个API版本，哪个类型的对象。 objectMeta：对象的元信息，包括对象名称、使用的标签等。 spec：对象的期望状态，例如对象使用什么镜像、有多少副本等。 status：对象的实际状态，只能在对象创建后看到，创建对象时无需指定。...</p></div><footer class=entry-footer><span title='2025-06-06 00:54:55 +0800 +0800'>June 6, 2025</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Kubernetes k8s" href=https://qfsyso.github.io/posts/kubernetes-k8s/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Docker DevOps</h2></header><div class=entry-content><p>云原生应用十二要素原则解析表 原则 核心价值 实现方法 技术案例 1. 基准代码 快速交付；合理划分边界 单一代码库+多环境部署，版本控制统一管理 Git仓库管理，Kubernetes多集群部署 2. 依赖 提升开发效率；排除意外风险 显式声明依赖+隔离环境（容器化） Docker镜像打包依赖，Helm Chart管理应用包 3. 配置 软件发布管理；环境无差别 配置与代码分离→环境变量注入 Kubernetes ConfigMap/Secret动态加载 4. 后端服务 弹性/敏捷；解耦状态管理 将慢速进程（如DB/队列）转为RESTful服务 Redis缓存服务，消息队列(Kafka)独立部署 5. 构建发布运行 持续交付；流水线自动化 CI/CD全流程自动化（构建→测试→部署） Jenkins/GitLab CI流水线，K8s Rolling Update 6. 进程 云兼容性；无状态设计 应用无状态化，会话数据外置后端服务 会话存储Redis，文件存储OSS 7. 端口绑定 自包含服务；独立暴露接口 服务直接监听端口，不依赖Web服务器转发 Spring Boot内嵌Tomcat，gRPC直连 8. 并发 自动弹性伸缩 水平扩展替代垂直扩展，依赖云平台弹性能力 Kubernetes HPA自动扩缩容 9. 易处理 快速故障恢复 断路器模式+优雅终止，进程可随时启停 Istio服务熔断，K8s Liveness探针 10. 环境等价 可靠性；开发与生产环境一致 容器化保证环境一致性，禁用环境特殊配置 Docker跨环境运行，开发环境Minikube 11. 日志 实时系统监控 日志作为事件流→集中式管理 EFK栈(Elasticsearch+Fluentd+Kibana) 12. 管理进程 运维效率；运营解耦 管理任务（如DB迁移）作为独立进程，与主应用隔离 K8s Job/CronJob执行批处理任务 特性 云原生应用 传统应用 可预测性 符合弹性框架，通过容器编排和微服务实现可预测行为 不可预测，批量发布易引发单点故障，扩展能力有限 操作系统依赖 抽象化（容器技术隔离OS依赖，实现跨平台运行） 强依赖（需特定OS环境，迁移困难） 资源调度 弹性伸缩（按需自动分配资源，利用率＞70%） 冗余静态（预留资源应对峰值，利用率＜40%） 团队协作 DevOps驱动（开发运维一体化，自动化流水线） 部门墙隔离（开发/测试/运维独立，沟通成本高） 开发模式 敏捷迭代（CI/CD支持每日多次部署） 瀑布模型（数月/年周期发布，变更困难） 服务架构 微服务（独立部署、高内聚低耦合） 单体架构（模块紧耦合，牵一发而动全身） 运维能力 自动化（K8s实现自愈、监控、扩缩容） 手动操作（人工监控、故障排查效率低） 故障恢复 秒级恢复（容器快速重启+服务网格流量调度） 小时级恢复（依赖备份还原，流程复杂） 云原生架构模式:微服务架构 云原生架构演进原则 01....</p></div><footer class=entry-footer><span title='2025-06-05 20:23:33 +0800 +0800'>June 5, 2025</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;dwd</footer><a class=entry-link aria-label="post link to Docker DevOps" href=https://qfsyso.github.io/posts/docker-devops/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://qfsyso.github.io/page/3/>«&nbsp;Prev&nbsp;
 </a><a class=next href=https://qfsyso.github.io/page/5/>Next&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><div class=wtime><div class=wtime2>CST<span id=beijingTime></span> GMT <span id=londonTime></span> EST <span id=newYorkTime></span> PST<span id=losAngelesTime></span></div><div class=wtime2 style=display:none>东京<span id=tokyoTime></span></div><div class=wtime2 style=display:none>欧洲-巴黎<span id=parisTime></span></div><div class=wtime2 style=display:none>UTC<span id=utcTime></span></div></div><span>&copy; 2025 <a href=https://qfsyso.github.io/>MLOG</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
