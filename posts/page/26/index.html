@@ -126,145 +126,118 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent"> Web uvpv busuanzi
+    <h2 class="entry-hint-parent">Python study
     </h2>
   </header>
   <div class="entry-content">
-    <p>WEB UVPV busuanzi 不蒜子 不蒜子是一款用于静态网站的访问计数工具，可以方便地在网页上显示访问次数。与其他统计工具如百度统计和谷歌分析不同的是，不蒜子直接将访问次数显示在网页上，而不需要用户跳转到外部平台查看。
-不蒜子的计数原理： 通过在网页中引入JavaScript脚本，将当前页面的URL或某种唯一标识注册到不蒜子的服务器上，服务器保存着URL与对应的访问计数值。当页面被访问时，通过JavaScript更新服务器上的计数值，并在页面初始化时加载并显示计数值。
-如何使用？ 在网页需要引用计数功能的地方先引入不蒜子的js
-&lt;!-- 引入不蒜子计数 --&gt; &lt;script async src=&#34;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&#34;&gt;&lt;/script&gt; 为了美观，我们再引入旋转花瓣加载特效&#34;fa fa-spinner fa-spin&#34; 总访问量计数算法：pv方式，单个用户连续点击n篇文章，记录n次访问量。 总访客数计数算法：uv方式，单个用户连续点击n篇文章，只记录1次访客数。
-&lt;center&gt; 浏览量：&lt;span id=&#34;busuanzi_value_site_pv&#34;&gt;&lt;i class=&#34;fa fa-spinner fa-spin&#34;&gt;&lt;/i&gt;&lt;/span&gt;👀 | 访客数：&lt;span id=&#34;busuanzi_value_site_uv&#34;&gt;&lt;i class=&#34;fa fa-spinner fa-spin&#34;&gt;&lt;/i&gt;&lt;/span&gt;👦 &lt;/center&gt; 注：美化及其他嵌入的改动，其实只要内层的span就可以，然后用css美化或者做嵌入
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-08 21:19:32 +0000 UTC'>May 8, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to  Web uvpv busuanzi" href="http://localhost:1313/posts/web-uvpv-busuanzi/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">npm audit
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>11 packages are looking for funding run npm fund for details
-6 vulnerabilities (4 high, 2 critical)
-To address issues that do not require attention, run: npm audit fix
-To address all issues, run: npm audit fix –force
-Run npm audit for details.
-————————————————
-这个报错信息的意思是：
-依赖包已经是最新的，npm检查了xx个包，花了x秒钟。 有x个包正在寻求资金支持，运行npm fund来查看详情，也可以选择捐赠一些钱给这些包的开发者。 有x个中等程度的安全漏洞，运行npm audit fix –force来修复所有的问题，包括一些可能导致破坏性变化的问题。 运行npm audit来查看更多的细节，包括每个漏洞的类型，来源，影响等。
-解决方法
-有时候并不想修复这些安全漏洞，因为它们可能会影响我们的项目的正常运行，或者我们只是想快速地初始化一个项目，不想被这些报错信息打扰,可以使用一个简单的命令来关闭npm的audit检查： npm set audit false 这样就可以保证npm的audit不会影响初始化项目，但是这个解决办法并不建议使用在实际生产中，因为它会让我们忽略一些可能存在的安全风险。 同样的，可以将值设为true来打开npm audit检查，这样可以看到npm的报错信息，也可以选择修复它们： npm set audit true 这个操作将对全局生效，也就是说，它会影响我们所有的项目，不管是新的还是旧的。
-修复~但不是破坏性修复
-npm audit fix </p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-08 19:11:07 +0000 UTC'>May 8, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to npm audit" href="http://localhost:1313/posts/npm-audit/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET native AOT
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>前言 .NET8对于性能的优化是方方面面的，所以AOT预编译机器码也是不例外的。本篇来看下对于AOT的优化。
-概述 首先要明确一个概念，.NET里面的AOT它是原生的。什么意思呢？也就是说通过ILC编译器(AOT编译器，编译出来的代码是各个平台上可以直接运行的二进制代码。比如MacOS的二进制，Linux二进制等等。所以称之为原生。
-C#源码被ILC编译之后，生成了一个完全原生态代码的可执行文件。在执行的时候不需要JIT来编译任何东西，因为JIT已经在ILC里面被充分利用过了。实际上AOT里面也没有包含JIT。那么它如何优化呢？只能是在ILC里面调用JIT的时候了。所以它这个优化依然依靠JIT。.NET8里面优化AOT的一个典型的例子，就是ASP.NET应用程序在使用AOT的时候表现不错，同时也降低了总成本。
-创建项目 启用AOT
-打包指令 dotnet publish DemoAot.csproj -o pub\ -c Release -r win-x64 linux下 先安装SDK 安装后
-dotnet --list-sdks dotnet publish DemoAot.csproj -o $PWD/pub -c Release -r linux-x64 macos下 安装SDK后
-dotnet --list-sdks dotnet publish DemoAot.csproj -o $PWD/pub -c Release -r osx-x64 重启服务器 通过命令 cd fser 及sudo nohup /root/fser/fileserver &gt; output{当前时间}.log 2&gt;&amp;1 &amp; 和命令 cd nets4 及sudo nohup dotnet /root/nets4/IM.dll &gt; output{当前时间}.log 2&gt;&amp;1 &amp; 自动化运行
-为了自动化运行这些程序启动命令，可以编写一个 Shell 脚本并结合系统启动服务（如 systemd）来执行。 以下是具体实现步骤：
+    <p> 🌠setup 安装 python.org
+🐷helloworld if __name__ == &#39;__main__&#39;: print(&#39;helloworld&#39;) python test.py var 变量
+if __name__ == &#39;__main__&#39;: company, date, *others = [&#39;hi&#39;, &#39;20240521&#39;, &#39;000&#39;, &#39;11111&#39;] print(company, date) print(others) random 随机
+i = 0 rand_list = [] while i &lt; 4: rand_num = random.randint(0, 499) if rand_num not in rand_list: rand_list.append(rand_num) i &#43;= 1 print(rand_list) list 列表 可变
+# 创建一个空列表 my_list = [] # 向列表中添加元素 my_list.append(1) my_list.append(2) my_list.append(3) print(my_list) # 输出: [1, 2, 3] # 修改列表中的元素 my_list[1] = &#39;two&#39; print(my_list) # 输出: [1, &#39;two&#39;, 3] # 列表切片 sub_list = my_list[1:3] print(sub_list) # 输出: [&#39;two&#39;, 3] # 删除列表中的元素 del my_list[2] print(my_list) # 输出: [1, &#39;two&#39;] # 创建一个包含0到9的偶数列表 even_numbers = [i for i in range(10) if i % 2 == 0] print(even_numbers) # 输出: [0, 2, 4, 6, 8] tuple 元组 不可变
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-05-08 13:01:11 +0000 UTC'>May 8, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET native AOT" href="http://localhost:1313/posts/.net-native-aot/"></a>
+  <footer class="entry-footer"><span title='2024-05-26 23:02:42 +0000 UTC'>May 26, 2024</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Python study" href="http://localhost:1313/posts/python-study/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Debian nginx https
+    <h2 class="entry-hint-parent">Node socket.io
     </h2>
   </header>
   <div class="entry-content">
-    <p>debian安装 nginx 在Debian系统上安装Nginx，可以按照以下步骤操作：
-如果 sudo: command not found
-apt-get install sudo 首先，更新的包索引：
-sudo apt update 接下来，安装Nginx：
-sudo apt install nginx 安装完成后，启动Nginx服务：
-sudo systemctl start nginx （可选）设置Nginx开机自启动：
-sudo systemctl enable nginx 可以通过运行以下命令来检查Nginx的状态：
-sudo systemctl status nginx 现在，可以在Web浏览器中输入服务器的IP地址或域名来访问默认的Nginx欢迎页面。如果是在本地安装的Nginx，可以通过访问 http://localhost 来查看这个页面。
-如果需要配置Nginx，可以编辑 /etc/nginx/nginx.conf 文件或者在 /etc/nginx/sites-available/ 目录下创建或编辑配置文件，并使用 sudo ln -s /etc/nginx/sites-available/your-config /etc/nginx/sites-enabled/ 命令来启用它。
-sudo whereis nginx Nginx 默认安装位置 配置文件所在目录 /etc/
-nginx配置 检测Nginx配置文件是否正确
-nginx -t 重载Nginx配置
-nginx -s reload 自定义Nginx站点配置文件存放目录 /etc/nginx/conf.d/
-nginx网站目录 /var/www/
-域名证书
+    <p>server
+npm install express npm install socket.io const express = require(&#39;express&#39;); const http = require(&#39;http&#39;); const socketIO = require(&#39;socket.io&#39;); const app = express(); const server = http.createServer(app); const io = socketIO(server); io.on(&#39;connection&#39;, (socket) =&gt; { console.log(&#39;User connected&#39;); socket.on(&#39;chat message&#39;, (msg) =&gt; { console.log(&#39;message: &#39; &#43; msg); io.emit(&#39;chat message&#39;, msg); // to all }); socket.on(&#39;disconnect&#39;, () =&gt; { console.log(&#39;User disconnected&#39;); }); }); server.listen(24525, () =&gt; { console.log(&#39;Node Server is running on port 24525&#39;); }); docker dockerfile
+FROM node:16-alpine WORKDIR /usr/src/app COPY package*.json ./ RUN npm ci --only=production COPY . . EXPOSE 24525 CMD [&#34;node&#34;, &#34;skio.js&#34;] docker build -t nodeskio . docker run -p 24525:24525 -d nodeskio ##login push #docker login #docker push your-image-name client
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-05-07 19:13:24 +0000 UTC'>May 7, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian nginx https" href="http://localhost:1313/posts/debian-nginx-https/"></a>
+  <footer class="entry-footer"><span title='2024-05-26 23:01:07 +0000 UTC'>May 26, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Node socket.io" href="http://localhost:1313/posts/node-socket.io/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent"> .NET获取内存
+    <h2 class="entry-hint-parent">HarmonyOS Interface Router ArkTS ArkUI
     </h2>
   </header>
   <div class="entry-content">
-    <p>在.NET 控制台应用程序中，你可以使用System.Diagnostics命名空间下的Process类来获取当前进程的内存使用情况。以下是一个简单的示例代码，展示如何获取并显示当前进程的内存使用量：
-using System; using System.Diagnostics; namespace DisplayProcessMemory { class Program { static void Main(string[] args) { // 获取当前进程 Process currentProcess = Process.GetCurrentProcess(); // 使用需要的内存量 long workingSet64 = currentProcess.WorkingSet64; // 显示内存使用量 Console.WriteLine($&#34;当前进程占用内存: {workingSet64} 字节&#34;); // 单位转换为兆字节 double memoryInMB = workingSet64 / 1024.0 / 1024.0; Console.WriteLine($&#34;当前进程占用内存: {memoryInMB.ToString(&#34;F2&#34;)} MB&#34;); } } } 在.NET中，可以使用System.Diagnostics命名空间下的Process类来获取当前进程的信息，但是直接获取网络带宽使用情况不是Process类提供的功能。你可以使用System.Net.NetworkInformation命名空间下的IPGlobalProperties类来获取网络接口的信息，然后累计所有网络接口的传输数据量来估算带宽使用。
-以下是一个简单的示例代码，用于显示当前进程的网络传输数据量（发送和接收）：
-using System; using System.Diagnostics; using System.Net.NetworkInformation; class Program { static void Main() { Process currentProcess = Process.GetCurrentProcess(); Console.WriteLine($&#34;Process ID: {currentProcess.Id}&#34;); IPGlobalProperties ipProperties = IPGlobalProperties.GetIPGlobalProperties(); TcpStatistics tcpStats = ipProperties.GetTcpIPv4Statistics(); Console.WriteLine($&#34;Total bytes received: {tcpStats.BytesReceived}&#34;); Console.WriteLine($&#34;Total bytes sent: {tcpStats.BytesSent}&#34;); // 输出网络接口统计信息 NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces(); foreach (NetworkInterface networkInterface in networkInterfaces) { Console.WriteLine($&#34;Interface: {networkInterface.Name}&#34;); Console.WriteLine($&#34;Bytes received: {networkInterface.GetIPv4Statistics().BytesReceived}&#34;); Console.WriteLine($&#34;Bytes sent: {networkInterface.GetIPv4Statistics().BytesSent}&#34;); } } } 请注意，这个示例显示的是从系统启动以来累计的网络接口数据量。如果你需要监测特定时间段内的带宽使用情况，你需要定期获取数据并计算差值。另外，这个示例仅包括了IPv4的数据，如果需要IPv6或者更多细节，请相应地扩展代码。
+    <p>🎬️create @Component export default struct TitleBar { build(){ Row(){ Text(&#39;transition&#39;) .fontSize(&#39;30fp&#39;) .fontColor(Color.White) } .width(&#39;100%&#39;) .height(&#39;8%&#39;) .backgroundColor(&#39;#4169E1&#39;) .padding({left:10}) } } 🎞️interface export interface IList{ title:string; url :string; } @State listData:IList[]=[ // @State listData:Array&lt;IList&gt;=[ { title:&#39;in&#39;, url:&#39;pages/home1&#39; }, { title:&#39;scale&#39;, url:&#39;pages/home2&#39; }, { title:&#39;small&#39;, url:&#39;pages/home3&#39; }, { title:&#39;in&#39;, url:&#39;&#39; } ] 💡foreach ForEach(this.listData,( item: IList,index?:number)=&gt;{ //listitem Button({type:ButtonType.Capsule}){ Text(item.title) .fontSize(&#39;35fp&#39;) .fontColor(Color.White) } //... }) 🔦router import router from &#39;@ohos.router&#39; 📼mainpage &#34;pages/home1&#34; 📹️onclick .onClick(()=&gt;{ //router router.pushUrl({url:item.url}) }) 📺️setInterval //home1 page1 import router from &#39;@ohos.router&#39; @Entry @Component struct Index { @State TOTAL_TIME:number = 6;//s @State FIRST_CT:number =3;//s aboutToAppear(){ //timer let timer= setInterval(()=&gt;{ this.TOTAL_TIME--; if(this.TOTAL_TIME===0){ //end router.pushUrl({ url:&#34;pages/Index&#34; }) clearInterval(timer); } },1000) } build() { Column() { Row() { if(this.TOTAL_TIME&gt;this.FIRST_CT){ //1 Image($r(&#39;app.media.t2&#39;)) .objectFit(ImageFit.Contain) }else if(this.TOTAL_TIME&lt;this.FIRST_CT) { //2 Image($r(&#39;app.media.bc&#39;)) .objectFit(ImageFit.Contain) .width(&#39;30%&#39;) Text(&#39; - m - &#39;) .fontSize(&#39;30fp&#39;) } } .width(&#39;100%&#39;) .height(&#39;100%&#39;) .justifyContent(FlexAlign.Center) // Text(&#39;in&#39;) // .fontSize(&#39;50fp&#39;) } .width(&#39;100%&#39;) } } ​
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-05-06 14:57:24 +0000 UTC'>May 6, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to  .NET获取内存" href="http://localhost:1313/posts/.net%E8%8E%B7%E5%8F%96%E5%86%85%E5%AD%98/"></a>
+  <footer class="entry-footer"><span title='2024-05-23 21:49:44 +0000 UTC'>May 23, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to HarmonyOS Interface Router ArkTS ArkUI" href="http://localhost:1313/posts/harmonyos-interface-router-arkts-arkui/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Debian Nodejs HEXO 
+    <h2 class="entry-hint-parent">DotNetty ByteBuffer
     </h2>
   </header>
   <div class="entry-content">
-    <p>Debian Nodejs HEXO
-安装Node.js环境 sudo apt update debian安装最新node v20.12.0 在Debian系统上安装特定版本的Node.js（例如v20.12.0），你可以使用NodeSource二进制分发。以下是安装v20.12.0的步骤：
-首先，打开终端。
-使用curl下载NodeSource的安装脚本：
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 安装Node.js：
-sudo apt-get install -y nodejs 验证Node.js是否安装成功：
-node --version 如果你想要确保安装了特定的v20.12.0版本，可以在安装完Node.js后运行以下命令来验证版本：
-node -v 如果显示的版本号是v20.12.0，则表示已经成功安装了该版本。
-安装HEXO 使用npm包管理器，直接安装hexo
-npm install hexo -g hexo init blog cd blog npm install hexo server hexo 修改端口号 _config.yml # 或者使用 vim _config.yml
-Docs: https://hexo.io/docs/server.html server: port: 12311 # 修改这里为你想要的端口号 compress: true header: true hexo s </p>
+    <p>DotNetty是一个高性能的.NET网络通信框架，基于Netty，支持TCP、UDP、HTTP、WebSocket等协议。适用于高并发、低延迟场景，如实时通信、游戏服务器、IoT应用及大型分布式系统，通过异步I/O、零拷贝等技术提升性能，具备易用性、可扩展性。 架构上，围绕Channel、EventLoop、ChannelPipeline、ChannelHandlerContext设计，包含Transport、Codec、Handler等模块，简化网络编程，加速数据传输处理。
+ByteBuffer 用于高效处理字节数据，固定容量，通过allocate或wrap创建。涉及position和limit追踪读写位置，提供get/put等读写方法，flip切换读写模式，clear清空缓冲区，compact移动数据并准备下一轮读写，适用于高性能IO与网络通信。.
+优点 零拷贝通过复合缓冲区实现。 动态容量增长。 无需flip切换读写模式。 分离读写索引。 内置引用计数。 支持缓冲区池化。 优化网络通信中的字节处理。
+结构 readerIndex 读取，随读增。 writerIndex 写入，随写增。 capacity容量。
+ByteBuffer属性 readIndex：下一个读位 writeIndex：下一个写位置 capacity：容量 0：缓冲区开始位置
+已经读取的区域：[0,readerindex) 可读取的区域：[readerindex,writerIndex) 可写的区域: [writerIndex,capacity) 读写独立索引，操作命名区分（read/write自动进，get/set不影响索引）。 支持设定最大容量，超限写操作将抛异常，默认上限Integer.MAX_VALUE。 readerIndex writerIndex 本质为灵活高效字节容器
+堆缓冲区 最常用的 ByteBuffer 模式是将数据存储在堆空间中。这种模式被称为支撑数组（backing array），它能在没有使用池化的情况下提供快速的分配和释放。可以由 hasArray() 来判断检查 ByteBuffer是否由数组支撑。如果不是，则这是一个直接缓冲区。
+直接缓冲区 直接缓冲区是另外一种 ByteBuffer 模式。 直接缓冲区的主要缺点是，相对于基于堆的缓冲区，它们的分配和释放都较为昂贵。
+复合缓冲区 复合缓冲区 CompositeByteBuf，它为多个 ByteBuffer提供一个聚合视图。比如 HTTP 协议， 分为消息头和消息体，这两部分可能由应用程序的不同模块产生，各有各的 ByteBuffer，将会在消息被发送的时候组装为一个 ByteBuffer，此时可以将这两个 ByteBuffer聚合为一个 CompositeByteBuf，然后使用统一和通用的 ByteBuffer API 来操作。
+如何在的程序中获得 ByteBuf 的实例，并使用它呢？Netty 提供了两种方式
+ByteBufAllocator 接口 ByteBufAllocator 分配任意类型的 ByteBuffer 实例。
+buffer(): 基于堆/直接内存ByteBuffer。 heapBuffer(): 仅堆内存。 directBuffer(): 仅直接内存。 compositeBuffer(): 可组合多个缓冲区，支持堆/直接内存。 ioBuffer(): 适配I/O操作，优先直接内存(需Unsafe支持)。 ByteBufAllocator： Channel ChannelHandlerContext
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-05-03 17:02:53 +0000 UTC'>May 3, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian Nodejs HEXO " href="http://localhost:1313/posts/debian-nodejs-hexo/"></a>
+  <footer class="entry-footer"><span title='2024-05-23 21:47:10 +0000 UTC'>May 23, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to DotNetty ByteBuffer" href="http://localhost:1313/posts/dotnetty-bytebuffer/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent"> .NET netty proto
+    <h2 class="entry-hint-parent"> .NET FileUpload
     </h2>
   </header>
   <div class="entry-content">
-    <p>DotNetty是微软的Azure团队，使用C#实现的Netty的版本发布。不但使用了C#和.Net平台的技术特点，并且保留了Netty原来绝大部分的编程接口。让我们在使用时，完全可以依照Netty官方的教程来学习和使用DotNetty应用程序。
-Netty 是一个异步事件驱动的网络应用程序框架，用于快速开发可维护的高性能协议服务器和客户端。
-优点 关注点分离——业务和网络逻辑解耦； 模块化和可复用性； 可测试性作为首要的要求 历史 阻塞Socket通信特点：
-建立连接要阻塞线程，读取数据要阻塞线程 如果要管理多个客户端，就需要为每个客户端建立不同的线程 会有大量的线程在休眠状态，等待接收数据，资源浪费 每个线程都要占用系统资源 线程的切换很耗费系统资源 非阻塞Socket（NIO）特点： 每个Socket如果需要读写操作，都通过事件通知的方式通知选择器，这样就实现了一个线程管理多个Socket的目的。 ​
-选择器甚至可以在所有的Socket空闲的时候允许线程先去干别的事情 减少了线程数量导致的资源占用，减少了线程切换导致的资源消耗
-Protobuf wakeng
-</p>
+    <p>VS2022 .NET8
+💾基础上传示例 view
+@{ ViewData[&#34;Title&#34;] = &#34;File Upload&#34;; } &lt;h1&gt;@ViewData[&#34;Title&#34;]&lt;/h1&gt; &lt;form method=&#34;post&#34; enctype=&#34;multipart/form-data&#34; action=&#34;/Home/UploadFile&#34;&gt; &lt;div class=&#34;form-group&#34;&gt; &lt;input type=&#34;file&#34; name=&#34;file&#34; class=&#34;form-control&#34; /&gt; &lt;/div&gt; &lt;button type=&#34;submit&#34; class=&#34;btn btn-primary&#34;&gt;Upload&lt;/button&gt; &lt;/form&gt; controller
+[HttpPost] public async Task&lt;IActionResult&gt; UploadFile() { var file = Request.Form.Files[0]; if (file != null &amp;&amp; file.Length &gt; 0) { var uploads = Path.Combine(Directory.GetCurrentDirectory(), &#34;wwwroot&#34;, &#34;up&#34;); if (!Directory.Exists(uploads)) { Directory.CreateDirectory(uploads); } var filePath = Path.Combine(uploads, file.FileName); using (var fileStream = new FileStream(filePath, FileMode.Create)) { await file.CopyToAsync(fileStream); } // SAVE TO DB return RedirectToAction(&#34;Index&#34;); } return View(); } app.UseStaticFiles(); run
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-05-03 02:09:32 +0000 UTC'>May 3, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to  .NET netty proto" href="http://localhost:1313/posts/.net-netty-proto/"></a>
+  <footer class="entry-footer"><span title='2024-05-20 21:14:38 +0000 UTC'>May 20, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  .NET FileUpload" href="http://localhost:1313/posts/.net-fileupload/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">c# run nodejs
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>在C#中调用Node.js时，一种常见的方法是使用进程间通信（Inter-Process Communication，IPC），例如使用子进程。 可以使用C#中的Process类来启动Node.js进程，并通过标准输入输出与其进行通信。
+C# run nodejs // n.js // 监听来自标准输入的消息 process.stdin.on(&#39;data&#39;, function (data) { // 收到消息后，在控制台输出并回复消息 console.log(&#34;Message from C#: &#34; &#43; data.toString()); process.stdout.write(&#34;Hello from Node.js!&#34;); }); ProcessStartInfo startInfo = new ProcessStartInfo(); startInfo.FileName = &#34;node&#34;; // Node.js可执行文件路径，如果已在系统路径中，则不需要提供完整路径 startInfo.Arguments = &#34;n.js&#34;; // 执行的Node.js脚本文件路径 startInfo.UseShellExecute = false; startInfo.RedirectStandardInput = true; startInfo.RedirectStandardOutput = true; Process nodeProcess = new Process(); nodeProcess.StartInfo = startInfo; // 启动进程 nodeProcess.Start(); // 与Node.js进程进行通信 using (var writer = nodeProcess.StandardInput) { if (writer.BaseStream.CanWrite) { // 向Node.js进程发送消息 writer.WriteLine(&#34;Hello from C#!&#34;); } } // 读取Node.js进程的输出 using (var reader = nodeProcess.StandardOutput) { if (reader.BaseStream.CanRead) { // 从Node.js进程读取响应 string response = reader.ReadLine(); Console.WriteLine(&#34;Response from Node.js: &#34; &#43; response); } } Console.Read(); // 等待Node.js进程结束 nodeProcess.WaitForExit(); nodeProcess.Close(); Socket server const net = require(&#39;net&#39;); // 创建一个服务器实例 const server = net.createServer((socket) =&gt; { // 连接建立时触发 console.log(&#39;Client connected.&#39;); // 监听客户端发送的数据 socket.on(&#39;data&#39;, (data) =&gt; { console.log(&#39;Received from client: &#39; &#43; data.toString()); // 向客户端发送响应数据 socket.write(&#39;Hello from Node.js!&#39; &#43; data.toString()); }); // 监听连接断开事件 socket.on(&#39;end&#39;, () =&gt; { console.log(&#39;Client disconnected.&#39;); }); }); // 监听指定端口 const port = 24520; server.listen(port, () =&gt; { console.log(&#39;Node Server listening on port &#39; &#43; port); }); // 启动 Node.js 服务器的 Node.js 脚本文件路径 string nodeScriptPath = &#34;n.js&#34;; // 启动 Node.js 进程 ProcessStartInfo startInfo = new ProcessStartInfo(); startInfo.FileName = &#34;node&#34;; // Node.js 可执行文件路径，如果已在系统路径中，则不需要提供完整路径 startInfo.Arguments = nodeScriptPath; // Node.js 脚本文件路径 startInfo.UseShellExecute = false; startInfo.RedirectStandardOutput = true; Process nodeProcess = new Process(); nodeProcess.StartInfo = startInfo; // Node.js 服务器输出的事件处理函数 nodeProcess.OutputDataReceived &#43;= (sender, e) =&gt; { Console.WriteLine(e.Data); // 输出 Node.js 服务器的输出信息 }; // 启动进程 nodeProcess.Start(); nodeProcess.BeginOutputReadLine(); // 开始异步读取 Node.js 服务器的输出 // 等待 Node.js 进程结束 nodeProcess.WaitForExit(); nodeProcess.Close(); run
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-20 21:13:27 +0000 UTC'>May 20, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to c# run nodejs" href="http://localhost:1313/posts/c%23-run-nodejs/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Typescript study
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>typescript ≈ javascript plus
+🔗setup npm install typescript -g tsc -version npm install ts-node -g 🖌️hello world let str = &#34;hi&#34; console.log(str); ts-node t.ts 🖋️datatype let a1 :string =&#39;abc&#39; let a2:number = 2 let a3 :boolean =true let nu:null =null let un:undefined = undefined let a4:string|null = null let a5:1|2|3 = 2 any let a:any a= 1 a=&#34;1&#34; a=true strong type
+let a:string = &#34;123&#34; a=1 Err
+let a:unknown a= 1 a=&#34;1&#34; a=true let b :String if(typeof a ==&#34;string&#34;) { b=a } enum 枚举 enum Color { RED,BLUE,BLACK} let color = Color.BLACK; //Color[2] console.log(color); ts-node t.ts or to js
+tsc t.ts to see t.js
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-20 00:07:45 +0000 UTC'>May 20, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Typescript study" href="http://localhost:1313/posts/typescript-study/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

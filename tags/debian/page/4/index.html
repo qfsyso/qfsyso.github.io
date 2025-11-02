@@ -126,6 +126,22 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent"> .NET获取内存
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>在.NET 控制台应用程序中，你可以使用System.Diagnostics命名空间下的Process类来获取当前进程的内存使用情况。以下是一个简单的示例代码，展示如何获取并显示当前进程的内存使用量：
+using System; using System.Diagnostics; namespace DisplayProcessMemory { class Program { static void Main(string[] args) { // 获取当前进程 Process currentProcess = Process.GetCurrentProcess(); // 使用需要的内存量 long workingSet64 = currentProcess.WorkingSet64; // 显示内存使用量 Console.WriteLine($&#34;当前进程占用内存: {workingSet64} 字节&#34;); // 单位转换为兆字节 double memoryInMB = workingSet64 / 1024.0 / 1024.0; Console.WriteLine($&#34;当前进程占用内存: {memoryInMB.ToString(&#34;F2&#34;)} MB&#34;); } } } 在.NET中，可以使用System.Diagnostics命名空间下的Process类来获取当前进程的信息，但是直接获取网络带宽使用情况不是Process类提供的功能。你可以使用System.Net.NetworkInformation命名空间下的IPGlobalProperties类来获取网络接口的信息，然后累计所有网络接口的传输数据量来估算带宽使用。
+以下是一个简单的示例代码，用于显示当前进程的网络传输数据量（发送和接收）：
+using System; using System.Diagnostics; using System.Net.NetworkInformation; class Program { static void Main() { Process currentProcess = Process.GetCurrentProcess(); Console.WriteLine($&#34;Process ID: {currentProcess.Id}&#34;); IPGlobalProperties ipProperties = IPGlobalProperties.GetIPGlobalProperties(); TcpStatistics tcpStats = ipProperties.GetTcpIPv4Statistics(); Console.WriteLine($&#34;Total bytes received: {tcpStats.BytesReceived}&#34;); Console.WriteLine($&#34;Total bytes sent: {tcpStats.BytesSent}&#34;); // 输出网络接口统计信息 NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces(); foreach (NetworkInterface networkInterface in networkInterfaces) { Console.WriteLine($&#34;Interface: {networkInterface.Name}&#34;); Console.WriteLine($&#34;Bytes received: {networkInterface.GetIPv4Statistics().BytesReceived}&#34;); Console.WriteLine($&#34;Bytes sent: {networkInterface.GetIPv4Statistics().BytesSent}&#34;); } } } 请注意，这个示例显示的是从系统启动以来累计的网络接口数据量。如果你需要监测特定时间段内的带宽使用情况，你需要定期获取数据并计算差值。另外，这个示例仅包括了IPv4的数据，如果需要IPv6或者更多细节，请相应地扩展代码。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-06 14:57:24 +0000 UTC'>May 6, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  .NET获取内存" href="http://localhost:1313/posts/.net%E8%8E%B7%E5%8F%96%E5%86%85%E5%AD%98/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Debian Nodejs HEXO 
     </h2>
   </header>

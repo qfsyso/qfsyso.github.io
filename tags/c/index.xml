@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>C on MLOG</title><link>https://qfsyso.github.io/tags/c/</link><description>Recent content in C on MLOG</description><generator>Hugo -- 0.126.3</generator><language>zh-CN</language><lastBuildDate>Mon, 03 Nov 2025 01:57:21 +0800</lastBuildDate><atom:link href="https://qfsyso.github.io/tags/c/index.xml" rel="self" type="application/rss+xml"/><item><title>ESP32 WIFI BLE</title><link>https://qfsyso.github.io/posts/esp32-wifi-ble/</link><pubDate>Mon, 03 Nov 2025 01:57:21 +0800</pubDate><guid>https://qfsyso.github.io/posts/esp32-wifi-ble/</guid><description>hello world #include &amp;lt;stdio.h&amp;gt; #include &amp;lt;inttypes.h&amp;gt; #include &amp;#34;sdkconfig.h&amp;#34; #include &amp;#34;freertos/FreeRTOS.h&amp;#34; #include &amp;#34;freertos/task.h&amp;#34; #include &amp;#34;esp_chip_info.h&amp;#34; #include &amp;#34;esp_flash.h&amp;#34; #include &amp;#34;esp_system.h&amp;#34; void app_main(void) { printf(&amp;#34;Hello world!\n&amp;#34;); /* Print chip information */ esp_chip_info_t chip_info; uint32_t flash_size; esp_chip_info(&amp;amp;chip_info); printf(&amp;#34;This is %s chip with %d CPU core(s), %s%s%s%s, &amp;#34;, CONFIG_IDF_TARGET, chip_info.cores, (chip_info.features &amp;amp; CHIP_FEATURE_WIFI_BGN) ? &amp;#34;WiFi/&amp;#34; : &amp;#34;&amp;#34;, (chip_info.features &amp;amp; CHIP_FEATURE_BT) ? &amp;#34;BT&amp;#34; : &amp;#34;&amp;#34;, (chip_info.features &amp;amp; CHIP_FEATURE_BLE) ? &amp;#34;BLE&amp;#34; : &amp;#34;&amp;#34;, (chip_info.features &amp;amp; CHIP_FEATURE_IEEE802154) ? &amp;#34;, 802.</description></item><item><title>Weld Dev</title><link>https://qfsyso.github.io/posts/weld-dev/</link><pubDate>Sun, 26 Oct 2025 00:24:25 +0800</pubDate><guid>https://qfsyso.github.io/posts/weld-dev/</guid><description>WLED项目概览 WLED项目超简单指南 控制彩色灯条变颜色、闪花样。
+一、先准备好“魔法工具” 要玩WLED，得先凑齐这些零件，就像玩积木要先准备积木块一样：
+ESP板：核心“指挥官”，有两种——推荐用ESP32（新出的，更好用），别买ESP8266（快淘汰了）。 彩色灯条：要选能和“WS2812B”兼容的（比如WS2812、SK6812这些型号），它能亮红、绿、蓝等各种颜色。 5V电源：给灯条“喂电”的，就像给玩具装电池，灯条没它就不亮。 电线：把零件连起来的“小管子”；如果电线超过半米长，还要准备一个“电平转换器”（不然灯可能会闪来闪去）。 按钮（可选）：想按一下就换灯效的话就准备，不想也没关系，用手机或电脑控制更方便。 二、把零件“手拉手”连起来（接线） 就像拼乐高要按图纸拼，接线也有规则，别接错哦！
+1. 连“指挥官”（ESP板）和灯条 用ESP32板：找灯条上标着“数据”的线（一般是彩色的），接在ESP32板上写着“GPIO16”“GPIO4”“GPIO13”的地方（选一个就行）。 用ESP8266板：灯条的“数据线”接在板上“GPIO2”的地方（很多板上也会标“D4”，找这个标记也能接）。 2. 一定要接“地线”！ ESP板和灯条上都有“GND”的接口，用电线把这两个接口连起来！不接的话，灯条可能不亮，还会弄坏零件。
+3. 给灯条“喂电” 把5V电源的正负极，对应接在灯条的“5V”和“GND”接口上。如果灯条很长（比如超过5米），要在灯条中间多接一个电源，不然后面的灯可能会变暗。
+4. 可选：装个按钮 想按按钮换灯效的话，把按钮的一端接ESP板的“GPIO0”（如果是ESP32板，就接“IO17”），另一端接“GND”就行。
+三、刷程序 ESP板空着的时候不会干活，得给它装WLED的“程序”（就像给玩具装“大脑”，让它知道怎么控制灯）：
+两种装程序的方法： 简单版（直接用现成程序）：
+去WLED官网下载最新的“固件文件”，用电脑连ESP板，跟着官网的图文步骤，把文件“刷”进板里（就像给手机装APP一样简单）。 复杂版（自己改程序）：
+如果想自己改灯效的代码，就要装“Arduino”软件，编好程序再刷进板里。 装成功的信号： 程序刷好后，灯条的前30个灯会亮橙色，这就代表“装对啦！”
+四、用手机/电脑控制灯条 “指挥官”有了“大脑”，接下来就能用手机或电脑指挥灯条啦！
+1. 先连ESP的“临时WiFi” 程序刷好后，ESP板会发出一个叫“WLED-AP”的WiFi信号。用手机或电脑连这个WiFi，密码是“wled1234”。
+2. 打开控制页面 连好WiFi后，在手机/电脑的浏览器里输“4.3.2.1”，就能看到控制灯的页面了；也可以试试输“wled.me”，有时候也能打开。
+3. 连家里的WiFi（更方便） 每次连“WLED-AP”太麻烦？可以让ESP板连家里的WiFi：
+点控制页面上的“齿轮图标”（这是“设置”按钮），选“Wifi Setup”。 输你家WiFi的名字和密码，点“Save &amp;amp; Connect”。 之后手机/电脑再连家里的WiFi，就能直接控制灯条，不用每次连“WLED-AP”了。 4. 找ESP的“地址” 连好家里WiFi后，让大人帮你去路由器的“设备列表”里找“WLED”的设备，记下来它的“IP地址”（比如“192.168.1.100”），以后输这个地址就能控制灯了。
+五、玩灯！换颜色、变花样 打开控制页面后，你就能当“灯光魔法师”啦：
+选“预设效果”：里面有呼吸灯、流水灯、彩虹色等几十种效果，点一下灯条就会跟着变。 调颜色：页面上有个“颜色盘”，点你喜欢的颜色，灯条就会变成那个颜色。 调亮度：滑动“亮度条”，能让灯变亮或变暗，晚上别调太亮哦，会晃眼睛。 六、升级（更新程序） 如果WLED出了新功能，要给ESP板更程序，就像给手机更APP一样：
+1. 简单版（无线更） 打开控制页面，进“设置”，输默认密码“wledota”，把“OTA locked”的勾去掉，保存并重启ESP板。 再进“安全设置”，选“Manual OTA update”，上传新的固件文件。 更完后，记得再把“OTA locked”的勾打上，这样更安全。 2.</description></item><item><title>ESP32 INMP411 MAX98357A</title><link>https://qfsyso.github.io/posts/esp32-inmp411-max98357a/</link><pubDate>Sat, 25 Oct 2025 23:02:11 +0800</pubDate><guid>https://qfsyso.github.io/posts/esp32-inmp411-max98357a/</guid><description>安装esp-idf vscode 扩展 esp-idf 命令-Advanced-配置esp-idf扩展 Express ** 有外网选择Github**
+配置扩展如果有错误 &amp;ldquo;C:\Espressif\tools\idf-python\3.11.2\python.exe -m pip&amp;rdquo; is not valid. (ERROR_INVALID_PIP) 表示 ESP-IDF 的 Python 环境中 pip 无法正常使用，通常是 pip 环境损坏或未正确安装导致的。
+确认 pip 是否可用 打开 命令提示符 (cmd) 或 PowerShell，输入：
+C:\Espressif\tools\idf-python\3.11.2\python.exe -m ensurepip Looking in links: ... Requirement already satisfied: pip in ... 说明 pip 已存在。
+如果出现错误，执行下一步。
+手动修复 pip 运行：
+C:\Espressif\tools\idf-python\3.11.2\python.exe -m ensurepip --upgrade 这会强制安装或修复 pip。
+再运行：
+C:\Espressif\tools\idf-python\3.11.2\python.exe -m pip install --upgrade pip setuptools 如果执行成功，说明 pip 已恢复正常。</description></item></channel></rss>

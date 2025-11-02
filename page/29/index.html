@@ -123,120 +123,183 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET Swagger 
+    <h2 class="entry-hint-parent">Debian Nodejs HEXO 
     </h2>
   </header>
   <div class="entry-content">
-    <p>开发环境 Win10 VS2022 .NET8.0
-1.从NuGet添加Swagger ​
-在解决方案资源管理器中右键单击项目&gt;管理 NuGet 包 将包源设置为“nuget.org” 确保启用“包括预发行”选项 在搜索框中输入“Swashbuckle.AspNetCore” 从“浏览”选项卡中选择最新的“Swashbuckle.AspNetCore”包，然后单击“安装”
-2.将 Swagger 生成器添加到以下位置的服务集合中Program.cs： builder.Services.AddControllers(); builder.Services.AddEndpointsApiExplorer(); builder.Services.AddSwaggerGen(); ​
-启用中间件 生成
-app.UseSwagger(); app.UseSwaggerUI(); app.UseSwaggerUI(options =&gt; { options.SwaggerEndpoint(&#34;/swagger/v1/swagger.json&#34;, &#34;v1&#34;); options.RoutePrefix = string.Empty; }); ​
-3.添加API控制器 创建api
-// GET api/&lt;myapi&gt;/5 /// &lt;summary&gt; /// getid /// &lt;/summary&gt; /// &lt;param name=&#34;id&#34;&gt;id参数&lt;/param&gt; /// &lt;returns&gt;valuestr&lt;/returns&gt; [HttpGet(&#34;{id}&#34;)] public string Get(int id) { return &#34;value&#34; &#43; id; } // POST api/&lt;myapi&gt; [HttpPost] public string Post([FromBody] string value) { //post逻辑代码 return &#34;myPost&#34;; } // PUT api/&lt;myapi&gt;/5 [HttpPut(&#34;{id}&#34;)] public string Put(int id, [FromBody] string value) { //put逻辑代码 return &#34;myPut&#34;; } // DELETE api/&lt;myapi&gt;/5 [HttpDelete(&#34;{id}&#34;)] public string Delete(int id) { //delete逻辑代码 return &#34;myDelete&#34;; } ​
-...</p>
+    <p>Debian Nodejs HEXO
+安装Node.js环境 sudo apt update debian安装最新node v20.12.0 在Debian系统上安装特定版本的Node.js（例如v20.12.0），你可以使用NodeSource二进制分发。以下是安装v20.12.0的步骤：
+首先，打开终端。
+使用curl下载NodeSource的安装脚本：
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 安装Node.js：
+sudo apt-get install -y nodejs 验证Node.js是否安装成功：
+node --version 如果你想要确保安装了特定的v20.12.0版本，可以在安装完Node.js后运行以下命令来验证版本：
+node -v 如果显示的版本号是v20.12.0，则表示已经成功安装了该版本。
+安装HEXO 使用npm包管理器，直接安装hexo
+npm install hexo -g hexo init blog cd blog npm install hexo server hexo 修改端口号 _config.yml # 或者使用 vim _config.yml
+Docs: https://hexo.io/docs/server.html server: port: 12311 # 修改这里为你想要的端口号 compress: true header: true hexo s </p>
   </div>
-  <footer class="entry-footer"><span title='2024-04-11 23:27:19 +0000 UTC'>April 11, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET Swagger " href="http://localhost:1313/posts/.net-swagger/"></a>
+  <footer class="entry-footer"><span title='2024-05-03 17:02:53 +0000 UTC'>May 3, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Debian Nodejs HEXO " href="http://localhost:1313/posts/debian-nodejs-hexo/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Docker MySQL 
+    <h2 class="entry-hint-parent"> .NET netty proto
     </h2>
   </header>
   <div class="entry-content">
-    <p>1.下载docker desktop https://www.docker.com/products/docker-desktop/
-创建容器 docker run 创建并启动mysql容器
-–name 容器名字
--d 后台运行容器
--p 映射端口
--e 参数
-截至目前最新的mysql是mysql8.0.36 那就整这个试下。
-docker run -d --name mysql-container -e TZ=UTC -p 30306:3306 -e MYSQL_ROOT_PASSWORD=你的密码 mysql:8.0.36-debian ​
-等待一会，看到mysql已经pull下来。
-回到docker看到容器已经创建。
-​
-​
-可以输入docker images查看
-​
-3.创建mysql数据库管理软件容器
-docker run --name myadmin -d --link mysql-container:db -p 8880:80 phpmyadmin/phpmyadmin ​
-回到docker查看下容器是否创建成功。 ​
-复制地址到浏览器访问。 ​
-​
-okok
-唉哟不错哦~
-扩展：ubuntu版本
-docker run -d --name mysql-container -e TZ=UTC -p 30306:3306 -e MYSQL_ROOT_PASSWORD=xxxxxx ubuntu/mysql:8.0-22.04_beta https://hub.docker.com/r/ubuntu/mysql?uuid=D64B1F2A-A81A-4D2C-B66B-FCFAECE77EFE
+    <p>DotNetty是微软的Azure团队，使用C#实现的Netty的版本发布。不但使用了C#和.Net平台的技术特点，并且保留了Netty原来绝大部分的编程接口。让我们在使用时，完全可以依照Netty官方的教程来学习和使用DotNetty应用程序。
+Netty 是一个异步事件驱动的网络应用程序框架，用于快速开发可维护的高性能协议服务器和客户端。
+优点 关注点分离——业务和网络逻辑解耦； 模块化和可复用性； 可测试性作为首要的要求 历史 阻塞Socket通信特点：
+建立连接要阻塞线程，读取数据要阻塞线程 如果要管理多个客户端，就需要为每个客户端建立不同的线程 会有大量的线程在休眠状态，等待接收数据，资源浪费 每个线程都要占用系统资源 线程的切换很耗费系统资源 非阻塞Socket（NIO）特点： 每个Socket如果需要读写操作，都通过事件通知的方式通知选择器，这样就实现了一个线程管理多个Socket的目的。 ​
+选择器甚至可以在所有的Socket空闲的时候允许线程先去干别的事情 减少了线程数量导致的资源占用，减少了线程切换导致的资源消耗
+Protobuf wakeng
 </p>
   </div>
-  <footer class="entry-footer"><span title='2024-04-11 08:35:22 +0000 UTC'>April 11, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Docker MySQL " href="http://localhost:1313/posts/docker-mysql/"></a>
+  <footer class="entry-footer"><span title='2024-05-03 02:09:32 +0000 UTC'>May 3, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  .NET netty proto" href="http://localhost:1313/posts/.net-netty-proto/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Hello World Hexo
+    <h2 class="entry-hint-parent">.NET 检测地址/主机/域名是否正常
     </h2>
   </header>
   <div class="entry-content">
-    <p>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick Start Create a new post npm install hexo-cli -g hexo init blog cd blog npm install hexo server $ hexo new &#34;My New Post&#34; More info: Writing
-Run server $ hexo server More info: Server
+    <p>🌱PING 地址/主机名/域名
+/// &lt;summary&gt; /// PING /// &lt;/summary&gt; /// &lt;param name=&#34;ip&#34;&gt;ip&lt;/param&gt; /// &lt;returns&gt;&lt;/returns&gt; public static bool PingIp(string ip) { System.Net.NetworkInformation.Ping p = new System.Net.NetworkInformation.Ping(); System.Net.NetworkInformation.PingOptions options = new System.Net.NetworkInformation.PingOptions(); options.DontFragment = true; string data = &#34;Test Data!&#34;; byte[] buffer = Encoding.ASCII.GetBytes(data); int timeout = 2000; // Timeout System.Net.NetworkInformation.PingReply reply = p.Send(ip, timeout, buffer, options); if (reply.Status == System.Net.NetworkInformation.IPStatus.Success) { // AddToConvo(ip &#43; reply.Status); return true; } else { // AddToConvo(ip &#43; reply.Status); return false; } } 👀调用方法
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-03-20 22:16:01 +0000 UTC'>March 20, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Hello World Hexo" href="http://localhost:1313/posts/hello-world-hexo/"></a>
+  <footer class="entry-footer"><span title='2024-04-28 19:09:40 +0000 UTC'>April 28, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET 检测地址/主机/域名是否正常" href="http://localhost:1313/posts/.net-%E6%A3%80%E6%B5%8B%E5%9C%B0%E5%9D%80/%E4%B8%BB%E6%9C%BA/%E5%9F%9F%E5%90%8D%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">some code
+    <h2 class="entry-hint-parent">.NET Avalonia Linux 
     </h2>
   </header>
   <div class="entry-content">
-    <p>now study 开发者活动 https://developer.huaweicloud.com/events
-云学堂 https://edu.huaweicloud.com/signup/a84b127961f4408bb69d560f48c5675d
-华为云认证 https://edu.huaweicloud.com/certificationindex
-开发者空间学习 https://developer.huaweicloud.com/space/devportal/knowledge
-https://linux.do/t/topic/665547/1 华为云认真攻略
-AES-256 加密算法和三重转轮混淆技术
-10个人 2m 100 20m
-瘦肚子 胯下击掌 50 单侧提膝 50 提膝下压 50 深蹲 30 4组
-something git chatbox https://github.com/Bin-Huang/chatbox Desktop Client App for AI Models/LLMs (GPT, Claude, Gemini, Ollama…)
-fofa https://fofa.info/ app=“Ollama” &amp;&amp; is_domain=false https://github.com/ollama/ollama/blob/main/docs/api.md
-dbeaver sql工具 https://github.com/dbeaver/dbeaver/releases
-sing-boxyg https://github.com/yonggekkk/sing-box-yg
-music-desktop https://github.com/lyswhut/lx-music-desktop
-RDP、VNC、SSH 远程 https://github.com/mRemoteNG/mRemoteNG
-geekgeekrun https://github.com/geekgeekrun/geekgeekrun
-clash linux https://github.com/Elegycloud/clash-for-linux-backup
-ssh https://github.com/cmliu/webssh https://github.com/chaos-zhu/easynode https://github.com/crazypeace/huashengdun-webssh https://github.com/huashengdun/webssh https://github.com/Jrohy/webssh
-docker run -d --name webssh --restart always -p 18888:8888 cmliu/webssh:latest v2rayN https://github.com/2dust/v2rayN/
+    <p>环境WIN10 VS2022 debian
+👻前言 Avalonia 是一个用于创建跨平台用户界面 (UI) 的开源框架。它是一个基于 .NET 平台的框架，允许开发者使用 XAML 和 C#（F#）来构建跨平台的应用程序。Avalonia 的目标是提供与 Windows Presentation Foundation (WPF) 类似的开发体验，但能够在 Windows、macOS 和 Linux 等多个平台上运行。
+使用 Avalonia，开发者可以创建各种类型的应用程序，包括桌面应用、移动应用和嵌入式应用。一些可以通过 Avalonia 实现的功能和应用包括：
+桌面应用程序：如办公软件、IDE、游戏客户端等。
+移动应用程序：通过 Avalonia 可以构建支持多个平台的移动应用，如 Windows、macOS 和 Linux 上的移动应用。
+跨平台工具：Avalonia 可以用于构建跨平台的开发工具、实用工具等。
+游戏开发：Avalonia 也可以用于构建游戏的用户界面，适合基于 .NET 平台的游戏开发。
+Avalonia 提供了一个强大的工具集，使开发者能够创建具有各种功能和样式的跨平台应用程序。
+💻安装Avalonia 选择管理拓展，点击下载，安装
+​
+​
+📦创建项目 ​
+​
+​
+编码…
+📚在win下运行 ​
+查看linux内核
+uname -a
+​
+🔑打包发布 复制到linux
+授予权限
+📻在linux下运行 迁移Socket发布到linux ​
+​
+实现win linux web 基于socket实时聊天
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-27 00:07:15 +0000 UTC'>April 27, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET Avalonia Linux " href="http://localhost:1313/posts/.net-avalonia-linux/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Debian Gnome-Desktop GUI 
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>debian gnome-desktop
+🌞更新 sudo apt update sudo apt -y upgrade ​
+🎨安装 sudo apt -y install task-gnome-desktop 这个过程比较久
+​
+🍎分配 sudo systemctl set-default graphical.target vi /etc/pam.d/gdm-password ``` bash 注释 auth required pam_succeed_if.so user != root quiet_success ``` bash #auth required pam_succeed_if.so user != root quiet_success 🛋️重启 sudo reboot 🔑通过VNC连接 ​
+配置后
+​
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-26 23:19:27 +0000 UTC'>April 26, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Debian Gnome-Desktop GUI " href="http://localhost:1313/posts/debian-gnome-desktop-gui/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">HarmonyOS Study ArkTS
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>💡 环境搭建 HarmonyOS开发环境搭建
+DevEco Studio安装 https://developer.huawei.com/consumer/cn/deveco-studio/
+​
+🚀安装nodejs ​
+🤵安装ohpm ​
+🍔安装SDK ​
+​
+💥Emulator安装 ​
+Q:The graphic card OpenGL version is too old for Previewer to work..
+解决方法分两步：
+1、下载enGL库：https://github.com/pal1000/mesa-dist-win/releases/download/23.1.1/mesa3d-23.1.1-release-msvc.7z
+2、解压下载的zip文件,双击执行systemwidedeploy.cmd文件，然后按任意键，出现一个菜单，选择1，然后开始安装OpenGL驱动，出现complete 后关闭终端，重新运行程序即可生效。
+🌶️新建ArkTs项目 ​
+​
+​
+entry：HarmonyOS工程模块，编译构建生成一个HAP包。
+src &gt; main &gt; ets：用于存放ets源码。 src &gt; main &gt; ets &gt; MainAbility：应用/服务的入口。 src &gt; main &gt; ets &gt; MainAbility &gt; pages：MainAbility包含的页面。 src &gt; main &gt; ets &gt; MainAbility &gt; pages &gt; index.ets：pages列表中的第一个页面，即应用的首页入口。 src &gt; main &gt; ets &gt; MainAbility &gt; app.ets：承载Ability生命周期。 src &gt; main &gt; resources：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。 src &gt; main &gt; config.json：模块配置文件。主要包含HAP包的配置信息、应用/服务在具体设备上的配置信息以及应用/服务的全局配置信息。 build-profile.json5：当前的模块信息、编译信息配置项，包括buildOption、targets配置等。其中targets中可配置当前运行环境，默认为HarmonyOS。 hvigorfile.ts：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。 build-profile.json5：应用级配置信息，包括签名、产品配置等。
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2023-08-03 02:12:50 +0000 UTC'>August 3, 2023</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to some code" href="http://localhost:1313/posts/some-code/"></a>
+  <footer class="entry-footer"><span title='2024-04-21 13:00:43 +0000 UTC'>April 21, 2024</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to HarmonyOS Study ArkTS" href="http://localhost:1313/posts/harmonyos-study-arkts/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">100件小事
+    <h2 class="entry-hint-parent"> .NET 反编译
     </h2>
   </header>
   <div class="entry-content">
-    <p>
-手牵手逛街 一起看海 一起看雪 喂我吃东西 一起堆雪人 一起坐摩天轮 一起恶作剧 一起坐海盗船 吃同一杯冰淇淋 一起搬东西 一起布置我们的小窝 一起看日出 一起看恐怖片 送惊喜小礼物 为我做顿饭 一起看爱情片 一起看日落 一起数星星 一起洗衣服 一起听同一首曲子 在朋友面前介绍我 把肩膀借给我靠 为我擦眼泪 唱歌给我听 为我写篇日记 在大街上背我 随叫随到 一起看球赛 比赛啃西瓜 在沙滩上画心 一起没形象的大叫 一起熬夜玩游戏 为我系鞋带 一起拉粑 一起发呆 一起过我们的纪念日 一起做陶瓷 一起许愿 一起做蛋糕 学对方说话 一起模仿搞笑的事情 为我剪指甲 吃我剩下的饭饭 把你欺负的对我没辙 一起打水仗 一起拍照片 一起骑脚踏车 戴同一条围巾 戴同一双手套 讲故事哄我睡觉 一起吃棉花糖 一起唱歌 一起淋雨 一起面对所有难堪 一起爬山 一起露营 一起跑步 一起傻笑 一起吃路边摊 一起去猫咖 穿情侣装显摆 一起打羽毛球 一起吃爱吃的东西到吐 一起踩马路到脚软 一起去旅行 一起去动物园 咬一下你的脸颊 对我说晚安 一起看电影 一起买菜 比赛石头剪刀布 一起见对方的朋友 一起做鬼脸 一起走遍世界各地 一起吃大餐，牵手进去，扶墙出来 一起扎气球赢奖品 站在马路的两侧大喊 看你打场比赛 一起看演唱会 一起沿铁轨 一起坐地铁 一起放风筝 一起看花田 趁你睡觉偷亲你一下 一起放孔明灯 一起钓鱼 一起下棋 一起在烈日下暴晒 手机屏保设置对方的照片 一起敷面膜 一起捏对方的脸 打赌各种各样的事 一起看烟火 在树下埋下我们的约定 去海边放漂流瓶 拍一次婚纱照 求婚 结婚 完成人生各项大事 白头偕老 </p>
+    <p>反编译是对程序进行逆向分析、研究，以推导出软件产品所使用的思路、原理、结构、算法、处理过程、运行方法等设计要素。
+反编译.NET程序需要使用专门的反编译工具
+🧿使用dotPeek进行反编译 1.下载dotPeek dotPeek：JetBrains 出品的免费 .NET 反编译器与程序集浏览器
+​
+2.File &gt; Open
+​
+3.打开需要反编译的文件方法
+​
+🧝‍♂️使用ILSpy进行反编译 下载并安装 ILSpy：https://github.com/icsharpcode/ILSpy/releases 2.文件-打开-exe
+​
+3.查看反编译内容
+找到Form1 可以看到里面反编译的内容
+​
+复制到vs里面
+替换代码添加相关引用即可
+🤖使用Reflector进行反编译 1.File &gt; Open Assembly
+​ ​
+2.点开WinTime.exe内容
+​
+3.查看反编译内容
+可以看到反编译出来的控件和方法 ​
+点开方法，可以看到方法内的内容
+注意：
+反编译的代码可能不完全等同于原始源代码，因为编译器可能会进行优化，并且某些信息可能因为混淆技术而无法恢复。
+</p>
   </div>
-  <footer class="entry-footer"><span title='2023-02-20 10:27:36 +0000 UTC'>February 20, 2023</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to 100件小事" href="http://localhost:1313/posts/100%E4%BB%B6%E5%B0%8F%E4%BA%8B/"></a>
+  <footer class="entry-footer"><span title='2024-04-21 06:14:22 +0000 UTC'>April 21, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to  .NET 反编译" href="http://localhost:1313/posts/.net-%E5%8F%8D%E7%BC%96%E8%AF%91/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="http://localhost:1313/page/28/">
       «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/page/30/">Next&nbsp;&nbsp;»
     </a>
   </nav>
 </footer>

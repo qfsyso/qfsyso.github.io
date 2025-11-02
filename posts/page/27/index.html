@@ -126,183 +126,122 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET 检测地址/主机/域名是否正常
+    <h2 class="entry-hint-parent">.NET Blazor
     </h2>
   </header>
   <div class="entry-content">
-    <p>🌱PING 地址/主机名/域名
-/// &lt;summary&gt; /// PING /// &lt;/summary&gt; /// &lt;param name=&#34;ip&#34;&gt;ip&lt;/param&gt; /// &lt;returns&gt;&lt;/returns&gt; public static bool PingIp(string ip) { System.Net.NetworkInformation.Ping p = new System.Net.NetworkInformation.Ping(); System.Net.NetworkInformation.PingOptions options = new System.Net.NetworkInformation.PingOptions(); options.DontFragment = true; string data = &#34;Test Data!&#34;; byte[] buffer = Encoding.ASCII.GetBytes(data); int timeout = 2000; // Timeout System.Net.NetworkInformation.PingReply reply = p.Send(ip, timeout, buffer, options); if (reply.Status == System.Net.NetworkInformation.IPStatus.Success) { // AddToConvo(ip &#43; reply.Status); return true; } else { // AddToConvo(ip &#43; reply.Status); return false; } } 👀调用方法
+    <p>Blazor 是一个使用 C#、HTML 和 CSS 构建交互式 Web UI 的开源框架，支持服务器端和客户端运行，允许开发者利用 C# 和 .NET 生态来创建 Web 应用。
+🌱Create carete Blazor Web
+Program.cs 是启动服务器以及在其中配置应用服务和中间件的应用的入口点。 在 Components 目录中:
+App.razor 为应用的根组件。 Routes.razor 配置 Blazor 路由器。 Pages 目录包含应用的一些示例网页。 BlazorApp.csproj 定义应用项目及其依赖项，且可以通过双击解决方案资源管理器中的 BlazorApp 项目节点进行查看。 Properties 目录中的 launchSettings.json 文件为本地开发环境定义不同的配置文件设置。创建项目时会自动分配端口号并将其保存在此文件上。
+🪴Run pages home.razor
+@page &#34;/&#34; &lt;PageTitle&gt;Home&lt;/PageTitle&gt; &lt;h1&gt;Hello, world m qqqqq&lt;/h1&gt; hihihi 🌴Counter counter.razor
+@page &#34;/counter&#34; @rendermode InteractiveServer &lt;PageTitle&gt;Counter&lt;/PageTitle&gt; &lt;h1&gt;Counter&lt;/h1&gt; &lt;p role=&#34;status&#34;&gt;Current count: @currentCount&lt;/p&gt; &lt;button class=&#34;btn btn-primary&#34; @onclick=&#34;IncrementCount&#34;&gt;Click me&lt;/button&gt; @code { private int currentCount = 0; private void IncrementCount() { currentCount&#43;&#43;; } } 像Vue
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-04-28 19:09:40 +0000 UTC'>April 28, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET 检测地址/主机/域名是否正常" href="http://localhost:1313/posts/.net-%E6%A3%80%E6%B5%8B%E5%9C%B0%E5%9D%80/%E4%B8%BB%E6%9C%BA/%E5%9F%9F%E5%90%8D%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8/"></a>
+  <footer class="entry-footer"><span title='2024-05-18 23:10:13 +0000 UTC'>May 18, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET Blazor" href="http://localhost:1313/posts/.net-blazor/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">.NET Avalonia Linux 
+    <h2 class="entry-hint-parent">.NET RabbitMQ NOTE
     </h2>
   </header>
   <div class="entry-content">
-    <p>环境WIN10 VS2022 debian
-👻前言 Avalonia 是一个用于创建跨平台用户界面 (UI) 的开源框架。它是一个基于 .NET 平台的框架，允许开发者使用 XAML 和 C#（F#）来构建跨平台的应用程序。Avalonia 的目标是提供与 Windows Presentation Foundation (WPF) 类似的开发体验，但能够在 Windows、macOS 和 Linux 等多个平台上运行。
-使用 Avalonia，开发者可以创建各种类型的应用程序，包括桌面应用、移动应用和嵌入式应用。一些可以通过 Avalonia 实现的功能和应用包括：
-桌面应用程序：如办公软件、IDE、游戏客户端等。
-移动应用程序：通过 Avalonia 可以构建支持多个平台的移动应用，如 Windows、macOS 和 Linux 上的移动应用。
-跨平台工具：Avalonia 可以用于构建跨平台的开发工具、实用工具等。
-游戏开发：Avalonia 也可以用于构建游戏的用户界面，适合基于 .NET 平台的游戏开发。
-Avalonia 提供了一个强大的工具集，使开发者能够创建具有各种功能和样式的跨平台应用程序。
-💻安装Avalonia 选择管理拓展，点击下载，安装
-​
-​
-📦创建项目 ​
-​
-​
-编码…
-📚在win下运行 ​
-查看linux内核
-uname -a
-​
-🔑打包发布 复制到linux
-授予权限
-📻在linux下运行 迁移Socket发布到linux ​
-​
-实现win linux web 基于socket实时聊天
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-27 00:07:15 +0000 UTC'>April 27, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to .NET Avalonia Linux " href="http://localhost:1313/posts/.net-avalonia-linux/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Debian Gnome-Desktop GUI 
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>debian gnome-desktop
-🌞更新 sudo apt update sudo apt -y upgrade ​
-🎨安装 sudo apt -y install task-gnome-desktop 这个过程比较久
-​
-🍎分配 sudo systemctl set-default graphical.target vi /etc/pam.d/gdm-password ``` bash 注释 auth required pam_succeed_if.so user != root quiet_success ``` bash #auth required pam_succeed_if.so user != root quiet_success 🛋️重启 sudo reboot 🔑通过VNC连接 ​
-配置后
-​
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-26 23:19:27 +0000 UTC'>April 26, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Debian Gnome-Desktop GUI " href="http://localhost:1313/posts/debian-gnome-desktop-gui/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">HarmonyOS Study ArkTS
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>💡 环境搭建 HarmonyOS开发环境搭建
-DevEco Studio安装 https://developer.huawei.com/consumer/cn/deveco-studio/
-​
-🚀安装nodejs ​
-🤵安装ohpm ​
-🍔安装SDK ​
-​
-💥Emulator安装 ​
-Q:The graphic card OpenGL version is too old for Previewer to work..
-解决方法分两步：
-1、下载enGL库：https://github.com/pal1000/mesa-dist-win/releases/download/23.1.1/mesa3d-23.1.1-release-msvc.7z
-2、解压下载的zip文件,双击执行systemwidedeploy.cmd文件，然后按任意键，出现一个菜单，选择1，然后开始安装OpenGL驱动，出现complete 后关闭终端，重新运行程序即可生效。
-🌶️新建ArkTs项目 ​
-​
-​
-entry：HarmonyOS工程模块，编译构建生成一个HAP包。
-src &gt; main &gt; ets：用于存放ets源码。 src &gt; main &gt; ets &gt; MainAbility：应用/服务的入口。 src &gt; main &gt; ets &gt; MainAbility &gt; pages：MainAbility包含的页面。 src &gt; main &gt; ets &gt; MainAbility &gt; pages &gt; index.ets：pages列表中的第一个页面，即应用的首页入口。 src &gt; main &gt; ets &gt; MainAbility &gt; app.ets：承载Ability生命周期。 src &gt; main &gt; resources：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。 src &gt; main &gt; config.json：模块配置文件。主要包含HAP包的配置信息、应用/服务在具体设备上的配置信息以及应用/服务的全局配置信息。 build-profile.json5：当前的模块信息、编译信息配置项，包括buildOption、targets配置等。其中targets中可配置当前运行环境，默认为HarmonyOS。 hvigorfile.ts：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。 build-profile.json5：应用级配置信息，包括签名、产品配置等。
+    <p>setup rabbitmq docker run –name=rabbit -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=xxx -d rabbitmq:management
+ip:15672
+nuget RabbitMQ.Client
+Send
+//1.1.实例化连接工厂 var factory = new ConnectionFactory() { HostName = &#34;localhost&#34; }; //2. 建立连接 using (var connection = factory.CreateConnection()) { //3. 创建信道 using (var channel = connection.CreateModel()) { //4. 申明队列 channel.QueueDeclare(queue: &#34;hello&#34;, durable: false, exclusive: false, autoDelete: false, arguments: null); //5. 构建byte消息数据包 string message = args.Length &gt; 0 ? args[0] : &#34;Hello RabbitMQ!&#34;; var body = Encoding.UTF8.GetBytes(message); //6. 发送数据包 channel.BasicPublish(exchange: &#34;&#34;, routingKey: &#34;hello&#34;, basicProperties: null, body: body); Console.WriteLine(&#34; [x] Sent {0}&#34;, message); } } Received
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-04-21 13:00:43 +0000 UTC'>April 21, 2024</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to HarmonyOS Study ArkTS" href="http://localhost:1313/posts/harmonyos-study-arkts/"></a>
+  <footer class="entry-footer"><span title='2024-05-18 23:05:20 +0000 UTC'>May 18, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET RabbitMQ NOTE" href="http://localhost:1313/posts/.net-rabbitmq-note/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent"> .NET 反编译
+    <h2 class="entry-hint-parent">Nodejs Study
     </h2>
   </header>
   <div class="entry-content">
-    <p>反编译是对程序进行逆向分析、研究，以推导出软件产品所使用的思路、原理、结构、算法、处理过程、运行方法等设计要素。
-反编译.NET程序需要使用专门的反编译工具
-🧿使用dotPeek进行反编译 1.下载dotPeek dotPeek：JetBrains 出品的免费 .NET 反编译器与程序集浏览器
-​
-2.File &gt; Open
-​
-3.打开需要反编译的文件方法
-​
-🧝‍♂️使用ILSpy进行反编译 下载并安装 ILSpy：https://github.com/icsharpcode/ILSpy/releases 2.文件-打开-exe
-​
-3.查看反编译内容
-找到Form1 可以看到里面反编译的内容
-​
-复制到vs里面
-替换代码添加相关引用即可
-🤖使用Reflector进行反编译 1.File &gt; Open Assembly
-​ ​
-2.点开WinTime.exe内容
-​
-3.查看反编译内容
-可以看到反编译出来的控件和方法 ​
-点开方法，可以看到方法内的内容
-注意：
-反编译的代码可能不完全等同于原始源代码，因为编译器可能会进行优化，并且某些信息可能因为混淆技术而无法恢复。
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-21 06:14:22 +0000 UTC'>April 21, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to  .NET 反编译" href="http://localhost:1313/posts/.net-%E5%8F%8D%E7%BC%96%E8%AF%91/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent"> .NET SMTP
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>SMTP（Simple Mail Transfer Protocol）是用于电子邮件传输的规则集，可以从邮件客户端向接收电子邮件服务器发送、中继或转发邮件。发件人可使用SMTP 服务器来执行发送电子邮件的过程。SMTP服务器则是按照这些规则中转电子邮件的服务器。
-IMAP可以理解为收邮件。 ​
-🐧使用QQ邮箱发邮件 首先需要设置开启邮箱的SMTP服务
-登录(https://mail.qq.com/)电脑网页版邮箱进入【设置】-&gt;【帐户】-&gt;【POP3/IMAP/SMTP服务】， 开启或关闭相应服务最后保存更改即可。 ​
-QQ邮箱 POP3 和 SMTP 服务器地址设置如下：
-邮箱	POP3服务器（端口995）	SMTP服务器（端口465或587） qq.com	pop.qq.com	smtp.qq.com SMTP服务器需要身份验证。
-以下是示例代码：
-using ConsoleApp1Test; //xxx string server = &#34;smtp.qq.com&#34;; string username = &#34;my test email&#34;; string password = &#34;xxx; string from = &#34;from@qq.com&#34;; string to = &#34;to@qq.com&#34;; string subject = &#34;Test Email&#34;; string content = &#34;This is a test email sent asynchronously.&#34;; bool isHtml = false; // 是否为 HTML 格式 try { bool success = await MailHelper. SendMailAsync(server, username, password, from, to, null, subject, content, isHtml); if (success) { Console.WriteLine(&#34;邮件发送成功！&#34;); } else { Console.WriteLine(&#34;邮件发送失败！&#34;); } } catch (Exception ex) { Console.WriteLine($&#34;邮件发送出错：{ex.Message}&#34;); } using System; using System.Collections.Generic; using System.Linq; using System.Net.Mail; using System.Text; using System.Threading.Tasks; namespace ConsoleApp1Test { internal class MailHelper { public static async Task&lt;bool&gt; SendMailAsync(string server, string username, string password, string from, string to, string cc, string subject, string content, bool isHtml) { try { using (var smtp = new SmtpClient(server)) { smtp.UseDefaultCredentials = false; smtp.Credentials = new System.Net.NetworkCredential(username, password); smtp.EnableSsl = true; // 启用加密 smtp.DeliveryMethod = SmtpDeliveryMethod.Network; using (var mail = new MailMessage()) { mail.From = new MailAddress(from); mail.To.Add(to); mail.SubjectEncoding = Encoding.UTF8; mail.Subject = subject; mail.IsBodyHtml = isHtml; mail.BodyEncoding = Encoding.UTF8; mail.Body = content; await smtp.SendMailAsync(mail); // 异步发送邮件 } return true; } } catch (Exception err) { // 发送失败时的异常处理 // 可以在此处记录日志 return false; } } } } ​ ​
+    <p>📘 util util const util = require(&#39;util&#39;); util.isArray([]) util.isRegExp(/some regexp/) util.isDate(new Date()) // true util.isDate(Date()) // false (without &#39;new&#39; returns a String) os var os = require(&#34;os&#34;); // CPU 的字节序 console.log(&#39;endianness : &#39; &#43; os.endianness()); // 操作系统名 console.log(&#39;type : &#39; &#43; os.type()); // 操作系统名 console.log(&#39;platform : &#39; &#43; os.platform()); // 系统内存总量 console.log(&#39;total memory : &#39; &#43; os.totalmem() &#43; &#34; bytes.&#34;); // 操作系统空闲内存量 console.log(&#39;free memory : &#39; &#43; os.freemem() &#43; &#34; bytes.&#34;); path // 格式化路径 console.log(&#39;normalization : &#39; &#43; path.normalize(&#39;/test/test1//2slashes/1slash/tab/..&#39;)); // 连接路径 console.log(&#39;joint path : &#39; &#43; path.join(&#39;/test&#39;, &#39;test1&#39;, &#39;2slashes/1slash&#39;, &#39;tab&#39;, &#39;..&#39;)); // 转换为绝对路径 console.log(&#39;resolve : &#39; &#43; path.resolve(&#39;main.js&#39;)); // 路径中文件的后缀名 console.log(&#39;ext name : &#39; &#43; path.extname(&#39;main.js&#39;)); net //client var net = require(&#39;net&#39;); var client = net.connect({port: 6001}, function() { console.log(&#39;连接到服务器！&#39;); }); client.on(&#39;data&#39;, function(data) { console.log(data.toString()); client.end(); }); client.on(&#39;end&#39;, function() { console.log(&#39;断开与服务器的连接&#39;); }); //server var net = require(&#39;net&#39;); var server = net.createServer(function(connection) { console.log(&#39;client connected&#39;); connection.on(&#39;end&#39;, function() { console.log(&#39;客户端关闭连接&#39;); }); connection.write(&#39;Hello World!\r\n&#39;); connection.pipe(connection); }); server.listen(8080, function() { console.log(&#39;server is listening&#39;); }); dns var dns = require(&#39;dns&#39;); dns.lookup(&#39;www.qq.com&#39;, function onLookup(err, address, family) { console.log(&#39;ip 地址:&#39;, address); dns.reverse(address, function (err, hostnames) { console.log(&#39;反向解析 &#39; &#43; address &#43; &#39;: &#39; &#43; JSON.stringify(hostnames)); }); }); 📕file //read var fs = require(&#39;fs&#39;); fs.stat(&#39;E:/vue/nodejs/hello.js&#39;, function (err, stats) { console.log(stats.isFile()); //true }) var fs = require(&#34;fs&#34;); // 异步读取 fs.readFile(&#39;input.txt&#39;, function (err, data) { if (err) { return console.error(err); } console.log(&#34;异步读取: &#34; &#43; data.toString()); }); // 同步读取 var data = fs.readFileSync(&#39;input.txt&#39;); console.log(&#34;同步读取: &#34; &#43; data.toString()); console.log(&#34;程序执行完毕。&#34;); //write var fs = require(&#34;fs&#34;); fs.writeFile(&#39;x.txt&#39;, &#39;fs.writeFile 写入文件的内容&#39;, function(err) { if (err) { return console.error(err); } console.log(&#34;写入成功！&#34;); fs.readFile(&#39;x.txt&#39;, function (err, data) { if (err) { return console.error(err); } console.log(&#34;异步读取文件数据: &#34; &#43; data.toString()); }); }); 📗Get/Post var http = require(&#39;http&#39;); var url = require(&#39;url&#39;); var util = require(&#39;util&#39;); http.createServer(function(req, res){ res.writeHead(200, {&#39;Content-Type&#39;: &#39;text/plain; charset=utf-8&#39;}); res.end(util.inspect(url.parse(req.url, true))); }).listen(3000); http://localhost:3000/?name=mqm&amp;url=www Url { protocol: null, slashes: null, auth: null, host: null, port: null, hostname: null, hash: null, search: ‘?name=mqm&amp;url=www’, query: [Object: null prototype] { name: ‘mqm’, url: ‘www’ }, pathname: ‘/’, path: ‘/?name=mqm&amp;url=www’, href: ‘/?name=mqm&amp;url=www’ }
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-04-20 21:13:11 +0000 UTC'>April 20, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to  .NET SMTP" href="http://localhost:1313/posts/.net-smtp/"></a>
+  <footer class="entry-footer"><span title='2024-05-17 21:00:03 +0000 UTC'>May 17, 2024</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Nodejs Study" href="http://localhost:1313/posts/nodejs-study/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Socket to WebSocket
+    <h2 class="entry-hint-parent">Nodejs base
     </h2>
   </header>
   <div class="entry-content">
-    <p>前言 针对IOS App Proxy Server无法直连WebSocket，建立 Socket中转端。
-​
-WebSocket 端：
-WebSocket 端用于实现实时通信功能。
-WebSocket 端通过 WebSocket 协议与中转端通信，中转端可以通过 WebSocket 或其他传输协议与 WebSocket 端建立连接，收发消息。
-定义 SendMessageToChatRoomIP 和 JoinChatRoom，用于处理来自客户端的消息和连接事件。
-中转端 C1 （Socket Server）：
-中转端 C1 是一个独立的应用程序，用于连接WebSocket端，建立Socket服务。
-中转端 C1 的主要功能是接收来自客户端 C2 的消息，并将其转发给 WebSocket 端，或者接收来自 WebSocket 端的消息，并转发给客户端 C2。
-客户端 C2 x N ：
-客户端 C2 ，主要与中转端连接 发送数据，接收数据。
-在客户端 C2 中，连接到中转端 C1、发送消息给中转端 C1、接收来自中转端 C1 的消息。
-调用关系为：
-客户端 C2 通过与中转端 C1 的通信，向 WebSocket 端发送消息或接收来自 WebSocket 端的消息。
-中转端 C1 接收来自客户端 C2 的消息，并将其转发给 WebSocket 端，或者接收来自 WebSocket 端的消息，并转发给客户端 C2。
+    <p>简单的说 Node.js 就是运行在服务端的 JavaScript。
+Node.js 是一个基于 Chrome JavaScript 运行时建立的一个平台。
+Node.js 是一个事件驱动 I/O 服务端 JavaScript 环境，基于 Google 的 V8 引擎，V8 引擎执行 Javascript 的速度非常快，性能非常好。
+🛠Node.js安装 Node.js安装在上一篇文章Debian Node.js HEXO 有讲到
+截至目前最新的版本是20.12.2
+#查看版本 node -v v20.12.2
+win下可以在官网下载安装 https://nodejs.org/en/download
+debian nodejs node 14版本
+$ apt-get update $ curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash - #如果提示sudo 命令没有找到，一定要下载，执行apt-get install sudo -y 即可，然后再执行上述命令
+$ apt-get install nodejs -y $ node --version //验证 当然如果需要安装node20版本，只需将上述命令替换为：
+$ curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 💬helloworld hi.js
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-04-20 12:56:50 +0000 UTC'>April 20, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;dwd</footer>
-  <a class="entry-link" aria-label="post link to Socket to WebSocket" href="http://localhost:1313/posts/socket-to-websocket/"></a>
+  <footer class="entry-footer"><span title='2024-05-17 19:00:03 +0000 UTC'>May 17, 2024</span>&nbsp;·&nbsp;13 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Nodejs base" href="http://localhost:1313/posts/nodejs-base/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">HarmonyOS Photos Column Swiper Grid
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>​
+✨️index title swiper list(grid)
+import coms from &#39;../pages/com&#39; @Entry @Component struct Index { @State message: string = &#39;Hello World1&#39; //private list = new con build() { Column() { //标题 Row(){ Text(&#39;photos&#39;) .fontSize(&#39;30fp&#39;) .fontWeight(FontWeight.Bold) } .justifyContent(FlexAlign.Start) .width(&#39;100%&#39;) .padding(&#39;12vp&#39;) //轮播 Swiper() { ForEach(coms.SWIPERLIST,(item:Resource,index?:Number)=&gt;{ Row() { Image(item) } .width(&#39;100%&#39;) .aspectRatio(1.6) }) } .autoPlay(true) .loop(true) .indicator(true) .duration(1000) .itemSpace(10) .borderRadius(&#39;12vp&#39;) .margin(&#39;12vp&#39;) .onChange((index: number) =&gt; { }) //列表 Grid(){ GridItem(){ Column(){ Image($r(&#39;app.media.icon&#39;)) .borderRadius(2) } } GridItem(){ Column(){ Image($r(&#39;app.media.icon&#39;)) .borderRadius(2) } } GridItem(){ Column(){ Image($r(&#39;app.media.icon&#39;)) .borderRadius(2) } } GridItem(){ Column(){ Image($r(&#39;app.media.44&#39;)) .borderRadius(2) } } } .columnsTemplate(&#39;1fr 1fr&#39;) .columnsGap(&#39;12vp&#39;) .rowsGap(&#39;12vp&#39;) //.padding(&#39;2vp&#39;) } .width(&#39;100%&#39;) .height(&#39;100%&#39;) } } 核心Grid的
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-16 01:26:18 +0000 UTC'>May 16, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to HarmonyOS Photos Column Swiper Grid" href="http://localhost:1313/posts/harmonyos-photos-column-swiper-grid/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">.NET AES DES
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>.NET AES DES 对称加密
+ASE 加密解密 加密方法 (Encrypt):
+创建一个 Aes 实例。 设置密钥 (Key) 和初始化向量 (IV)。 使用 CreateEncryptor 创建加密器。 通过 CryptoStream 和 StreamWriter 将明文写入内存流，然后转换为 Base64 字符串。
+解密方法 (Decrypt):
+同样创建一个 Aes 实例。 设置相同的密钥和初始化向量。 使用 CreateDecryptor 创建解密器。 通过 CryptoStream 和 StreamReader 从内存流读取密文并解密为明文。
+注意事项 密钥长度：AES 支持 128, 192, 和 256 位密钥。本例使用 256 位（32 字节）。 初始化向量 (IV)：应确保加密和解密时使用相同的 IV。本例中使用了全零的 IV，在实际应用中建议使用随机 IV，并将其与密文一起存储。
+using System; using System.IO; using System.Security.Cryptography; using System.Text; class SymmetricEncryption { // 加密方法 public static string Encrypt(string plainText, string key) { using (Aes aesAlg = Aes.Create()) { aesAlg.Key = Encoding.UTF8.GetBytes(key); aesAlg.IV = new byte[16]; // 初始化向量 (IV) 可以设为全零，也可以使用随机值 ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV); using (MemoryStream msEncrypt = new MemoryStream()) { using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write)) using (StreamWriter swEncrypt = new StreamWriter(csEncrypt)) { swEncrypt.Write(plainText); } return Convert.ToBase64String(msEncrypt.ToArray()); } } } // 解密方法 public static string Decrypt(string cipherText, string key) { using (Aes aesAlg = Aes.Create()) { aesAlg.Key = Encoding.UTF8.GetBytes(key); aesAlg.IV = new byte[16]; // 与加密时使用相同的 IV ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV); using (MemoryStream msDecrypt = new MemoryStream(Convert.FromBase64String(cipherText))) { using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read)) using (StreamReader srDecrypt = new StreamReader(csDecrypt)) { return srDecrypt.ReadToEnd(); } } } } // 示例主方法 public static void Main() { string original = &#34;Hello, World!&#34;; string key = &#34;thisisaverysecretkey1234&#34;; // 32 字节的密钥 // 加密 string encrypted = Encrypt(original, key); Console.WriteLine($&#34;Encrypted: {encrypted}&#34;); // 解密 string decrypted = Decrypt(encrypted, key); Console.WriteLine($&#34;Decrypted: {decrypted}&#34;); } } Encrypted: NEVECFUqMdlFuAPGXm30FQ== Decrypted: 115
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-15 15:01:42 +0000 UTC'>May 15, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to .NET AES DES" href="http://localhost:1313/posts/.net-aes-des/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">IOS POD
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>IOS POD
+brew install cocoapod gem install cocoapod sudo gem install cocoapod sudo brew update ruby update rvm install 2.7 cd xx
+pod install </p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-14 10:51:59 +0000 UTC'>May 14, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to IOS POD" href="http://localhost:1313/posts/ios-pod/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

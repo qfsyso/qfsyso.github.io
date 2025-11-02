@@ -126,6 +126,24 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Debian docker mssql
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>docker curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh 查看架构
+uname -m 安装 docker run -e &#34;ACCEPT_EULA=Y&#34; -e &#34;SA_PASSWORD=Qq123123.&#34; -e &#34;TZ=Asia/Shanghai&#34; -p 1433:1433 --name sqlserver2022 -d mcr.microsoft.com/mssql/server:2022-latest 开放端口 1433
+进入容器
+docker exec -it sqlserver2022 /bin/bash 使用navicat test sa Qq123123. 测试连接
+SQL测试
+CREATE DATABASE mydb; GO USE mydb; GO CREATE TABLE Users ( UserId INT PRIMARY KEY IDENTITY(1,1), UserName NVARCHAR(50) NOT NULL ); GO INSERT INTO Users (UserName) VALUES (&#39;zs&#39;); INSERT INTO Users (UserName) VALUES (&#39;ls&#39;); INSERT INTO Users (UserName) VALUES (&#39;w5&#39;); GO SELECT * FROM Users; GO BACKUP USE master; GO BACKUP DATABASE mydb TO DISK = &#39;mydblog.bak&#39; WITH COMPRESSION, INIT, STATS=5; GO RESTORE update users set username = &#39;zsss1&#39; where userid= 1; go select * from users; go USE master; GO -- 检查数据库是否存在，如果存在则删除 IF EXISTS (SELECT name FROM sys.databases WHERE name = &#39;mydb&#39;) BEGIN DROP DATABASE mydb; END GO -- 还原数据库 RESTORE DATABASE mydb FROM DISK = &#39;mydblog.bak&#39; GO if restore err SET RECOVERY SIMPL
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-08-06 19:30:54 +0000 UTC'>August 6, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;dwd</footer>
+  <a class="entry-link" aria-label="post link to Debian docker mssql" href="http://localhost:1313/posts/debian-docker-mssql/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent"> VM Linux win
     </h2>
   </header>
